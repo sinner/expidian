@@ -870,10 +870,6 @@ margin: -5px 0 5px 0;
 text-transform: uppercase;
 }
 
-fieldset input[type=text]{
-   text-transform: uppercase;
-}
-
 fieldset input[type=text], fieldset input[type=password], fieldset input[type=email], fieldset textarea, fieldset select{
 	font: normal 13px/100% Verdana, Tahoma, sans-serif;
 	-webkit-border-radius: 5px;
