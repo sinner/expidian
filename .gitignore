@@ -1,12 +1,20 @@
-# Bootstrap
-app/bootstrap*
-
 # Symfony directories
 vendor/*
+
 */logs/*
 */cache/*
-web/uploads/*
-web/bundles/*
 
-# Configuration files
-app/config/parameters.ini
+web/uploads/*
+web/bundles/acmedemo
+web/bundles/framework
+web/bundles/sensiodistribution
+web/bundles/webprofiler
+web/bundles/fosjsrouting
+
+# Files maked by IDEs like Eclipse, Zend Studio, Netbeans, PHPStorm y TextMate2
+.buildpath
+.project
+.settings
+nbproject
+.idea
+.tm_properties
