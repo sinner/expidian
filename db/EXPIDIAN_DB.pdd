@@ -1,0 +1,718 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+
+<DBMODEL Version="1.8" TYPE="PostgreSQL">
+
+<MODELSETTINGS MDDVERSION="1.8.3 (build 854)" ModelProject="" ModelName="EXPIDIAN_DB" ModelCompany="" ModelAuthor="" ModelCopyright="" ModelVersion="" ModelVersionAI="0" ModelSaveScriptsWithVersion="0" ModelCreated="2012-04-15 22:20:12" ModelUpdated="2012-04-15 22:20:12" Description="" Annotation="" ZoomFac="75.00" XPos="0" YPos="0" PrintLink="" GenSettings="object GenSettings1: TGenSettings\n  TextCharCase = tccMixed\n  ModelCheck = True\n  DropIfExists = True\n  ISQL = False\n  DBOptions = [dbgoCreate, dbgoBeginScript, dbgoEndScript]\n  ViewOptions = [viewgoCreate, viewgoCreateRule]\n  SPOptions = [spgoCreate]\n  TableOptions = [tblgoCreate, tblgoBeginScript, tblgoEndScript, tblgoComment, tblgoCreatePK, tblgoCreateFK, tblgoCreateIndex, tblgoCreateRule, tblgoCreateTrigger, tblgoCreateCHECK, tblgoFieldDefault]\n  OwnerOptions = [owngoSchema, owngoTable, owngoView, owngoSP, owngoSequence, owngoUDT]\n  ACLOptions = [aclgoSchema, aclgoTable, aclgoView, aclgoSP, aclgoSequence]\n  ModifyOptions = [mgoKeepTbls, mgoBackupTbls, mgoTraceRenaming]\n  RoleCreate = True\n  RoleWhenCreate = rocrInScript\n  SQLTypeNames = False\nend\n" DisplaySettings="object DisplaySettings1: TDisplaySettings\n  ObjectsDisplay = [edoColumns, edoInhColumns, edoIndices, edoConstraints, edoTriggers, edoRules, edoColTypes, edoFKs, rdoRefName, spdoParameters, spdoResult, spdoParamTypes, spdoParamKind, vdoAttributes, vdoTargets, vdoRules]\n  Color = clWhite\n  ShowIcons = True\n  SnapGrid = True\n  DisplaySnap = True\n  SnapSize = 10\n  ShowPages = True\n  EntityFillColor = clWhite\n  EntityLineColor = clNavy\n  SPFillColor = 13499135\n  SPLineColor = clNavy\n  ViewFillColor = 3329434\n  ViewLineColor = clNavy\n  RefNotation = 0\n  RefColor = clNavy\n  RefLabelColor = clWhite\n  MinimapShapesStyle = mmssFillAndBorder\n  MinimapVisibleAreaStyle = mmvasBitmapShading\n  MinimapBackColor = clWhite\nend\n" DefaultDelete="3" DefaultUpdate="3" DefaultDataType="23" DefaultSchemaID="0" NamePatterns="" QueryDelimiter=";" DBQuoteCharacter="\A" EncloseNames="1" HPageCount="5" VPageCount="5" />
+
+<DATABASE Name="EXPIDIAN_DB" CharacterSet="UNICODE" Collate="" CType="" Tablespace="" Owner="postgres" Template="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" />
+
+<STAMPS>
+</STAMPS>
+
+<ROLES>
+<ROLE ID="10" Name="postgres" Roles="" Admins="" Generate="0" Comments="" Password="md53175bce1d3201d16594cebf9d7eb3f9d" CreateDB="1" SuperUser="1" CreateRole="1" Inherit="1" UpdateCatalogs="1" Login="1" PassEncrypted="1" Valid="2958465.99999"></ROLE>
+</ROLES>
+
+<SCHEMAS>
+<SCHEMA ID="0" Name="public" Owner="" Generate="0" Comments="" System="1" ACL=""></SCHEMA>
+</SCHEMAS>
+
+<SEQUENCES>
+</SEQUENCES>
+
+<DOMAINS>
+</DOMAINS>
+
+<COMPOSITES>
+<COMPOSITE ID="10040" Name="consultas" SchemaName="public" OwnerName="" Comments="" MasterTableOID="35613">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10041" Name="control_movimientos" SchemaName="public" OwnerName="" Comments="" MasterTableOID="35618">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10042" Name="estados" SchemaName="public" OwnerName="" Comments="" MasterTableOID="35623">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10043" Name="etapas" SchemaName="public" OwnerName="" Comments="" MasterTableOID="35628">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10044" Name="expedientes" SchemaName="public" OwnerName="" Comments="" MasterTableOID="35633">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10045" Name="interesados" SchemaName="public" OwnerName="" Comments="" MasterTableOID="35641">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10046" Name="logs_usuarios" SchemaName="public" OwnerName="" Comments="" MasterTableOID="35646">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10047" Name="observaciones" SchemaName="public" OwnerName="" Comments="" MasterTableOID="35651">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10048" Name="organismos" SchemaName="public" OwnerName="" Comments="" MasterTableOID="35659">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10049" Name="paises" SchemaName="public" OwnerName="" Comments="" MasterTableOID="35664">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10050" Name="perfiles" SchemaName="public" OwnerName="" Comments="" MasterTableOID="35669">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10051" Name="personas" SchemaName="public" OwnerName="" Comments="" MasterTableOID="35674">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10052" Name="procesos" SchemaName="public" OwnerName="" Comments="" MasterTableOID="35679">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+<COMPOSITE ID="10053" Name="usuarios" SchemaName="public" OwnerName="" Comments="" MasterTableOID="35684">
+	<COLUMNS>
+	</COLUMNS>
+</COMPOSITE>
+</COMPOSITES>
+
+<SCALARS>
+</SCALARS>
+
+<ENUMS>
+</ENUMS>
+
+<TABLESPACES>
+</TABLESPACES>
+
+<METADATA>
+<ENTITIES>
+<ENTITY ID="35613" Name="consultas" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="210" YPos="30" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=True\n" >
+	<COLUMNS>
+		<COLUMN ID="248" Name="id_consulta" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="249" Name="cedula_de_identidad" Pos="2" Datatype="1043" Type="varchar" Width="15" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="250" Name="id_expediente" Pos="3" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="251" Name="fecha_consulta" Pos="4" Datatype="1114" Type="timestamp" Width="-1" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_END>
+		<REFERENCE_END ID="40307" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="40245" Name="consulta_id_pk" Kind="2" Expression="" ReferenceIndex="40244" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="248"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+	<INDEXES>
+		<INDEX ID="40244" Name="consulta_id_pk_idx_pk" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="40245" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="id_consulta"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+	</INDEXES>
+</ENTITY>
+
+<ENTITY ID="35618" Name="control_movimientos" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="20" YPos="650" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=True\n" >
+	<COLUMNS>
+		<COLUMN ID="252" Name="id_control_movimientos" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="253" Name="id_expidiente" Pos="2" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="254" Name="id_proceso" Pos="3" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="255" Name="id_etapa" Pos="4" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="256" Name="cod_expediente" Pos="5" Datatype="1043" Type="varchar" Width="11" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="257" Name="fecha_movimiento" Pos="6" Datatype="1114" Type="timestamp" Width="-1" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="258" Name="id_abogado_coord" Pos="7" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="259" Name="id_abogado_asign" Pos="8" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="325" Name="usuarios_id_usuario" Pos="8" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="326" Name="usuarios_id_usuario" Pos="9" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="327" Name="expedientes_id_expediente" Pos="10" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_END>
+		<REFERENCE_END ID="40418" />
+		<REFERENCE_END ID="40413" />
+		<REFERENCE_END ID="40408" />
+		<REFERENCE_END ID="40398" />
+		<REFERENCE_END ID="40403" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="40247" Name="control_mov_id_pk" Kind="2" Expression="" ReferenceIndex="40246" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="252"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="40249" Name="control_movimiento_uk" Kind="1" Expression="" ReferenceIndex="41114" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="253,254,255"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+	<INDEXES>
+		<INDEX ID="40246" Name="control_mov_id_pk_idx_pk" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="40247" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="id_control_movimientos"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+		<INDEX ID="41114" Name="control_movimiento_uk_idx_ui" Unique="1" Method="0" Predicate="" TablespaceID="0" ReferenceConstraint="40249" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="id_expidiente,id_proceso,id_etapa"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+	</INDEXES>
+</ENTITY>
+
+<ENTITY ID="35623" Name="estados" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="1080" YPos="940" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=True\n" >
+	<COLUMNS>
+		<COLUMN ID="260" Name="id_estado" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="261" Name="estado" Pos="2" Datatype="1043" Type="varchar" Width="60" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="262" Name="id_pais" Pos="3" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_BEGIN>
+		<REFERENCE_BEGIN ID="40377" />
+	</REFERENCES_BEGIN>
+	<REFERENCES_END>
+		<REFERENCE_END ID="40327" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="40251" Name="estado_pk" Kind="2" Expression="" ReferenceIndex="40250" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="260"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+	<INDEXES>
+		<INDEX ID="40250" Name="estado_pk_idx_pk" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="40251" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="id_estado"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+	</INDEXES>
+</ENTITY>
+
+<ENTITY ID="35628" Name="etapas" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="150" YPos="430" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=True\n" >
+	<COLUMNS>
+		<COLUMN ID="263" Name="id_etapa" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="264" Name="etapa_abrev" Pos="2" Datatype="1043" Type="varchar" Width="5" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="265" Name="etapa" Pos="3" Datatype="1043" Type="varchar" Width="60" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="266" Name="nro_consecutivo_etapa" Pos="4" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="267" Name="id_proceso" Pos="5" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_BEGIN>
+		<REFERENCE_BEGIN ID="40398" />
+		<REFERENCE_BEGIN ID="40423" />
+		<REFERENCE_BEGIN ID="40362" />
+	</REFERENCES_BEGIN>
+	<REFERENCES_END>
+		<REFERENCE_END ID="40332" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="40259" Name="etapa_id_pk" Kind="2" Expression="" ReferenceIndex="41141" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="263"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="40253" Name="etaba_abrev_uk" Kind="1" Expression="" ReferenceIndex="40252" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="264"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="40255" Name="etapa_consecutivo_uk" Kind="1" Expression="" ReferenceIndex="41142" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="266"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="40257" Name="etapa_desc_uk" Kind="1" Expression="" ReferenceIndex="41143" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="265"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+	<INDEXES>
+		<INDEX ID="40252" Name="etaba_abrev_uk_idx_ui" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="40253" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="etapa_abrev"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+		<INDEX ID="41141" Name="etapa_id_pk_idx_pk" Unique="1" Method="0" Predicate="" TablespaceID="0" ReferenceConstraint="40259" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="id_etapa"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+		<INDEX ID="41142" Name="etapa_consecutivo_uk_idx_ui" Unique="1" Method="0" Predicate="" TablespaceID="0" ReferenceConstraint="40255" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="nro_consecutivo_etapa"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+		<INDEX ID="41143" Name="etapa_desc_uk_idx_ui" Unique="1" Method="0" Predicate="" TablespaceID="0" ReferenceConstraint="40257" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="etapa"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+	</INDEXES>
+</ENTITY>
+
+<ENTITY ID="35633" Name="expedientes" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="760" YPos="160" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=True\n" >
+	<COLUMNS>
+		<COLUMN ID="268" Name="id_expediente" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="269" Name="id_organismo" Pos="2" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="270" Name="hechos" Pos="3" Datatype="25" Type="text" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="271" Name="observaciones" Pos="4" Datatype="25" Type="text" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="272" Name="id_proceso_actual" Pos="5" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="273" Name="id_etapa_actual" Pos="6" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="274" Name="fecha_registro" Pos="7" Datatype="1114" Type="timestamp" Width="-1" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="275" Name="fecha_solic_invest" Pos="8" Datatype="1082" Type="date" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="276" Name="id_usuario_ini" Pos="9" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="328" Name="etapas_id_etapa" Pos="9" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="329" Name="procesos_id_proceso" Pos="10" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="330" Name="usuarios_id_usuario" Pos="11" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_BEGIN>
+		<REFERENCE_BEGIN ID="40307" />
+		<REFERENCE_BEGIN ID="40403" />
+		<REFERENCE_BEGIN ID="40342" />
+		<REFERENCE_BEGIN ID="40367" />
+	</REFERENCES_BEGIN>
+	<REFERENCES_END>
+		<REFERENCE_END ID="40423" />
+		<REFERENCE_END ID="40428" />
+		<REFERENCE_END ID="40433" />
+		<REFERENCE_END ID="40438" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="40261" Name="id_expediente_pk" Kind="2" Expression="" ReferenceIndex="40260" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="268"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+	<INDEXES>
+		<INDEX ID="40260" Name="id_expediente_pk_idx_pk" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="40261" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="id_expediente"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+	</INDEXES>
+</ENTITY>
+
+<ENTITY ID="35641" Name="interesados" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="580" YPos="830" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=True\n" >
+	<COLUMNS>
+		<COLUMN ID="277" Name="id_interesado" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="278" Name="id_expediente" Pos="2" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="279" Name="cedula_de_identidad" Pos="3" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="331" Name="personas_id_persona" Pos="3" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_END>
+		<REFERENCE_END ID="40302" />
+		<REFERENCE_END ID="40342" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="40263" Name="id_interesado_pk" Kind="2" Expression="" ReferenceIndex="40262" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="277"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+	<INDEXES>
+		<INDEX ID="40262" Name="id_interesado_pk_idx_pk" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="40263" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="id_interesado"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+	</INDEXES>
+</ENTITY>
+
+<ENTITY ID="35646" Name="logs_usuarios" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="1200" YPos="170" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=True\n" >
+	<COLUMNS>
+		<COLUMN ID="280" Name="id_log_usuario" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="281" Name="id_usuario" Pos="2" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="282" Name="log_usuario" Pos="3" Datatype="1043" Type="varchar" Width="250" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="283" Name="estatus_final" Pos="4" Datatype="1043" Type="varchar" Width="20" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="284" Name="fecha_log" Pos="5" Datatype="1114" Type="timestamp" Width="-1" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_END>
+		<REFERENCE_END ID="40357" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="40269" Name="log_usuario_id_pk" Kind="2" Expression="" ReferenceIndex="40268" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="280"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+	<INDEXES>
+		<INDEX ID="40268" Name="log_usuario_id_pk_idx_pk" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="40269" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="id_log_usuario"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+	</INDEXES>
+</ENTITY>
+
+<ENTITY ID="35651" Name="observaciones" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="370" YPos="230" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=True\n" >
+	<COLUMNS>
+		<COLUMN ID="285" Name="id_observacion" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="286" Name="id_expidiente" Pos="2" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="287" Name="id_proceso" Pos="3" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="288" Name="id_etapa" Pos="4" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="289" Name="observacion" Pos="5" Datatype="25" Type="text" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="290" Name="fecha_registro" Pos="6" Datatype="1114" Type="timestamp" Width="-1" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="332" Name="expedientes_id_expediente" Pos="6" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_END>
+		<REFERENCE_END ID="40372" />
+		<REFERENCE_END ID="40362" />
+		<REFERENCE_END ID="40367" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="40271" Name="observ_mov_id_pk" Kind="2" Expression="" ReferenceIndex="40270" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="285"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="40273" Name="observ_uk" Kind="1" Expression="" ReferenceIndex="41145" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="286,287,288"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+	<INDEXES>
+		<INDEX ID="40270" Name="observ_mov_id_pk_idx_pk" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="40271" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="id_observacion"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+		<INDEX ID="41145" Name="observ_uk_idx_ui" Unique="1" Method="0" Predicate="" TablespaceID="0" ReferenceConstraint="40273" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="id_expidiente,id_proceso,id_etapa"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+	</INDEXES>
+</ENTITY>
+
+<ENTITY ID="35659" Name="organismos" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="1090" YPos="30" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=True\n" >
+	<COLUMNS>
+		<COLUMN ID="291" Name="id_organismo" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="292" Name="rif" Pos="2" Datatype="1043" Type="varchar" Width="12" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="293" Name="nombre_organismo" Pos="3" Datatype="1043" Type="varchar" Width="60" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="294" Name="sector" Pos="4" Datatype="1043" Type="varchar" Width="20" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_BEGIN>
+		<REFERENCE_BEGIN ID="40428" />
+	</REFERENCES_BEGIN>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="40275" Name="organismo_id_pk" Kind="2" Expression="" ReferenceIndex="40274" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="291"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="40277" Name="organismo_nombre_uk" Kind="1" Expression="" ReferenceIndex="41125" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="293"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="40279" Name="organismo_rif_uk" Kind="1" Expression="" ReferenceIndex="41126" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="292"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+	<INDEXES>
+		<INDEX ID="40274" Name="organismo_id_pk_idx_pk" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="40275" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="id_organismo"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+		<INDEX ID="41125" Name="organismo_nombre_uk_idx_ui" Unique="1" Method="0" Predicate="" TablespaceID="0" ReferenceConstraint="40277" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="nombre_organismo"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+		<INDEX ID="41126" Name="organismo_rif_uk_idx_ui" Unique="1" Method="0" Predicate="" TablespaceID="0" ReferenceConstraint="40279" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="rif"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+	</INDEXES>
+</ENTITY>
+
+<ENTITY ID="35664" Name="paises" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="1250" YPos="820" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=True\n" >
+	<COLUMNS>
+		<COLUMN ID="295" Name="id_pais" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="296" Name="pais" Pos="2" Datatype="1043" Type="varchar" Width="35" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_BEGIN>
+		<REFERENCE_BEGIN ID="40327" />
+		<REFERENCE_BEGIN ID="40382" />
+	</REFERENCES_BEGIN>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="40281" Name="pais_pk" Kind="2" Expression="" ReferenceIndex="40280" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="295"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="40283" Name="pais_uk" Kind="1" Expression="" ReferenceIndex="41147" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="296"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+	<INDEXES>
+		<INDEX ID="40280" Name="pais_pk_idx_pk" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="40281" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="id_pais"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+		<INDEX ID="41147" Name="pais_uk_idx_ui" Unique="1" Method="0" Predicate="" TablespaceID="0" ReferenceConstraint="40283" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="pais"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+	</INDEXES>
+</ENTITY>
+
+<ENTITY ID="35669" Name="perfiles" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="1140" YPos="710" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=True\n" >
+	<COLUMNS>
+		<COLUMN ID="297" Name="id_perfil" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="298" Name="perfil" Pos="2" Datatype="1043" Type="varchar" Width="50" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="299" Name="descripcion_perfil" Pos="3" Datatype="1043" Type="varchar" Width="200" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_BEGIN>
+		<REFERENCE_BEGIN ID="40387" />
+	</REFERENCES_BEGIN>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="40265" Name="id_perfil_pk" Kind="2" Expression="" ReferenceIndex="40264" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="297"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="40285" Name="perfil" Kind="1" Expression="" ReferenceIndex="41149" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="298"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+	<INDEXES>
+		<INDEX ID="40264" Name="id_perfil_pk_idx_pk" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="40265" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="id_perfil"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+		<INDEX ID="41149" Name="perfil_idx_ui" Unique="1" Method="0" Predicate="" TablespaceID="0" ReferenceConstraint="40285" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="perfil"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+	</INDEXES>
+</ENTITY>
+
+<ENTITY ID="35674" Name="personas" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="870" YPos="710" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=True\n" >
+	<COLUMNS>
+		<COLUMN ID="300" Name="id_persona" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="301" Name="nombre" Pos="2" Datatype="1043" Type="varchar" Width="60" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="302" Name="apellido" Pos="3" Datatype="1043" Type="varchar" Width="60" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="303" Name="nacionalidad" Pos="4" Datatype="1043" Type="varchar" Width="1" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="304" Name="cedula_de_identidad" Pos="5" Datatype="1700" Type="numeric" Width="15" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="305" Name="telefono1" Pos="6" Datatype="1700" Type="numeric" Width="11" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="306" Name="telefono2" Pos="7" Datatype="1700" Type="numeric" Width="11" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="307" Name="id_pais" Pos="8" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="308" Name="id_estado" Pos="9" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="309" Name="correo_electronico" Pos="10" Datatype="1043" Type="varchar" Width="100" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_BEGIN>
+		<REFERENCE_BEGIN ID="40302" />
+		<REFERENCE_BEGIN ID="40392" />
+	</REFERENCES_BEGIN>
+	<REFERENCES_END>
+		<REFERENCE_END ID="40377" />
+		<REFERENCE_END ID="40382" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="40287" Name="personas_pk" Kind="2" Expression="" ReferenceIndex="41153" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="300"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="40243" Name="cedula_de_identidad_uk" Kind="1" Expression="" ReferenceIndex="40242" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="304"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+	<INDEXES>
+		<INDEX ID="40242" Name="cedula_de_identidad_uk_idx_ui" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="40243" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="cedula_de_identidad"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+		<INDEX ID="41153" Name="personas_pk_idx_pk" Unique="1" Method="0" Predicate="" TablespaceID="0" ReferenceConstraint="40287" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="id_persona"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+	</INDEXES>
+</ENTITY>
+
+<ENTITY ID="35679" Name="procesos" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="20" YPos="130" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=True\n" >
+	<COLUMNS>
+		<COLUMN ID="310" Name="id_proceso" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="311" Name="proceso_abrev" Pos="2" Datatype="1043" Type="varchar" Width="5" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="312" Name="proceso" Pos="3" Datatype="1043" Type="varchar" Width="60" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="313" Name="nro_consecutivo_proceso" Pos="4" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_BEGIN>
+		<REFERENCE_BEGIN ID="40408" />
+		<REFERENCE_BEGIN ID="40332" />
+		<REFERENCE_BEGIN ID="40433" />
+		<REFERENCE_BEGIN ID="40372" />
+	</REFERENCES_BEGIN>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="40295" Name="proceso_id_pk" Kind="2" Expression="" ReferenceIndex="41137" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="310"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="40289" Name="proceso_abrev_uk" Kind="1" Expression="" ReferenceIndex="40288" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="311"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="40291" Name="proceso_consecutivo_uk" Kind="1" Expression="" ReferenceIndex="41138" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="313"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="40293" Name="proceso_desc_uk" Kind="1" Expression="" ReferenceIndex="41139" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="311"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+	<INDEXES>
+		<INDEX ID="40288" Name="proceso_abrev_uk_idx_ui" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="40289" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="proceso_abrev"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+		<INDEX ID="41137" Name="proceso_id_pk_idx_pk" Unique="1" Method="0" Predicate="" TablespaceID="0" ReferenceConstraint="40295" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="id_proceso"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+		<INDEX ID="41138" Name="proceso_consecutivo_uk_idx_ui" Unique="1" Method="0" Predicate="" TablespaceID="0" ReferenceConstraint="40291" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="nro_consecutivo_proceso"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+		<INDEX ID="41139" Name="proceso_desc_uk_idx_ui" Unique="1" Method="0" Predicate="" TablespaceID="0" ReferenceConstraint="40293" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="proceso_abrev"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+	</INDEXES>
+</ENTITY>
+
+<ENTITY ID="35684" Name="usuarios" SchemaOID="0" SchemaName="public" OwnerID="10" OwnerName="postgres" TablespaceID="0" XPos="1040" YPos="370" Temporary="0" Unlogged="0" OnCommit="" Inherits="" FillColor="16777215" LineColor="8388608" CharacterSet="" Collate="" Comments="" Description="" Annotation="" BeginScript="" EndScript="" Generate="1" ACL="" StorageParams="OIDS=True\n" >
+	<COLUMNS>
+		<COLUMN ID="314" Name="id_usuario" Pos="1" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="1" Collation="" PrimaryKey="1" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="315" Name="usuario" Pos="2" Datatype="1043" Type="varchar" Width="15" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="316" Name="usuario_encrypt" Pos="3" Datatype="1043" Type="varchar" Width="128" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="317" Name="clave" Pos="4" Datatype="1043" Type="varchar" Width="128" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="318" Name="fecha_registro" Pos="5" Datatype="1114" Type="timestamp" Width="-1" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="now()" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="319" Name="fecha_ultimo_ingreso" Pos="6" Datatype="1114" Type="timestamp" Width="-1" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="320" Name="es_activo" Pos="7" Datatype="1043" Type="varchar" Width="2" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="\aNO\a::character varying" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="321" Name="id_persona" Pos="8" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="322" Name="id_perfil" Pos="9" Datatype="23" Type="int4" Width="0" Prec="0" NotNull="1" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="1" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="323" Name="str_recuperacion_clave" Pos="10" Datatype="1043" Type="varchar" Width="128" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+		<COLUMN ID="324" Name="fecha_recuperacion_clave" Pos="11" Datatype="1083" Type="time" Width="-1" Prec="0" NotNull="0" AutoInc="0" Collation="" PrimaryKey="0" IsFKey="0" DefaultValue="" QuoteDefault="0" Comments=""></COLUMN>
+	</COLUMNS>
+	<REFERENCES_BEGIN>
+		<REFERENCE_BEGIN ID="40418" />
+		<REFERENCE_BEGIN ID="40413" />
+		<REFERENCE_BEGIN ID="40438" />
+		<REFERENCE_BEGIN ID="40357" />
+	</REFERENCES_BEGIN>
+	<REFERENCES_END>
+		<REFERENCE_END ID="40387" />
+		<REFERENCE_END ID="40392" />
+	</REFERENCES_END>
+	<CONSTRAINTS>
+		<CONSTRAINT ID="40267" Name="id_usuario_pk" Kind="2" Expression="" ReferenceIndex="40266" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="314"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="40297" Name="usuario_encrypt_uk" Kind="1" Expression="" ReferenceIndex="41154" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="316"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="40299" Name="usuario_persona_uk" Kind="1" Expression="" ReferenceIndex="41155" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="321"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+		<CONSTRAINT ID="40301" Name="usuario_uk" Kind="1" Expression="" ReferenceIndex="41156" FillFactor="" Comments="" TablespaceID="0" Deferrable="0" Method="0">
+			<CONSTRAINTCOLUMNS COMMATEXT="315"></CONSTRAINTCOLUMNS>
+			<CONSTRAINTOPERATORS COMMATEXT=""></CONSTRAINTOPERATORS>
+		</CONSTRAINT>
+	</CONSTRAINTS>
+	<INDEXES>
+		<INDEX ID="40266" Name="id_usuario_pk_idx_pk" Unique="1" Method="1" Predicate="" TablespaceID="0" ReferenceConstraint="40267" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="id_usuario"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+		<INDEX ID="41154" Name="usuario_encrypt_uk_idx_ui" Unique="1" Method="0" Predicate="" TablespaceID="0" ReferenceConstraint="40297" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="usuario_encrypt"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+		<INDEX ID="41155" Name="usuario_persona_uk_idx_ui" Unique="1" Method="0" Predicate="" TablespaceID="0" ReferenceConstraint="40299" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="id_persona"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+		<INDEX ID="41156" Name="usuario_uk_idx_ui" Unique="1" Method="0" Predicate="" TablespaceID="0" ReferenceConstraint="40301" StorageParams="" Comments="">
+			<INDEXCOLUMNS COMMATEXT="usuario"></INDEXCOLUMNS>
+			<INDEXSORTS COMMATEXT=""></INDEXSORTS>
+			<INDEXNULLS COMMATEXT=""></INDEXNULLS>
+		</INDEX>
+	</INDEXES>
+</ENTITY>
+
+</ENTITIES>
+
+<REFERENCES>
+<REFERENCE ID="40307" Name="consulta_expediente_fk" SOURCE="35633" DESTINATION="35613" FKIDS="268=250\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="40261" />
+
+<REFERENCE ID="40418" Name="control_abog_asignado_fk" SOURCE="35684" DESTINATION="35618" FKIDS="314=325\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="40267" />
+
+<REFERENCE ID="40413" Name="control_abog_coordinador_fk" SOURCE="35684" DESTINATION="35618" FKIDS="314=325\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="40267" />
+
+<REFERENCE ID="40408" Name="control_proceso_fk" SOURCE="35679" DESTINATION="35618" FKIDS="310=254\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="40295" />
+
+<REFERENCE ID="40398" Name="control_etapa_fk" SOURCE="35628" DESTINATION="35618" FKIDS="263=255\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="40259" />
+
+<REFERENCE ID="40403" Name="control_expediente_fk" SOURCE="35633" DESTINATION="35618" FKIDS="268=327\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="40261" />
+
+<REFERENCE ID="40327" Name="estado_pais_fk" SOURCE="35664" DESTINATION="35623" FKIDS="295=262\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="40281" />
+
+<REFERENCE ID="40332" Name="etapa_de_proceso_fk" SOURCE="35679" DESTINATION="35628" FKIDS="310=267\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="40295" />
+
+<REFERENCE ID="40423" Name="id_etapa_actual_fk" SOURCE="35628" DESTINATION="35633" FKIDS="263=328\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="40259" />
+
+<REFERENCE ID="40428" Name="id_organismo_fk" SOURCE="35659" DESTINATION="35633" FKIDS="291=269\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="40275" />
+
+<REFERENCE ID="40433" Name="id_proceso_actual_fk" SOURCE="35679" DESTINATION="35633" FKIDS="310=329\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="40295" />
+
+<REFERENCE ID="40438" Name="id_usuario_reg_inicial_fk" SOURCE="35684" DESTINATION="35633" FKIDS="314=330\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="40267" />
+
+<REFERENCE ID="40302" Name="cedula_de_identidad_fk" SOURCE="35674" DESTINATION="35641" FKIDS="300=331\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="40287" />
+
+<REFERENCE ID="40342" Name="id_expediente_fk" SOURCE="35633" DESTINATION="35641" FKIDS="268=278\n" Direction="0" RefColor="25600" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="40261" />
+
+<REFERENCE ID="40357" Name="log_usuario_reg_fk" SOURCE="35684" DESTINATION="35646" FKIDS="314=281\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="40267" />
+
+<REFERENCE ID="40372" Name="observ_proceso_fk" SOURCE="35679" DESTINATION="35651" FKIDS="310=287\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="40295" />
+
+<REFERENCE ID="40362" Name="observ_etapa_fk" SOURCE="35628" DESTINATION="35651" FKIDS="263=288\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="40259" />
+
+<REFERENCE ID="40367" Name="observ_expediente_fk" SOURCE="35633" DESTINATION="35651" FKIDS="268=332\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="40261" />
+
+<REFERENCE ID="40377" Name="persona_estado_fk" SOURCE="35623" DESTINATION="35674" FKIDS="260=308\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="40251" />
+
+<REFERENCE ID="40382" Name="persona_pais_fk" SOURCE="35664" DESTINATION="35674" FKIDS="295=307\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="40281" />
+
+<REFERENCE ID="40387" Name="usuario_perfil_fk" SOURCE="35669" DESTINATION="35684" FKIDS="297=322\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="40265" />
+
+<REFERENCE ID="40392" Name="usuario_persona_fk" SOURCE="35674" DESTINATION="35684" FKIDS="300=321\n" Direction="0" RefColor="8388608" RefLabelColor="16777215" OnDelete="3" OnUpdate="3" Deferrable="0" MatchType="0" Comments="" Description="" Annotation="" Generate="1" FKConstraint_ID="40287" />
+
+</REFERENCES>
+
+<NOTES>
+</NOTES>
+
+<STOREDPROCES>
+</STOREDPROCES>
+
+<VIEWS>
+</VIEWS>
+
+</METADATA>
+</DBMODEL>

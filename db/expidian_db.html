@@ -1,0 +1,3541 @@
+<html><head><meta http-equiv="Content-Type" content="text/html"><title>MicroOLAP Database Designer HTML Diagram Report</title>
+<style> 
+hr                      {height:1px;color:#000000;}
+body                    {margin:15px 15px 70px 15px;}
+body,a,div,p,td,span    {font-family:Verdana,Tahoma,Arial,MS Sans serif;color:black;}
+/******************* Header *****************************************************/
+ .Header                {text-align:center;}
+ .HeaderTitle           {font-size:16px;font-weight:700;}
+ .HeaderDiagramName     {font-size:16px;font-weight:500;}
+ .HeaderReportDate      {font-size:10px;font-weight:500;}
+ .HeaderReportDateTitle {font-size:10px;font-weight:500;}
+ .HeaderReportDateValue {font-size:10px;font-weight:500;}
+ .HeaderContents        {font-size:16px;font-weight:700;}
+/******************* Table of Contents *************************************************/
+ .TOC                   {}
+ .TOCItem               {font-size:14px;font-weight:700;}
+a.TOCItemLink           {color:#000000;text-decoration:underline;}
+a.TOCItemLink:hover     {color:#ff0000;text-decoration:underline;}
+ .TOC1                  {}
+ .TOC1Item              {font-size:14px;font-weight:700;font-style:italic;}
+a.TOC1ItemLink          {color:#000000;text-decoration:underline;}
+a.TOC1ItemLink:hover    {color:#ff0000;text-decoration:underline;}
+ .TOC2                  {}
+ .TOC2Item              {font-size:14px;font-weight:700;font-style:italic;}
+a.TOC2ItemLink          {color:#000000;text-decoration:underline;}
+a.TOC2ItemLink:hover    {color:#ff0000;text-decoration:underline;}
+/******************* Report body *************************************************/
+.TOCItemContentHeader   {font-size:14px;font-weight:700;background-color:#FFFFCC;padding:5px 5px 5px 5px;border-bottom:1px solid black;margin-top:30px;}
+.TOC1ItemContentHeader  {font-size:14px;font-weight:700;font-style:italic;background-color:#999999;padding:5px 5px 5px 15px;color: white;margin-top:10px;}
+.TOC2ItemContentHeader  {font-size:14px;font-weight:700;font-style:italic;background-color:#999999;padding:5px 5px 5px 25px;color: white;margin-top:10px;}
+.TOC1ItemContentParent  {vertical-align:top;padding:0px 0px 0px 0px;margin-top:10px;}
+.TOC1ItemTable          {border:none;background-color:#FFFFFF;border-bottom:1px solid #000000;}
+.ModelDesc              {margin:0;font-size:12px;font-family:courier new;font-weight:500;}
+.ModelAnn               {margin:0;font-size:12px;font-family:courier new;font-weight:500;}
+.ImageContainer         {text-align:center;padding:4px 4px 4px 4px;margin:20px 0px 20px 0px;}
+.DescrVar               {padding:4px 10px 4px 4px;vertical-align:top;border-bottom:1px solid #c0c0c0;font-size:10px;font-weight:700;}
+.DescrVal               {padding:4px 4px 4px 10px;vertical-align:top;border-bottom:1px solid #c0c0c0;width:100%;font-size:10px;}
+.TableDesc              {margin:0;font-size:12px;font-family:courier new;font-weight:500;}
+.TableAnn               {margin:0;font-size:12px;font-family:courier new;font-weight:500;}
+.RefDesc              {margin:0;font-size:12px;font-family:courier new;font-weight:500;}
+.RefAnn               {margin:0;font-size:12px;font-family:courier new;font-weight:500;}
+.BasicVar               {padding:4px 10px 4px 4px;vertical-align:top;border-bottom:1px solid #c0c0c0;font-size:10px;font-weight:700;}
+.BasicVal               {padding:4px 4px 4px 10px;vertical-align:top;border-bottom:1px solid #c0c0c0;width:100%;font-size:10px;}
+.ParamsVar              {padding:4px 10px 4px 10px;vertical-align:top;border-bottom:1px solid #606060;font-size:10px;font-weight:700;}
+.ParamsVal              {padding:4px 10px 4px 10px;vertical-align:top;border-bottom:1px solid #c0c0c0;font-size:10px;}
+.ColumnsVar             {padding:4px 4px 4px 4px;vertical-align:top;border-bottom:1px solid #606060;font-size:10px;font-weight:700;text-align:center;}
+.ColumnsVal             {padding:4px 4px 4px 4px;vertical-align:top;border-bottom:1px solid #c0c0c0;font-size:10px;text-align:center;}
+.IndexVar               {padding:4px 10px 4px 10px;vertical-align:top;border-bottom:1px solid #606060;font-size:10px;font-weight:700;text-align:center;}
+.IndexVal               {padding:4px 10px 4px 10px;vertical-align:top;border-bottom:1px solid #c0c0c0;font-size:10px;text-align:center;}
+.ConstraintVar          {padding:4px 10px 4px 10px;vertical-align:top;border-bottom:1px solid #606060;font-size:10px;font-weight:700;}
+.ConstraintVal          {padding:4px 10px 4px 10px;vertical-align:top;border-bottom:1px solid #c0c0c0;font-size:10px;}
+.RuleVar                {padding:4px 10px 4px 10px;vertical-align:top;border-bottom:1px solid #606060;font-size:10px;font-weight:700;}
+.RuleVal                {padding:4px 10px 4px 10px;vertical-align:top;border-bottom:1px solid #c0c0c0;font-size:10px;}
+.TriggerVar                {padding:4px 10px 4px 10px;vertical-align:top;border-bottom:1px solid #606060;font-size:10px;font-weight:700;}
+.TriggerVal                {padding:4px 10px 4px 10px;vertical-align:top;border-bottom:1px solid #c0c0c0;font-size:10px;}
+.RefVar                 {padding:4px 20px 4px 20px;vertical-align:top;border-bottom:1px solid #606060;font-size:10px;font-weight:700;}
+.RefVal                 {padding:4px 20px 4px 20px;vertical-align:top;border-bottom:1px solid #c0c0c0;font-size:10px;}
+</style>
+</head>
+<body><div class="Header">
+<p class="HeaderTitle">Physical Data Diagram</p>
+<p class="HeaderDiagramName">EXPIDIAN_DB</p>
+<p class="HeaderReportDate"><span class="HeaderReportDateTitle">Generated:</span> <span class="HeaderReportDateValue">15/04/2012 22:22:28</span></p>
+<p class="HeaderContents">Table of Contents</p>
+</div>
+<hr>
+<a name="Top"></a><ul class="TOC">
+ <li class="TOCItem"><a class="TOCItemLink" href="#ModelInfo">1. Diagram Information</a>
+  <ul class="TOC1">
+   <li class="TOC1Item"><a class="TOC1ItemLink" href="#BasicInfo">1.1. Basic Information</a>
+   <li class="TOC1Item"><a class="TOC1ItemLink" href="#ModelDesc">1.2. Diagram Description</a>
+   <li class="TOC1Item"><a class="TOC1ItemLink" href="#ModelAnn">1.3. Diagram Annotation</a>
+   <li class="TOC1Item"><a class="TOC1ItemLink" href="#ModelERD">1.4. ER Diagram</a>
+  </ul>
+ <li class="TOCItem"><a class="TOCItemLink" href="#Database">2. Database</a>
+ <li class="TOCItem"><a class="TOCItemLink" href="#Domains">3. Domains</a>
+  <ul class="TOC1">
+
+  </ul>
+ <li class="TOCItem"><a class="TOCItemLink" href="#Tables">4. Tables</a>
+  <ul class="TOC1">
+   <li class="TOC1Item"><a class="TOC1ItemLink" href="#consultas">4.1 consultas</a>
+    <ul class="TOC2">
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#consultas_Columns">4.1.1 Columns</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#consultas_Constraints">4.1.2 Constraints</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#consultas_Indexes">4.1.3 Indexes</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#consultas_Rules">4.1.4 Rules</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#consultas_Triggers">4.1.5 Triggers</a>
+    </ul>
+   <li class="TOC1Item"><a class="TOC1ItemLink" href="#control_movimientos">4.2 control_movimientos</a>
+    <ul class="TOC2">
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#control_movimientos_Columns">4.2.1 Columns</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#control_movimientos_Constraints">4.2.2 Constraints</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#control_movimientos_Indexes">4.2.3 Indexes</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#control_movimientos_Rules">4.2.4 Rules</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#control_movimientos_Triggers">4.2.5 Triggers</a>
+    </ul>
+   <li class="TOC1Item"><a class="TOC1ItemLink" href="#estados">4.3 estados</a>
+    <ul class="TOC2">
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#estados_Columns">4.3.1 Columns</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#estados_Constraints">4.3.2 Constraints</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#estados_Indexes">4.3.3 Indexes</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#estados_Rules">4.3.4 Rules</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#estados_Triggers">4.3.5 Triggers</a>
+    </ul>
+   <li class="TOC1Item"><a class="TOC1ItemLink" href="#etapas">4.4 etapas</a>
+    <ul class="TOC2">
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#etapas_Columns">4.4.1 Columns</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#etapas_Constraints">4.4.2 Constraints</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#etapas_Indexes">4.4.3 Indexes</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#etapas_Rules">4.4.4 Rules</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#etapas_Triggers">4.4.5 Triggers</a>
+    </ul>
+   <li class="TOC1Item"><a class="TOC1ItemLink" href="#expedientes">4.5 expedientes</a>
+    <ul class="TOC2">
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#expedientes_Columns">4.5.1 Columns</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#expedientes_Constraints">4.5.2 Constraints</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#expedientes_Indexes">4.5.3 Indexes</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#expedientes_Rules">4.5.4 Rules</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#expedientes_Triggers">4.5.5 Triggers</a>
+    </ul>
+   <li class="TOC1Item"><a class="TOC1ItemLink" href="#interesados">4.6 interesados</a>
+    <ul class="TOC2">
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#interesados_Columns">4.6.1 Columns</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#interesados_Constraints">4.6.2 Constraints</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#interesados_Indexes">4.6.3 Indexes</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#interesados_Rules">4.6.4 Rules</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#interesados_Triggers">4.6.5 Triggers</a>
+    </ul>
+   <li class="TOC1Item"><a class="TOC1ItemLink" href="#logs_usuarios">4.7 logs_usuarios</a>
+    <ul class="TOC2">
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#logs_usuarios_Columns">4.7.1 Columns</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#logs_usuarios_Constraints">4.7.2 Constraints</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#logs_usuarios_Indexes">4.7.3 Indexes</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#logs_usuarios_Rules">4.7.4 Rules</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#logs_usuarios_Triggers">4.7.5 Triggers</a>
+    </ul>
+   <li class="TOC1Item"><a class="TOC1ItemLink" href="#observaciones">4.8 observaciones</a>
+    <ul class="TOC2">
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#observaciones_Columns">4.8.1 Columns</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#observaciones_Constraints">4.8.2 Constraints</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#observaciones_Indexes">4.8.3 Indexes</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#observaciones_Rules">4.8.4 Rules</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#observaciones_Triggers">4.8.5 Triggers</a>
+    </ul>
+   <li class="TOC1Item"><a class="TOC1ItemLink" href="#organismos">4.9 organismos</a>
+    <ul class="TOC2">
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#organismos_Columns">4.9.1 Columns</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#organismos_Constraints">4.9.2 Constraints</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#organismos_Indexes">4.9.3 Indexes</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#organismos_Rules">4.9.4 Rules</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#organismos_Triggers">4.9.5 Triggers</a>
+    </ul>
+   <li class="TOC1Item"><a class="TOC1ItemLink" href="#paises">4.10 paises</a>
+    <ul class="TOC2">
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#paises_Columns">4.10.1 Columns</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#paises_Constraints">4.10.2 Constraints</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#paises_Indexes">4.10.3 Indexes</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#paises_Rules">4.10.4 Rules</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#paises_Triggers">4.10.5 Triggers</a>
+    </ul>
+   <li class="TOC1Item"><a class="TOC1ItemLink" href="#perfiles">4.11 perfiles</a>
+    <ul class="TOC2">
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#perfiles_Columns">4.11.1 Columns</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#perfiles_Constraints">4.11.2 Constraints</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#perfiles_Indexes">4.11.3 Indexes</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#perfiles_Rules">4.11.4 Rules</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#perfiles_Triggers">4.11.5 Triggers</a>
+    </ul>
+   <li class="TOC1Item"><a class="TOC1ItemLink" href="#personas">4.12 personas</a>
+    <ul class="TOC2">
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#personas_Columns">4.12.1 Columns</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#personas_Constraints">4.12.2 Constraints</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#personas_Indexes">4.12.3 Indexes</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#personas_Rules">4.12.4 Rules</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#personas_Triggers">4.12.5 Triggers</a>
+    </ul>
+   <li class="TOC1Item"><a class="TOC1ItemLink" href="#procesos">4.13 procesos</a>
+    <ul class="TOC2">
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#procesos_Columns">4.13.1 Columns</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#procesos_Constraints">4.13.2 Constraints</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#procesos_Indexes">4.13.3 Indexes</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#procesos_Rules">4.13.4 Rules</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#procesos_Triggers">4.13.5 Triggers</a>
+    </ul>
+   <li class="TOC1Item"><a class="TOC1ItemLink" href="#usuarios">4.14 usuarios</a>
+    <ul class="TOC2">
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#usuarios_Columns">4.14.1 Columns</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#usuarios_Constraints">4.14.2 Constraints</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#usuarios_Indexes">4.14.3 Indexes</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#usuarios_Rules">4.14.4 Rules</a>
+     <li class="TOC2Item"><a class="TOC2ItemLink" href="#usuarios_Triggers">4.14.5 Triggers</a>
+    </ul>
+
+  </ul>
+	<li class="TOCItem"><a class="TOCItemLink" href="#References">5. References</a>
+  <ul class="TOC1">
+<li class="TOC1Item"><a class="TOC1ItemLink" href="#consulta_expediente_fk">5.1 consulta_expediente_fk</a>
+<li class="TOC1Item"><a class="TOC1ItemLink" href="#control_abog_asignado_fk">5.2 control_abog_asignado_fk</a>
+<li class="TOC1Item"><a class="TOC1ItemLink" href="#control_abog_coordinador_fk">5.3 control_abog_coordinador_fk</a>
+<li class="TOC1Item"><a class="TOC1ItemLink" href="#control_proceso_fk">5.4 control_proceso_fk</a>
+<li class="TOC1Item"><a class="TOC1ItemLink" href="#control_etapa_fk">5.5 control_etapa_fk</a>
+<li class="TOC1Item"><a class="TOC1ItemLink" href="#control_expediente_fk">5.6 control_expediente_fk</a>
+<li class="TOC1Item"><a class="TOC1ItemLink" href="#estado_pais_fk">5.7 estado_pais_fk</a>
+<li class="TOC1Item"><a class="TOC1ItemLink" href="#etapa_de_proceso_fk">5.8 etapa_de_proceso_fk</a>
+<li class="TOC1Item"><a class="TOC1ItemLink" href="#id_etapa_actual_fk">5.9 id_etapa_actual_fk</a>
+<li class="TOC1Item"><a class="TOC1ItemLink" href="#id_organismo_fk">5.10 id_organismo_fk</a>
+<li class="TOC1Item"><a class="TOC1ItemLink" href="#id_proceso_actual_fk">5.11 id_proceso_actual_fk</a>
+<li class="TOC1Item"><a class="TOC1ItemLink" href="#id_usuario_reg_inicial_fk">5.12 id_usuario_reg_inicial_fk</a>
+<li class="TOC1Item"><a class="TOC1ItemLink" href="#cedula_de_identidad_fk">5.13 cedula_de_identidad_fk</a>
+<li class="TOC1Item"><a class="TOC1ItemLink" href="#id_expediente_fk">5.14 id_expediente_fk</a>
+<li class="TOC1Item"><a class="TOC1ItemLink" href="#log_usuario_reg_fk">5.15 log_usuario_reg_fk</a>
+<li class="TOC1Item"><a class="TOC1ItemLink" href="#observ_proceso_fk">5.16 observ_proceso_fk</a>
+<li class="TOC1Item"><a class="TOC1ItemLink" href="#observ_etapa_fk">5.17 observ_etapa_fk</a>
+<li class="TOC1Item"><a class="TOC1ItemLink" href="#observ_expediente_fk">5.18 observ_expediente_fk</a>
+<li class="TOC1Item"><a class="TOC1ItemLink" href="#persona_estado_fk">5.19 persona_estado_fk</a>
+<li class="TOC1Item"><a class="TOC1ItemLink" href="#persona_pais_fk">5.20 persona_pais_fk</a>
+<li class="TOC1Item"><a class="TOC1ItemLink" href="#usuario_perfil_fk">5.21 usuario_perfil_fk</a>
+<li class="TOC1Item"><a class="TOC1ItemLink" href="#usuario_persona_fk">5.22 usuario_persona_fk</a>
+
+  </ul>
+  <li class="TOCItem"><a class="TOCItemLink" href="#StoredProces">6. Stored Procedures</a>
+  <ul class="TOC1">
+
+  </ul>
+  <li class="TOCItem"><a class="TOCItemLink" href="#Views">7. Views</a>
+  <ul class="TOC1">
+
+  </ul>
+</ul><a name="ModelInfo"></a>
+<div class="TOCItemContentHeader">1. Diagram Information</div>
+<a name="BasicInfo"></a>
+<div class="TOC1ItemContentHeader">1.1. Basic Information</div>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+	 <tr><td class="BasicVar" nowrap>Project</td><td class="BasicVal">&nbsp;</td></tr>
+	 <tr><td class="BasicVar" nowrap>Diagram</td><td class="BasicVal">EXPIDIAN_DB</td></tr>
+	 <tr><td class="BasicVar" nowrap>Company</td><td class="BasicVal">&nbsp;</td></tr>
+	 <tr><td class="BasicVar" nowrap>Author</td><td class="BasicVal">&nbsp;</td></tr>
+	 <tr><td class="BasicVar" nowrap>Version</td><td class="BasicVal">&nbsp;</td></tr>
+	 <tr><td class="BasicVar" nowrap>Created</td><td class="BasicVal">15/04/2012 22:20:12</td></tr>
+	 <tr><td class="BasicVar" nowrap>Last Modified</td><td class="BasicVal">15/04/2012 22:20:12</td></tr>
+	</table>
+</div>
+
+<a name="ModelDesc"></a>
+<div class="TOC1ItemContentHeader">1.2. Diagram Description</div>
+<div class="TOC1ItemContentParent"><PRE class="ModelDesc"></PRE></div>
+
+<a name="ModelAnn"></a>
+<div class="TOC1ItemContentHeader">1.3. Diagram Annotation</div>
+<div class="TOC1ItemContentParent"><PRE class="ModelAnn"></PRE></div>
+
+<a name="ModelERD"></a>
+<div class="TOC1ItemContentHeader">1.4. ER Diagram</div>
+<div class="ImageContainer"><img src="EXPIDIAN_DB.png" alt="EXPIDIAN_DB" width="100%"></div>
+
+<a name="Database"></a>
+<div class="TOCItemContentHeader">2. Database</div>
+
+<a name="<%Database%>"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="TableAnn">&nbsp;</PRE></td></tr>
+ </table>
+</div>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+	 <tr><td class="BasicVar" nowrap>Name</td><td class="BasicVal">EXPIDIAN_DB</td></tr>
+	 <tr><td class="BasicVar" nowrap>Character Set</td><td class="BasicVal">UNICODE</td></tr>
+	 <tr><td class="BasicVar" nowrap>Template</td><td class="BasicVal">&nbsp;</td></tr>
+	 <tr><td class="BasicVar" nowrap>Tablespace</td><td class="BasicVal">&nbsp;</td></tr>
+	 <tr><td class="BasicVar" nowrap>Comment</td><td class="BasicVal">&nbsp;</td></tr>
+   <tr><td class="DescrVar" nowrap>Create SQL</td><td class="DescrVal" style="width:100%;"><PRE class="TableAnn">CREATE DATABASE "EXPIDIAN_DB" 
+	OWNER = "postgres" 
+	ENCODING = 'UNICODE';
+
+</PRE></td></tr>
+	</table>
+</div>
+
+
+
+<a name="Domains"></a>
+<div class="TOCItemContentHeader">3 Domains</div>
+
+
+<a name="Tables"></a>
+<div class="TOCItemContentHeader">4. Tables</div>
+<a name="consultas"></a>
+<div class="TOC1ItemContentHeader">4.1 consultas</div>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="TableAnn">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Comment</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Owner</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">postgres</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="ParamsVar" nowrap>Temporary</td><td class="ParamsVar" nowrap>With OIDs</td><td class="ParamsVar" nowrap>Fill Factor</td></tr>
+  <tr><td class="ColumnsVal">-</td><td class="ColumnsVal">True</td><td class="ColumnsVal"></td></tr>
+ </table>
+</div>
+
+<a name="consultas_Columns"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr>
+   <td class="ColumnsVar" nowrap style="text-align:left">Columns</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Data Type</td>
+   <td class="ColumnsVar" nowrap>Primary Key</td>
+   <td class="ColumnsVar" nowrap>Not Null</td>
+   <td class="ColumnsVar" nowrap>AutoInc</td>
+   <td class="ColumnsVar" nowrap>Flags</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Default Value</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Comment</td>
+  </tr>
+  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_consulta</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">cedula_de_identidad</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">varchar(15)</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_expediente</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">fecha_consulta</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">timestamp</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>
+ </table>
+</div>
+
+<a name="consultas_Indexes"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="IndexVar">Indexes</td>
+  <td class="IndexVar" nowrap>Unique</td>
+  <td class="IndexVar" nowrap>Columns</td>
+  <td class="IndexVar" nowrap>Method</td>
+  <td class="IndexVar" nowrap style="text-align:left">Comment</td>
+</tr>
+<tr><td class="IndexVal" nowrap style="text-align:left">consulta_id_pk_idx_pk</td>
+<td class="IndexVal" nowrap><big>&#10004;</big></td>
+<td class="IndexVal" nowrap style="text-align:left">id_consulta</td>
+<td class="IndexVal" nowrap style="text-align:left">BTREE</td>
+<td class="IndexVal" nowrap style="text-align:left">&nbsp;</td>
+</tr>
+ </table>
+</div>
+
+<a name="consultas_Constraints"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="ConstraintVar" nowrap>Constraints</td>
+<td class="ConstraintVar" nowrap>Kind</td>
+<td class="ConstraintVar" nowrap>Expression</td>
+<td class="ConstraintVar" nowrap>Columns</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Comment</td>
+</tr>
+  <tr>
+<td class="ConstraintVal" nowrap>consulta_id_pk</td>
+<td class="ConstraintVal" nowrap>PRIMARY KEY</td>
+<td class="ConstraintVal" nowrap>&nbsp;</td>
+<td class="ConstraintVal" nowrap>id_consulta</td>
+<td class="ConstraintVal">&nbsp;</td></tr>
+ </table>
+</div>
+
+<a name="consultas_Rules"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="RuleVar" nowrap>Rules</td><td class="RuleVar" nowrap>Kind</td><td class="RuleVar" nowrap>Instead</td><td class="RuleVar" nowrap>Expression</td><td class="RuleVar" nowrap>Body</td><td class="RuleVar" nowrap>Comment</td></tr>
+
+ </table>
+</div>
+
+<a name="consultas_Triggers"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="TriggerVar">Triggers</td><td class="TriggerVar">Time</td><td class="TriggerVar">Procedure</td><td class="TriggerVar">Events</td><td class="TriggerVar">For Each Row</td><td class="TriggerVar">Comment</td></tr>
+
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Create SQL</td><td class="DescrVal" style="width:100%;"><PRE class="TableAnn">CREATE TABLE "consultas" (
+	"id_consulta" SERIAL NOT NULL,
+	"cedula_de_identidad" varchar(15) NOT NULL,
+	"id_expediente" int4 NOT NULL,
+	"fecha_consulta" timestamp NOT NULL,
+	CONSTRAINT "consulta_id_pk" PRIMARY KEY("id_consulta"),
+	CONSTRAINT "consulta_expediente_fk" FOREIGN KEY ("id_expediente")
+		REFERENCES "expedientes"("id_expediente")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE
+)
+WITH (
+	OIDS = True
+);
+
+
+ALTER TABLE "consultas" OWNER TO "postgres";
+
+</PRE></td></tr>
+ </table>
+</div>
+</div>
+<a name="control_movimientos"></a>
+<div class="TOC1ItemContentHeader">4.2 control_movimientos</div>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="TableAnn">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Comment</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Owner</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">postgres</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="ParamsVar" nowrap>Temporary</td><td class="ParamsVar" nowrap>With OIDs</td><td class="ParamsVar" nowrap>Fill Factor</td></tr>
+  <tr><td class="ColumnsVal">-</td><td class="ColumnsVal">True</td><td class="ColumnsVal"></td></tr>
+ </table>
+</div>
+
+<a name="control_movimientos_Columns"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr>
+   <td class="ColumnsVar" nowrap style="text-align:left">Columns</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Data Type</td>
+   <td class="ColumnsVar" nowrap>Primary Key</td>
+   <td class="ColumnsVar" nowrap>Not Null</td>
+   <td class="ColumnsVar" nowrap>AutoInc</td>
+   <td class="ColumnsVar" nowrap>Flags</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Default Value</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Comment</td>
+  </tr>
+  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_control_movimientos</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_expidiente</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_proceso</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_etapa</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">cod_expediente</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">varchar(11)</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">fecha_movimiento</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">timestamp</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_abogado_coord</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_abogado_asign</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">usuarios_id_usuario</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">usuarios_id_usuario</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">expedientes_id_expediente</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>
+ </table>
+</div>
+
+<a name="control_movimientos_Indexes"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="IndexVar">Indexes</td>
+  <td class="IndexVar" nowrap>Unique</td>
+  <td class="IndexVar" nowrap>Columns</td>
+  <td class="IndexVar" nowrap>Method</td>
+  <td class="IndexVar" nowrap style="text-align:left">Comment</td>
+</tr>
+<tr><td class="IndexVal" nowrap style="text-align:left">control_mov_id_pk_idx_pk</td>
+<td class="IndexVal" nowrap><big>&#10004;</big></td>
+<td class="IndexVal" nowrap style="text-align:left">id_control_movimientos</td>
+<td class="IndexVal" nowrap style="text-align:left">BTREE</td>
+<td class="IndexVal" nowrap style="text-align:left">&nbsp;</td>
+</tr><tr><td class="IndexVal" nowrap style="text-align:left">control_movimiento_uk_idx_ui</td>
+<td class="IndexVal" nowrap><big>&#10004;</big></td>
+<td class="IndexVal" nowrap style="text-align:left">id_expidiente,id_proceso,id_etapa</td>
+<td class="IndexVal" nowrap style="text-align:left"></td>
+<td class="IndexVal" nowrap style="text-align:left">&nbsp;</td>
+</tr>
+ </table>
+</div>
+
+<a name="control_movimientos_Constraints"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="ConstraintVar" nowrap>Constraints</td>
+<td class="ConstraintVar" nowrap>Kind</td>
+<td class="ConstraintVar" nowrap>Expression</td>
+<td class="ConstraintVar" nowrap>Columns</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Comment</td>
+</tr>
+  <tr>
+<td class="ConstraintVal" nowrap>control_mov_id_pk</td>
+<td class="ConstraintVal" nowrap>PRIMARY KEY</td>
+<td class="ConstraintVal" nowrap>&nbsp;</td>
+<td class="ConstraintVal" nowrap>id_control_movimientos</td>
+<td class="ConstraintVal">&nbsp;</td></tr>  <tr>
+<td class="ConstraintVal" nowrap>control_movimiento_uk</td>
+<td class="ConstraintVal" nowrap>UNIQUE</td>
+<td class="ConstraintVal" nowrap>&nbsp;</td>
+<td class="ConstraintVal" nowrap>id_expidiente,id_proceso,id_etapa</td>
+<td class="ConstraintVal">&nbsp;</td></tr>
+ </table>
+</div>
+
+<a name="control_movimientos_Rules"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="RuleVar" nowrap>Rules</td><td class="RuleVar" nowrap>Kind</td><td class="RuleVar" nowrap>Instead</td><td class="RuleVar" nowrap>Expression</td><td class="RuleVar" nowrap>Body</td><td class="RuleVar" nowrap>Comment</td></tr>
+
+ </table>
+</div>
+
+<a name="control_movimientos_Triggers"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="TriggerVar">Triggers</td><td class="TriggerVar">Time</td><td class="TriggerVar">Procedure</td><td class="TriggerVar">Events</td><td class="TriggerVar">For Each Row</td><td class="TriggerVar">Comment</td></tr>
+
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Create SQL</td><td class="DescrVal" style="width:100%;"><PRE class="TableAnn">CREATE TABLE "control_movimientos" (
+	"id_control_movimientos" SERIAL NOT NULL,
+	"id_expidiente" int4 NOT NULL,
+	"id_proceso" int4 NOT NULL,
+	"id_etapa" int4 NOT NULL,
+	"cod_expediente" varchar(11) NOT NULL,
+	"fecha_movimiento" timestamp NOT NULL,
+	"id_abogado_coord" int4,
+	"id_abogado_asign" int4 NOT NULL,
+	"usuarios_id_usuario" int4 NOT NULL,
+	"usuarios_id_usuario" int4 NOT NULL,
+	"expedientes_id_expediente" int4 NOT NULL,
+	CONSTRAINT "control_mov_id_pk" PRIMARY KEY("id_control_movimientos"),
+	CONSTRAINT "control_movimiento_uk" UNIQUE("id_expidiente","id_proceso","id_etapa"),
+	CONSTRAINT "control_abog_asignado_fk" FOREIGN KEY ("usuarios_id_usuario")
+		REFERENCES "usuarios"("id_usuario")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE,
+	CONSTRAINT "control_abog_coordinador_fk" FOREIGN KEY ("usuarios_id_usuario")
+		REFERENCES "usuarios"("id_usuario")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE,
+	CONSTRAINT "control_proceso_fk" FOREIGN KEY ("id_proceso")
+		REFERENCES "procesos"("id_proceso")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE,
+	CONSTRAINT "control_etapa_fk" FOREIGN KEY ("id_etapa")
+		REFERENCES "etapas"("id_etapa")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE,
+	CONSTRAINT "control_expediente_fk" FOREIGN KEY ("expedientes_id_expediente")
+		REFERENCES "expedientes"("id_expediente")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE
+)
+WITH (
+	OIDS = True
+);
+
+
+ALTER TABLE "control_movimientos" OWNER TO "postgres";
+
+</PRE></td></tr>
+ </table>
+</div>
+</div>
+<a name="estados"></a>
+<div class="TOC1ItemContentHeader">4.3 estados</div>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="TableAnn">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Comment</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Owner</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">postgres</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="ParamsVar" nowrap>Temporary</td><td class="ParamsVar" nowrap>With OIDs</td><td class="ParamsVar" nowrap>Fill Factor</td></tr>
+  <tr><td class="ColumnsVal">-</td><td class="ColumnsVal">True</td><td class="ColumnsVal"></td></tr>
+ </table>
+</div>
+
+<a name="estados_Columns"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr>
+   <td class="ColumnsVar" nowrap style="text-align:left">Columns</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Data Type</td>
+   <td class="ColumnsVar" nowrap>Primary Key</td>
+   <td class="ColumnsVar" nowrap>Not Null</td>
+   <td class="ColumnsVar" nowrap>AutoInc</td>
+   <td class="ColumnsVar" nowrap>Flags</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Default Value</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Comment</td>
+  </tr>
+  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_estado</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">estado</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">varchar(60)</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_pais</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>
+ </table>
+</div>
+
+<a name="estados_Indexes"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="IndexVar">Indexes</td>
+  <td class="IndexVar" nowrap>Unique</td>
+  <td class="IndexVar" nowrap>Columns</td>
+  <td class="IndexVar" nowrap>Method</td>
+  <td class="IndexVar" nowrap style="text-align:left">Comment</td>
+</tr>
+<tr><td class="IndexVal" nowrap style="text-align:left">estado_pk_idx_pk</td>
+<td class="IndexVal" nowrap><big>&#10004;</big></td>
+<td class="IndexVal" nowrap style="text-align:left">id_estado</td>
+<td class="IndexVal" nowrap style="text-align:left">BTREE</td>
+<td class="IndexVal" nowrap style="text-align:left">&nbsp;</td>
+</tr>
+ </table>
+</div>
+
+<a name="estados_Constraints"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="ConstraintVar" nowrap>Constraints</td>
+<td class="ConstraintVar" nowrap>Kind</td>
+<td class="ConstraintVar" nowrap>Expression</td>
+<td class="ConstraintVar" nowrap>Columns</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Comment</td>
+</tr>
+  <tr>
+<td class="ConstraintVal" nowrap>estado_pk</td>
+<td class="ConstraintVal" nowrap>PRIMARY KEY</td>
+<td class="ConstraintVal" nowrap>&nbsp;</td>
+<td class="ConstraintVal" nowrap>id_estado</td>
+<td class="ConstraintVal">&nbsp;</td></tr>
+ </table>
+</div>
+
+<a name="estados_Rules"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="RuleVar" nowrap>Rules</td><td class="RuleVar" nowrap>Kind</td><td class="RuleVar" nowrap>Instead</td><td class="RuleVar" nowrap>Expression</td><td class="RuleVar" nowrap>Body</td><td class="RuleVar" nowrap>Comment</td></tr>
+
+ </table>
+</div>
+
+<a name="estados_Triggers"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="TriggerVar">Triggers</td><td class="TriggerVar">Time</td><td class="TriggerVar">Procedure</td><td class="TriggerVar">Events</td><td class="TriggerVar">For Each Row</td><td class="TriggerVar">Comment</td></tr>
+
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Create SQL</td><td class="DescrVal" style="width:100%;"><PRE class="TableAnn">CREATE TABLE "estados" (
+	"id_estado" SERIAL NOT NULL,
+	"estado" varchar(60) NOT NULL,
+	"id_pais" int4 NOT NULL,
+	CONSTRAINT "estado_pk" PRIMARY KEY("id_estado"),
+	CONSTRAINT "estado_pais_fk" FOREIGN KEY ("id_pais")
+		REFERENCES "paises"("id_pais")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE
+)
+WITH (
+	OIDS = True
+);
+
+
+ALTER TABLE "estados" OWNER TO "postgres";
+
+</PRE></td></tr>
+ </table>
+</div>
+</div>
+<a name="etapas"></a>
+<div class="TOC1ItemContentHeader">4.4 etapas</div>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="TableAnn">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Comment</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Owner</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">postgres</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="ParamsVar" nowrap>Temporary</td><td class="ParamsVar" nowrap>With OIDs</td><td class="ParamsVar" nowrap>Fill Factor</td></tr>
+  <tr><td class="ColumnsVal">-</td><td class="ColumnsVal">True</td><td class="ColumnsVal"></td></tr>
+ </table>
+</div>
+
+<a name="etapas_Columns"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr>
+   <td class="ColumnsVar" nowrap style="text-align:left">Columns</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Data Type</td>
+   <td class="ColumnsVar" nowrap>Primary Key</td>
+   <td class="ColumnsVar" nowrap>Not Null</td>
+   <td class="ColumnsVar" nowrap>AutoInc</td>
+   <td class="ColumnsVar" nowrap>Flags</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Default Value</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Comment</td>
+  </tr>
+  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_etapa</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">etapa_abrev</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">varchar(5)</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">etapa</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">varchar(60)</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">nro_consecutivo_etapa</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_proceso</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>
+ </table>
+</div>
+
+<a name="etapas_Indexes"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="IndexVar">Indexes</td>
+  <td class="IndexVar" nowrap>Unique</td>
+  <td class="IndexVar" nowrap>Columns</td>
+  <td class="IndexVar" nowrap>Method</td>
+  <td class="IndexVar" nowrap style="text-align:left">Comment</td>
+</tr>
+<tr><td class="IndexVal" nowrap style="text-align:left">etaba_abrev_uk_idx_ui</td>
+<td class="IndexVal" nowrap><big>&#10004;</big></td>
+<td class="IndexVal" nowrap style="text-align:left">etapa_abrev</td>
+<td class="IndexVal" nowrap style="text-align:left">BTREE</td>
+<td class="IndexVal" nowrap style="text-align:left">&nbsp;</td>
+</tr><tr><td class="IndexVal" nowrap style="text-align:left">etapa_id_pk_idx_pk</td>
+<td class="IndexVal" nowrap><big>&#10004;</big></td>
+<td class="IndexVal" nowrap style="text-align:left">id_etapa</td>
+<td class="IndexVal" nowrap style="text-align:left"></td>
+<td class="IndexVal" nowrap style="text-align:left">&nbsp;</td>
+</tr><tr><td class="IndexVal" nowrap style="text-align:left">etapa_consecutivo_uk_idx_ui</td>
+<td class="IndexVal" nowrap><big>&#10004;</big></td>
+<td class="IndexVal" nowrap style="text-align:left">nro_consecutivo_etapa</td>
+<td class="IndexVal" nowrap style="text-align:left"></td>
+<td class="IndexVal" nowrap style="text-align:left">&nbsp;</td>
+</tr><tr><td class="IndexVal" nowrap style="text-align:left">etapa_desc_uk_idx_ui</td>
+<td class="IndexVal" nowrap><big>&#10004;</big></td>
+<td class="IndexVal" nowrap style="text-align:left">etapa</td>
+<td class="IndexVal" nowrap style="text-align:left"></td>
+<td class="IndexVal" nowrap style="text-align:left">&nbsp;</td>
+</tr>
+ </table>
+</div>
+
+<a name="etapas_Constraints"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="ConstraintVar" nowrap>Constraints</td>
+<td class="ConstraintVar" nowrap>Kind</td>
+<td class="ConstraintVar" nowrap>Expression</td>
+<td class="ConstraintVar" nowrap>Columns</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Comment</td>
+</tr>
+  <tr>
+<td class="ConstraintVal" nowrap>etapa_id_pk</td>
+<td class="ConstraintVal" nowrap>PRIMARY KEY</td>
+<td class="ConstraintVal" nowrap>&nbsp;</td>
+<td class="ConstraintVal" nowrap>id_etapa</td>
+<td class="ConstraintVal">&nbsp;</td></tr>  <tr>
+<td class="ConstraintVal" nowrap>etaba_abrev_uk</td>
+<td class="ConstraintVal" nowrap>UNIQUE</td>
+<td class="ConstraintVal" nowrap>&nbsp;</td>
+<td class="ConstraintVal" nowrap>etapa_abrev</td>
+<td class="ConstraintVal">&nbsp;</td></tr>  <tr>
+<td class="ConstraintVal" nowrap>etapa_consecutivo_uk</td>
+<td class="ConstraintVal" nowrap>UNIQUE</td>
+<td class="ConstraintVal" nowrap>&nbsp;</td>
+<td class="ConstraintVal" nowrap>nro_consecutivo_etapa</td>
+<td class="ConstraintVal">&nbsp;</td></tr>  <tr>
+<td class="ConstraintVal" nowrap>etapa_desc_uk</td>
+<td class="ConstraintVal" nowrap>UNIQUE</td>
+<td class="ConstraintVal" nowrap>&nbsp;</td>
+<td class="ConstraintVal" nowrap>etapa</td>
+<td class="ConstraintVal">&nbsp;</td></tr>
+ </table>
+</div>
+
+<a name="etapas_Rules"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="RuleVar" nowrap>Rules</td><td class="RuleVar" nowrap>Kind</td><td class="RuleVar" nowrap>Instead</td><td class="RuleVar" nowrap>Expression</td><td class="RuleVar" nowrap>Body</td><td class="RuleVar" nowrap>Comment</td></tr>
+
+ </table>
+</div>
+
+<a name="etapas_Triggers"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="TriggerVar">Triggers</td><td class="TriggerVar">Time</td><td class="TriggerVar">Procedure</td><td class="TriggerVar">Events</td><td class="TriggerVar">For Each Row</td><td class="TriggerVar">Comment</td></tr>
+
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Create SQL</td><td class="DescrVal" style="width:100%;"><PRE class="TableAnn">CREATE TABLE "etapas" (
+	"id_etapa" SERIAL NOT NULL,
+	"etapa_abrev" varchar(5) NOT NULL,
+	"etapa" varchar(60) NOT NULL,
+	"nro_consecutivo_etapa" int4 NOT NULL,
+	"id_proceso" int4 NOT NULL,
+	CONSTRAINT "etapa_id_pk" PRIMARY KEY("id_etapa"),
+	CONSTRAINT "etaba_abrev_uk" UNIQUE("etapa_abrev"),
+	CONSTRAINT "etapa_consecutivo_uk" UNIQUE("nro_consecutivo_etapa"),
+	CONSTRAINT "etapa_desc_uk" UNIQUE("etapa"),
+	CONSTRAINT "etapa_de_proceso_fk" FOREIGN KEY ("id_proceso")
+		REFERENCES "procesos"("id_proceso")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE
+)
+WITH (
+	OIDS = True
+);
+
+
+ALTER TABLE "etapas" OWNER TO "postgres";
+
+</PRE></td></tr>
+ </table>
+</div>
+</div>
+<a name="expedientes"></a>
+<div class="TOC1ItemContentHeader">4.5 expedientes</div>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="TableAnn">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Comment</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Owner</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">postgres</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="ParamsVar" nowrap>Temporary</td><td class="ParamsVar" nowrap>With OIDs</td><td class="ParamsVar" nowrap>Fill Factor</td></tr>
+  <tr><td class="ColumnsVal">-</td><td class="ColumnsVal">True</td><td class="ColumnsVal"></td></tr>
+ </table>
+</div>
+
+<a name="expedientes_Columns"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr>
+   <td class="ColumnsVar" nowrap style="text-align:left">Columns</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Data Type</td>
+   <td class="ColumnsVar" nowrap>Primary Key</td>
+   <td class="ColumnsVar" nowrap>Not Null</td>
+   <td class="ColumnsVar" nowrap>AutoInc</td>
+   <td class="ColumnsVar" nowrap>Flags</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Default Value</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Comment</td>
+  </tr>
+  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_expediente</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_organismo</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">hechos</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">text</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">observaciones</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">text</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_proceso_actual</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_etapa_actual</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">fecha_registro</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">timestamp</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">fecha_solic_invest</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">date</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_usuario_ini</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">etapas_id_etapa</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">procesos_id_proceso</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">usuarios_id_usuario</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>
+ </table>
+</div>
+
+<a name="expedientes_Indexes"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="IndexVar">Indexes</td>
+  <td class="IndexVar" nowrap>Unique</td>
+  <td class="IndexVar" nowrap>Columns</td>
+  <td class="IndexVar" nowrap>Method</td>
+  <td class="IndexVar" nowrap style="text-align:left">Comment</td>
+</tr>
+<tr><td class="IndexVal" nowrap style="text-align:left">id_expediente_pk_idx_pk</td>
+<td class="IndexVal" nowrap><big>&#10004;</big></td>
+<td class="IndexVal" nowrap style="text-align:left">id_expediente</td>
+<td class="IndexVal" nowrap style="text-align:left">BTREE</td>
+<td class="IndexVal" nowrap style="text-align:left">&nbsp;</td>
+</tr>
+ </table>
+</div>
+
+<a name="expedientes_Constraints"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="ConstraintVar" nowrap>Constraints</td>
+<td class="ConstraintVar" nowrap>Kind</td>
+<td class="ConstraintVar" nowrap>Expression</td>
+<td class="ConstraintVar" nowrap>Columns</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Comment</td>
+</tr>
+  <tr>
+<td class="ConstraintVal" nowrap>id_expediente_pk</td>
+<td class="ConstraintVal" nowrap>PRIMARY KEY</td>
+<td class="ConstraintVal" nowrap>&nbsp;</td>
+<td class="ConstraintVal" nowrap>id_expediente</td>
+<td class="ConstraintVal">&nbsp;</td></tr>
+ </table>
+</div>
+
+<a name="expedientes_Rules"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="RuleVar" nowrap>Rules</td><td class="RuleVar" nowrap>Kind</td><td class="RuleVar" nowrap>Instead</td><td class="RuleVar" nowrap>Expression</td><td class="RuleVar" nowrap>Body</td><td class="RuleVar" nowrap>Comment</td></tr>
+
+ </table>
+</div>
+
+<a name="expedientes_Triggers"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="TriggerVar">Triggers</td><td class="TriggerVar">Time</td><td class="TriggerVar">Procedure</td><td class="TriggerVar">Events</td><td class="TriggerVar">For Each Row</td><td class="TriggerVar">Comment</td></tr>
+
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Create SQL</td><td class="DescrVal" style="width:100%;"><PRE class="TableAnn">CREATE TABLE "expedientes" (
+	"id_expediente" SERIAL NOT NULL,
+	"id_organismo" int4,
+	"hechos" text,
+	"observaciones" text,
+	"id_proceso_actual" int4,
+	"id_etapa_actual" int4,
+	"fecha_registro" timestamp NOT NULL,
+	"fecha_solic_invest" date,
+	"id_usuario_ini" int4 NOT NULL,
+	"etapas_id_etapa" int4 NOT NULL,
+	"procesos_id_proceso" int4 NOT NULL,
+	"usuarios_id_usuario" int4 NOT NULL,
+	CONSTRAINT "id_expediente_pk" PRIMARY KEY("id_expediente"),
+	CONSTRAINT "id_etapa_actual_fk" FOREIGN KEY ("etapas_id_etapa")
+		REFERENCES "etapas"("id_etapa")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE,
+	CONSTRAINT "id_organismo_fk" FOREIGN KEY ("id_organismo")
+		REFERENCES "organismos"("id_organismo")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE,
+	CONSTRAINT "id_proceso_actual_fk" FOREIGN KEY ("procesos_id_proceso")
+		REFERENCES "procesos"("id_proceso")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE,
+	CONSTRAINT "id_usuario_reg_inicial_fk" FOREIGN KEY ("usuarios_id_usuario")
+		REFERENCES "usuarios"("id_usuario")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE
+)
+WITH (
+	OIDS = True
+);
+
+
+ALTER TABLE "expedientes" OWNER TO "postgres";
+
+</PRE></td></tr>
+ </table>
+</div>
+</div>
+<a name="interesados"></a>
+<div class="TOC1ItemContentHeader">4.6 interesados</div>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="TableAnn">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Comment</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Owner</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">postgres</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="ParamsVar" nowrap>Temporary</td><td class="ParamsVar" nowrap>With OIDs</td><td class="ParamsVar" nowrap>Fill Factor</td></tr>
+  <tr><td class="ColumnsVal">-</td><td class="ColumnsVal">True</td><td class="ColumnsVal"></td></tr>
+ </table>
+</div>
+
+<a name="interesados_Columns"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr>
+   <td class="ColumnsVar" nowrap style="text-align:left">Columns</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Data Type</td>
+   <td class="ColumnsVar" nowrap>Primary Key</td>
+   <td class="ColumnsVar" nowrap>Not Null</td>
+   <td class="ColumnsVar" nowrap>AutoInc</td>
+   <td class="ColumnsVar" nowrap>Flags</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Default Value</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Comment</td>
+  </tr>
+  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_interesado</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_expediente</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">cedula_de_identidad</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">personas_id_persona</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>
+ </table>
+</div>
+
+<a name="interesados_Indexes"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="IndexVar">Indexes</td>
+  <td class="IndexVar" nowrap>Unique</td>
+  <td class="IndexVar" nowrap>Columns</td>
+  <td class="IndexVar" nowrap>Method</td>
+  <td class="IndexVar" nowrap style="text-align:left">Comment</td>
+</tr>
+<tr><td class="IndexVal" nowrap style="text-align:left">id_interesado_pk_idx_pk</td>
+<td class="IndexVal" nowrap><big>&#10004;</big></td>
+<td class="IndexVal" nowrap style="text-align:left">id_interesado</td>
+<td class="IndexVal" nowrap style="text-align:left">BTREE</td>
+<td class="IndexVal" nowrap style="text-align:left">&nbsp;</td>
+</tr>
+ </table>
+</div>
+
+<a name="interesados_Constraints"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="ConstraintVar" nowrap>Constraints</td>
+<td class="ConstraintVar" nowrap>Kind</td>
+<td class="ConstraintVar" nowrap>Expression</td>
+<td class="ConstraintVar" nowrap>Columns</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Comment</td>
+</tr>
+  <tr>
+<td class="ConstraintVal" nowrap>id_interesado_pk</td>
+<td class="ConstraintVal" nowrap>PRIMARY KEY</td>
+<td class="ConstraintVal" nowrap>&nbsp;</td>
+<td class="ConstraintVal" nowrap>id_interesado</td>
+<td class="ConstraintVal">&nbsp;</td></tr>
+ </table>
+</div>
+
+<a name="interesados_Rules"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="RuleVar" nowrap>Rules</td><td class="RuleVar" nowrap>Kind</td><td class="RuleVar" nowrap>Instead</td><td class="RuleVar" nowrap>Expression</td><td class="RuleVar" nowrap>Body</td><td class="RuleVar" nowrap>Comment</td></tr>
+
+ </table>
+</div>
+
+<a name="interesados_Triggers"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="TriggerVar">Triggers</td><td class="TriggerVar">Time</td><td class="TriggerVar">Procedure</td><td class="TriggerVar">Events</td><td class="TriggerVar">For Each Row</td><td class="TriggerVar">Comment</td></tr>
+
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Create SQL</td><td class="DescrVal" style="width:100%;"><PRE class="TableAnn">CREATE TABLE "interesados" (
+	"id_interesado" SERIAL NOT NULL,
+	"id_expediente" int4,
+	"cedula_de_identidad" int4,
+	"personas_id_persona" int4 NOT NULL,
+	CONSTRAINT "id_interesado_pk" PRIMARY KEY("id_interesado"),
+	CONSTRAINT "cedula_de_identidad_fk" FOREIGN KEY ("personas_id_persona")
+		REFERENCES "personas"("id_persona")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE,
+	CONSTRAINT "id_expediente_fk" FOREIGN KEY ("id_expediente")
+		REFERENCES "expedientes"("id_expediente")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE
+)
+WITH (
+	OIDS = True
+);
+
+
+ALTER TABLE "interesados" OWNER TO "postgres";
+
+</PRE></td></tr>
+ </table>
+</div>
+</div>
+<a name="logs_usuarios"></a>
+<div class="TOC1ItemContentHeader">4.7 logs_usuarios</div>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="TableAnn">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Comment</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Owner</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">postgres</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="ParamsVar" nowrap>Temporary</td><td class="ParamsVar" nowrap>With OIDs</td><td class="ParamsVar" nowrap>Fill Factor</td></tr>
+  <tr><td class="ColumnsVal">-</td><td class="ColumnsVal">True</td><td class="ColumnsVal"></td></tr>
+ </table>
+</div>
+
+<a name="logs_usuarios_Columns"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr>
+   <td class="ColumnsVar" nowrap style="text-align:left">Columns</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Data Type</td>
+   <td class="ColumnsVar" nowrap>Primary Key</td>
+   <td class="ColumnsVar" nowrap>Not Null</td>
+   <td class="ColumnsVar" nowrap>AutoInc</td>
+   <td class="ColumnsVar" nowrap>Flags</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Default Value</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Comment</td>
+  </tr>
+  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_log_usuario</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_usuario</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">log_usuario</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">varchar(250)</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">estatus_final</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">varchar(20)</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">fecha_log</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">timestamp</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>
+ </table>
+</div>
+
+<a name="logs_usuarios_Indexes"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="IndexVar">Indexes</td>
+  <td class="IndexVar" nowrap>Unique</td>
+  <td class="IndexVar" nowrap>Columns</td>
+  <td class="IndexVar" nowrap>Method</td>
+  <td class="IndexVar" nowrap style="text-align:left">Comment</td>
+</tr>
+<tr><td class="IndexVal" nowrap style="text-align:left">log_usuario_id_pk_idx_pk</td>
+<td class="IndexVal" nowrap><big>&#10004;</big></td>
+<td class="IndexVal" nowrap style="text-align:left">id_log_usuario</td>
+<td class="IndexVal" nowrap style="text-align:left">BTREE</td>
+<td class="IndexVal" nowrap style="text-align:left">&nbsp;</td>
+</tr>
+ </table>
+</div>
+
+<a name="logs_usuarios_Constraints"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="ConstraintVar" nowrap>Constraints</td>
+<td class="ConstraintVar" nowrap>Kind</td>
+<td class="ConstraintVar" nowrap>Expression</td>
+<td class="ConstraintVar" nowrap>Columns</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Comment</td>
+</tr>
+  <tr>
+<td class="ConstraintVal" nowrap>log_usuario_id_pk</td>
+<td class="ConstraintVal" nowrap>PRIMARY KEY</td>
+<td class="ConstraintVal" nowrap>&nbsp;</td>
+<td class="ConstraintVal" nowrap>id_log_usuario</td>
+<td class="ConstraintVal">&nbsp;</td></tr>
+ </table>
+</div>
+
+<a name="logs_usuarios_Rules"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="RuleVar" nowrap>Rules</td><td class="RuleVar" nowrap>Kind</td><td class="RuleVar" nowrap>Instead</td><td class="RuleVar" nowrap>Expression</td><td class="RuleVar" nowrap>Body</td><td class="RuleVar" nowrap>Comment</td></tr>
+
+ </table>
+</div>
+
+<a name="logs_usuarios_Triggers"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="TriggerVar">Triggers</td><td class="TriggerVar">Time</td><td class="TriggerVar">Procedure</td><td class="TriggerVar">Events</td><td class="TriggerVar">For Each Row</td><td class="TriggerVar">Comment</td></tr>
+
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Create SQL</td><td class="DescrVal" style="width:100%;"><PRE class="TableAnn">CREATE TABLE "logs_usuarios" (
+	"id_log_usuario" SERIAL NOT NULL,
+	"id_usuario" int4 NOT NULL,
+	"log_usuario" varchar(250) NOT NULL,
+	"estatus_final" varchar(20),
+	"fecha_log" timestamp NOT NULL,
+	CONSTRAINT "log_usuario_id_pk" PRIMARY KEY("id_log_usuario"),
+	CONSTRAINT "log_usuario_reg_fk" FOREIGN KEY ("id_usuario")
+		REFERENCES "usuarios"("id_usuario")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE
+)
+WITH (
+	OIDS = True
+);
+
+
+ALTER TABLE "logs_usuarios" OWNER TO "postgres";
+
+</PRE></td></tr>
+ </table>
+</div>
+</div>
+<a name="observaciones"></a>
+<div class="TOC1ItemContentHeader">4.8 observaciones</div>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="TableAnn">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Comment</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Owner</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">postgres</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="ParamsVar" nowrap>Temporary</td><td class="ParamsVar" nowrap>With OIDs</td><td class="ParamsVar" nowrap>Fill Factor</td></tr>
+  <tr><td class="ColumnsVal">-</td><td class="ColumnsVal">True</td><td class="ColumnsVal"></td></tr>
+ </table>
+</div>
+
+<a name="observaciones_Columns"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr>
+   <td class="ColumnsVar" nowrap style="text-align:left">Columns</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Data Type</td>
+   <td class="ColumnsVar" nowrap>Primary Key</td>
+   <td class="ColumnsVar" nowrap>Not Null</td>
+   <td class="ColumnsVar" nowrap>AutoInc</td>
+   <td class="ColumnsVar" nowrap>Flags</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Default Value</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Comment</td>
+  </tr>
+  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_observacion</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_expidiente</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_proceso</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_etapa</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">observacion</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">text</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">fecha_registro</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">timestamp</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">expedientes_id_expediente</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>
+ </table>
+</div>
+
+<a name="observaciones_Indexes"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="IndexVar">Indexes</td>
+  <td class="IndexVar" nowrap>Unique</td>
+  <td class="IndexVar" nowrap>Columns</td>
+  <td class="IndexVar" nowrap>Method</td>
+  <td class="IndexVar" nowrap style="text-align:left">Comment</td>
+</tr>
+<tr><td class="IndexVal" nowrap style="text-align:left">observ_mov_id_pk_idx_pk</td>
+<td class="IndexVal" nowrap><big>&#10004;</big></td>
+<td class="IndexVal" nowrap style="text-align:left">id_observacion</td>
+<td class="IndexVal" nowrap style="text-align:left">BTREE</td>
+<td class="IndexVal" nowrap style="text-align:left">&nbsp;</td>
+</tr><tr><td class="IndexVal" nowrap style="text-align:left">observ_uk_idx_ui</td>
+<td class="IndexVal" nowrap><big>&#10004;</big></td>
+<td class="IndexVal" nowrap style="text-align:left">id_expidiente,id_proceso,id_etapa</td>
+<td class="IndexVal" nowrap style="text-align:left"></td>
+<td class="IndexVal" nowrap style="text-align:left">&nbsp;</td>
+</tr>
+ </table>
+</div>
+
+<a name="observaciones_Constraints"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="ConstraintVar" nowrap>Constraints</td>
+<td class="ConstraintVar" nowrap>Kind</td>
+<td class="ConstraintVar" nowrap>Expression</td>
+<td class="ConstraintVar" nowrap>Columns</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Comment</td>
+</tr>
+  <tr>
+<td class="ConstraintVal" nowrap>observ_mov_id_pk</td>
+<td class="ConstraintVal" nowrap>PRIMARY KEY</td>
+<td class="ConstraintVal" nowrap>&nbsp;</td>
+<td class="ConstraintVal" nowrap>id_observacion</td>
+<td class="ConstraintVal">&nbsp;</td></tr>  <tr>
+<td class="ConstraintVal" nowrap>observ_uk</td>
+<td class="ConstraintVal" nowrap>UNIQUE</td>
+<td class="ConstraintVal" nowrap>&nbsp;</td>
+<td class="ConstraintVal" nowrap>id_expidiente,id_proceso,id_etapa</td>
+<td class="ConstraintVal">&nbsp;</td></tr>
+ </table>
+</div>
+
+<a name="observaciones_Rules"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="RuleVar" nowrap>Rules</td><td class="RuleVar" nowrap>Kind</td><td class="RuleVar" nowrap>Instead</td><td class="RuleVar" nowrap>Expression</td><td class="RuleVar" nowrap>Body</td><td class="RuleVar" nowrap>Comment</td></tr>
+
+ </table>
+</div>
+
+<a name="observaciones_Triggers"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="TriggerVar">Triggers</td><td class="TriggerVar">Time</td><td class="TriggerVar">Procedure</td><td class="TriggerVar">Events</td><td class="TriggerVar">For Each Row</td><td class="TriggerVar">Comment</td></tr>
+
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Create SQL</td><td class="DescrVal" style="width:100%;"><PRE class="TableAnn">CREATE TABLE "observaciones" (
+	"id_observacion" SERIAL NOT NULL,
+	"id_expidiente" int4 NOT NULL,
+	"id_proceso" int4 NOT NULL,
+	"id_etapa" int4 NOT NULL,
+	"observacion" text NOT NULL,
+	"fecha_registro" timestamp NOT NULL,
+	"expedientes_id_expediente" int4 NOT NULL,
+	CONSTRAINT "observ_mov_id_pk" PRIMARY KEY("id_observacion"),
+	CONSTRAINT "observ_uk" UNIQUE("id_expidiente","id_proceso","id_etapa"),
+	CONSTRAINT "observ_proceso_fk" FOREIGN KEY ("id_proceso")
+		REFERENCES "procesos"("id_proceso")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE,
+	CONSTRAINT "observ_etapa_fk" FOREIGN KEY ("id_etapa")
+		REFERENCES "etapas"("id_etapa")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE,
+	CONSTRAINT "observ_expediente_fk" FOREIGN KEY ("expedientes_id_expediente")
+		REFERENCES "expedientes"("id_expediente")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE
+)
+WITH (
+	OIDS = True
+);
+
+
+ALTER TABLE "observaciones" OWNER TO "postgres";
+
+</PRE></td></tr>
+ </table>
+</div>
+</div>
+<a name="organismos"></a>
+<div class="TOC1ItemContentHeader">4.9 organismos</div>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="TableAnn">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Comment</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Owner</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">postgres</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="ParamsVar" nowrap>Temporary</td><td class="ParamsVar" nowrap>With OIDs</td><td class="ParamsVar" nowrap>Fill Factor</td></tr>
+  <tr><td class="ColumnsVal">-</td><td class="ColumnsVal">True</td><td class="ColumnsVal"></td></tr>
+ </table>
+</div>
+
+<a name="organismos_Columns"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr>
+   <td class="ColumnsVar" nowrap style="text-align:left">Columns</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Data Type</td>
+   <td class="ColumnsVar" nowrap>Primary Key</td>
+   <td class="ColumnsVar" nowrap>Not Null</td>
+   <td class="ColumnsVar" nowrap>AutoInc</td>
+   <td class="ColumnsVar" nowrap>Flags</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Default Value</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Comment</td>
+  </tr>
+  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_organismo</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">rif</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">varchar(12)</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">nombre_organismo</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">varchar(60)</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">sector</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">varchar(20)</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>
+ </table>
+</div>
+
+<a name="organismos_Indexes"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="IndexVar">Indexes</td>
+  <td class="IndexVar" nowrap>Unique</td>
+  <td class="IndexVar" nowrap>Columns</td>
+  <td class="IndexVar" nowrap>Method</td>
+  <td class="IndexVar" nowrap style="text-align:left">Comment</td>
+</tr>
+<tr><td class="IndexVal" nowrap style="text-align:left">organismo_id_pk_idx_pk</td>
+<td class="IndexVal" nowrap><big>&#10004;</big></td>
+<td class="IndexVal" nowrap style="text-align:left">id_organismo</td>
+<td class="IndexVal" nowrap style="text-align:left">BTREE</td>
+<td class="IndexVal" nowrap style="text-align:left">&nbsp;</td>
+</tr><tr><td class="IndexVal" nowrap style="text-align:left">organismo_nombre_uk_idx_ui</td>
+<td class="IndexVal" nowrap><big>&#10004;</big></td>
+<td class="IndexVal" nowrap style="text-align:left">nombre_organismo</td>
+<td class="IndexVal" nowrap style="text-align:left"></td>
+<td class="IndexVal" nowrap style="text-align:left">&nbsp;</td>
+</tr><tr><td class="IndexVal" nowrap style="text-align:left">organismo_rif_uk_idx_ui</td>
+<td class="IndexVal" nowrap><big>&#10004;</big></td>
+<td class="IndexVal" nowrap style="text-align:left">rif</td>
+<td class="IndexVal" nowrap style="text-align:left"></td>
+<td class="IndexVal" nowrap style="text-align:left">&nbsp;</td>
+</tr>
+ </table>
+</div>
+
+<a name="organismos_Constraints"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="ConstraintVar" nowrap>Constraints</td>
+<td class="ConstraintVar" nowrap>Kind</td>
+<td class="ConstraintVar" nowrap>Expression</td>
+<td class="ConstraintVar" nowrap>Columns</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Comment</td>
+</tr>
+  <tr>
+<td class="ConstraintVal" nowrap>organismo_id_pk</td>
+<td class="ConstraintVal" nowrap>PRIMARY KEY</td>
+<td class="ConstraintVal" nowrap>&nbsp;</td>
+<td class="ConstraintVal" nowrap>id_organismo</td>
+<td class="ConstraintVal">&nbsp;</td></tr>  <tr>
+<td class="ConstraintVal" nowrap>organismo_nombre_uk</td>
+<td class="ConstraintVal" nowrap>UNIQUE</td>
+<td class="ConstraintVal" nowrap>&nbsp;</td>
+<td class="ConstraintVal" nowrap>nombre_organismo</td>
+<td class="ConstraintVal">&nbsp;</td></tr>  <tr>
+<td class="ConstraintVal" nowrap>organismo_rif_uk</td>
+<td class="ConstraintVal" nowrap>UNIQUE</td>
+<td class="ConstraintVal" nowrap>&nbsp;</td>
+<td class="ConstraintVal" nowrap>rif</td>
+<td class="ConstraintVal">&nbsp;</td></tr>
+ </table>
+</div>
+
+<a name="organismos_Rules"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="RuleVar" nowrap>Rules</td><td class="RuleVar" nowrap>Kind</td><td class="RuleVar" nowrap>Instead</td><td class="RuleVar" nowrap>Expression</td><td class="RuleVar" nowrap>Body</td><td class="RuleVar" nowrap>Comment</td></tr>
+
+ </table>
+</div>
+
+<a name="organismos_Triggers"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="TriggerVar">Triggers</td><td class="TriggerVar">Time</td><td class="TriggerVar">Procedure</td><td class="TriggerVar">Events</td><td class="TriggerVar">For Each Row</td><td class="TriggerVar">Comment</td></tr>
+
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Create SQL</td><td class="DescrVal" style="width:100%;"><PRE class="TableAnn">CREATE TABLE "organismos" (
+	"id_organismo" SERIAL NOT NULL,
+	"rif" varchar(12) NOT NULL,
+	"nombre_organismo" varchar(60) NOT NULL,
+	"sector" varchar(20) NOT NULL,
+	CONSTRAINT "organismo_id_pk" PRIMARY KEY("id_organismo"),
+	CONSTRAINT "organismo_nombre_uk" UNIQUE("nombre_organismo"),
+	CONSTRAINT "organismo_rif_uk" UNIQUE("rif")
+)
+WITH (
+	OIDS = True
+);
+
+
+ALTER TABLE "organismos" OWNER TO "postgres";
+
+</PRE></td></tr>
+ </table>
+</div>
+</div>
+<a name="paises"></a>
+<div class="TOC1ItemContentHeader">4.10 paises</div>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="TableAnn">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Comment</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Owner</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">postgres</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="ParamsVar" nowrap>Temporary</td><td class="ParamsVar" nowrap>With OIDs</td><td class="ParamsVar" nowrap>Fill Factor</td></tr>
+  <tr><td class="ColumnsVal">-</td><td class="ColumnsVal">True</td><td class="ColumnsVal"></td></tr>
+ </table>
+</div>
+
+<a name="paises_Columns"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr>
+   <td class="ColumnsVar" nowrap style="text-align:left">Columns</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Data Type</td>
+   <td class="ColumnsVar" nowrap>Primary Key</td>
+   <td class="ColumnsVar" nowrap>Not Null</td>
+   <td class="ColumnsVar" nowrap>AutoInc</td>
+   <td class="ColumnsVar" nowrap>Flags</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Default Value</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Comment</td>
+  </tr>
+  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_pais</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">pais</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">varchar(35)</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>
+ </table>
+</div>
+
+<a name="paises_Indexes"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="IndexVar">Indexes</td>
+  <td class="IndexVar" nowrap>Unique</td>
+  <td class="IndexVar" nowrap>Columns</td>
+  <td class="IndexVar" nowrap>Method</td>
+  <td class="IndexVar" nowrap style="text-align:left">Comment</td>
+</tr>
+<tr><td class="IndexVal" nowrap style="text-align:left">pais_pk_idx_pk</td>
+<td class="IndexVal" nowrap><big>&#10004;</big></td>
+<td class="IndexVal" nowrap style="text-align:left">id_pais</td>
+<td class="IndexVal" nowrap style="text-align:left">BTREE</td>
+<td class="IndexVal" nowrap style="text-align:left">&nbsp;</td>
+</tr><tr><td class="IndexVal" nowrap style="text-align:left">pais_uk_idx_ui</td>
+<td class="IndexVal" nowrap><big>&#10004;</big></td>
+<td class="IndexVal" nowrap style="text-align:left">pais</td>
+<td class="IndexVal" nowrap style="text-align:left"></td>
+<td class="IndexVal" nowrap style="text-align:left">&nbsp;</td>
+</tr>
+ </table>
+</div>
+
+<a name="paises_Constraints"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="ConstraintVar" nowrap>Constraints</td>
+<td class="ConstraintVar" nowrap>Kind</td>
+<td class="ConstraintVar" nowrap>Expression</td>
+<td class="ConstraintVar" nowrap>Columns</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Comment</td>
+</tr>
+  <tr>
+<td class="ConstraintVal" nowrap>pais_pk</td>
+<td class="ConstraintVal" nowrap>PRIMARY KEY</td>
+<td class="ConstraintVal" nowrap>&nbsp;</td>
+<td class="ConstraintVal" nowrap>id_pais</td>
+<td class="ConstraintVal">&nbsp;</td></tr>  <tr>
+<td class="ConstraintVal" nowrap>pais_uk</td>
+<td class="ConstraintVal" nowrap>UNIQUE</td>
+<td class="ConstraintVal" nowrap>&nbsp;</td>
+<td class="ConstraintVal" nowrap>pais</td>
+<td class="ConstraintVal">&nbsp;</td></tr>
+ </table>
+</div>
+
+<a name="paises_Rules"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="RuleVar" nowrap>Rules</td><td class="RuleVar" nowrap>Kind</td><td class="RuleVar" nowrap>Instead</td><td class="RuleVar" nowrap>Expression</td><td class="RuleVar" nowrap>Body</td><td class="RuleVar" nowrap>Comment</td></tr>
+
+ </table>
+</div>
+
+<a name="paises_Triggers"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="TriggerVar">Triggers</td><td class="TriggerVar">Time</td><td class="TriggerVar">Procedure</td><td class="TriggerVar">Events</td><td class="TriggerVar">For Each Row</td><td class="TriggerVar">Comment</td></tr>
+
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Create SQL</td><td class="DescrVal" style="width:100%;"><PRE class="TableAnn">CREATE TABLE "paises" (
+	"id_pais" SERIAL NOT NULL,
+	"pais" varchar(35) NOT NULL,
+	CONSTRAINT "pais_pk" PRIMARY KEY("id_pais"),
+	CONSTRAINT "pais_uk" UNIQUE("pais")
+)
+WITH (
+	OIDS = True
+);
+
+
+ALTER TABLE "paises" OWNER TO "postgres";
+
+</PRE></td></tr>
+ </table>
+</div>
+</div>
+<a name="perfiles"></a>
+<div class="TOC1ItemContentHeader">4.11 perfiles</div>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="TableAnn">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Comment</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Owner</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">postgres</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="ParamsVar" nowrap>Temporary</td><td class="ParamsVar" nowrap>With OIDs</td><td class="ParamsVar" nowrap>Fill Factor</td></tr>
+  <tr><td class="ColumnsVal">-</td><td class="ColumnsVal">True</td><td class="ColumnsVal"></td></tr>
+ </table>
+</div>
+
+<a name="perfiles_Columns"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr>
+   <td class="ColumnsVar" nowrap style="text-align:left">Columns</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Data Type</td>
+   <td class="ColumnsVar" nowrap>Primary Key</td>
+   <td class="ColumnsVar" nowrap>Not Null</td>
+   <td class="ColumnsVar" nowrap>AutoInc</td>
+   <td class="ColumnsVar" nowrap>Flags</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Default Value</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Comment</td>
+  </tr>
+  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_perfil</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">perfil</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">varchar(50)</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">descripcion_perfil</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">varchar(200)</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>
+ </table>
+</div>
+
+<a name="perfiles_Indexes"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="IndexVar">Indexes</td>
+  <td class="IndexVar" nowrap>Unique</td>
+  <td class="IndexVar" nowrap>Columns</td>
+  <td class="IndexVar" nowrap>Method</td>
+  <td class="IndexVar" nowrap style="text-align:left">Comment</td>
+</tr>
+<tr><td class="IndexVal" nowrap style="text-align:left">id_perfil_pk_idx_pk</td>
+<td class="IndexVal" nowrap><big>&#10004;</big></td>
+<td class="IndexVal" nowrap style="text-align:left">id_perfil</td>
+<td class="IndexVal" nowrap style="text-align:left">BTREE</td>
+<td class="IndexVal" nowrap style="text-align:left">&nbsp;</td>
+</tr><tr><td class="IndexVal" nowrap style="text-align:left">perfil_idx_ui</td>
+<td class="IndexVal" nowrap><big>&#10004;</big></td>
+<td class="IndexVal" nowrap style="text-align:left">perfil</td>
+<td class="IndexVal" nowrap style="text-align:left"></td>
+<td class="IndexVal" nowrap style="text-align:left">&nbsp;</td>
+</tr>
+ </table>
+</div>
+
+<a name="perfiles_Constraints"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="ConstraintVar" nowrap>Constraints</td>
+<td class="ConstraintVar" nowrap>Kind</td>
+<td class="ConstraintVar" nowrap>Expression</td>
+<td class="ConstraintVar" nowrap>Columns</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Comment</td>
+</tr>
+  <tr>
+<td class="ConstraintVal" nowrap>id_perfil_pk</td>
+<td class="ConstraintVal" nowrap>PRIMARY KEY</td>
+<td class="ConstraintVal" nowrap>&nbsp;</td>
+<td class="ConstraintVal" nowrap>id_perfil</td>
+<td class="ConstraintVal">&nbsp;</td></tr>  <tr>
+<td class="ConstraintVal" nowrap>perfil</td>
+<td class="ConstraintVal" nowrap>UNIQUE</td>
+<td class="ConstraintVal" nowrap>&nbsp;</td>
+<td class="ConstraintVal" nowrap>perfil</td>
+<td class="ConstraintVal">&nbsp;</td></tr>
+ </table>
+</div>
+
+<a name="perfiles_Rules"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="RuleVar" nowrap>Rules</td><td class="RuleVar" nowrap>Kind</td><td class="RuleVar" nowrap>Instead</td><td class="RuleVar" nowrap>Expression</td><td class="RuleVar" nowrap>Body</td><td class="RuleVar" nowrap>Comment</td></tr>
+
+ </table>
+</div>
+
+<a name="perfiles_Triggers"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="TriggerVar">Triggers</td><td class="TriggerVar">Time</td><td class="TriggerVar">Procedure</td><td class="TriggerVar">Events</td><td class="TriggerVar">For Each Row</td><td class="TriggerVar">Comment</td></tr>
+
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Create SQL</td><td class="DescrVal" style="width:100%;"><PRE class="TableAnn">CREATE TABLE "perfiles" (
+	"id_perfil" SERIAL NOT NULL,
+	"perfil" varchar(50) NOT NULL,
+	"descripcion_perfil" varchar(200) NOT NULL,
+	CONSTRAINT "id_perfil_pk" PRIMARY KEY("id_perfil"),
+	CONSTRAINT "perfil" UNIQUE("perfil")
+)
+WITH (
+	OIDS = True
+);
+
+
+ALTER TABLE "perfiles" OWNER TO "postgres";
+
+</PRE></td></tr>
+ </table>
+</div>
+</div>
+<a name="personas"></a>
+<div class="TOC1ItemContentHeader">4.12 personas</div>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="TableAnn">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Comment</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Owner</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">postgres</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="ParamsVar" nowrap>Temporary</td><td class="ParamsVar" nowrap>With OIDs</td><td class="ParamsVar" nowrap>Fill Factor</td></tr>
+  <tr><td class="ColumnsVal">-</td><td class="ColumnsVal">True</td><td class="ColumnsVal"></td></tr>
+ </table>
+</div>
+
+<a name="personas_Columns"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr>
+   <td class="ColumnsVar" nowrap style="text-align:left">Columns</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Data Type</td>
+   <td class="ColumnsVar" nowrap>Primary Key</td>
+   <td class="ColumnsVar" nowrap>Not Null</td>
+   <td class="ColumnsVar" nowrap>AutoInc</td>
+   <td class="ColumnsVar" nowrap>Flags</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Default Value</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Comment</td>
+  </tr>
+  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_persona</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">nombre</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">varchar(60)</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">apellido</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">varchar(60)</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">nacionalidad</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">varchar(1)</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">cedula_de_identidad</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">numeric(15)</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">telefono1</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">numeric(11)</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">telefono2</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">numeric(11)</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_pais</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_estado</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">correo_electronico</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">varchar(100)</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>
+ </table>
+</div>
+
+<a name="personas_Indexes"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="IndexVar">Indexes</td>
+  <td class="IndexVar" nowrap>Unique</td>
+  <td class="IndexVar" nowrap>Columns</td>
+  <td class="IndexVar" nowrap>Method</td>
+  <td class="IndexVar" nowrap style="text-align:left">Comment</td>
+</tr>
+<tr><td class="IndexVal" nowrap style="text-align:left">cedula_de_identidad_uk_idx_ui</td>
+<td class="IndexVal" nowrap><big>&#10004;</big></td>
+<td class="IndexVal" nowrap style="text-align:left">cedula_de_identidad</td>
+<td class="IndexVal" nowrap style="text-align:left">BTREE</td>
+<td class="IndexVal" nowrap style="text-align:left">&nbsp;</td>
+</tr><tr><td class="IndexVal" nowrap style="text-align:left">personas_pk_idx_pk</td>
+<td class="IndexVal" nowrap><big>&#10004;</big></td>
+<td class="IndexVal" nowrap style="text-align:left">id_persona</td>
+<td class="IndexVal" nowrap style="text-align:left"></td>
+<td class="IndexVal" nowrap style="text-align:left">&nbsp;</td>
+</tr>
+ </table>
+</div>
+
+<a name="personas_Constraints"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="ConstraintVar" nowrap>Constraints</td>
+<td class="ConstraintVar" nowrap>Kind</td>
+<td class="ConstraintVar" nowrap>Expression</td>
+<td class="ConstraintVar" nowrap>Columns</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Comment</td>
+</tr>
+  <tr>
+<td class="ConstraintVal" nowrap>personas_pk</td>
+<td class="ConstraintVal" nowrap>PRIMARY KEY</td>
+<td class="ConstraintVal" nowrap>&nbsp;</td>
+<td class="ConstraintVal" nowrap>id_persona</td>
+<td class="ConstraintVal">&nbsp;</td></tr>  <tr>
+<td class="ConstraintVal" nowrap>cedula_de_identidad_uk</td>
+<td class="ConstraintVal" nowrap>UNIQUE</td>
+<td class="ConstraintVal" nowrap>&nbsp;</td>
+<td class="ConstraintVal" nowrap>cedula_de_identidad</td>
+<td class="ConstraintVal">&nbsp;</td></tr>
+ </table>
+</div>
+
+<a name="personas_Rules"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="RuleVar" nowrap>Rules</td><td class="RuleVar" nowrap>Kind</td><td class="RuleVar" nowrap>Instead</td><td class="RuleVar" nowrap>Expression</td><td class="RuleVar" nowrap>Body</td><td class="RuleVar" nowrap>Comment</td></tr>
+
+ </table>
+</div>
+
+<a name="personas_Triggers"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="TriggerVar">Triggers</td><td class="TriggerVar">Time</td><td class="TriggerVar">Procedure</td><td class="TriggerVar">Events</td><td class="TriggerVar">For Each Row</td><td class="TriggerVar">Comment</td></tr>
+
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Create SQL</td><td class="DescrVal" style="width:100%;"><PRE class="TableAnn">CREATE TABLE "personas" (
+	"id_persona" SERIAL NOT NULL,
+	"nombre" varchar(60) NOT NULL,
+	"apellido" varchar(60) NOT NULL,
+	"nacionalidad" varchar(1) NOT NULL,
+	"cedula_de_identidad" numeric(15) NOT NULL,
+	"telefono1" numeric(11) NOT NULL,
+	"telefono2" numeric(11),
+	"id_pais" int4,
+	"id_estado" int4,
+	"correo_electronico" varchar(100),
+	CONSTRAINT "personas_pk" PRIMARY KEY("id_persona"),
+	CONSTRAINT "cedula_de_identidad_uk" UNIQUE("cedula_de_identidad"),
+	CONSTRAINT "persona_estado_fk" FOREIGN KEY ("id_estado")
+		REFERENCES "estados"("id_estado")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE,
+	CONSTRAINT "persona_pais_fk" FOREIGN KEY ("id_pais")
+		REFERENCES "paises"("id_pais")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE
+)
+WITH (
+	OIDS = True
+);
+
+
+ALTER TABLE "personas" OWNER TO "postgres";
+
+</PRE></td></tr>
+ </table>
+</div>
+</div>
+<a name="procesos"></a>
+<div class="TOC1ItemContentHeader">4.13 procesos</div>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="TableAnn">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Comment</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Owner</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">postgres</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="ParamsVar" nowrap>Temporary</td><td class="ParamsVar" nowrap>With OIDs</td><td class="ParamsVar" nowrap>Fill Factor</td></tr>
+  <tr><td class="ColumnsVal">-</td><td class="ColumnsVal">True</td><td class="ColumnsVal"></td></tr>
+ </table>
+</div>
+
+<a name="procesos_Columns"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr>
+   <td class="ColumnsVar" nowrap style="text-align:left">Columns</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Data Type</td>
+   <td class="ColumnsVar" nowrap>Primary Key</td>
+   <td class="ColumnsVar" nowrap>Not Null</td>
+   <td class="ColumnsVar" nowrap>AutoInc</td>
+   <td class="ColumnsVar" nowrap>Flags</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Default Value</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Comment</td>
+  </tr>
+  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_proceso</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">proceso_abrev</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">varchar(5)</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">proceso</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">varchar(60)</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">nro_consecutivo_proceso</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>
+ </table>
+</div>
+
+<a name="procesos_Indexes"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="IndexVar">Indexes</td>
+  <td class="IndexVar" nowrap>Unique</td>
+  <td class="IndexVar" nowrap>Columns</td>
+  <td class="IndexVar" nowrap>Method</td>
+  <td class="IndexVar" nowrap style="text-align:left">Comment</td>
+</tr>
+<tr><td class="IndexVal" nowrap style="text-align:left">proceso_abrev_uk_idx_ui</td>
+<td class="IndexVal" nowrap><big>&#10004;</big></td>
+<td class="IndexVal" nowrap style="text-align:left">proceso_abrev</td>
+<td class="IndexVal" nowrap style="text-align:left">BTREE</td>
+<td class="IndexVal" nowrap style="text-align:left">&nbsp;</td>
+</tr><tr><td class="IndexVal" nowrap style="text-align:left">proceso_id_pk_idx_pk</td>
+<td class="IndexVal" nowrap><big>&#10004;</big></td>
+<td class="IndexVal" nowrap style="text-align:left">id_proceso</td>
+<td class="IndexVal" nowrap style="text-align:left"></td>
+<td class="IndexVal" nowrap style="text-align:left">&nbsp;</td>
+</tr><tr><td class="IndexVal" nowrap style="text-align:left">proceso_consecutivo_uk_idx_ui</td>
+<td class="IndexVal" nowrap><big>&#10004;</big></td>
+<td class="IndexVal" nowrap style="text-align:left">nro_consecutivo_proceso</td>
+<td class="IndexVal" nowrap style="text-align:left"></td>
+<td class="IndexVal" nowrap style="text-align:left">&nbsp;</td>
+</tr><tr><td class="IndexVal" nowrap style="text-align:left">proceso_desc_uk_idx_ui</td>
+<td class="IndexVal" nowrap><big>&#10004;</big></td>
+<td class="IndexVal" nowrap style="text-align:left">proceso_abrev</td>
+<td class="IndexVal" nowrap style="text-align:left"></td>
+<td class="IndexVal" nowrap style="text-align:left">&nbsp;</td>
+</tr>
+ </table>
+</div>
+
+<a name="procesos_Constraints"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="ConstraintVar" nowrap>Constraints</td>
+<td class="ConstraintVar" nowrap>Kind</td>
+<td class="ConstraintVar" nowrap>Expression</td>
+<td class="ConstraintVar" nowrap>Columns</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Comment</td>
+</tr>
+  <tr>
+<td class="ConstraintVal" nowrap>proceso_id_pk</td>
+<td class="ConstraintVal" nowrap>PRIMARY KEY</td>
+<td class="ConstraintVal" nowrap>&nbsp;</td>
+<td class="ConstraintVal" nowrap>id_proceso</td>
+<td class="ConstraintVal">&nbsp;</td></tr>  <tr>
+<td class="ConstraintVal" nowrap>proceso_abrev_uk</td>
+<td class="ConstraintVal" nowrap>UNIQUE</td>
+<td class="ConstraintVal" nowrap>&nbsp;</td>
+<td class="ConstraintVal" nowrap>proceso_abrev</td>
+<td class="ConstraintVal">&nbsp;</td></tr>  <tr>
+<td class="ConstraintVal" nowrap>proceso_consecutivo_uk</td>
+<td class="ConstraintVal" nowrap>UNIQUE</td>
+<td class="ConstraintVal" nowrap>&nbsp;</td>
+<td class="ConstraintVal" nowrap>nro_consecutivo_proceso</td>
+<td class="ConstraintVal">&nbsp;</td></tr>  <tr>
+<td class="ConstraintVal" nowrap>proceso_desc_uk</td>
+<td class="ConstraintVal" nowrap>UNIQUE</td>
+<td class="ConstraintVal" nowrap>&nbsp;</td>
+<td class="ConstraintVal" nowrap>proceso_abrev</td>
+<td class="ConstraintVal">&nbsp;</td></tr>
+ </table>
+</div>
+
+<a name="procesos_Rules"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="RuleVar" nowrap>Rules</td><td class="RuleVar" nowrap>Kind</td><td class="RuleVar" nowrap>Instead</td><td class="RuleVar" nowrap>Expression</td><td class="RuleVar" nowrap>Body</td><td class="RuleVar" nowrap>Comment</td></tr>
+
+ </table>
+</div>
+
+<a name="procesos_Triggers"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="TriggerVar">Triggers</td><td class="TriggerVar">Time</td><td class="TriggerVar">Procedure</td><td class="TriggerVar">Events</td><td class="TriggerVar">For Each Row</td><td class="TriggerVar">Comment</td></tr>
+
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Create SQL</td><td class="DescrVal" style="width:100%;"><PRE class="TableAnn">CREATE TABLE "procesos" (
+	"id_proceso" SERIAL NOT NULL,
+	"proceso_abrev" varchar(5),
+	"proceso" varchar(60),
+	"nro_consecutivo_proceso" int4 NOT NULL,
+	CONSTRAINT "proceso_id_pk" PRIMARY KEY("id_proceso"),
+	CONSTRAINT "proceso_abrev_uk" UNIQUE("proceso_abrev"),
+	CONSTRAINT "proceso_consecutivo_uk" UNIQUE("nro_consecutivo_proceso"),
+	CONSTRAINT "proceso_desc_uk" UNIQUE("proceso_abrev")
+)
+WITH (
+	OIDS = True
+);
+
+
+ALTER TABLE "procesos" OWNER TO "postgres";
+
+</PRE></td></tr>
+ </table>
+</div>
+</div>
+<a name="usuarios"></a>
+<div class="TOC1ItemContentHeader">4.14 usuarios</div>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="TableAnn">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Comment</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Owner</td><td class="DescrVal" style="width:100%;"><PRE class="TableDesc">postgres</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="ParamsVar" nowrap>Temporary</td><td class="ParamsVar" nowrap>With OIDs</td><td class="ParamsVar" nowrap>Fill Factor</td></tr>
+  <tr><td class="ColumnsVal">-</td><td class="ColumnsVal">True</td><td class="ColumnsVal"></td></tr>
+ </table>
+</div>
+
+<a name="usuarios_Columns"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr>
+   <td class="ColumnsVar" nowrap style="text-align:left">Columns</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Data Type</td>
+   <td class="ColumnsVar" nowrap>Primary Key</td>
+   <td class="ColumnsVar" nowrap>Not Null</td>
+   <td class="ColumnsVar" nowrap>AutoInc</td>
+   <td class="ColumnsVar" nowrap>Flags</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Default Value</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Comment</td>
+  </tr>
+  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_usuario</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">usuario</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">varchar(15)</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">usuario_encrypt</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">varchar(128)</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">clave</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">varchar(128)</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">fecha_registro</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">timestamp</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">now()</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">fecha_ultimo_ingreso</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">timestamp</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">es_activo</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">varchar(2)</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">'NO'::character varying</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_persona</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">id_perfil</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">int4</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap><big>&#10004;</big></td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">str_recuperacion_clave</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">varchar(128)</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>  <tr>
+   <td class="ColumnsVal" nowrap style="text-align:left">fecha_recuperacion_clave</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">time</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>-</td>
+   <td class="ColumnsVal" nowrap>&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+   <td class="ColumnsVal" nowrap style="text-align:left">&nbsp;</td>
+  </tr>
+ </table>
+</div>
+
+<a name="usuarios_Indexes"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="IndexVar">Indexes</td>
+  <td class="IndexVar" nowrap>Unique</td>
+  <td class="IndexVar" nowrap>Columns</td>
+  <td class="IndexVar" nowrap>Method</td>
+  <td class="IndexVar" nowrap style="text-align:left">Comment</td>
+</tr>
+<tr><td class="IndexVal" nowrap style="text-align:left">id_usuario_pk_idx_pk</td>
+<td class="IndexVal" nowrap><big>&#10004;</big></td>
+<td class="IndexVal" nowrap style="text-align:left">id_usuario</td>
+<td class="IndexVal" nowrap style="text-align:left">BTREE</td>
+<td class="IndexVal" nowrap style="text-align:left">&nbsp;</td>
+</tr><tr><td class="IndexVal" nowrap style="text-align:left">usuario_encrypt_uk_idx_ui</td>
+<td class="IndexVal" nowrap><big>&#10004;</big></td>
+<td class="IndexVal" nowrap style="text-align:left">usuario_encrypt</td>
+<td class="IndexVal" nowrap style="text-align:left"></td>
+<td class="IndexVal" nowrap style="text-align:left">&nbsp;</td>
+</tr><tr><td class="IndexVal" nowrap style="text-align:left">usuario_persona_uk_idx_ui</td>
+<td class="IndexVal" nowrap><big>&#10004;</big></td>
+<td class="IndexVal" nowrap style="text-align:left">id_persona</td>
+<td class="IndexVal" nowrap style="text-align:left"></td>
+<td class="IndexVal" nowrap style="text-align:left">&nbsp;</td>
+</tr><tr><td class="IndexVal" nowrap style="text-align:left">usuario_uk_idx_ui</td>
+<td class="IndexVal" nowrap><big>&#10004;</big></td>
+<td class="IndexVal" nowrap style="text-align:left">usuario</td>
+<td class="IndexVal" nowrap style="text-align:left"></td>
+<td class="IndexVal" nowrap style="text-align:left">&nbsp;</td>
+</tr>
+ </table>
+</div>
+
+<a name="usuarios_Constraints"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="ConstraintVar" nowrap>Constraints</td>
+<td class="ConstraintVar" nowrap>Kind</td>
+<td class="ConstraintVar" nowrap>Expression</td>
+<td class="ConstraintVar" nowrap>Columns</td>
+   <td class="ColumnsVar" nowrap style="text-align:left">Comment</td>
+</tr>
+  <tr>
+<td class="ConstraintVal" nowrap>id_usuario_pk</td>
+<td class="ConstraintVal" nowrap>PRIMARY KEY</td>
+<td class="ConstraintVal" nowrap>&nbsp;</td>
+<td class="ConstraintVal" nowrap>id_usuario</td>
+<td class="ConstraintVal">&nbsp;</td></tr>  <tr>
+<td class="ConstraintVal" nowrap>usuario_encrypt_uk</td>
+<td class="ConstraintVal" nowrap>UNIQUE</td>
+<td class="ConstraintVal" nowrap>&nbsp;</td>
+<td class="ConstraintVal" nowrap>usuario_encrypt</td>
+<td class="ConstraintVal">&nbsp;</td></tr>  <tr>
+<td class="ConstraintVal" nowrap>usuario_persona_uk</td>
+<td class="ConstraintVal" nowrap>UNIQUE</td>
+<td class="ConstraintVal" nowrap>&nbsp;</td>
+<td class="ConstraintVal" nowrap>id_persona</td>
+<td class="ConstraintVal">&nbsp;</td></tr>  <tr>
+<td class="ConstraintVal" nowrap>usuario_uk</td>
+<td class="ConstraintVal" nowrap>UNIQUE</td>
+<td class="ConstraintVal" nowrap>&nbsp;</td>
+<td class="ConstraintVal" nowrap>usuario</td>
+<td class="ConstraintVal">&nbsp;</td></tr>
+ </table>
+</div>
+
+<a name="usuarios_Rules"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="RuleVar" nowrap>Rules</td><td class="RuleVar" nowrap>Kind</td><td class="RuleVar" nowrap>Instead</td><td class="RuleVar" nowrap>Expression</td><td class="RuleVar" nowrap>Body</td><td class="RuleVar" nowrap>Comment</td></tr>
+
+ </table>
+</div>
+
+<a name="usuarios_Triggers"></a>
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0" style="width:100%;">
+  <tr><td class="TriggerVar">Triggers</td><td class="TriggerVar">Time</td><td class="TriggerVar">Procedure</td><td class="TriggerVar">Events</td><td class="TriggerVar">For Each Row</td><td class="TriggerVar">Comment</td></tr>
+
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Create SQL</td><td class="DescrVal" style="width:100%;"><PRE class="TableAnn">CREATE TABLE "usuarios" (
+	"id_usuario" SERIAL NOT NULL,
+	"usuario" varchar(15) NOT NULL,
+	"usuario_encrypt" varchar(128) NOT NULL,
+	"clave" varchar(128) NOT NULL,
+	"fecha_registro" timestamp NOT NULL DEFAULT now(),
+	"fecha_ultimo_ingreso" timestamp NOT NULL,
+	"es_activo" varchar(2) NOT NULL DEFAULT 'NO'::character varying,
+	"id_persona" int4 NOT NULL,
+	"id_perfil" int4 NOT NULL,
+	"str_recuperacion_clave" varchar(128),
+	"fecha_recuperacion_clave" time,
+	CONSTRAINT "id_usuario_pk" PRIMARY KEY("id_usuario"),
+	CONSTRAINT "usuario_encrypt_uk" UNIQUE("usuario_encrypt"),
+	CONSTRAINT "usuario_persona_uk" UNIQUE("id_persona"),
+	CONSTRAINT "usuario_uk" UNIQUE("usuario"),
+	CONSTRAINT "usuario_perfil_fk" FOREIGN KEY ("id_perfil")
+		REFERENCES "perfiles"("id_perfil")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE,
+	CONSTRAINT "usuario_persona_fk" FOREIGN KEY ("id_persona")
+		REFERENCES "personas"("id_persona")
+	MATCH SIMPLE
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION
+	NOT DEFERRABLE
+)
+WITH (
+	OIDS = True
+);
+
+
+ALTER TABLE "usuarios" OWNER TO "postgres";
+
+</PRE></td></tr>
+ </table>
+</div>
+</div>
+
+
+<a name="References"></a>
+<div class="TOCItemContentHeader">5. References</div>
+<a name="consulta_expediente_fk"></a>
+<div class="TOC1ItemContentHeader">5.1 consulta_expediente_fk</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="RefDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="RefAnn">&nbsp;</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr>
+   <td class="RefVar" nowrap>Parent Table</td>
+   <td class="RefVar" nowrap>Child Table</td>
+   <td class="RefVar" nowrap>Delete Action</td>
+   <td class="RefVar" nowrap>Update Action</td>
+   <td class="RefVar" nowrap style="width:100%">Link</td>
+  </tr>
+  <tr>
+   <td class="RefVal" nowrap>expedientes</td>
+   <td class="RefVal" nowrap>consultas</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>id_expediente=id_expediente
+</td>
+  </tr>
+ </table>
+</div>
+<a name="control_abog_asignado_fk"></a>
+<div class="TOC1ItemContentHeader">5.2 control_abog_asignado_fk</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="RefDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="RefAnn">&nbsp;</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr>
+   <td class="RefVar" nowrap>Parent Table</td>
+   <td class="RefVar" nowrap>Child Table</td>
+   <td class="RefVar" nowrap>Delete Action</td>
+   <td class="RefVar" nowrap>Update Action</td>
+   <td class="RefVar" nowrap style="width:100%">Link</td>
+  </tr>
+  <tr>
+   <td class="RefVal" nowrap>usuarios</td>
+   <td class="RefVal" nowrap>control_movimientos</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>id_usuario=usuarios_id_usuario
+</td>
+  </tr>
+ </table>
+</div>
+<a name="control_abog_coordinador_fk"></a>
+<div class="TOC1ItemContentHeader">5.3 control_abog_coordinador_fk</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="RefDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="RefAnn">&nbsp;</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr>
+   <td class="RefVar" nowrap>Parent Table</td>
+   <td class="RefVar" nowrap>Child Table</td>
+   <td class="RefVar" nowrap>Delete Action</td>
+   <td class="RefVar" nowrap>Update Action</td>
+   <td class="RefVar" nowrap style="width:100%">Link</td>
+  </tr>
+  <tr>
+   <td class="RefVal" nowrap>usuarios</td>
+   <td class="RefVal" nowrap>control_movimientos</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>id_usuario=usuarios_id_usuario
+</td>
+  </tr>
+ </table>
+</div>
+<a name="control_proceso_fk"></a>
+<div class="TOC1ItemContentHeader">5.4 control_proceso_fk</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="RefDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="RefAnn">&nbsp;</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr>
+   <td class="RefVar" nowrap>Parent Table</td>
+   <td class="RefVar" nowrap>Child Table</td>
+   <td class="RefVar" nowrap>Delete Action</td>
+   <td class="RefVar" nowrap>Update Action</td>
+   <td class="RefVar" nowrap style="width:100%">Link</td>
+  </tr>
+  <tr>
+   <td class="RefVal" nowrap>procesos</td>
+   <td class="RefVal" nowrap>control_movimientos</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>id_proceso=id_proceso
+</td>
+  </tr>
+ </table>
+</div>
+<a name="control_etapa_fk"></a>
+<div class="TOC1ItemContentHeader">5.5 control_etapa_fk</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="RefDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="RefAnn">&nbsp;</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr>
+   <td class="RefVar" nowrap>Parent Table</td>
+   <td class="RefVar" nowrap>Child Table</td>
+   <td class="RefVar" nowrap>Delete Action</td>
+   <td class="RefVar" nowrap>Update Action</td>
+   <td class="RefVar" nowrap style="width:100%">Link</td>
+  </tr>
+  <tr>
+   <td class="RefVal" nowrap>etapas</td>
+   <td class="RefVal" nowrap>control_movimientos</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>id_etapa=id_etapa
+</td>
+  </tr>
+ </table>
+</div>
+<a name="control_expediente_fk"></a>
+<div class="TOC1ItemContentHeader">5.6 control_expediente_fk</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="RefDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="RefAnn">&nbsp;</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr>
+   <td class="RefVar" nowrap>Parent Table</td>
+   <td class="RefVar" nowrap>Child Table</td>
+   <td class="RefVar" nowrap>Delete Action</td>
+   <td class="RefVar" nowrap>Update Action</td>
+   <td class="RefVar" nowrap style="width:100%">Link</td>
+  </tr>
+  <tr>
+   <td class="RefVal" nowrap>expedientes</td>
+   <td class="RefVal" nowrap>control_movimientos</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>id_expediente=expedientes_id_expediente
+</td>
+  </tr>
+ </table>
+</div>
+<a name="estado_pais_fk"></a>
+<div class="TOC1ItemContentHeader">5.7 estado_pais_fk</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="RefDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="RefAnn">&nbsp;</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr>
+   <td class="RefVar" nowrap>Parent Table</td>
+   <td class="RefVar" nowrap>Child Table</td>
+   <td class="RefVar" nowrap>Delete Action</td>
+   <td class="RefVar" nowrap>Update Action</td>
+   <td class="RefVar" nowrap style="width:100%">Link</td>
+  </tr>
+  <tr>
+   <td class="RefVal" nowrap>paises</td>
+   <td class="RefVal" nowrap>estados</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>id_pais=id_pais
+</td>
+  </tr>
+ </table>
+</div>
+<a name="etapa_de_proceso_fk"></a>
+<div class="TOC1ItemContentHeader">5.8 etapa_de_proceso_fk</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="RefDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="RefAnn">&nbsp;</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr>
+   <td class="RefVar" nowrap>Parent Table</td>
+   <td class="RefVar" nowrap>Child Table</td>
+   <td class="RefVar" nowrap>Delete Action</td>
+   <td class="RefVar" nowrap>Update Action</td>
+   <td class="RefVar" nowrap style="width:100%">Link</td>
+  </tr>
+  <tr>
+   <td class="RefVal" nowrap>procesos</td>
+   <td class="RefVal" nowrap>etapas</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>id_proceso=id_proceso
+</td>
+  </tr>
+ </table>
+</div>
+<a name="id_etapa_actual_fk"></a>
+<div class="TOC1ItemContentHeader">5.9 id_etapa_actual_fk</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="RefDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="RefAnn">&nbsp;</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr>
+   <td class="RefVar" nowrap>Parent Table</td>
+   <td class="RefVar" nowrap>Child Table</td>
+   <td class="RefVar" nowrap>Delete Action</td>
+   <td class="RefVar" nowrap>Update Action</td>
+   <td class="RefVar" nowrap style="width:100%">Link</td>
+  </tr>
+  <tr>
+   <td class="RefVal" nowrap>etapas</td>
+   <td class="RefVal" nowrap>expedientes</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>id_etapa=etapas_id_etapa
+</td>
+  </tr>
+ </table>
+</div>
+<a name="id_organismo_fk"></a>
+<div class="TOC1ItemContentHeader">5.10 id_organismo_fk</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="RefDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="RefAnn">&nbsp;</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr>
+   <td class="RefVar" nowrap>Parent Table</td>
+   <td class="RefVar" nowrap>Child Table</td>
+   <td class="RefVar" nowrap>Delete Action</td>
+   <td class="RefVar" nowrap>Update Action</td>
+   <td class="RefVar" nowrap style="width:100%">Link</td>
+  </tr>
+  <tr>
+   <td class="RefVal" nowrap>organismos</td>
+   <td class="RefVal" nowrap>expedientes</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>id_organismo=id_organismo
+</td>
+  </tr>
+ </table>
+</div>
+<a name="id_proceso_actual_fk"></a>
+<div class="TOC1ItemContentHeader">5.11 id_proceso_actual_fk</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="RefDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="RefAnn">&nbsp;</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr>
+   <td class="RefVar" nowrap>Parent Table</td>
+   <td class="RefVar" nowrap>Child Table</td>
+   <td class="RefVar" nowrap>Delete Action</td>
+   <td class="RefVar" nowrap>Update Action</td>
+   <td class="RefVar" nowrap style="width:100%">Link</td>
+  </tr>
+  <tr>
+   <td class="RefVal" nowrap>procesos</td>
+   <td class="RefVal" nowrap>expedientes</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>id_proceso=procesos_id_proceso
+</td>
+  </tr>
+ </table>
+</div>
+<a name="id_usuario_reg_inicial_fk"></a>
+<div class="TOC1ItemContentHeader">5.12 id_usuario_reg_inicial_fk</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="RefDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="RefAnn">&nbsp;</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr>
+   <td class="RefVar" nowrap>Parent Table</td>
+   <td class="RefVar" nowrap>Child Table</td>
+   <td class="RefVar" nowrap>Delete Action</td>
+   <td class="RefVar" nowrap>Update Action</td>
+   <td class="RefVar" nowrap style="width:100%">Link</td>
+  </tr>
+  <tr>
+   <td class="RefVal" nowrap>usuarios</td>
+   <td class="RefVal" nowrap>expedientes</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>id_usuario=usuarios_id_usuario
+</td>
+  </tr>
+ </table>
+</div>
+<a name="cedula_de_identidad_fk"></a>
+<div class="TOC1ItemContentHeader">5.13 cedula_de_identidad_fk</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="RefDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="RefAnn">&nbsp;</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr>
+   <td class="RefVar" nowrap>Parent Table</td>
+   <td class="RefVar" nowrap>Child Table</td>
+   <td class="RefVar" nowrap>Delete Action</td>
+   <td class="RefVar" nowrap>Update Action</td>
+   <td class="RefVar" nowrap style="width:100%">Link</td>
+  </tr>
+  <tr>
+   <td class="RefVal" nowrap>personas</td>
+   <td class="RefVal" nowrap>interesados</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>id_persona=personas_id_persona
+</td>
+  </tr>
+ </table>
+</div>
+<a name="id_expediente_fk"></a>
+<div class="TOC1ItemContentHeader">5.14 id_expediente_fk</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="RefDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="RefAnn">&nbsp;</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr>
+   <td class="RefVar" nowrap>Parent Table</td>
+   <td class="RefVar" nowrap>Child Table</td>
+   <td class="RefVar" nowrap>Delete Action</td>
+   <td class="RefVar" nowrap>Update Action</td>
+   <td class="RefVar" nowrap style="width:100%">Link</td>
+  </tr>
+  <tr>
+   <td class="RefVal" nowrap>expedientes</td>
+   <td class="RefVal" nowrap>interesados</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>id_expediente=id_expediente
+</td>
+  </tr>
+ </table>
+</div>
+<a name="log_usuario_reg_fk"></a>
+<div class="TOC1ItemContentHeader">5.15 log_usuario_reg_fk</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="RefDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="RefAnn">&nbsp;</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr>
+   <td class="RefVar" nowrap>Parent Table</td>
+   <td class="RefVar" nowrap>Child Table</td>
+   <td class="RefVar" nowrap>Delete Action</td>
+   <td class="RefVar" nowrap>Update Action</td>
+   <td class="RefVar" nowrap style="width:100%">Link</td>
+  </tr>
+  <tr>
+   <td class="RefVal" nowrap>usuarios</td>
+   <td class="RefVal" nowrap>logs_usuarios</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>id_usuario=id_usuario
+</td>
+  </tr>
+ </table>
+</div>
+<a name="observ_proceso_fk"></a>
+<div class="TOC1ItemContentHeader">5.16 observ_proceso_fk</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="RefDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="RefAnn">&nbsp;</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr>
+   <td class="RefVar" nowrap>Parent Table</td>
+   <td class="RefVar" nowrap>Child Table</td>
+   <td class="RefVar" nowrap>Delete Action</td>
+   <td class="RefVar" nowrap>Update Action</td>
+   <td class="RefVar" nowrap style="width:100%">Link</td>
+  </tr>
+  <tr>
+   <td class="RefVal" nowrap>procesos</td>
+   <td class="RefVal" nowrap>observaciones</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>id_proceso=id_proceso
+</td>
+  </tr>
+ </table>
+</div>
+<a name="observ_etapa_fk"></a>
+<div class="TOC1ItemContentHeader">5.17 observ_etapa_fk</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="RefDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="RefAnn">&nbsp;</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr>
+   <td class="RefVar" nowrap>Parent Table</td>
+   <td class="RefVar" nowrap>Child Table</td>
+   <td class="RefVar" nowrap>Delete Action</td>
+   <td class="RefVar" nowrap>Update Action</td>
+   <td class="RefVar" nowrap style="width:100%">Link</td>
+  </tr>
+  <tr>
+   <td class="RefVal" nowrap>etapas</td>
+   <td class="RefVal" nowrap>observaciones</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>id_etapa=id_etapa
+</td>
+  </tr>
+ </table>
+</div>
+<a name="observ_expediente_fk"></a>
+<div class="TOC1ItemContentHeader">5.18 observ_expediente_fk</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="RefDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="RefAnn">&nbsp;</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr>
+   <td class="RefVar" nowrap>Parent Table</td>
+   <td class="RefVar" nowrap>Child Table</td>
+   <td class="RefVar" nowrap>Delete Action</td>
+   <td class="RefVar" nowrap>Update Action</td>
+   <td class="RefVar" nowrap style="width:100%">Link</td>
+  </tr>
+  <tr>
+   <td class="RefVal" nowrap>expedientes</td>
+   <td class="RefVal" nowrap>observaciones</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>id_expediente=expedientes_id_expediente
+</td>
+  </tr>
+ </table>
+</div>
+<a name="persona_estado_fk"></a>
+<div class="TOC1ItemContentHeader">5.19 persona_estado_fk</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="RefDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="RefAnn">&nbsp;</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr>
+   <td class="RefVar" nowrap>Parent Table</td>
+   <td class="RefVar" nowrap>Child Table</td>
+   <td class="RefVar" nowrap>Delete Action</td>
+   <td class="RefVar" nowrap>Update Action</td>
+   <td class="RefVar" nowrap style="width:100%">Link</td>
+  </tr>
+  <tr>
+   <td class="RefVal" nowrap>estados</td>
+   <td class="RefVal" nowrap>personas</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>id_estado=id_estado
+</td>
+  </tr>
+ </table>
+</div>
+<a name="persona_pais_fk"></a>
+<div class="TOC1ItemContentHeader">5.20 persona_pais_fk</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="RefDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="RefAnn">&nbsp;</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr>
+   <td class="RefVar" nowrap>Parent Table</td>
+   <td class="RefVar" nowrap>Child Table</td>
+   <td class="RefVar" nowrap>Delete Action</td>
+   <td class="RefVar" nowrap>Update Action</td>
+   <td class="RefVar" nowrap style="width:100%">Link</td>
+  </tr>
+  <tr>
+   <td class="RefVal" nowrap>paises</td>
+   <td class="RefVal" nowrap>personas</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>id_pais=id_pais
+</td>
+  </tr>
+ </table>
+</div>
+<a name="usuario_perfil_fk"></a>
+<div class="TOC1ItemContentHeader">5.21 usuario_perfil_fk</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="RefDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="RefAnn">&nbsp;</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr>
+   <td class="RefVar" nowrap>Parent Table</td>
+   <td class="RefVar" nowrap>Child Table</td>
+   <td class="RefVar" nowrap>Delete Action</td>
+   <td class="RefVar" nowrap>Update Action</td>
+   <td class="RefVar" nowrap style="width:100%">Link</td>
+  </tr>
+  <tr>
+   <td class="RefVal" nowrap>perfiles</td>
+   <td class="RefVal" nowrap>usuarios</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>id_perfil=id_perfil
+</td>
+  </tr>
+ </table>
+</div>
+<a name="usuario_persona_fk"></a>
+<div class="TOC1ItemContentHeader">5.22 usuario_persona_fk</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr><td class="DescrVar" nowrap>Description</td><td class="DescrVal" style="width:100%;"><PRE class="RefDesc">&nbsp;</PRE></td></tr>
+  <tr><td class="DescrVar" nowrap>Annotation</td><td class="DescrVal" style="width:100%;"><PRE class="RefAnn">&nbsp;</PRE></td></tr>
+ </table>
+</div>
+
+<div class="TOC1ItemContentParent">
+	<table class="TOC1ItemTable" cellpadding="0" cellspacing="0">
+  <tr>
+   <td class="RefVar" nowrap>Parent Table</td>
+   <td class="RefVar" nowrap>Child Table</td>
+   <td class="RefVar" nowrap>Delete Action</td>
+   <td class="RefVar" nowrap>Update Action</td>
+   <td class="RefVar" nowrap style="width:100%">Link</td>
+  </tr>
+  <tr>
+   <td class="RefVal" nowrap>personas</td>
+   <td class="RefVal" nowrap>usuarios</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>NO ACTION</td>
+   <td class="RefVal" nowrap>id_persona=id_persona
+</td>
+  </tr>
+ </table>
+</div>
+
+
+<a name="StoredProces"></a>
+<div class="TOCItemContentHeader">6. Stored Procedures</div>
+
+
+<a name="Views"></a>
+<div class="TOCItemContentHeader">7. Views</div>
+</body></html>

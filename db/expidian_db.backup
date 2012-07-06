@@ -1,0 +1,6118 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.1.3
+-- Dumped by pg_dump version 9.1.3
+-- Started on 2012-05-17 07:11:06 VET
+
+SET statement_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+
+--
+-- TOC entry 190 (class 3079 OID 11710)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2154 (class 0 OID 0)
+-- Dependencies: 190
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+--
+-- TOC entry 189 (class 3079 OID 16458)
+-- Name: adminpack; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS adminpack WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2155 (class 0 OID 0)
+-- Dependencies: 189
+-- Name: EXTENSION adminpack; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION adminpack IS 'administrative functions for PostgreSQL';
+
+
+--
+-- TOC entry 191 (class 3079 OID 16424)
+-- Dependencies: 6
+-- Name: pgcrypto; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS pgcrypto WITH SCHEMA public;
+
+
+--
+-- TOC entry 2156 (class 0 OID 0)
+-- Dependencies: 191
+-- Name: EXTENSION pgcrypto; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION pgcrypto IS 'cryptographic functions';
+
+
+SET search_path = public, pg_catalog;
+
+--
+-- TOC entry 236 (class 1255 OID 16467)
+-- Dependencies: 6
+-- Name: sha512(bytea); Type: FUNCTION; Schema: public; Owner: postgres
+--
+
+CREATE FUNCTION sha512(bytea) RETURNS text
+    LANGUAGE sql IMMUTABLE STRICT
+    AS $_$
+    SELECT encode(digest($1, 'sha512'), 'hex')
+$_$;
+
+
+ALTER FUNCTION public.sha512(bytea) OWNER TO postgres;
+
+SET default_tablespace = '';
+
+SET default_with_oids = true;
+
+--
+-- TOC entry 188 (class 1259 OID 26180)
+-- Dependencies: 2056 6
+-- Name: bitacoras; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE bitacoras (
+    id_bitacora integer NOT NULL,
+    id_expidiente integer NOT NULL,
+    bitacora text NOT NULL,
+    fecha_registro date DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.bitacoras OWNER TO postgres;
+
+--
+-- TOC entry 187 (class 1259 OID 26178)
+-- Dependencies: 188 6
+-- Name: bitacoras_id_bitacora_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE bitacoras_id_bitacora_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.bitacoras_id_bitacora_seq OWNER TO postgres;
+
+--
+-- TOC entry 2157 (class 0 OID 0)
+-- Dependencies: 187
+-- Name: bitacoras_id_bitacora_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE bitacoras_id_bitacora_seq OWNED BY bitacoras.id_bitacora;
+
+
+--
+-- TOC entry 2158 (class 0 OID 0)
+-- Dependencies: 187
+-- Name: bitacoras_id_bitacora_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('bitacoras_id_bitacora_seq', 1, false);
+
+
+--
+-- TOC entry 161 (class 1259 OID 21380)
+-- Dependencies: 2035 6
+-- Name: consultas; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE consultas (
+    id_consulta integer NOT NULL,
+    cedula_de_identidad character varying(15) NOT NULL,
+    id_expediente integer NOT NULL,
+    fecha_consulta date DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.consultas OWNER TO postgres;
+
+--
+-- TOC entry 162 (class 1259 OID 21383)
+-- Dependencies: 6 161
+-- Name: consultas_id_consulta_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE consultas_id_consulta_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.consultas_id_consulta_seq OWNER TO postgres;
+
+--
+-- TOC entry 2159 (class 0 OID 0)
+-- Dependencies: 162
+-- Name: consultas_id_consulta_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE consultas_id_consulta_seq OWNED BY consultas.id_consulta;
+
+
+--
+-- TOC entry 2160 (class 0 OID 0)
+-- Dependencies: 162
+-- Name: consultas_id_consulta_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('consultas_id_consulta_seq', 1, false);
+
+
+--
+-- TOC entry 163 (class 1259 OID 21385)
+-- Dependencies: 2037 6
+-- Name: control_movimientos; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE control_movimientos (
+    id_control_movimientos integer NOT NULL,
+    id_expidiente integer NOT NULL,
+    id_proceso integer NOT NULL,
+    id_etapa integer NOT NULL,
+    cod_expediente character varying(11) NOT NULL,
+    id_abogado_coord integer,
+    id_abogado_asign integer NOT NULL,
+    fecha_movimiento date DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.control_movimientos OWNER TO postgres;
+
+--
+-- TOC entry 164 (class 1259 OID 21388)
+-- Dependencies: 6 163
+-- Name: control_movimientos_id_control_movimientos_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE control_movimientos_id_control_movimientos_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.control_movimientos_id_control_movimientos_seq OWNER TO postgres;
+
+--
+-- TOC entry 2161 (class 0 OID 0)
+-- Dependencies: 164
+-- Name: control_movimientos_id_control_movimientos_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE control_movimientos_id_control_movimientos_seq OWNED BY control_movimientos.id_control_movimientos;
+
+
+--
+-- TOC entry 2162 (class 0 OID 0)
+-- Dependencies: 164
+-- Name: control_movimientos_id_control_movimientos_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('control_movimientos_id_control_movimientos_seq', 1, false);
+
+
+--
+-- TOC entry 165 (class 1259 OID 21390)
+-- Dependencies: 6
+-- Name: estados; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE estados (
+    id_estado integer NOT NULL,
+    estado character varying(60) NOT NULL,
+    id_pais integer NOT NULL
+);
+
+
+ALTER TABLE public.estados OWNER TO postgres;
+
+--
+-- TOC entry 166 (class 1259 OID 21393)
+-- Dependencies: 165 6
+-- Name: estados_id_estado_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE estados_id_estado_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.estados_id_estado_seq OWNER TO postgres;
+
+--
+-- TOC entry 2163 (class 0 OID 0)
+-- Dependencies: 166
+-- Name: estados_id_estado_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE estados_id_estado_seq OWNED BY estados.id_estado;
+
+
+--
+-- TOC entry 2164 (class 0 OID 0)
+-- Dependencies: 166
+-- Name: estados_id_estado_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('estados_id_estado_seq', 4292, true);
+
+
+--
+-- TOC entry 167 (class 1259 OID 21395)
+-- Dependencies: 6
+-- Name: etapas; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE etapas (
+    id_etapa integer NOT NULL,
+    etapa_abrev character varying(5) NOT NULL,
+    etapa character varying(60) NOT NULL,
+    nro_consecutivo_etapa integer NOT NULL,
+    id_proceso integer NOT NULL
+);
+
+
+ALTER TABLE public.etapas OWNER TO postgres;
+
+--
+-- TOC entry 168 (class 1259 OID 21398)
+-- Dependencies: 167 6
+-- Name: etapas_id_etapa_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE etapas_id_etapa_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.etapas_id_etapa_seq OWNER TO postgres;
+
+--
+-- TOC entry 2165 (class 0 OID 0)
+-- Dependencies: 168
+-- Name: etapas_id_etapa_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE etapas_id_etapa_seq OWNED BY etapas.id_etapa;
+
+
+--
+-- TOC entry 2166 (class 0 OID 0)
+-- Dependencies: 168
+-- Name: etapas_id_etapa_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('etapas_id_etapa_seq', 1, false);
+
+
+--
+-- TOC entry 169 (class 1259 OID 21400)
+-- Dependencies: 2041 2042 6
+-- Name: expedientes; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE expedientes (
+    id_expediente integer NOT NULL,
+    id_organismo integer,
+    hechos text,
+    observaciones text,
+    id_proceso_actual integer,
+    id_etapa_actual integer,
+    id_usuario_ini integer NOT NULL,
+    sesssion_id character varying(255),
+    confirm_inicial character varying(10) DEFAULT 'NO CONFIRMADO'::character varying,
+    fecha_registro date DEFAULT now() NOT NULL,
+    fecha_solic_invest date
+);
+
+
+ALTER TABLE public.expedientes OWNER TO postgres;
+
+--
+-- TOC entry 170 (class 1259 OID 21406)
+-- Dependencies: 169 6
+-- Name: expedientes_id_expediente_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE expedientes_id_expediente_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.expedientes_id_expediente_seq OWNER TO postgres;
+
+--
+-- TOC entry 2167 (class 0 OID 0)
+-- Dependencies: 170
+-- Name: expedientes_id_expediente_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE expedientes_id_expediente_seq OWNED BY expedientes.id_expediente;
+
+
+--
+-- TOC entry 2168 (class 0 OID 0)
+-- Dependencies: 170
+-- Name: expedientes_id_expediente_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('expedientes_id_expediente_seq', 1, false);
+
+
+--
+-- TOC entry 171 (class 1259 OID 21408)
+-- Dependencies: 6
+-- Name: interesados; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE interesados (
+    id_interesado integer NOT NULL,
+    id_expediente integer,
+    cedula_de_identidad integer
+);
+
+
+ALTER TABLE public.interesados OWNER TO postgres;
+
+--
+-- TOC entry 172 (class 1259 OID 21411)
+-- Dependencies: 6 171
+-- Name: interesados_id_interesado_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE interesados_id_interesado_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.interesados_id_interesado_seq OWNER TO postgres;
+
+--
+-- TOC entry 2169 (class 0 OID 0)
+-- Dependencies: 172
+-- Name: interesados_id_interesado_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE interesados_id_interesado_seq OWNED BY interesados.id_interesado;
+
+
+--
+-- TOC entry 2170 (class 0 OID 0)
+-- Dependencies: 172
+-- Name: interesados_id_interesado_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('interesados_id_interesado_seq', 1, false);
+
+
+--
+-- TOC entry 173 (class 1259 OID 21413)
+-- Dependencies: 2045 6
+-- Name: logs_usuarios; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE logs_usuarios (
+    id_log_usuario integer NOT NULL,
+    id_usuario integer NOT NULL,
+    log_usuario character varying(300) NOT NULL,
+    estatus_final character varying(20),
+    fecha_log timestamp without time zone DEFAULT now() NOT NULL
+);
+
+
+ALTER TABLE public.logs_usuarios OWNER TO postgres;
+
+--
+-- TOC entry 174 (class 1259 OID 21416)
+-- Dependencies: 173 6
+-- Name: logs_usuarios_id_log_usuario_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE logs_usuarios_id_log_usuario_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.logs_usuarios_id_log_usuario_seq OWNER TO postgres;
+
+--
+-- TOC entry 2171 (class 0 OID 0)
+-- Dependencies: 174
+-- Name: logs_usuarios_id_log_usuario_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE logs_usuarios_id_log_usuario_seq OWNED BY logs_usuarios.id_log_usuario;
+
+
+--
+-- TOC entry 2172 (class 0 OID 0)
+-- Dependencies: 174
+-- Name: logs_usuarios_id_log_usuario_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('logs_usuarios_id_log_usuario_seq', 8, true);
+
+
+--
+-- TOC entry 175 (class 1259 OID 21426)
+-- Dependencies: 6
+-- Name: organismos; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE organismos (
+    id_organismo integer NOT NULL,
+    rif character varying(12) NOT NULL,
+    nombre_organismo character varying(60) NOT NULL,
+    sector character varying(20) NOT NULL
+);
+
+
+ALTER TABLE public.organismos OWNER TO postgres;
+
+--
+-- TOC entry 176 (class 1259 OID 21429)
+-- Dependencies: 175 6
+-- Name: organismos_id_organismo_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE organismos_id_organismo_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.organismos_id_organismo_seq OWNER TO postgres;
+
+--
+-- TOC entry 2173 (class 0 OID 0)
+-- Dependencies: 176
+-- Name: organismos_id_organismo_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE organismos_id_organismo_seq OWNED BY organismos.id_organismo;
+
+
+--
+-- TOC entry 2174 (class 0 OID 0)
+-- Dependencies: 176
+-- Name: organismos_id_organismo_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('organismos_id_organismo_seq', 1, false);
+
+
+--
+-- TOC entry 177 (class 1259 OID 21431)
+-- Dependencies: 6
+-- Name: paises; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE paises (
+    id_pais integer NOT NULL,
+    pais character varying(35) NOT NULL
+);
+
+
+ALTER TABLE public.paises OWNER TO postgres;
+
+--
+-- TOC entry 178 (class 1259 OID 21434)
+-- Dependencies: 6 177
+-- Name: paises_id_pais_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE paises_id_pais_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.paises_id_pais_seq OWNER TO postgres;
+
+--
+-- TOC entry 2175 (class 0 OID 0)
+-- Dependencies: 178
+-- Name: paises_id_pais_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE paises_id_pais_seq OWNED BY paises.id_pais;
+
+
+--
+-- TOC entry 2176 (class 0 OID 0)
+-- Dependencies: 178
+-- Name: paises_id_pais_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('paises_id_pais_seq', 239, true);
+
+
+--
+-- TOC entry 179 (class 1259 OID 21436)
+-- Dependencies: 6
+-- Name: perfiles; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE perfiles (
+    id_perfil integer NOT NULL,
+    perfil character varying(50) NOT NULL,
+    descripcion_perfil character varying(200) NOT NULL
+);
+
+
+ALTER TABLE public.perfiles OWNER TO postgres;
+
+--
+-- TOC entry 180 (class 1259 OID 21439)
+-- Dependencies: 179 6
+-- Name: perfiles_id_perfil_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE perfiles_id_perfil_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.perfiles_id_perfil_seq OWNER TO postgres;
+
+--
+-- TOC entry 2177 (class 0 OID 0)
+-- Dependencies: 180
+-- Name: perfiles_id_perfil_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE perfiles_id_perfil_seq OWNED BY perfiles.id_perfil;
+
+
+--
+-- TOC entry 2178 (class 0 OID 0)
+-- Dependencies: 180
+-- Name: perfiles_id_perfil_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('perfiles_id_perfil_seq', 3, true);
+
+
+--
+-- TOC entry 181 (class 1259 OID 21441)
+-- Dependencies: 2050 6
+-- Name: personas; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE personas (
+    id_persona integer NOT NULL,
+    nombre character varying(60) NOT NULL,
+    apellido character varying(60) NOT NULL,
+    nacionalidad character varying(1) DEFAULT 'V'::character varying,
+    cedula_de_identidad numeric(15,0) NOT NULL,
+    telefono1 numeric(11,0),
+    telefono2 numeric(11,0),
+    id_pais integer,
+    id_estado integer,
+    email character varying(255)
+);
+
+
+ALTER TABLE public.personas OWNER TO postgres;
+
+--
+-- TOC entry 182 (class 1259 OID 21444)
+-- Dependencies: 181 6
+-- Name: personas_id_persona_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE personas_id_persona_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.personas_id_persona_seq OWNER TO postgres;
+
+--
+-- TOC entry 2179 (class 0 OID 0)
+-- Dependencies: 182
+-- Name: personas_id_persona_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE personas_id_persona_seq OWNED BY personas.id_persona;
+
+
+--
+-- TOC entry 2180 (class 0 OID 0)
+-- Dependencies: 182
+-- Name: personas_id_persona_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('personas_id_persona_seq', 2, true);
+
+
+--
+-- TOC entry 183 (class 1259 OID 21446)
+-- Dependencies: 6
+-- Name: procesos; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE procesos (
+    id_proceso integer NOT NULL,
+    proceso_abrev character varying(5),
+    proceso character varying(60),
+    nro_consecutivo_proceso integer NOT NULL
+);
+
+
+ALTER TABLE public.procesos OWNER TO postgres;
+
+--
+-- TOC entry 184 (class 1259 OID 21449)
+-- Dependencies: 6 183
+-- Name: procesos_id_proceso_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE procesos_id_proceso_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.procesos_id_proceso_seq OWNER TO postgres;
+
+--
+-- TOC entry 2181 (class 0 OID 0)
+-- Dependencies: 184
+-- Name: procesos_id_proceso_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE procesos_id_proceso_seq OWNED BY procesos.id_proceso;
+
+
+--
+-- TOC entry 2182 (class 0 OID 0)
+-- Dependencies: 184
+-- Name: procesos_id_proceso_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('procesos_id_proceso_seq', 1, false);
+
+
+--
+-- TOC entry 185 (class 1259 OID 21451)
+-- Dependencies: 2053 2054 6
+-- Name: usuarios; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE usuarios (
+    id_usuario integer NOT NULL,
+    usuario character varying(15) NOT NULL,
+    usuario_encrypt character varying(128) NOT NULL,
+    clave character varying(128) NOT NULL,
+    es_activo character varying(2) DEFAULT 'NO'::character varying NOT NULL,
+    id_persona integer NOT NULL,
+    id_perfil integer NOT NULL,
+    fecha_registro date DEFAULT now() NOT NULL,
+    fecha_ultimo_ingreso timestamp without time zone
+);
+
+
+ALTER TABLE public.usuarios OWNER TO postgres;
+
+--
+-- TOC entry 186 (class 1259 OID 21456)
+-- Dependencies: 185 6
+-- Name: usuarios_id_usuario_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE usuarios_id_usuario_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.usuarios_id_usuario_seq OWNER TO postgres;
+
+--
+-- TOC entry 2183 (class 0 OID 0)
+-- Dependencies: 186
+-- Name: usuarios_id_usuario_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE usuarios_id_usuario_seq OWNED BY usuarios.id_usuario;
+
+
+--
+-- TOC entry 2184 (class 0 OID 0)
+-- Dependencies: 186
+-- Name: usuarios_id_usuario_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('usuarios_id_usuario_seq', 2, true);
+
+
+--
+-- TOC entry 2055 (class 2604 OID 26183)
+-- Dependencies: 187 188 188
+-- Name: id_bitacora; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY bitacoras ALTER COLUMN id_bitacora SET DEFAULT nextval('bitacoras_id_bitacora_seq'::regclass);
+
+
+--
+-- TOC entry 2034 (class 2604 OID 21458)
+-- Dependencies: 162 161
+-- Name: id_consulta; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY consultas ALTER COLUMN id_consulta SET DEFAULT nextval('consultas_id_consulta_seq'::regclass);
+
+
+--
+-- TOC entry 2036 (class 2604 OID 21459)
+-- Dependencies: 164 163
+-- Name: id_control_movimientos; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY control_movimientos ALTER COLUMN id_control_movimientos SET DEFAULT nextval('control_movimientos_id_control_movimientos_seq'::regclass);
+
+
+--
+-- TOC entry 2038 (class 2604 OID 21460)
+-- Dependencies: 166 165
+-- Name: id_estado; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY estados ALTER COLUMN id_estado SET DEFAULT nextval('estados_id_estado_seq'::regclass);
+
+
+--
+-- TOC entry 2039 (class 2604 OID 21461)
+-- Dependencies: 168 167
+-- Name: id_etapa; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY etapas ALTER COLUMN id_etapa SET DEFAULT nextval('etapas_id_etapa_seq'::regclass);
+
+
+--
+-- TOC entry 2040 (class 2604 OID 21462)
+-- Dependencies: 170 169
+-- Name: id_expediente; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY expedientes ALTER COLUMN id_expediente SET DEFAULT nextval('expedientes_id_expediente_seq'::regclass);
+
+
+--
+-- TOC entry 2043 (class 2604 OID 21463)
+-- Dependencies: 172 171
+-- Name: id_interesado; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY interesados ALTER COLUMN id_interesado SET DEFAULT nextval('interesados_id_interesado_seq'::regclass);
+
+
+--
+-- TOC entry 2044 (class 2604 OID 21464)
+-- Dependencies: 174 173
+-- Name: id_log_usuario; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY logs_usuarios ALTER COLUMN id_log_usuario SET DEFAULT nextval('logs_usuarios_id_log_usuario_seq'::regclass);
+
+
+--
+-- TOC entry 2046 (class 2604 OID 21466)
+-- Dependencies: 176 175
+-- Name: id_organismo; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY organismos ALTER COLUMN id_organismo SET DEFAULT nextval('organismos_id_organismo_seq'::regclass);
+
+
+--
+-- TOC entry 2047 (class 2604 OID 21467)
+-- Dependencies: 178 177
+-- Name: id_pais; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY paises ALTER COLUMN id_pais SET DEFAULT nextval('paises_id_pais_seq'::regclass);
+
+
+--
+-- TOC entry 2048 (class 2604 OID 21468)
+-- Dependencies: 180 179
+-- Name: id_perfil; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY perfiles ALTER COLUMN id_perfil SET DEFAULT nextval('perfiles_id_perfil_seq'::regclass);
+
+
+--
+-- TOC entry 2049 (class 2604 OID 21469)
+-- Dependencies: 182 181
+-- Name: id_persona; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY personas ALTER COLUMN id_persona SET DEFAULT nextval('personas_id_persona_seq'::regclass);
+
+
+--
+-- TOC entry 2051 (class 2604 OID 21470)
+-- Dependencies: 184 183
+-- Name: id_proceso; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY procesos ALTER COLUMN id_proceso SET DEFAULT nextval('procesos_id_proceso_seq'::regclass);
+
+
+--
+-- TOC entry 2052 (class 2604 OID 21471)
+-- Dependencies: 186 185
+-- Name: id_usuario; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY usuarios ALTER COLUMN id_usuario SET DEFAULT nextval('usuarios_id_usuario_seq'::regclass);
+
+
+--
+-- TOC entry 2148 (class 0 OID 26180)
+-- Dependencies: 188
+-- Data for Name: bitacoras; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY bitacoras (id_bitacora, id_expidiente, bitacora, fecha_registro) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2135 (class 0 OID 21380)
+-- Dependencies: 161
+-- Data for Name: consultas; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY consultas (id_consulta, cedula_de_identidad, id_expediente, fecha_consulta) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2136 (class 0 OID 21385)
+-- Dependencies: 163
+-- Data for Name: control_movimientos; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY control_movimientos (id_control_movimientos, id_expidiente, id_proceso, id_etapa, cod_expediente, id_abogado_coord, id_abogado_asign, fecha_movimiento) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2137 (class 0 OID 21390)
+-- Dependencies: 165
+-- Data for Name: estados; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY estados (id_estado, estado, id_pais) FROM stdin;
+1	Badakhshan	1
+2	Badghis	1
+3	Baghlan	1
+4	Balkh	1
+5	Bamian	1
+6	Farah	1
+7	Faryab	1
+8	Ghazni	1
+9	Ghowr	1
+10	Helmand	1
+11	Herat	1
+12	Jowzjan	1
+13	Kabol	1
+14	Kandahar	1
+15	Kapisa	1
+16	Khowst	1
+17	Konar	1
+18	Konar	1
+19	Kondoz	1
+20	Laghman	1
+21	Laghman	1
+22	Lowgar	1
+23	Nangarhar	1
+24	Nimruz	1
+25	Nurestan	1
+26	Oruzgan	1
+27	Paktia	1
+28	Paktia	1
+29	Paktika	1
+30	Parvan	1
+31	Samangan	1
+32	Sar-e Pol	1
+33	Takhar	1
+34	Vardak	1
+35	Zabol	1
+36	Berat	2
+37	Diber	2
+38	Durres	2
+39	Elbasan	2
+40	Fier	2
+41	Gjirokaster	2
+42	Korce	2
+43	Kukes	2
+44	Lezhe	2
+45	Shkoder	2
+46	Tirane	2
+47	Vlore	2
+48	Baden-Wberg Bayern	3
+49	Berlin	3
+50	Brandenburg	3
+51	Bremen	3
+52	Hamburg	3
+53	Hessen	3
+54	Mecklenburg-Vorpommern	3
+55	Niedersachsen	3
+56	Nordrhein-Westfalen	3
+57	Rheinland-Pfalz	3
+58	Saarland	3
+59	Sachsen	3
+60	Sachsen-Anhalt	3
+61	Schleswig-Holstein	3
+62	Thuringen	3
+63	American Samoa (General)	4
+64	Andorra la Vella	5
+65	Canillo	5
+66	Encamp	5
+67	Escaldes-Engordany	5
+68	La Massana	5
+69	Ordino	5
+70	Sant Julia de Loria	5
+71	Barbuda	5
+72	Saint George	5
+73	Saint John	5
+74	Saint Mary	5
+75	Saint Paul	5
+76	Saint Peter	5
+77	Saint Philip	5
+78	Bengo	6
+79	Benguela	6
+80	Bie	6
+81	Cabinda	6
+82	Cuando Cubango	6
+83	Cuanza Norte	6
+84	Cuanza Sul	6
+85	Cunene	6
+86	Huambo	6
+87	Huila	6
+88	Luanda	6
+89	Luanda Province	6
+90	Lunda Norte	6
+91	Lunda Sul	6
+92	Malanje	6
+93	Moxico	6
+94	Uige	6
+95	Zaire	6
+96	Anguilla (General)	7
+97	Barbuda	8
+98	Saint George	8
+99	Saint John	8
+100	Saint Mary	8
+101	Saint Paul	8
+102	Saint Peter	8
+103	Saint Philip	8
+104	Netherlands Antilles (General)	9
+105	Antarctica (General)	10
+106	Al Bahah	11
+107	Al Hudud ash Shamaliyah	11
+108	Al Jawf	11
+109	Al Jawf	11
+110	Al Madinah	11
+111	Al Qasim	11
+112	Al Qurayyat	11
+113	Ar Riyad	11
+114	Ash Sharqiyah	11
+115	Hail	11
+116	Jizan	11
+117	Makkah	11
+118	Najran	11
+119	Tabuk	11
+120	Adrar	12
+121	Ain Defla	12
+122	Ain Temouchent	12
+123	Alger	12
+124	Annaba	12
+125	Batna	12
+126	Bechar	12
+127	Bejaia	12
+128	Biskra	12
+129	Blida	12
+130	Bordj Bou Arreridj	12
+131	Bouira	12
+132	Boumerdes	12
+133	Chlef	12
+134	Constantine	12
+135	Djelfa	12
+136	El Bayadh	12
+137	El Oued	12
+138	El Tarf	12
+139	Ghardaia	12
+140	Guelma	12
+141	Illizi	12
+142	Jijel	12
+143	Khenchela	12
+144	Laghouat	12
+145	Msila	12
+146	Mascara	12
+147	Medea	12
+148	Mila	12
+149	Mostaganem	12
+150	Naama	12
+151	Oran	12
+152	Ouargla	12
+153	Oum el Bouaghi	12
+154	Relizane	12
+155	Saida	12
+156	Setif	12
+157	Sidi Bel Abbes	12
+158	Skikda	12
+159	Souk Ahras	12
+160	Tamanghasset	12
+161	Tebessa	12
+162	Tiaret	12
+163	Tindouf	12
+164	Tipaza	12
+165	Tissemsilt	12
+166	Tizi Ouzou	12
+167	Tlemcen	12
+168	Buenos Aires	13
+169	Catamarca	13
+170	Chaco	13
+171	Chubut	13
+172	Cordoba	13
+173	Corrientes	13
+174	Distrito Federal	13
+175	Entre Rios	13
+176	Formosa	13
+177	Jujuy	13
+178	La Pampa	13
+179	La Rioja	13
+180	Mendoza	13
+181	Misiones	13
+182	Neuquen	13
+183	Rio Negro	13
+184	Salta	13
+185	San Juan	13
+186	San Luis	13
+187	Santa Cruz	13
+188	Santa Fe	13
+189	Santiago del Estero	13
+190	Tierra del Fuego	13
+191	Tucuman	13
+192	Aragatsotn	14
+193	Ararat	14
+194	Armavir	14
+195	Gegharkunik	14
+196	Kotayk	14
+197	Lorri	14
+198	Shirak	14
+199	Syunik	14
+200	Tavush	14
+201	Vayots Dzor	14
+202	Yerevan	14
+203	Aruba (General)	15
+205	Australian Capital Territory	17
+206	New South Wales	17
+207	Northern Territory	17
+208	Queensland	17
+209	South Australia	17
+210	Tasmania	17
+211	Victoria	17
+212	Western Australia	17
+213	Burgenland	18
+214	Karnten	18
+215	Niederosterreich	18
+216	Oberosterreich	18
+217	Salzburg	18
+218	Steiermark	18
+219	Tirol	18
+220	Vorarlberg	18
+221	Wien	18
+222	Abseron	19
+223	Agcabadi	19
+224	Agdam	19
+225	Agdas	19
+226	Agstafa	19
+227	Agsu	19
+228	Ali Bayramli	19
+229	Astara	19
+230	Baki	19
+231	Balakan	19
+232	Barda	19
+233	Beylaqan	19
+234	Bilasuvar	19
+235	Cabrayil	19
+236	Calilabad	19
+237	Daskasan	19
+238	Davaci	19
+239	Fuzuli	19
+240	Gadabay	19
+241	Ganca	19
+242	Goranboy	19
+243	Goycay	19
+244	Haciqabul	19
+245	Imisli	19
+246	Ismayilli	19
+247	Kalbacar	19
+248	Kurdamir	19
+249	Lacin	19
+250	Lankaran	19
+251	Lankaran	19
+252	Lerik	19
+253	Masalli	19
+254	Mingacevir	19
+255	Naftalan	19
+256	Naxcivan	19
+257	Neftcala	19
+258	Oguz	19
+259	Qabala	19
+260	Qax	19
+261	Qazax	19
+262	Qobustan	19
+263	Quba	19
+264	Qubadli	19
+265	Qusar	19
+266	Saatli	19
+267	Sabirabad	19
+268	Saki	19
+269	Saki	19
+270	Salyan	19
+271	Samaxi	19
+272	Samkir	19
+273	Samux	19
+274	Siyazan	19
+275	Sumqayit	19
+276	Susa	19
+277	Susa	19
+278	Tartar	19
+279	Tovuz	19
+280	Ucar	19
+281	Xacmaz	19
+282	Xankandi	19
+283	Xanlar	19
+284	Xizi	19
+285	Xocali	19
+286	Xocavand	19
+287	Yardimli	19
+288	Yevlax	19
+289	Yevlax	19
+290	Zangilan	19
+291	Zaqatala	19
+292	Zardab	19
+293	Acklins and Crooked Islands	20
+294	Bimini	20
+295	Cat Island	20
+296	Exuma	20
+297	Freeport	20
+298	Fresh Creek	20
+299	Governors Harbour	20
+300	Green Turtle Cay	20
+301	Harbour Island	20
+302	High Rock	20
+303	Inagua	20
+304	Kemps Bay	20
+305	Long Island	20
+306	Marsh Harbour	20
+307	Mayaguana	20
+308	New Providence	20
+309	Nichollstown and Berry Islands	20
+310	Ragged Island	20
+311	Rock Sound	20
+312	San Salvador and Rum Cay	20
+313	Sandy Point	20
+314	Al Hadd	21
+315	Al Manamah	21
+316	Al Mintaqah al Gharbiyah	21
+317	Al Mintaqah al Wusta	21
+318	Al Mintaqah ash Shamaliyah	21
+319	Al Muharraq	21
+320	Ar Rifa	21
+321	Jidd Hafs	21
+322	Madinat	21
+323	Madinat Hamad	21
+324	Mintaqat Juzur Hawar	21
+325	Sitrah	21
+326	Bagerhat	22
+327	Bandarban	22
+328	Barguna	22
+329	Barisal	22
+330	Barisal Division	22
+331	Bhola	22
+332	Bogra	22
+333	Brahmanbaria	22
+334	Chandpur	22
+335	Chapai Nawabganj	22
+336	Chattagram	22
+337	Chuadanga	22
+338	Comilla	22
+339	Coxs Bazar	22
+340	Dhaka	22
+341	Dhaka Division	22
+342	Dinajpur	22
+343	Faridpur	22
+344	Feni	22
+345	Gaibandha	22
+346	Gazipur	22
+347	Gopalganj	22
+348	Habiganj	22
+349	Jaipurhat	22
+350	Jamalpur	22
+351	Jessore	22
+352	Jhalakati	22
+353	Jhenaidah	22
+354	Khagrachari	22
+355	Khulna	22
+356	Khulna Division	22
+357	Kishorganj	22
+358	Kurigram	22
+359	Kushtia	22
+360	Laksmipur	22
+361	Lalmonirhat	22
+362	Madaripur	22
+363	Magura	22
+364	Manikganj	22
+365	Meherpur	22
+366	Moulavibazar	22
+367	Munshiganj	22
+368	Mymensingh	22
+369	Naogaon	22
+370	Narail	22
+371	Narayanganj	22
+372	Narsingdi	22
+373	Nator	22
+374	Netrakona	22
+375	Nilphamari	22
+376	Noakhali	22
+377	Pabna	22
+378	Panchagar	22
+379	Parbattya Chattagram	22
+380	Patuakhali	22
+381	Pirojpur	22
+382	Rajbari	22
+383	Rajshahi	22
+384	Rangpur	22
+385	Rajshahi Division	22
+386	Satkhira	22
+387	Shariyatpur	22
+388	Sherpur	22
+389	Sirajganj	22
+390	Sunamganj	22
+391	Sylhet	22
+392	Sylhet Division	22
+393	Tangail	22
+394	Thakurgaon	22
+395	Christ Church	23
+396	Saint Andrew	23
+397	Saint George	23
+398	Saint James	23
+399	Saint John	23
+400	Saint Joseph	23
+401	Saint Lucy	23
+402	Saint Michael	23
+403	Saint Peter	23
+404	Saint Philip	23
+405	Saint Thomas	23
+406	Belize	24
+407	Cayo	24
+408	Corozal	24
+409	Orange Walk	24
+410	Stann Creek	24
+411	Toledo	24
+412	Atakora	25
+413	Atlantique	25
+414	Borgou	25
+415	Littoral Department	25
+416	Mono	25
+417	Oueme	25
+418	Zou	25
+419	Devonshire	26
+420	Hamilton	26
+421	Hamilton	26
+422	Paget	26
+423	Pembroke	26
+424	Saint George	26
+425	Saint Georges	26
+426	Sandys	26
+427	Smiths	26
+428	Southampton	26
+429	Warwick	26
+430	Brestskaya Voblasts	27
+431	Homyel skaya Voblasts	27
+432	Hrodzyenskaya Voblasts	27
+433	Mahilyowskaya Voblasts	27
+434	Minsk	27
+435	Minskaya Voblasts	27
+436	Vitsyebskaya Voblasts	27
+437	Chuquisaca	28
+438	Cochabamba	28
+439	El Beni	28
+440	La Paz	28
+441	Oruro	28
+442	Pando	28
+443	Potosi	28
+444	Santa Cruz	28
+445	Tarija	28
+446	Bosanska Dubica	29
+447	Federation of Bosnia and Herzegovina	29
+448	Republika Srpska	29
+449	Central	30
+450	Chobe	30
+451	Ghanzi	30
+452	Kgalagadi	30
+453	Kgatleng	30
+454	Kweneng	30
+455	Ngamiland	30
+456	North-East	30
+457	South-East	30
+458	Southern	30
+459	Bouvet Island (General)	31
+460	Acre	32
+461	Alagoas	32
+462	Amapa	32
+463	Amazonas	32
+464	Bahia	32
+465	Ceara	32
+466	Distrito Federal	32
+467	Espirito Santo	32
+468	Goias	32
+469	Maranhao	32
+470	Mato Grosso	32
+471	Mato Grosso do Sul	32
+472	Minas Gerais	32
+473	Para	32
+474	Paraiba	32
+475	Parana	32
+476	Pernambuco	32
+477	Piaui	32
+478	Rio Grande do Norte	32
+479	Rio Grande do Sul	32
+480	Rio de Janeiro	32
+481	Rondonia	32
+482	Roraima	32
+483	Santa Catarina	32
+484	Sao Paulo	32
+485	Sergipe	32
+486	Tocantins	32
+487	British Indian Ocean Territory (General)	33
+488	Alibori	34
+489	Belait	34
+490	Brunei and Muara	34
+491	Collines	34
+492	Donga	34
+493	Kouffo	34
+494	Littoral	34
+495	Oueme	34
+496	Plateau	34
+497	Temburong	34
+498	Tutong	34
+499	Zou	34
+500	Blagoevgrad	35
+501	Burgas	35
+502	Dobrich	35
+503	Gabrovo	35
+504	Grad Sofiya	35
+505	Khaskovo	35
+506	Kurdzhali	35
+507	Kyustendil	35
+508	Lovech	35
+509	Mikhaylovgrad	35
+510	Montana	35
+511	Pazardzhik	35
+512	Pernik	35
+513	Pleven	35
+514	Plovdiv	35
+515	Razgrad	35
+516	Ruse	35
+517	Shumen	35
+518	Silistra	35
+519	Sliven	35
+520	Smolyan	35
+521	Sofiya	35
+522	Stara Zagora	35
+523	Turgovishte	35
+524	Varna	35
+525	Veliko Turnovo	35
+526	Vidin	35
+527	Vratsa	35
+528	Yambol	35
+529	Bale	36
+530	Bam	36
+531	Banwa	36
+532	Bazega	36
+533	Bougouriba	36
+534	Boulgou	36
+535	Boulkiemde	36
+536	Ganzourgou	36
+537	Gnagna	36
+538	Gourma	36
+539	Houet	36
+540	Ioba	36
+541	Kadiogo	36
+542	Kenedougou	36
+543	Komoe	36
+544	Komondjari	36
+545	Kompienga	36
+546	Kossi	36
+547	Koulpelogo	36
+548	Kouritenga	36
+549	Kourweogo	36
+550	Leraba	36
+551	Loroum	36
+552	Mouhoun	36
+553	Namentenga	36
+554	Naouri	36
+555	Nayala	36
+556	Noumbiel	36
+557	Oubritenga	36
+558	Oudalan	36
+559	Passore	36
+560	Poni	36
+561	Sanguie	36
+562	Sanmatenga	36
+563	Seno	36
+564	Sissili	36
+565	Soum	36
+566	Sourou	36
+567	Tapoa	36
+568	Tuy	36
+569	Yagha	36
+570	Yatenga	36
+571	Ziro	36
+572	Zondoma	36
+573	Zoundweogo	36
+574	Bubanza	37
+575	Bujumbura	37
+576	Bururi	37
+577	Cankuzo	37
+578	Cibitoke	37
+579	Gitega	37
+580	Karuzi	37
+581	Kayanza	37
+582	Kirundo	37
+583	Makamba	37
+584	Muramvya	37
+585	Muyinga	37
+586	Mwaro	37
+587	Ngozi	37
+588	Rutana	37
+589	Ruyigi	37
+590	Bumthang	38
+591	Chhukha	38
+592	Chirang	38
+593	Daga	38
+594	Geylegphug	38
+595	Ha	38
+596	Lhuntshi	38
+597	Mongar	38
+598	Paro	38
+599	Pemagatsel	38
+600	Punakha	38
+601	Samchi	38
+602	Samdrup	38
+603	Shemgang	38
+604	Tashigang	38
+605	Thimphu	38
+606	Tongsa	38
+607	Wangdi Phodrang	38
+608	Antwerpen	39
+609	Brabant	39
+610	Brabant Wallon	39
+611	Brussels Hoofdstedelijk Gewest	39
+612	Hainaut	39
+613	Liege	39
+614	Limburg	39
+615	Luxembourg	39
+616	Namur	39
+617	Oost-Vlaanderen	39
+618	Vlaams-Brabant	39
+619	West-Vlaanderen	39
+620	Boa Vista	40
+621	Brava	40
+622	Maio	40
+623	Mosteiros	40
+624	Paul	40
+625	Praia	40
+626	Ribeira Grande	40
+627	Sal	40
+628	Santa Catarina	40
+629	Santa Cruz	40
+630	Sao Domingos	40
+631	Sao Filipe	40
+632	Sao Miguel	40
+633	Sao Nicolau	40
+634	Sao Vicente	40
+635	Tarrafal	40
+636	Batdambang	41
+637	Kampong Cham	41
+638	Kampong Chhnang	41
+639	Kampong Spoe	41
+640	Kampong Thum	41
+641	Kampot	41
+642	Kandal	41
+643	Kaoh Kong	41
+644	Kracheh	41
+645	Mondol Kiri	41
+646	Pailin	41
+647	Phnum Penh	41
+648	Pouthisat	41
+649	Preah Vihear	41
+650	Prey Veng	41
+651	Rotanokiri	41
+652	Siemreab-Otdar Meanchey	41
+653	Stoeng Treng	41
+654	Svay Rieng	41
+655	Takev	41
+656	Adamaoua	42
+657	Centre	42
+658	Est	42
+659	Extreme-Nord	42
+660	Littoral	42
+661	Nord	42
+662	Nord-Ouest	42
+663	Ouest	42
+664	Sud	42
+665	Sud-Ouest	42
+666	Alberta	44
+667	British Columbia	44
+668	Manitoba	44
+669	New Brunswick	44
+670	Newfoundland	44
+671	Northwest Territories	44
+672	Nova Scotia	44
+673	Nunavut	44
+674	Ontario	44
+675	Prince Edward Island	44
+676	Quebec	44
+677	Saskatchewan	44
+678	Yukon Territory	44
+679	Batha	45
+680	Biltine	45
+681	Borkou-Ennedi-Tibesti	45
+682	Chari-Baguirmi	45
+683	Guera	45
+684	Kanem	45
+685	Lac	45
+686	Logone Occidental	45
+687	Logone Oriental	45
+688	Mayo-Kebbi	45
+689	Moyen-Chari	45
+690	Ouaddai	45
+691	Salamat	45
+692	Tandjile	45
+693	Aisen del General Carlos Ibanez del Campo	46
+694	Antofagasta	46
+695	Araucania	46
+696	Atacama	46
+697	Bio-Bio	46
+698	Coquimbo	46
+699	Libertador General Bernardo OHiggins	46
+700	Los Lagos	46
+701	Magallanes y de la Antartica Chilena	46
+702	Maule	46
+703	Region Metropolitana	46
+704	Tarapaca	46
+705	Valparaiso	46
+706	Anhui	47
+707	Beijing	47
+708	Chongqing	47
+709	Fujian	47
+710	Gansu	47
+711	Guangdong	47
+712	Guangxi	47
+713	Guizhou	47
+714	Hainan	47
+715	Hebei	47
+716	Heilongjiang	47
+717	Henan	47
+718	Hubei	47
+719	Hunan	47
+720	Jiangsu	47
+721	Jiangxi	47
+722	Jilin	47
+723	Liaoning	47
+724	Nei Mongol	47
+725	Ningxia	47
+726	Qinghai	47
+727	Shaanxi	47
+728	Shandong	47
+729	Shanghai	47
+730	Shanxi	47
+731	Sichuan	47
+732	Tianjin	47
+733	Xinjiang	47
+734	Xizang	47
+735	Yunnan	47
+736	Zhejiang	47
+737	Famagusta	48
+738	Kyrenia	48
+739	Larnaca	48
+740	Limassol	48
+741	Nicosia	48
+742	Paphos	48
+743	Amazonas	49
+744	Antioquia	49
+745	Arauca	49
+746	Atlantico	49
+747	Bolivar	49
+748	Bolivar Department	49
+749	Boyaca	49
+750	Boyaca Department	49
+751	Caldas	49
+752	Caldas Department	49
+753	Caqueta	49
+754	Casanare	49
+755	Cauca	49
+756	Cesar	49
+757	Choco	49
+758	Cordoba	49
+759	Cundinamarca	49
+760	Distrito Especial	49
+761	Guainia	49
+762	Guaviare	49
+763	Huila	49
+764	La Guajira	49
+765	Magdalena	49
+766	Magdalena Department	49
+767	Meta	49
+768	Narino	49
+769	Norte de Santander	49
+770	Putumayo	49
+771	Quindio	49
+772	Risaralda	49
+773	San Andres y Providencia	49
+774	Santander	49
+775	Sucre	49
+776	Tolima	49
+777	Valle del Cauca	49
+778	Vaupes	49
+779	Vichada	49
+780	Anjouan	50
+781	Grande Comore	50
+782	Moheli	50
+783	Bouenza	51
+784	Brazzaville	51
+785	Cuvette	51
+786	Kouilou	51
+787	Lekoumou	51
+788	Likouala	51
+789	Niari	51
+790	Plateaux	51
+791	Pool	51
+792	Sangha	51
+793	Chagang-do	52
+794	Hamgyong-bukto	52
+795	Hamgyong-namdo	52
+796	Hwanghae-bukto	52
+797	Hwanghae-namdo	52
+798	Kaesong-si	52
+799	Kangwon-do	52
+800	Najin Sonbong-si	52
+801	Nampo-si	52
+802	P yongan-bukto	52
+803	P yongan-namdo	52
+804	P yongyang-si	52
+805	Yanggang-do	52
+806	Ch ungch ong-bukto	53
+807	Ch ungch ong-namdo	53
+808	Cheju-do	53
+809	Cholla-bukto	53
+810	Cholla-namdo	53
+811	Inch on-jikhalsi	53
+812	Kangwon-do	53
+813	Kwangju-jikhalsi	53
+814	Kyonggi-do	53
+815	Kyongsang-bukto	53
+816	Kyongsang-namdo	53
+817	Pusan-jikhalsi	53
+818	Seoul-tukpyolsi	53
+819	Taegu-jikhalsi	53
+820	Taejon-jikhalsi	53
+821	Ulsan-gwangyoksi	53
+822	Alajuela	54
+823	Cartago	54
+824	Guanacaste	54
+825	Heredia	54
+826	Limon	54
+827	Puntarenas	54
+828	San Jose	54
+829	Abengourou	55
+830	Abidjan	55
+831	Aboisso	55
+832	Adiake	55
+833	Adzope	55
+834	Agboville	55
+835	Alepe	55
+836	Bangolo	55
+837	Beoumi	55
+838	Biankouma	55
+839	Bocanda	55
+840	Bondoukou	55
+841	Bongouanou	55
+842	Bouafle	55
+843	Bouake	55
+844	Bouna	55
+845	Boundiali	55
+846	Dabakala	55
+847	Dabou	55
+848	Daloa	55
+849	Danane	55
+850	Daoukro	55
+851	Dimbokro	55
+852	Divo	55
+853	Duekoue	55
+854	Ferkessedougou	55
+855	Gagnoa	55
+856	Grand-Bassam	55
+857	Grand-Lahou	55
+858	Guiglo	55
+859	Haut-Sassandra Region	55
+860	Issia	55
+861	Jacqueville	55
+862	Katiola	55
+863	Korhogo	55
+864	Lagunes Region	55
+865	Lakota	55
+866	Man	55
+867	Mankono	55
+868	Mbahiakro	55
+869	Odienne	55
+870	Oume	55
+871	Sakassou	55
+872	San Pedro	55
+873	Sassandra	55
+874	Seguela	55
+875	Sinfra	55
+876	Soubre	55
+877	Tabou	55
+878	Tanda	55
+879	Tiassale	55
+880	Tiebissou	55
+881	Tingrela	55
+882	Touba	55
+883	Toulepleu	55
+884	Toumodi	55
+885	Vavoua	55
+886	Yamoussoukro	55
+887	Zuenoula	55
+888	Bjelovarsko-Bilogorska	56
+889	Brodsko-Posavska	56
+890	Dubrovacko-Neretvanska	56
+891	Grad Zagreb	56
+892	Istarska	56
+893	Karlovacka	56
+894	Koprivnicko-Krizevacka	56
+895	Krapinsko-Zagorska	56
+896	Licko-Senjska	56
+897	Medimurska	56
+898	Osjecko-Baranjska	56
+899	Pozesko-Slavonska	56
+900	Primorsko-Goranska	56
+901	Sibensko-Kninska	56
+902	Sisacko-Moslavacka	56
+903	Splitsko-Dalmatinska	56
+904	Varazdinska	56
+905	Viroviticko-Podravska	56
+906	Vukovarsko-Srijemska	56
+907	Zadarska	56
+908	Zagrebacka	56
+909	Camaguey	57
+910	Ciego de Avila	57
+911	Cienfuegos	57
+912	Ciudad de la Habana	57
+913	Granma	57
+914	Guantanamo	57
+915	Holguin	57
+916	Isla de la Juventud	57
+917	La Habana	57
+918	Las Tunas	57
+919	Matanzas	57
+920	Pinar del Rio	57
+921	Sancti Spiritus	57
+922	Santiago de Cuba	57
+923	Villa Clara	57
+924	Arhus	58
+925	Bornholm	58
+926	Frederiksborg	58
+927	Fyn	58
+928	Kobenhavn	58
+929	Nordjylland	58
+930	Ribe	58
+931	Ringkobing	58
+932	Roskilde	58
+933	Sonderjylland	58
+934	Staden Kobenhavn	58
+935	Storstrom	58
+936	Vejle	58
+937	Vestsjalland	58
+938	Viborg	58
+939	Dikhil	59
+940	Djibouti	59
+941	Obock	59
+942	Tadjoura	59
+943	Saint Andrew	60
+944	Saint David	60
+945	Saint George	60
+946	Saint John	60
+947	Saint Joseph	60
+948	Saint Luke	60
+949	Saint Mark	60
+950	Saint Patrick	60
+951	Saint Paul	60
+952	Saint Peter	60
+953	East Timor (General)	61
+954	Azuay	62
+955	Bolivar	62
+956	Canar	62
+957	Carchi	62
+958	Chimborazo	62
+959	Cotopaxi	62
+960	El Oro	62
+961	Esmeraldas	62
+962	Galapagos	62
+963	Guayas	62
+964	Imbabura	62
+965	Loja	62
+966	Los Rios	62
+967	Manabi	62
+968	Morona-Santiago	62
+969	Napo	62
+970	Orellana	62
+971	Pastaza	62
+972	Pichincha	62
+973	Sucumbios	62
+974	Tungurahua	62
+975	Zamora-Chinchipe	62
+976	Ad Daqahliyah	63
+977	Al Bahr al Ahmar	63
+978	Al Buhayrah	63
+979	Al Fayyum	63
+980	Al Gharbiyah	63
+981	Al Iskandariyah	63
+982	Al Isma iliyah	63
+983	Al Jizah	63
+984	Al Minufiyah	63
+985	Al Minya	63
+986	Al Qahirah	63
+987	Al Qalyubiyah	63
+988	Al Wadi al Jadid	63
+989	As Suways	63
+990	Ash Sharqiyah	63
+991	Aswan	63
+992	Asyut	63
+993	Bani Suwayf	63
+994	Bur Said	63
+995	Dumyat	63
+996	Janub Sina	63
+997	Kafr ash Shaykh	63
+998	Matruh	63
+999	Qina	63
+1000	Shamal Sina	63
+1001	Suhaj	63
+1002	Ahuachapan	64
+1003	Cabanas	64
+1004	Chalatenango	64
+1005	Cuscatlan	64
+1006	La Libertad	64
+1007	La Paz	64
+1008	La Union	64
+1009	Morazan	64
+1010	San Miguel	64
+1011	San Salvador	64
+1012	San Vicente	64
+1013	Santa Ana	64
+1014	Sonsonate	64
+1015	Usulutan	64
+1016	Holy See (Vatican City State) (General)	65
+1017	Abu Dhabi	66
+1018	Ajman	66
+1019	Dubai	66
+1020	Fujairah	66
+1021	Ras Al Khaimah	66
+1022	Sharjah	66
+1023	Umm Al Quwain	66
+1024	Eritrea (General)	67
+1025	Banska Bystrica	68
+1026	Bratislava	68
+1027	Kosice	68
+1028	Nitra	68
+1029	Presov	68
+1030	Trencin	68
+1031	Trnava	68
+1032	Zilina	68
+1033	Ajdovscina	69
+1034	Beltinci	69
+1035	Bled	69
+1036	Bohinj	69
+1037	Borovnica	69
+1038	Bovec	69
+1039	Brda	69
+1040	Brezice	69
+1041	Brezovica	69
+1042	Celje	69
+1043	Cerklje na Gorenjskem	69
+1044	Cerknica	69
+1045	Cerkno	69
+1046	Crensovci	69
+1047	Crna na Koroskem	69
+1048	Crnomelj	69
+1049	Divaca	69
+1050	Dobrepolje	69
+1051	Dobrova-Horjul-Polhov Gradec	69
+1052	Dol pri Ljubljani	69
+1053	Domzale	69
+1054	Dornava	69
+1055	Dravograd	69
+1056	Duplek	69
+1057	Gorenja Vas-Poljane	69
+1058	Gorisnica	69
+1059	Gornja Radgona	69
+1060	Gornji Grad	69
+1061	Gornji Petrovci	69
+1062	Grosuplje	69
+1063	Hrastnik	69
+1064	Hrpelje-Kozina	69
+1065	Idrija	69
+1066	Ig	69
+1067	Ilirska Bistrica	69
+1068	Ivancna Gorica	69
+1069	Izola-Isola	69
+1070	Jesenice	69
+1071	Jursinci	69
+1072	Kamnik	69
+1073	Kanal	69
+1074	Kidricevo	69
+1075	Kobarid	69
+1076	Kobilje	69
+1077	Kocevje	69
+1078	Komen	69
+1079	Koper-Capodistria	69
+1080	Kozje	69
+1081	Kranj	69
+1082	Kranjska Gora	69
+1083	Krsko	69
+1084	Kungota	69
+1085	Kuzma	69
+1086	Lasko	69
+1087	Lenart	69
+1088	Litija	69
+1089	Ljubljana	69
+1090	Ljubno	69
+1091	Ljutomer	69
+1092	Logatec	69
+1093	Loska Dolina	69
+1094	Loski Potok	69
+1095	Luce	69
+1096	Lukovica	69
+1097	Majsperk	69
+1098	Maribor	69
+1099	Medvode	69
+1100	Menges	69
+1101	Metlika	69
+1102	Mezica	69
+1103	Miren-Kostanjevica	69
+1104	Mislinja	69
+1105	Moravce	69
+1106	Moravske Toplice	69
+1107	Mozirje	69
+1108	Murska Sobota	69
+1109	Muta	69
+1110	Naklo	69
+1111	Nazarje	69
+1112	Nova Gorica	69
+1113	Novo Mesto	69
+1114	Odranci	69
+1115	Ormoz	69
+1116	Osilnica	69
+1117	Pesnica	69
+1118	Piran	69
+1119	Pivka	69
+1120	Podcetrtek	69
+1121	Postojna	69
+1122	Preddvor	69
+1123	Ptuj	69
+1124	Puconci	69
+1125	Racam	69
+1126	Radece	69
+1127	Radenci	69
+1128	Radlje ob Dravi	69
+1129	Radovljica	69
+1130	Ribnica	69
+1131	Rogaska Slatina	69
+1132	Rogasovci	69
+1133	Rogatec	69
+1134	Ruse	69
+1135	Semic	69
+1136	Sencur	69
+1137	Sentilj	69
+1138	Sentjernej	69
+1139	Sentjur pri Celju	69
+1140	Sevnica	69
+1141	Sezana	69
+1142	Skocjan	69
+1143	Skofja Loka	69
+1144	Skofljica	69
+1145	Slovenj Gradec	69
+1146	Slovenska Bistrica	69
+1147	Slovenske Konjice	69
+1148	Smarje pri Jelsah	69
+1149	Smartno ob Paki	69
+1150	Sostanj	69
+1151	Starse	69
+1152	Store	69
+1153	Sveti Jurij	69
+1154	Tolmin	69
+1155	Trbovlje	69
+1156	Trebnje	69
+1157	Trzic	69
+1158	Turnisce	69
+1159	Velenje	69
+1160	Velike Lasce	69
+1161	Videm	69
+1162	Vipava	69
+1163	Vitanje	69
+1164	Vodice	69
+1165	Vojnik	69
+1166	Vrhnika	69
+1167	Vuzenica	69
+1168	Zagorje ob Savi	69
+1169	Zalec	69
+1170	Zavrc	69
+1171	Zelezniki	69
+1172	Ziri	69
+1173	Zrece	69
+1174	Andalucia	70
+1175	Aragon	70
+1176	Asturias	70
+1177	Canarias	70
+1178	Cantabria	70
+1179	Castilla y Leon	70
+1180	Castilla-La Mancha	70
+1181	Cataluña	70
+1182	Comunidad Valenciana	70
+1183	Extremadura	70
+1184	Galicia	70
+1185	Islas Baleares	70
+1186	La Rioja	70
+1187	Madrid	70
+1188	Murcia	70
+1189	Navarra	70
+1190	Pais Vasco	70
+1191	Alabama	71
+1192	Alaska	71
+1193	American Samoa	71
+1194	Arizona	71
+1195	Arkansas	71
+1196	California	71
+1197	Colorado	71
+1198	Connecticut	71
+1199	Delaware	71
+1200	District of Columbia	71
+1201	Federated States of Micronesia	71
+1202	Florida	71
+1203	Georgia	71
+1204	Guam	71
+1205	Hawaii	71
+1206	Idaho	71
+1207	Illinois	71
+1208	Indiana	71
+1209	Iowa	71
+1210	Kansas	71
+1211	Kentucky	71
+1212	Louisiana	71
+1213	Maine	71
+1214	Marshall Islands	71
+1215	Maryland	71
+1216	Massachusetts	71
+1217	Michigan	71
+1218	Minnesota	71
+1219	Mississippi	71
+1220	Missouri	71
+1221	Montana	71
+1222	Nebraska	71
+1223	Nevada	71
+1224	New Hampshire	71
+1225	New Jersey	71
+1226	New Mexico	71
+1227	New York	71
+1228	North Carolina	71
+1229	North Dakota	71
+1230	Northern Mariana Islands	71
+1231	Ohio	71
+1232	Oklahoma	71
+1233	Oregon	71
+1234	Palau	71
+1235	Pennsylvania	71
+1236	Puerto Rico	71
+1237	Rhode Island	71
+1238	South Carolina	71
+1239	South Dakota	71
+1240	Tennessee	71
+1241	Texas	71
+1242	Utah	71
+1243	Vermont	71
+1244	Virgin Islands	71
+1245	Virginia	71
+1246	Washington	71
+1247	West Virginia	71
+1248	Wisconsin	71
+1249	Wyoming	71
+1250	Harjumaa	72
+1251	Hiiumaa	72
+1252	Ida-Virumaa	72
+1253	Jarvamaa	72
+1254	Jogevamaa	72
+1255	Kohtla-Jarve	72
+1256	Laane-Virumaa	72
+1257	Laanemaa	72
+1258	Narva	72
+1259	Parnu	72
+1260	Parnumaa	72
+1261	Polvamaa	72
+1262	Raplamaa	72
+1263	Saaremaa	72
+1264	Sillamae	72
+1265	Tallinn	72
+1266	Tartu	72
+1267	Tartumaa	72
+1268	Valgamaa	72
+1269	Viljandimaa	72
+1270	Vorumaa	72
+1271	Addis Abeba	73
+1272	Adis Abeba	73
+1273	Afar	73
+1274	Afar	73
+1275	Amara	73
+1276	Amhara	73
+1277	Benishangul	73
+1278	Binshangul Gumuz	73
+1279	Dire Dawa	73
+1280	Gambela Hizboch	73
+1281	Gambella	73
+1282	Hareri Hizb	73
+1283	Oromiya	73
+1284	Somali	73
+1285	Southern	73
+1286	Sumale	73
+1287	Tigray	73
+1288	Tigray	73
+1289	YeDebub Biheroch Bihereseboch na Hizboch	73
+1290	Central	74
+1291	Eastern	74
+1292	Northern	74
+1293	Rotuma	74
+1294	Western	74
+1295	Abra	75
+1296	Agusan del Norte	75
+1297	Agusan del Sur	75
+1298	Aklan	75
+1299	Albay	75
+1300	Angeles	75
+1301	Antique	75
+1302	Aurora	75
+1303	Bacolod	75
+1304	Bago	75
+1305	Baguio	75
+1306	Bais	75
+1307	Basilan	75
+1308	Basilan City	75
+1309	Bataan	75
+1310	Batanes	75
+1311	Batangas	75
+1312	Batangas City	75
+1313	Benguet	75
+1314	Bohol	75
+1315	Bukidnon	75
+1316	Bulacan	75
+1317	Butuan	75
+1318	Cabanatuan	75
+1319	Cadiz	75
+1320	Cagayan	75
+1321	Cagayan de Oro	75
+1322	Calbayog	75
+1323	Caloocan	75
+1324	Camarines Norte	75
+1325	Camarines Sur	75
+1326	Camiguin	75
+1327	Canlaon	75
+1328	Capiz	75
+1329	Catanduanes	75
+1330	Cavite	75
+1331	Cavite City	75
+1332	Cebu	75
+1333	Cebu City	75
+1334	Cotabato	75
+1335	Dagupan	75
+1336	Danao	75
+1337	Dapitan	75
+1338	Davao	75
+1339	Davao City	75
+1340	Davao Oriental	75
+1341	Davao del Sur	75
+1342	Dipolog	75
+1343	Dumaguete	75
+1344	Eastern Samar	75
+1345	General Santos	75
+1346	Gingoog	75
+1347	Ifugao	75
+1348	Iligan	75
+1349	Ilocos Norte	75
+1350	Ilocos Sur	75
+1351	Iloilo	75
+1352	Iloilo City	75
+1353	Iriga	75
+1354	Isabela	75
+1355	Kalinga-Apayao	75
+1356	La Carlota	75
+1357	La Union	75
+1358	Laguna	75
+1359	Lanao del Norte	75
+1360	Lanao del Sur	75
+1361	Laoag	75
+1362	Lapu-Lapu	75
+1363	Legaspi	75
+1364	Leyte	75
+1365	Lipa	75
+1366	Lucena	75
+1367	Maguindanao	75
+1368	Mandaue	75
+1369	Manila	75
+1370	Marawi	75
+1371	Marinduque	75
+1372	Masbate	75
+1373	Mindoro Occidental	75
+1374	Mindoro Oriental	75
+1375	Misamis Occidental	75
+1376	Misamis Oriental	75
+1377	Mountain	75
+1378	Naga	75
+1379	Negros Occidental	75
+1380	Negros Oriental	75
+1381	North Cotabato	75
+1382	Northern Samar	75
+1383	Nueva Ecija	75
+1384	Nueva Vizcaya	75
+1385	Olongapo	75
+1386	Ormoc	75
+1387	Oroquieta	75
+1388	Ozamis	75
+1389	Pagadian	75
+1390	Palawan	75
+1391	Palayan	75
+1392	Pampanga	75
+1393	Pangasinan	75
+1394	Pasay	75
+1395	Puerto Princesa	75
+1396	Quezon	75
+1397	Quezon City	75
+1398	Quirino	75
+1399	Rizal	75
+1400	Romblon	75
+1401	Roxas	75
+1402	Samar	75
+1403	San Carlos	75
+1404	San Carlos	75
+1405	San Jose	75
+1406	San Pablo	75
+1407	Silay	75
+1408	Siquijor	75
+1409	Sorsogon	75
+1410	South Cotabato	75
+1411	Southern Leyte	75
+1412	Sultan Kudarat	75
+1413	Sulu	75
+1414	Surigao	75
+1415	Surigao del Norte	75
+1416	Surigao del Sur	75
+1417	Tacloban	75
+1418	Tagaytay	75
+1419	Tagbilaran	75
+1420	Tangub	75
+1421	Tarlac	75
+1422	Tawitawi	75
+1423	Toledo	75
+1424	Trece Martires	75
+1425	Zambales	75
+1426	Zamboanga	75
+1427	Zamboanga del Norte	75
+1428	Zamboanga del Sur	75
+1429	Eastern Finland	76
+1430	Lapland	76
+1431	Oulu	76
+1432	Southern Finland	76
+1433	Western Finland	76
+1434	Alsace	77
+1435	Aquitaine	77
+1436	Auvergne	77
+1437	Basse-Normandie	77
+1438	Bourgogne	77
+1439	Bretagne	77
+1440	Centre	77
+1441	Champagne-Ardenne	77
+1442	Corse	77
+1443	Franche-Comte	77
+1444	Haute-Normandie	77
+1445	Ile-de-France	77
+1446	Languedoc-Roussillon	77
+1447	Limousin	77
+1448	Lorraine	77
+1449	Midi-Pyrenees	77
+1450	Nord-Pas-de-Calais	77
+1451	Pays de la Loire	77
+1452	Picardie	77
+1453	Poitou-Charentes	77
+1454	Provence-Alpes-Cote d Azur	77
+1455	Rhone-Alpes	77
+1456	Guyane Departement	78
+1457	Polynesie Fran?aise Territoire	79
+1458	French Southern Territories (General)	80
+1459	Estuaire	81
+1460	Haut-Ogooue	81
+1461	Moyen-Ogooue	81
+1462	Ngounie	81
+1463	Nyanga	81
+1464	Ogooue-Ivindo	81
+1465	Ogooue-Lolo	81
+1466	Ogooue-Maritime	81
+1467	Woleu-Ntem	81
+1468	Banjul	82
+1469	Lower River	82
+1470	MacCarthy Island	82
+1471	North Bank	82
+1472	Upper River	82
+1473	Western	82
+1474	Abashis Raioni	83
+1475	Abkhazia	83
+1476	Adigenis Raioni	83
+1477	Ajaria	83
+1478	Akhalgoris Raioni	83
+1479	Akhalk alakis Raioni	83
+1480	Akhalts ikhis Raioni	83
+1481	Akhmetis Raioni	83
+1482	Ambrolauris Raioni	83
+1483	Aspindzis Raioni	83
+1484	Baghdat is Raioni	83
+1485	Bolnisis Raioni	83
+1486	Borjomis Raioni	83
+1487	Ch khorotsqus Raioni	83
+1488	Ch okhatauris Raioni	83
+1489	Chiat ura	83
+1490	Dedop listsqaros Raioni	83
+1491	Dmanisis Raioni	83
+1492	Dushet is Raioni	83
+1493	Gardabanis Raioni	83
+1494	Gori	83
+1495	Goris Raioni	83
+1496	Gurjaanis Raioni	83
+1497	Javis Raioni	83
+1498	K arelis Raioni	83
+1499	K ut aisi	83
+1500	Kaspis Raioni	83
+1501	Kharagaulis Raioni	83
+1502	Khashuris Raioni	83
+1503	Khobis Raioni	83
+1504	Khonis Raioni	83
+1505	Lagodekhis Raioni	83
+1506	Lanch khut is Raioni	83
+1507	Lentekhis Raioni	83
+1508	Marneulis Raioni	83
+1509	Martvilis Raioni	83
+1510	Mestiis Raioni	83
+1511	Mts khet is Raioni	83
+1512	Ninotsmindis Raioni	83
+1513	Onis Raioni	83
+1514	Ozurget is Raioni	83
+1515	P ot i	83
+1516	Qazbegis Raioni	83
+1517	Qvarlis Raioni	83
+1518	Rust avi	83
+1519	Sach kheris Raioni	83
+1520	Sagarejos Raioni	83
+1521	Samtrediis Raioni	83
+1522	Senakis Raioni	83
+1523	Sighnaghis Raioni	83
+1524	T bilisi	83
+1525	T elavis Raioni	83
+1526	T erjolis Raioni	83
+1527	T et ritsqaros Raioni	83
+1528	T ianet is Raioni	83
+1529	Tqibuli	83
+1530	Ts ageris Raioni	83
+1531	Tsalenjikhis Raioni	83
+1532	Tsalkis Raioni	83
+1533	Tsqaltubo	83
+1534	Vanis Raioni	83
+1535	Zestap onis Raioni	83
+1536	Zugdidi	83
+1537	Zugdidis Raioni	83
+1538	Ashanti	84
+1539	Brong-Ahafo	84
+1540	Central	84
+1541	Eastern	84
+1542	Greater Accra	84
+1543	Northern	84
+1544	Upper East	84
+1545	Upper West	84
+1546	Volta	84
+1547	Western	84
+1548	Gibraltar (General)	85
+1549	Saint Andrew	86
+1550	Saint David	86
+1551	Saint George	86
+1552	Saint John	86
+1553	Saint Mark	86
+1554	Saint Patrick	86
+1555	Aitolia kai Akarnania	87
+1556	Akhaia	87
+1557	Argolis	87
+1558	Arkadhia	87
+1559	Arta	87
+1560	Attiki	87
+1561	Dhodhekanisos	87
+1562	Drama	87
+1563	Evritania	87
+1564	Evros	87
+1565	Evvoia	87
+1566	Florina	87
+1567	Fokis	87
+1568	Fthiotis	87
+1569	Grevena	87
+1570	Ilia	87
+1571	Imathia	87
+1572	Ioannina	87
+1573	Iraklion	87
+1574	Kardhitsa	87
+1575	Kastoria	87
+1576	Kavala	87
+1577	Kefallinia	87
+1578	Kerkira	87
+1579	Khalkidhiki	87
+1580	Khania	87
+1581	Khios	87
+1582	Kikladhes	87
+1583	Kilkis	87
+1584	Korinthia	87
+1585	Kozani	87
+1586	Lakonia	87
+1587	Larisa	87
+1588	Lasithi	87
+1589	Lesvos	87
+1590	Levkas	87
+1591	Magnisia	87
+1592	Messinia	87
+1593	Pella	87
+1594	Pieria	87
+1595	Preveza	87
+1596	Rethimni	87
+1597	Rodhopi	87
+1598	Samos	87
+1599	Serrai	87
+1600	Thesprotia	87
+1601	Thessaloniki	87
+1602	Trikala	87
+1603	Voiotia	87
+1604	Xanthi	87
+1605	Zakinthos	87
+1606	Nordgronland	88
+1607	Ostgronland	88
+1608	Vestgronland	88
+1609	Guadeloupe Departement	89
+1610	Guam (General)	90
+1611	Alta Verapaz	91
+1612	Baja Verapaz	91
+1613	Chimaltenango	91
+1614	Chiquimula	91
+1615	El Progreso	91
+1616	Escuintla	91
+1617	Guatemala	91
+1618	Huehuetenango	91
+1619	Izabal	91
+1620	Jalapa	91
+1621	Jutiapa	91
+1622	Peten	91
+1623	Quetzaltenango	91
+1624	Quiche	91
+1625	Retalhuleu	91
+1626	Sacatepequez	91
+1627	San Marcos	91
+1628	Santa Rosa	91
+1629	Solola	91
+1630	Suchitepequez	91
+1631	Totonicapan	91
+1632	Zacapa	91
+1633	Beyla	92
+1634	Boffa	92
+1635	Boke	92
+1636	Conakry	92
+1637	Coyah	92
+1638	Dabola	92
+1639	Dalaba	92
+1640	Dinguiraye	92
+1641	Dubreka	92
+1642	Faranah	92
+1643	Forecariah	92
+1644	Fria	92
+1645	Gaoual	92
+1646	Gueckedou	92
+1647	Kankan	92
+1648	Kerouane	92
+1649	Kindia	92
+1650	Kissidougou	92
+1651	Koubia	92
+1652	Koundara	92
+1653	Kouroussa	92
+1654	Labe	92
+1655	Lelouma	92
+1656	Lola	92
+1657	Macenta	92
+1658	Mali	92
+1659	Mamou	92
+1660	Mandiana	92
+1661	Nzerekore	92
+1662	Pita	92
+1663	Siguiri	92
+1664	Telimele	92
+1665	Tougue	92
+1666	Yomou	92
+1667	Annobon	93
+1668	Bioko Norte	93
+1669	Bioko Sur	93
+1670	Centro Sur	93
+1671	Kie-Ntem	93
+1672	Litoral	93
+1673	Wele-Nzas	93
+1674	Bafata	94
+1675	Biombo	94
+1676	Bissau	94
+1677	Bolama	94
+1678	Cacheu	94
+1679	Gabu	94
+1680	Oio	94
+1681	Quinara	94
+1682	Tombali	94
+1683	Barima-Waini	95
+1684	Cuyuni-Mazaruni	95
+1685	Demerara-Mahaica	95
+1686	East Berbice-Corentyne	95
+1687	Essequibo Islands-West Demerara	95
+1688	Mahaica-Berbice	95
+1689	Pomeroon-Supenaam	95
+1690	Potaro-Siparuni	95
+1691	Upper Demerara-Berbice	95
+1692	Upper Takutu-Upper Essequibo	95
+1693	Artibonite	96
+1694	Centre	96
+1695	Grand Anse	96
+1696	Nord	96
+1697	Nord-Est	96
+1698	Nord-Ouest	96
+1699	Ouest	96
+1700	Sud	96
+1701	Sud-Est	96
+1840	Sumatera Barat	103
+1702	Heard Island and McDonald Islands (General)	97
+1703	Drenthe	98
+1704	Dronten	98
+1705	Flevoland	98
+1706	Friesland	98
+1707	Gelderland	98
+1708	Groningen	98
+1709	Lelystad	98
+1710	Limburg	98
+1711	Noord-Brabant	98
+1712	Noord-Holland	98
+1713	Overijssel	98
+1714	Overijssel	98
+1715	Utrecht	98
+1716	Zeeland	98
+1717	Zuid-Holland	98
+1718	Zuidelijke IJsselmeerpolders	98
+1719	Atlantida	99
+1720	Choluteca	99
+1721	Colon	99
+1722	Comayagua	99
+1723	Copan	99
+1724	Cortes	99
+1725	El Paraiso	99
+1726	Francisco Morazan	99
+1727	Gracias a Dios	99
+1728	Intibuca	99
+1729	Islas de la Bahia	99
+1730	La Paz	99
+1731	Lempira	99
+1732	Ocotepeque	99
+1733	Olancho	99
+1734	Santa Barbara	99
+1735	Valle	99
+1736	Yoro	99
+1737	Hong Kong (General)	100
+1738	Bacs-Kiskun	101
+1739	Baranya	101
+1740	Bekes	101
+1741	Bekescsaba	101
+1742	Borsod-Abauj-Zemplen	101
+1743	Budapest	101
+1744	Csongrad	101
+1745	Debrecen	101
+1746	Dunaujvaros	101
+1747	Eger	101
+1748	Fejer	101
+1749	Gyor	101
+1750	Gyor-Moson-Sopron	101
+1751	Hajdu-Bihar	101
+1752	Heves	101
+1753	Hodmezovasarhely	101
+1754	Jasz-Nagykun-Szolnok	101
+1755	Kaposvar	101
+1756	Kecskemet	101
+1757	Komarom-Esztergom	101
+1758	Miskolc	101
+1759	Nagykanizsa	101
+1760	Nograd	101
+1761	Nyiregyhaza	101
+1762	Pecs	101
+1763	Pest	101
+1764	Somogy	101
+1765	Sopron	101
+1766	Szabolcs-Szatmar-Bereg	101
+1767	Szeged	101
+1768	Szekesfehervar	101
+1769	Szolnok	101
+1770	Szombathely	101
+1771	Tatabanya	101
+1772	Tolna	101
+1773	Vas	101
+1774	Veszprem	101
+1775	Veszprem	101
+1776	Zala	101
+1777	Zalaegerszeg	101
+1778	Andaman and Nicobar Islands	102
+1779	Andhra Pradesh	102
+1780	Arunachal Pradesh	102
+1781	Assam	102
+1782	Bihar	102
+1783	Chandigarh	102
+1784	Chhattisgarh	102
+1785	Dadra and Nagar Haveli	102
+1786	Daman and Diu	102
+1787	Delhi	102
+1788	Goa	102
+1789	Gujarat	102
+1790	Haryana	102
+1791	Himachal Pradesh	102
+1792	Jammu and Kashmir	102
+1793	Jharkhand	102
+1794	Karnataka	102
+1795	Kerala	102
+1796	Lakshadweep	102
+1797	Madhya Pradesh	102
+1798	Maharashtra	102
+1799	Manipur	102
+1800	Meghalaya	102
+1801	Mizoram	102
+1802	Nagaland	102
+1803	Orissa	102
+1804	Pondicherry	102
+1805	Punjab	102
+1806	Rajasthan	102
+1807	Sikkim	102
+1808	Tamil Nadu	102
+1809	Tripura	102
+1810	Uttar Pradesh	102
+1811	Uttaranchal	102
+1812	West Bengal	102
+1813	Aceh	103
+1814	Bali	103
+1815	Banten	103
+1816	Bengkulu	103
+1817	Gorontalo	103
+1818	Jakarta Raya	103
+1819	Jambi	103
+1820	Jawa Barat	103
+1821	Jawa Tengah	103
+1822	Jawa Timur	103
+1823	Kalimantan Barat	103
+1824	Kalimantan Selatan	103
+1825	Kalimantan Tengah	103
+1826	Kalimantan Timur	103
+1827	Kepulauan Bangka Belitung	103
+1828	Lampung	103
+1829	Maluku	103
+1830	Maluku Province	103
+1831	Maluku Utara	103
+1832	Nusa Tenggara Barat	103
+1833	Nusa Tenggara Timur	103
+1834	Papua	103
+1835	Riau	103
+1836	Sulawesi Selatan	103
+1837	Sulawesi Tengah	103
+1838	Sulawesi Tenggara	103
+1839	Sulawesi Utara	103
+1841	Sumatera Selatan	103
+1842	Sumatera Utara	103
+1843	Yogyakarta	103
+1844	Al Anbar	104
+1845	Al Basrah	104
+1846	Al Muthanna	104
+1847	Al Qadisiyah	104
+1848	An Najaf	104
+1849	Arbil	104
+1850	As Sulaymaniyah	104
+1851	At Tamim	104
+1852	Babil	104
+1853	Baghdad	104
+1854	Dahuk	104
+1855	Dhi Qar	104
+1856	Diyala	104
+1857	Karbala	104
+1858	Maysan	104
+1859	Ninawa	104
+1860	Salah ad Din	104
+1861	Wasit	104
+1862	Carlow	105
+1863	Cavan	105
+1864	Clare	105
+1865	Cork	105
+1866	Donegal	105
+1867	Dublin	105
+1868	Galway	105
+1869	Kerry	105
+1870	Kildare	105
+1871	Kilkenny	105
+1872	Laois	105
+1873	Leitrim	105
+1874	Limerick	105
+1875	Longford	105
+1876	Louth	105
+1877	Mayo	105
+1878	Meath	105
+1879	Monaghan	105
+1880	Offaly	105
+1881	Roscommon	105
+1882	Sligo	105
+1883	Tipperary	105
+1884	Waterford	105
+1885	Westmeath	105
+1886	Wexford	105
+1887	Wicklow	105
+1888	Cocos (Keeling) Islands (General)	106
+1889	Christmas Island (General)	107
+1890	Akranes	108
+1891	Akureyri	108
+1892	Arnessysla	108
+1893	Austur-Bardastrandarsysla	108
+1894	Austur-Hunavatnssysla	108
+1895	Austur-Skaftafellssysla	108
+1896	Borgarfjardarsysla	108
+1897	Dalasysla	108
+1898	Eyjafjardarsysla	108
+1899	Gullbringusysla	108
+1900	Hafnarfjordur	108
+1901	Husavik	108
+1902	Isafjordur	108
+1903	Keflavik	108
+1904	Kjosarsysla	108
+1905	Kopavogur	108
+1906	Myrasysla	108
+1907	Neskaupstadur	108
+1908	Nordur-Isafjardarsysla	108
+1909	Nordur-Mulasysla	108
+1910	Nordur-Tingeyjarsysla	108
+1911	Olafsfjordur	108
+1912	Rangarvallasysla	108
+1913	Reykjavik	108
+1914	Saudarkrokur	108
+1915	Seydisfjordur	108
+1916	Siglufjordur	108
+1917	Skagafjardarsysla	108
+1918	Snafellsnes- og Hnappadalssysla	108
+1919	Strandasysla	108
+1920	Sudur-Mulasysla	108
+1921	Sudur-Tingeyjarsysla	108
+1922	Vestmannaeyjar	108
+1923	Vestur-Bardastrandarsysla	108
+1924	Vestur-Hunavatnssysla	108
+1925	Vestur-Isafjardarsysla	108
+1926	Vestur-Skaftafellssysla	108
+1927	Creek	109
+1928	Eastern	109
+1929	Midland	109
+1930	South Town	109
+1931	Spot Bay	109
+1932	Stake Bay	109
+1933	West End	109
+1934	Western	109
+1935	Cook Islands (General)	110
+1936	F?r?erne	111
+1937	Falkland Islands (Malvinas) (General)	112
+1938	Marshall Islands (General)	113
+1939	Agalega Islands	114
+1940	Black River	114
+1941	Cargados Carajos	114
+1942	Flacq	114
+1943	Grand Port	114
+1944	Moka	114
+1945	Pamplemousses	114
+1946	Plaines Wilhems	114
+1947	Port Louis	114
+1948	Riviere du Rempart	114
+1949	Rodrigues	114
+1950	Savanne	114
+1951	Central	115
+1952	Guadalcanal	115
+1953	Isabel	115
+1954	Makira	115
+1955	Malaita	115
+1956	Temotu	115
+1957	Western	115
+1958	South Georgia and the South Sandwich Islands (Gene	116
+1959	Turks and Caicos Islands (General)	117
+1960	Wallis and Futuna (General)	118
+1961	HaDarom	119
+1962	HaMerkaz	119
+1963	HaZafon	119
+1964	Hefa	119
+1965	Tel Aviv	119
+1966	Yerushalayim	119
+1967	Abruzzi	120
+1968	Basilicata	120
+1969	Calabria	120
+1970	Campania	120
+1971	Emilia-Romagna	120
+1972	Friuli-Venezia Giulia	120
+1973	Italy (General)	120
+1974	Lazio	120
+1975	Liguria	120
+1976	Lombardia	120
+1977	Marche	120
+1978	Molise	120
+1979	Piemonte	120
+1980	Puglia	120
+1981	Sardegna	120
+1982	Sicilia	120
+1983	Toscana	120
+1984	Trentino-Alto Adige	120
+1985	Umbria	120
+1986	Valle d Aosta	120
+1987	Veneto	120
+1988	Clarendon	121
+1989	Hanover	121
+1990	Kingston	121
+1991	Manchester	121
+1992	Portland	121
+1993	Saint Andrew	121
+1994	Saint Ann	121
+1995	Saint Catherine	121
+1996	Saint Elizabeth	121
+1997	Saint James	121
+1998	Saint Mary	121
+1999	Saint Thomas	121
+2000	Trelawny	121
+2001	Westmoreland	121
+2002	Aichi	122
+2003	Akita	122
+2004	Aomori	122
+2005	Chiba	122
+2006	Ehime	122
+2007	Fukui	122
+2008	Fukuoka	122
+2009	Fukushima	122
+2010	Gifu	122
+2011	Gumma	122
+2012	Hiroshima	122
+2013	Hokkaido	122
+2014	Hyogo	122
+2015	Ibaraki	122
+2016	Ishikawa	122
+2017	Iwate	122
+2018	Kagawa	122
+2019	Kagoshima	122
+2020	Kanagawa	122
+2021	Kochi	122
+2022	Kumamoto	122
+2023	Kyoto	122
+2024	Mie	122
+2025	Miyagi	122
+2026	Miyazaki	122
+2027	Nagano	122
+2028	Nagasaki	122
+2029	Nara	122
+2030	Niigata	122
+2031	Oita	122
+2032	Okayama	122
+2033	Okinawa	122
+2034	Osaka	122
+2035	Saga	122
+2036	Saitama	122
+2037	Shiga	122
+2038	Shimane	122
+2039	Shizuoka	122
+2040	Tochigi	122
+2041	Tokushima	122
+2042	Tokyo	122
+2043	Tottori	122
+2044	Toyama	122
+2045	Wakayama	122
+2046	Yamagata	122
+2047	Yamaguchi	122
+2048	Yamanashi	122
+2049	Al Balqa	123
+2050	Al Karak	123
+2051	Al Mafraq	123
+2052	Amman	123
+2053	At Tafilah	123
+2054	Az Zarqa	123
+2055	Irbid	123
+2056	Ma	123
+2057	Almaty	124
+2058	Almaty City	124
+2059	Aqmola	124
+2061	Astana City	124
+2062	Atyrau	124
+2063	Bayqonyr	124
+2064	East Kazakhstan	124
+2065	Mangghystau	124
+2066	North Kazakhstan	124
+2067	Pavlodar	124
+2068	Qaraghandy	124
+2069	Qostanay	124
+2070	Qyzylorda	124
+2071	South Kazakhstan	124
+2072	West Kazakhstan	124
+2073	Zhambyl	124
+2074	Central	125
+2075	Coast	125
+2076	Eastern	125
+2077	Nairobi Area	125
+2078	North-Eastern	125
+2079	Nyanza	125
+2080	Rift Valley	125
+2081	Western	125
+2082	Gilbert Islands	126
+2083	Line Islands	126
+2084	Phoenix Islands	126
+2085	Al Ahmadi	127
+2086	Al Jahra	127
+2087	Al Kuwayt	127
+2088	Hawalli	127
+2089	Batken	128
+2090	Bishkek	128
+2091	Chuy	128
+2092	Jalal-Abad	128
+2093	Naryn	128
+2094	Osh	128
+2095	Osh	128
+2096	Talas	128
+2097	Ysyk-Kol	128
+2098	Attapu	129
+2099	Champasak	129
+2100	Houaphan	129
+2101	Khammouan	129
+2102	Louang Namtha	129
+2103	Louangphrabang	129
+2104	Oudomxai	129
+2105	Phongsali	129
+2106	Saravan	129
+2107	Savannakhet	129
+2108	Vientiane	129
+2109	Xaignabouri	129
+2110	Xiangkhoang	129
+2111	Aizkraukles	130
+2112	Aluksnes	130
+2113	Balvu	130
+2114	Bauskas	130
+2115	Daugavpils	130
+2116	Daugavpils	130
+2117	Dobeles	130
+2118	Gulbenes	130
+2119	Jelgava	130
+2120	Jelgavas	130
+2121	Jurmala	130
+2122	Kuldigas	130
+2123	Limbazu	130
+2124	Ludzas	130
+2125	Madonas	130
+2126	Ogres	130
+2127	Preilu	130
+2128	Riga	130
+2129	Rigas	130
+2130	Saldus	130
+2131	Talsu	130
+2132	Tukuma	130
+2133	Valkas	130
+2134	Valmieras	130
+2135	Ventspils	130
+2136	Ventspils	130
+2137	Berea	131
+2138	Butha-Buthe	131
+2139	Leribe	131
+2140	Mafeteng	131
+2141	Maseru	131
+2142	Mohales Hoek	131
+2143	Mokhotlong	131
+2144	Qachas Nek	131
+2145	Quthing	131
+2146	Thaba-Tseka	131
+2147	Bong	132
+2148	Grand Bassa	132
+2149	Grand Cape Mount	132
+2150	Grand Jide	132
+2151	Lofa	132
+2152	Maryland	132
+2153	Monrovia	132
+2154	Montserrado	132
+2155	Nimba	132
+2156	Sino	132
+2157	Ajdabiya	133
+2158	Al	133
+2159	Al Fatih	133
+2160	Al Jabal al Akhdar	133
+2161	Al Jufrah	133
+2162	Al Khums	133
+2163	Al Kufrah	133
+2164	An Nuqat al Khams	133
+2165	Ash Shati	133
+2166	Awbari	133
+2167	Az Zawiyah	133
+2168	Banghazi	133
+2169	Darnah	133
+2170	Ghadamis	133
+2171	Gharyan	133
+2172	Misratah	133
+2173	Murzuq	133
+2174	Sabha	133
+2175	Sawfajjin	133
+2176	Surt	133
+2177	Tarabulus	133
+2178	Tarhunah	133
+2179	Tubruq	133
+2180	Yafran	133
+2181	Zlitan	133
+2182	Balzers	134
+2183	Eschen	134
+2184	Gamprin	134
+2185	Mauren	134
+2186	Planken	134
+2187	Ruggell	134
+2188	Schaan	134
+2189	Schellenberg	134
+2190	Triesen	134
+2191	Triesenberg	134
+2192	Vaduz	134
+2193	Alytaus Apskritis	135
+2194	Kauno Apskritis	135
+2195	Klaipedos Apskritis	135
+2196	Marijampoles Apskritis	135
+2197	Panevezio Apskritis	135
+2198	Siauliu Apskritis	135
+2199	Taurages Apskritis	135
+2200	Telsiu Apskritis	135
+2201	Utenos Apskritis	135
+2202	Vilniaus Apskritis	135
+2203	Diekirch	136
+2204	Grevenmacher	136
+2205	Luxembourg	136
+2206	Beqaa	137
+2207	Beyrouth	137
+2208	Liban-Nord	137
+2209	Liban-Sud	137
+2210	Mont-Liban	137
+2211	Nabatiye	137
+2212	Ilhas	138
+2213	Macau	138
+2214	Aracinovo	139
+2215	Bac	139
+2216	Belcista	139
+2217	Berovo	139
+2218	Bistrica	139
+2219	Bitola	139
+2220	Blatec	139
+2221	Bogdanci	139
+2222	Bogomila	139
+2223	Bogovinje	139
+2224	Bosilovo	139
+2225	Brvenica	139
+2226	Cair	139
+2227	Capari	139
+2228	Caska	139
+2229	Cegrane	139
+2230	Centar	139
+2231	Centar Zupa	139
+2232	Cesinovo	139
+2233	Cucer-Sandevo	139
+2234	Debar	139
+2235	Delcevo	139
+2236	Delogozdi	139
+2237	Demir Hisar	139
+2238	Demir Kapija	139
+2239	Dobrusevo	139
+2240	Dolna Banjica	139
+2241	Dolneni	139
+2242	Dorce Petrov	139
+2243	Drugovo	139
+2244	Dzepciste	139
+2245	Gazi Baba	139
+2246	Gevgelija	139
+2247	Gostivar	139
+2248	Gradsko	139
+2249	Ilinden	139
+2250	Izvor	139
+2251	Jegunovce	139
+2252	Kamenjane	139
+2253	Karbinci	139
+2254	Karpos	139
+2255	Kavadarci	139
+2256	Kicevo	139
+2257	Kisela Voda	139
+2258	Klecevce	139
+2259	Kocani	139
+2260	Konce	139
+2261	Kondovo	139
+2262	Konopiste	139
+2263	Kosel	139
+2264	Kratovo	139
+2265	Kriva Palanka	139
+2266	Krivogastani	139
+2267	Krusevo	139
+2268	Kuklis	139
+2269	Kukurecani	139
+2270	Kumanovo	139
+2271	Labunista	139
+2272	Lipkovo	139
+2273	Lozovo	139
+2274	Lukovo	139
+2275	Makedonska Kamenica	139
+2276	Makedonski Brod	139
+2277	Mavrovi Anovi	139
+2278	Meseista	139
+2279	Miravci	139
+2280	Mogila	139
+2281	Murtino	139
+2282	Negotino	139
+2283	Negotino-Polosko	139
+2284	Novaci	139
+2285	Novo Selo	139
+2286	Oblesevo	139
+2287	Ohrid	139
+2288	Orasac	139
+2289	Orizari	139
+2290	Oslomej	139
+2291	Pehcevo	139
+2292	Petrovec	139
+2293	Plasnica	139
+2294	Podares	139
+2295	Prilep	139
+2296	Probistip	139
+2297	Radovis	139
+2298	Rankovce	139
+2299	Resen	139
+2300	Rosoman	139
+2301	Rostusa	139
+2302	Samokov	139
+2303	Saraj	139
+2304	Sipkovica	139
+2305	Sopiste	139
+2306	Sopotnica	139
+2307	Srbinovo	139
+2308	Star Dojran	139
+2309	Staravina	139
+2310	Staro Nagoricane	139
+2311	Stip	139
+2312	Struga	139
+2313	Strumica	139
+2314	Studenicani	139
+2315	Suto Orizari	139
+2316	Sveti Nikole	139
+2317	Tearce	139
+2318	Tetovo	139
+2319	Topolcani	139
+2320	Valandovo	139
+2321	Vasilevo	139
+2322	Veles	139
+2323	Velesta	139
+2324	Vevcani	139
+2325	Vinica	139
+2326	Vitoliste	139
+2327	Vranestica	139
+2328	Vrapciste	139
+2329	Vratnica	139
+2330	Vrutok	139
+2331	Zajas	139
+2332	Zelenikovo	139
+2333	Zelino	139
+2334	Zitose	139
+2335	Zletovo	139
+2336	Zrnovci	139
+2337	Ilhas	139
+2338	Macau	139
+2339	Antananarivo	140
+2340	Antsiranana	140
+2341	Fianarantsoa	140
+2342	Mahajanga	140
+2343	Toamasina	140
+2344	Toliara	140
+2345	Johor	141
+2346	Kedah	141
+2347	Kelantan	141
+2348	Labuan	141
+2349	Melaka	141
+2350	Negeri Sembilan	141
+2351	Pahang	141
+2352	Perak	141
+2353	Perlis	141
+2354	Pulau Pinang	141
+2355	Sabah	141
+2356	Sarawak	141
+2357	Selangor	141
+2358	Terengganu	141
+2359	Wilayah Persekutuan	141
+2360	Balaka	142
+2361	Blantyre	142
+2362	Chikwawa	142
+2363	Chiradzulu	142
+2364	Chitipa	142
+2365	Dedza	142
+2366	Dowa	142
+2367	Karonga	142
+2368	Kasungu	142
+2369	Likoma	142
+2370	Lilongwe	142
+2371	Machinga	142
+2372	Mangochi	142
+2373	Mchinji	142
+2374	Mulanje	142
+2375	Mwanza	142
+2376	Mzimba	142
+2377	Nkhata Bay	142
+2378	Nkhotakota	142
+2379	Nsanje	142
+2380	Ntcheu	142
+2381	Ntchisi	142
+2382	Phalombe	142
+2383	Rumphi	142
+2384	Salima	142
+2385	Thyolo	142
+2386	Zomba	142
+2387	Aliff	143
+2388	Baa	143
+2389	Daalu	143
+2390	Faafu	143
+2391	Gaafu Aliff	143
+2392	Gaafu Daalu	143
+2393	Haa Aliff	143
+2394	Haa Daalu	143
+2395	Kaafu	143
+2396	Laamu	143
+2397	Laviyani	143
+2398	Male	143
+2399	Meemu	143
+2400	Naviyani	143
+2401	Noonu	143
+2402	Raa	143
+2403	Seenu	143
+2404	Shaviyani	143
+2405	Thaa	143
+2406	Waavu	143
+2407	Malta (General)	144
+2408	Bamako	145
+2409	Gao	145
+2410	Kayes	145
+2411	Kidal	145
+2412	Koulikoro	145
+2413	Mopti	145
+2414	Segou	145
+2415	Sikasso	145
+2416	Tombouctou	145
+2417	Agadir	146
+2418	Al Hoceima	146
+2419	Azilal	146
+2420	Ben Slimane	146
+2421	Beni Mellal	146
+2422	Boulemane	146
+2423	Casablanca	146
+2424	Chaouen	146
+2425	El Jadida	146
+2426	El Kelaa des Srarhna	146
+2427	Er Rachidia	146
+2428	Essaouira	146
+2429	Fes	146
+2430	Figuig	146
+2431	Guelmim	146
+2432	Ifrane	146
+2433	Kenitra	146
+2434	Khemisset	146
+2435	Khenifra	146
+2436	Khouribga	146
+2437	Laayoune	146
+2438	Larache	146
+2439	Marrakech	146
+2440	Meknes	146
+2441	Nador	146
+2442	Ouarzazate	146
+2443	Oujda	146
+2444	Rabat-Sale	146
+2445	Safi	146
+2446	Settat	146
+2447	Sidi Kacem	146
+2448	Tan-Tan	146
+2449	Tanger	146
+2450	Taounate	146
+2451	Taroudannt	146
+2452	Tata	146
+2453	Taza	146
+2454	Tetouan	146
+2455	Tiznit	146
+2456	Martinique Departement	147
+2457	Adrar	148
+2458	Assaba	148
+2459	Brakna	148
+2460	Dakhlet Nouadhibou	148
+2461	Gorgol	148
+2462	Guidimaka	148
+2463	Hodh Ech Chargui	148
+2464	Hodh El Gharbi	148
+2465	Inchiri	148
+2466	Tagant	148
+2467	Tiris Zemmour	148
+2468	Trarza	148
+2469	Mayotte (General)	149
+2470	Chuuk	150
+2471	Kosrae	150
+2472	Pohnpei	150
+2473	Yap	150
+2474	Balti	151
+2475	Cahul	151
+2476	Chisinau	151
+2477	Edinet	151
+2478	Gagauzia	151
+2479	Lapusna	151
+2480	Orhei	151
+2481	Soroca	151
+2482	Stinga Nistrului	151
+2483	Tighina	151
+2484	Ungheni	151
+2485	Arhangay	152
+2486	Bayan-Olgiy	152
+2487	Bayanhongor	152
+2488	Bulgan	152
+2489	Darhan	152
+2490	Darhan Uul	152
+2491	Dornod	152
+2492	Dornogovi	152
+2493	Dundgovi	152
+2494	Dzavhan	152
+2495	Erdenet	152
+2496	Govi-Altay	152
+2497	Govi-Sumber	152
+2498	Hentiy	152
+2499	Hovd	152
+2500	Hovsgol	152
+2501	Omnogovi	152
+2502	Orhon	152
+2503	Ovorhangay	152
+2504	Selenge	152
+2505	Suhbaatar	152
+2506	Tov	152
+2507	Ulaanbaatar	152
+2508	Uvs	152
+2509	Saint Anthony	153
+2510	Saint Georges	153
+2511	Saint Peter	153
+2512	Cabo Delgado	154
+2513	Gaza	154
+2514	Inhambane	154
+2515	Manica	154
+2516	Maputo	154
+2517	Nampula	154
+2518	Niassa	154
+2519	Sofala	154
+2520	Tete	154
+2521	Zambezia	154
+2522	Chin State	155
+2523	Irrawaddy	155
+2524	Kachin State	155
+2525	Karan State	155
+2526	Kayah State	155
+2527	Magwe	155
+2528	Mandalay	155
+2529	Mon State	155
+2530	Pegu	155
+2531	Rakhine State	155
+2532	Rangoon	155
+2533	Sagaing	155
+2534	Shan State	155
+2535	Tenasserim	155
+2536	Yangon	155
+2537	Aguascalientes	156
+2538	Baja California	156
+2539	Baja California Sur	156
+2540	Campeche	156
+2541	Chiapas	156
+2542	Chihuahua	156
+2543	Coahuila de Zaragoza	156
+2544	Colima	156
+2545	Distrito Federal	156
+2546	Durango	156
+2547	Guanajuato	156
+2548	Guerrero	156
+2549	Hidalgo	156
+2550	Jalisco	156
+2551	Mexico	156
+2552	Michoacan de Ocampo	156
+2553	Morelos	156
+2554	Nayarit	156
+2555	Nuevo Leon	156
+2556	Oaxaca	156
+2557	Puebla	156
+2558	Queretaro de Arteaga	156
+2559	Quintana Roo	156
+2560	San Luis Potosi	156
+2561	Sinaloa	156
+2562	Sonora	156
+2563	Tabasco	156
+2564	Tamaulipas	156
+2565	Tlaxcala	156
+2566	Veracruz-Llave	156
+2567	Yucatan	156
+2568	Zacatecas	156
+2569	La Condamine	157
+2570	Monaco	157
+2571	Monte-Carlo	157
+2572	Bethanien	158
+2573	Boesmanland	158
+2574	Caprivi	158
+2575	Caprivi Oos	158
+2576	Damaraland	158
+2577	Erongo	158
+2578	Gobabis	158
+2579	Grootfontein	158
+2580	Hardap	158
+2581	Hereroland Oos	158
+2582	Hereroland Wes	158
+2583	Kaokoland	158
+2584	Karas	158
+2585	Karasburg	158
+2586	Karibib	158
+2587	Kavango	158
+2588	Keetmanshoop	158
+2589	Khomas Region	158
+2590	Kunene	158
+2591	Luderitz	158
+2592	Maltahohe	158
+2593	Mariental	158
+2594	Namaland	158
+2595	Ohangwena	158
+2596	Okahandja	158
+2597	Okavango	158
+2598	Omaheke	158
+2599	Omaruru	158
+2600	Omusati	158
+2601	Oshana	158
+2602	Oshikoto	158
+2603	Otjiwarongo	158
+2604	Otjozondjupa	158
+2605	Outjo	158
+2606	Owambo	158
+2607	Rehoboth	158
+2608	Swakopmund	158
+2609	Tsumeb	158
+2610	Windhoek	158
+2611	Aiwo	159
+2612	Anabar	159
+2613	Anetan	159
+2614	Anibare	159
+2615	Baiti	159
+2616	Boe	159
+2617	Buada	159
+2618	Denigomodu	159
+2619	Ewa	159
+2620	Ijuw	159
+2621	Meneng	159
+2622	Nibok	159
+2623	Uaboe	159
+2624	Yaren	159
+2625	Bagmati	160
+2626	Bheri	160
+2627	Bagmati Zone	160
+2628	Dhawalagiri	160
+2629	Gandaki	160
+2630	Janakpur	160
+2631	Karnali	160
+2632	Kosi	160
+2633	Lumbini	160
+2634	Mahakali	160
+2635	Mechi	160
+2636	Narayani	160
+2637	Rapti	160
+2638	Sagarmatha	160
+2639	Seti	160
+2640	Boaco	161
+2641	Carazo	161
+2642	Chinandega	161
+2643	Chontales	161
+2644	Esteli	161
+2645	Granada	161
+2646	Jinotega	161
+2647	Leon	161
+2648	Madriz	161
+2649	Managua	161
+2650	Masaya	161
+2651	Matagalpa	161
+2652	Nueva Segovia	161
+2653	Rio San Juan	161
+2654	Rivas	161
+2655	Zelaya	161
+2656	Abia	162
+2657	Abuja Capital Territory	162
+2658	Adamawa	162
+2659	Akwa Ibom	162
+2660	Anambra	162
+2661	Bauchi	162
+2662	Bayelsa	162
+2663	Benue	162
+2664	Borno	162
+2665	Cross River	162
+2666	Delta	162
+2667	Ebonyi	162
+2668	Edo	162
+2669	Ekiti	162
+2670	Enugu	162
+2671	Gombe	162
+2672	Imo	162
+2673	Jigawa	162
+2674	Kaduna	162
+2675	Kano	162
+2676	Katsina	162
+2677	Kebbi	162
+2678	Kogi	162
+2679	Kwara	162
+2680	Lagos	162
+2681	Nassarawa	162
+2682	Niger	162
+2683	Ogun	162
+2684	Ondo	162
+2685	Ondo	162
+2686	Osun	162
+2687	Oyo	162
+2688	Plateau	162
+2689	Rivers	162
+2690	Rivers	162
+2691	Sokoto	162
+2692	Taraba	162
+2693	Yobe	162
+2694	Zamfara	162
+2695	Niue (General)	163
+2696	Norfolk Island (General)	164
+2697	Northern Mariana Islands (General)	165
+2698	Akershus	166
+2699	Aust-Agder	166
+2700	Buskerud	166
+2701	Finnmark	166
+2702	Hedmark	166
+2703	Hordaland	166
+2704	More og Romsdal	166
+2705	Nord-Trondelag	166
+2706	Nordland	166
+2707	Oppland	166
+2708	Oslo	166
+2709	Ostfold	166
+2710	Rogaland	166
+2711	Sogn og Fjordane	166
+2712	Sor-Trondelag	166
+2713	Telemark	166
+2714	Troms	166
+2715	Vest-Agder	166
+2716	Vestfold	166
+2717	Nouvelle-Caledonie	167
+2718	Akaroa	168
+2719	Amuri	168
+2720	Ashburton	168
+2721	Bay of Islands	168
+2722	Bruce	168
+2723	Buller	168
+2724	Chatham Islands	168
+2725	Cheviot	168
+2726	Clifton	168
+2727	Clutha	168
+2728	Cook	168
+2729	Dannevirke	168
+2730	Egmont	168
+2731	Eketahuna	168
+2732	Ellesmere	168
+2733	Eltham	168
+2734	Eyre	168
+2735	Featherston	168
+2736	Franklin	168
+2737	Golden Bay	168
+2738	Great Barrier Island	168
+2739	Grey	168
+2740	Hauraki Plains	168
+2741	Hawera	168
+2742	Hawkes Bay	168
+2743	Heathcote	168
+2744	Hikurangi	168
+2745	Hobson	168
+2746	Hokianga	168
+2747	Horowhenua	168
+2748	Hurunui	168
+2749	Hutt	168
+2750	Inangahua	168
+2751	Inglewood	168
+2752	Kaikoura	168
+2753	Kairanga	168
+2754	Kiwitea	168
+2755	Lake	168
+2756	Mackenzie	168
+2757	Malvern	168
+2758	Manaia	168
+2759	Manawatu	168
+2760	Mangonui	168
+2761	Maniototo	168
+2762	Marlborough	168
+2763	Masterton	168
+2764	Matamata	168
+2765	Mount Herbert	168
+2766	Ohinemuri	168
+2767	Opotiki	168
+2768	Oroua	168
+2769	Otamatea	168
+2770	Otorohanga	168
+2771	Oxford	168
+2772	Pahiatua	168
+2773	Paparua	168
+2774	Patea	168
+2775	Piako	168
+2776	Pohangina	168
+2777	Raglan	168
+2778	Rangiora	168
+2779	Rangitikei	168
+2780	Rodney	168
+2781	Rotorua	168
+2782	Runanga	168
+2783	Saint Kilda	168
+2784	Silverpeaks	168
+2785	Southland	168
+2786	Stewart Island	168
+2787	Stratford	168
+2788	Strathallan	168
+2789	Taranaki	168
+2790	Taumarunui	168
+2791	Taupo	168
+2792	Tauranga	168
+2793	Thames-Coromandel	168
+2794	Tuapeka	168
+2795	Vincent	168
+2796	Waiapu	168
+2797	Waiheke	168
+2798	Waihemo	168
+2799	Waikato	168
+2800	Waikohu	168
+2801	Waimairi	168
+2802	Waimarino	168
+2803	Waimate	168
+2804	Waimate West	168
+2805	Waimea	168
+2806	Waipa	168
+2807	Waipawa	168
+2808	Waipukurau	168
+2809	Wairarapa South	168
+2810	Wairewa	168
+2811	Wairoa	168
+2812	Waitaki	168
+2813	Waitomo	168
+2814	Waitotara	168
+2815	Wallace	168
+2816	Wanganui	168
+2817	Waverley	168
+2818	Westland	168
+2819	Whakatane	168
+2820	Whangarei	168
+2821	Whangaroa	168
+2822	Woodville	168
+2823	Agadez	169
+2824	Diffa	169
+2825	Dosso	169
+2826	Maradi	169
+2827	Niamey	169
+2828	Tahoua	169
+2829	Zinder	169
+2830	Ad Dakhiliyah	170
+2831	Al Batinah	170
+2832	Al Wusta	170
+2833	Ash Sharqiyah	170
+2834	Az Zahirah	170
+2835	Masqat	170
+2836	Musandam	170
+2837	Zufar	170
+2838	Azad Kashmir	171
+2839	Balochistan	171
+2840	Federally Administered Tribal Areas	171
+2841	Islamabad	171
+2842	North-West Frontier	171
+2843	Northern Areas	171
+2844	Punjab	171
+2845	Sindh	171
+2846	Palau (General)	172
+2847	Palestinian Territory (General)	173
+2848	Bocas del Toro	174
+2849	Chiriqui	174
+2850	Cocle	174
+2851	Colon	174
+2852	Darien	174
+2853	Herrera	174
+2854	Los Santos	174
+2855	Panama	174
+2856	San Blas	174
+2857	Veraguas	174
+2858	Central	175
+2859	Chimbu	175
+2860	East New Britain	175
+2861	East Sepik	175
+2862	Eastern Highlands	175
+2863	Enga	175
+2864	Gulf	175
+2865	Madang	175
+2866	Manus	175
+2867	Milne Bay	175
+2868	Morobe	175
+2869	National Capital	175
+2870	New Ireland	175
+2871	North Solomons	175
+2872	Northern	175
+2873	Sandaun	175
+2874	Southern Highlands	175
+2875	West New Britain	175
+2876	Western	175
+2877	Western Highlands	175
+2878	Alto Paraguay	176
+2879	Alto Parana	176
+2880	Amambay	176
+2881	Boqueron	176
+2882	Caaguazu	176
+2883	Caazapa	176
+2884	Canindeyu	176
+2885	Central	176
+2886	Chaco	176
+2887	Concepcion	176
+2888	Cordillera	176
+2889	Guaira	176
+2890	Itapua	176
+2891	Misiones	176
+2892	Neembucu	176
+2893	Nueva Asuncion	176
+2894	Paraguari	176
+2895	Presidente Hayes	176
+2896	San Pedro	176
+2897	Amazonas	177
+2898	Ancash	177
+2899	Apurimac	177
+2900	Arequipa	177
+2901	Ayacucho	177
+2902	Cajamarca	177
+2903	Callao	177
+2904	Cusco	177
+2905	Huancavelica	177
+2906	Huanuco	177
+2907	Ica	177
+2908	Junin	177
+2909	La Libertad	177
+2910	Lambayeque	177
+2911	Lima	177
+2912	Loreto	177
+2913	Madre de Dios	177
+2914	Moquegua	177
+2915	Pasco	177
+2916	Piura	177
+2917	Puno	177
+2918	San Martin	177
+2919	Tacna	177
+2920	Tumbes	177
+2921	Ucayali	177
+2922	Pitcairn (General)	178
+2923	Biala Podlaska	179
+2924	Bialystok	179
+2925	Bielsko	179
+2926	Bydgoszcz	179
+2927	Chelm	179
+2928	Ciechanow	179
+2929	Czestochowa	179
+2930	Dolnoslaskie	179
+2931	Elblag	179
+2932	Gdansk	179
+2933	Gorzow	179
+2934	Jelenia Gora	179
+2935	Kalisz	179
+2936	Katowice	179
+2937	Kielce	179
+2938	Konin	179
+2939	Koszalin	179
+2940	Krakow	179
+2941	Krosno	179
+2942	Kujawsko-Pomorskie	179
+2943	Legnica	179
+2944	Leszno	179
+2945	Lodz	179
+2946	Lodzkie	179
+2947	Lomza	179
+2948	Lubelskie	179
+2949	Lublin	179
+2950	Lubuskie	179
+2951	Malopolskie	179
+2952	Mazowieckie	179
+2953	Nowy Sacz	179
+2954	Olsztyn	179
+2955	Opole	179
+2956	Opolskie	179
+2957	Ostroleka	179
+2958	Pila	179
+2959	Piotrkow	179
+2960	Plock	179
+2961	Podkarpackie	179
+2962	Podlaskie	179
+2963	Pomorskie	179
+2964	Poznan	179
+2965	Przemysl	179
+2966	Radom	179
+2967	Rzeszow	179
+2968	Siedlce	179
+2969	Sieradz	179
+2970	Skierniewice	179
+2971	Slaskie	179
+2972	Slupsk	179
+2973	Suwalki	179
+2974	Swietokrzyskie	179
+2975	Szczecin	179
+2976	Tarnobrzeg	179
+2977	Tarnow	179
+2978	Torun	179
+2979	Walbrzych	179
+2980	Warminsko-Mazurskie	179
+2981	Warszawa	179
+2982	Wielkopolskie	179
+2983	Wloclawek	179
+2984	Wroclaw	179
+2985	Zachodniopomorskie	179
+2986	Zamosc	179
+2987	Zielona Gora	179
+2988	Aveiro	180
+2989	Azores	180
+2990	Beja	180
+2991	Braga	180
+2992	Braganca	180
+2993	Castelo Branco	180
+2994	Coimbra	180
+2995	Evora	180
+2996	Faro	180
+2997	Guarda	180
+2998	Leiria	180
+2999	Lisboa	180
+3000	Madeira	180
+3001	Portalegre	180
+3002	Porto	180
+3003	Santarem	180
+3004	Setubal	180
+3005	Viana do Castelo	180
+3006	Vila Real	180
+3007	Viseu	180
+3008	Puerto Rico (General)	181
+3009	Ad Dawhah	182
+3010	Al Ghuwariyah	182
+3011	Al Jumaliyah	182
+3012	Al Khawr	182
+3013	Al Wakrah	182
+3014	Al Wakrah Municipality	182
+3015	Ar Rayyan	182
+3016	Jariyan al Batnah	182
+3017	Madinat ach Shamal	182
+3018	Umm Said	182
+3019	Umm Salal	182
+3020	Aberdeen City	183
+3021	Aberdeenshire	183
+3022	Angus	183
+3023	Antrim	183
+3024	Ards	183
+3025	Argyll and Bute	183
+3026	Armagh	183
+3027	Avon	183
+3028	Ballymena	183
+3029	Ballymoney	183
+3030	Banbridge	183
+3031	Barking and Dagenham	183
+3032	Barnet	183
+3033	Barnsley	183
+3034	Bath and North East Somerset	183
+3035	Bedfordshire	183
+3036	Belfast	183
+3037	Berkshire	183
+3038	Bexley	183
+3039	Birmingham	183
+3040	Blackburn with Darwen	183
+3041	Blackpool	183
+3042	Blaenau Gwent	183
+3043	Bolton	183
+3044	Bournemouth	183
+3045	Bracknell Forest	183
+3046	Bradford	183
+3047	Brent	183
+3048	Bridgend	183
+3049	Brighton and Hove	183
+3050	Bristol, City of	183
+3051	Bromley	183
+3052	Buckinghamshire	183
+3053	Bury	183
+3054	Caerphilly	183
+3055	Calderdale	183
+3056	Cambridgeshire	183
+3057	Camden	183
+3058	Cardiff	183
+3059	Carmarthenshire	183
+3060	Carrickfergus	183
+3061	Castlereagh	183
+3062	Central	183
+3063	Ceredigion	183
+3064	Cheshire	183
+3065	Clackmannanshire	183
+3066	Cleveland	183
+3067	Clwyd	183
+3068	Coleraine	183
+3069	Conwy	183
+3070	Cookstown	183
+3071	Cornwall	183
+3072	Coventry	183
+3073	Craigavon	183
+3074	Croydon	183
+3075	Cumbria	183
+3076	Darlington	183
+3077	Denbighshire	183
+3078	Derby	183
+3079	Derbyshire	183
+3080	Derry	183
+3081	Devon	183
+3082	Doncaster	183
+3083	Dorset	183
+3084	Down	183
+3085	Dudley	183
+3086	Dumfries and Galloway	183
+3087	Dundee City	183
+3088	Dungannon	183
+3089	Durham	183
+3090	Dyfed	183
+3091	Ealing	183
+3092	East Ayrshire	183
+3093	East Dunbartonshire	183
+3094	East Lothian	183
+3095	East Renfrewshire	183
+3096	East Riding of Yorkshire	183
+3097	East Sussex	183
+3098	Edinburgh, City of	183
+3099	Eilean Siar	183
+3100	Enfield	183
+3101	Essex	183
+3102	Falkirk	183
+3103	Fermanagh	183
+3104	Fife	183
+3105	Flintshire	183
+3106	Gateshead	183
+3107	Glasgow City	183
+3108	Gloucestershire	183
+3109	Grampian	183
+3110	Greater London	183
+3111	Greater Manchester	183
+3112	Greenwich	183
+3113	Gwent	183
+3114	Gwynedd	183
+3115	Hackney	183
+3116	Halton	183
+3117	Hammersmith and Fulham	183
+3118	Hampshire	183
+3119	Haringey	183
+3120	Harrow	183
+3121	Hartlepool	183
+3122	Havering	183
+3123	Hereford and Worcester	183
+3124	Herefordshire	183
+3125	Hertford	183
+3126	Highland	183
+3127	Hillingdon	183
+3128	Hounslow	183
+3129	Humberside	183
+3130	Inverclyde	183
+3131	Isle of Anglesey	183
+3132	Isle of Wight	183
+3133	Islington	183
+3134	Kensington and Chelsea	183
+3135	Kent	183
+3136	Kingston upon Hull, City of	183
+3137	Kingston upon Thames	183
+3138	Kirklees	183
+3139	Knowsley	183
+3140	Lambeth	183
+3141	Lancashire	183
+3142	Larne	183
+3143	Leeds	183
+3144	Leicester	183
+3145	Leicestershire	183
+3146	Lewisham	183
+3147	Limavady	183
+3148	Lincolnshire	183
+3149	Lisburn	183
+3150	Liverpool	183
+3151	London, City of	183
+3152	Lothian	183
+3153	Luton	183
+3154	Magherafelt	183
+3155	Manchester	183
+3156	Medway	183
+3157	Merseyside	183
+3158	Merthyr Tydfil	183
+3159	Merton	183
+3160	Mid Glamorgan	183
+3161	Middlesbrough	183
+3162	Midlothian	183
+3163	Milton Keynes	183
+3164	Monmouthshire	183
+3165	Moray	183
+3166	Moyle	183
+3167	Neath Port Talbot	183
+3168	Newcastle upon Tyne	183
+3169	Newham	183
+3170	Newport	183
+3171	Newry and Mourne	183
+3172	Newtownabbey	183
+3173	Norfolk	183
+3174	North Ayrshire	183
+3175	North Down	183
+3176	North East Lincolnshire	183
+3177	North Lanarkshire	183
+3178	North Lincolnshire	183
+3179	North Somerset	183
+3180	North Tyneside	183
+3181	North Yorkshire	183
+3182	Northamptonshire	183
+3183	Northumberland	183
+3184	Nottingham	183
+3185	Nottinghamshire	183
+3186	Oldham	183
+3187	Omagh	183
+3188	Orkney	183
+3189	Oxfordshire	183
+3190	Pembrokeshire	183
+3191	Perth and Kinross	183
+3192	Peterborough	183
+3193	Plymouth	183
+3194	Poole	183
+3195	Portsmouth	183
+3196	Powys	183
+3197	Reading	183
+3198	Redbridge	183
+3199	Redcar and Cleveland	183
+3200	Renfrewshire	183
+3201	Rhondda Cynon Taff	183
+3202	Richmond upon Thames	183
+3203	Rochdale	183
+3204	Rotherham	183
+3205	Rutland	183
+3206	Salford	183
+3207	Sandwell	183
+3208	Scottish Borders	183
+3209	The Sefton	183
+3210	Sheffield	183
+3211	Shetland Islands	183
+3212	Shropshire	183
+3213	Slough	183
+3214	Solihull	183
+3215	Somerset	183
+3216	South Ayrshire	183
+3217	South Glamorgan	183
+3218	South Gloucestershire	183
+3219	South Lanarkshire	183
+3220	South Tyneside	183
+3221	South Yorkshire	183
+3222	Southampton	183
+3223	Southend-on-Sea	183
+3224	Southwark	183
+3225	St. Helens	183
+3226	Staffordshire	183
+3227	Stirling	183
+3228	Stockport	183
+3229	Stockton-on-Tees	183
+3230	Stoke-on-Trent	183
+3231	Strabane	183
+3232	Strathclyde	183
+3233	Suffolk	183
+3234	Sunderland	183
+3235	Surrey	183
+3236	Sutton	183
+3237	Swansea	183
+3238	Swindon	183
+3239	Tameside	183
+3240	Tayside	183
+3241	Telford and Wrekin	183
+3242	Thurrock	183
+3243	Torbay	183
+3244	Torfaen	183
+3245	Tower Hamlets	183
+3246	Trafford	183
+3247	Tyne and Wear	183
+3248	Vale of Glamorgan, The	183
+3249	Wakefield	183
+3250	Walsall	183
+3251	Waltham Forest	183
+3252	Wandsworth	183
+3253	Warrington	183
+3254	Warwickshire	183
+3255	West Berkshire	183
+3256	West Dunbartonshire	183
+3257	West Glamorgan	183
+3258	West Lothian	183
+3259	West Midlands	183
+3260	West Sussex	183
+3261	West Yorkshire	183
+3262	Westminster	183
+3263	Wigan	183
+3264	Wiltshire	183
+3265	Windsor and Maidenhead	183
+3266	Wirral	183
+3267	Wokingham	183
+3268	Wolverhampton	183
+3269	Worcestershire	183
+3270	Wrexham	183
+3271	York	183
+3272	Bamingui-Bangoran	184
+3273	Bangui	184
+3274	Basse-Kotto	184
+3275	Haut-Mbomou	184
+3276	Haute-Kotto	184
+3277	Kemo	184
+3278	Lobaye	184
+3279	Mambere-Kadei	184
+3280	Mbomou	184
+3281	Nana-Grebizi	184
+3282	Nana-Mambere	184
+3283	Ombella-Mpoko	184
+3284	Ouaka	184
+3285	Ouham	184
+3286	Ouham-Pende	184
+3287	Sangha-Mbaere	184
+3288	Vakaga	184
+3289	Blansko	185
+3290	Breclav	185
+3291	Hlavni Mesto Praha	185
+3292	Hradec Kralove	185
+3293	Jablonec nad Nisou	185
+3294	Jiein	185
+3295	Jihlava	185
+3296	Jihocesky Kraj	185
+3297	Jihomoravsky Kraj	185
+3298	Karlovarsky Kraj	185
+3299	Kolin	185
+3300	Kralovehradecky Kraj	185
+3301	Liberec	185
+3302	Liberecky Kraj	185
+3303	Melnik	185
+3304	Mlada Boleslav	185
+3305	Moravskoslezsky Kraj	185
+3306	Nachod	185
+3307	Nymburk	185
+3308	Olomoucky Kraj	185
+3309	Pardubice	185
+3310	Pardubicky Kraj	185
+3311	Plzensky Kraj	185
+3312	Semily	185
+3313	Stredocesky Kraj	185
+3314	Trutnov	185
+3315	Ustecky Kraj	185
+3316	Vysocina	185
+3317	Zlinsky Kraj	185
+3318	Congo, The Democratic Republic of the (General)	186
+3319	Azua	187
+3320	Baoruco	187
+3321	Barahona	187
+3322	Dajabon	187
+3323	Distrito Nacional	187
+3324	Duarte	187
+3325	El Seibo	187
+3326	Elias Pina	187
+3327	Espaillat	187
+3328	Hato Mayor	187
+3329	Independencia	187
+3330	La Altagracia	187
+3331	La Romana	187
+3332	La Vega	187
+3333	Maria Trinidad Sanchez	187
+3334	Monsenor Nouel	187
+3335	Monte Cristi	187
+3336	Monte Plata	187
+3337	Pedernales	187
+3338	Peravia	187
+3339	Puerto Plata	187
+3340	Salcedo	187
+3341	Samana	187
+3342	San Cristobal	187
+3343	San Juan	187
+3344	San Pedro De Macoris	187
+3345	Sanchez Ramirez	187
+3346	Santiago	187
+3347	Santiago Rodriguez	187
+3348	Valverde	187
+3349	Ardabil	188
+3350	Azarbayjan-e Bakhtari	188
+3351	Azarbayjan-e Khavari	188
+3352	Bakhtaran	188
+3353	Bushehr	188
+3354	Chahar Mahall va Bakhtiari	188
+3355	East Azarbaijan	188
+3356	Esfahan	188
+3357	Fars	188
+3358	Gilan	188
+3359	Golestan	188
+3360	Hamadan	188
+3361	Hormozgan	188
+3362	Ilam	188
+3363	Kerman	188
+3364	Khorasan	188
+3365	Khuzestan	188
+3366	Kohkiluyeh va Buyer Ahmadi	188
+3367	Kordestan	188
+3368	Lorestan	188
+3369	Markazi	188
+3370	Markazi	188
+3371	Mazandaran	188
+3372	Mazandaran	188
+3373	Qazvin	188
+3374	Qom	188
+3375	Semnan	188
+3376	Sistan va Baluchestan	188
+3377	Tehran	188
+3378	Yazd	188
+3379	Zanjan	188
+3380	Zanjan	188
+3381	Butare	189
+3382	Byumba	189
+3383	Cyangugu	189
+3384	Gikongoro	189
+3385	Gisenyi	189
+3386	Gitarama	189
+3387	Kibungo	189
+3388	Kibuye	189
+3389	Kigali	189
+3390	Ruhengeri	189
+3391	Alba	190
+3392	Arad	190
+3393	Arges	190
+3394	Bacau	190
+3395	Bihor	190
+3396	Bistrita-Nasaud	190
+3397	Botosani	190
+3398	Braila	190
+3399	Brasov	190
+3400	Bucuresti	190
+3401	Buzau	190
+3402	Calarasi	190
+3403	Caras-Severin	190
+3404	Cluj	190
+3405	Constanta	190
+3406	Covasna	190
+3407	Dambovita	190
+3408	Dolj	190
+3409	Galati	190
+3410	Giurgiu	190
+3411	Gorj	190
+3412	Harghita	190
+3413	Hunedoara	190
+3414	Ialomita	190
+3415	Iasi	190
+3416	Ilfov	190
+3417	Maramures	190
+3418	Mehedinti	190
+3419	Mures	190
+3420	Neamt	190
+3421	Olt	190
+3422	Prahova	190
+3423	Salaj	190
+3424	Satu Mare	190
+3425	Sibiu	190
+3426	Suceava	190
+3427	Teleorman	190
+3428	Timis	190
+3429	Tulcea	190
+3430	Valcea	190
+3431	Vaslui	190
+3432	Vrancea	190
+3433	Adygeya, Republic of	191
+3434	Aginsky Buryatsky AO	191
+3435	Altaisky krai	191
+3436	Amur	191
+3437	Arkhangel sk	191
+3438	Astrakhan	191
+3439	Bashkortostan	191
+3440	Belgorod	191
+3441	Bryansk	191
+3442	Buryat	191
+3443	Chechnya	191
+3444	Chechnya Republic	191
+3445	Chelyabinsk	191
+3446	Chita	191
+3447	Chukot	191
+3448	Chuvashia	191
+3449	Dagestan	191
+3450	Evenk	191
+3451	Gorno-Altay	191
+3452	Ingush	191
+3453	Irkutsk	191
+3454	Ivanovo	191
+3455	JA	191
+3456	Kabardin-Balkar	191
+3457	Kaliningrad	191
+3458	Kalmyk	191
+3459	Kaluga	191
+3460	Kamchatka	191
+3461	Karachay-Cherkess	191
+3462	Karelia	191
+3463	Kemerovo	191
+3464	Khabarovsk	191
+3465	Khakass	191
+3466	Khanty-Mansiy	191
+3467	Kirov	191
+3468	Komi	191
+3469	Komi-Permyak	191
+3470	Koryak	191
+3471	Kostroma	191
+3472	Krasnodar	191
+3473	Krasnoyarsk	191
+3474	Kurgan	191
+3475	Kursk	191
+3476	Leningrad	191
+3477	Lipetsk	191
+3478	Magadan	191
+3479	Mariy-El	191
+3480	Mordovia	191
+3481	Moscow City	191
+3482	Moskva	191
+3483	Murmansk	191
+3484	Nenets	191
+3485	Nizhegorod	191
+3486	North Ossetia	191
+3487	Novgorod	191
+3488	Novosibirsk	191
+3489	Omsk	191
+3490	Orel	191
+3491	Orenburg	191
+3492	Penza	191
+3493	Perm	191
+3494	Primor ye	191
+3495	Pskov	191
+3496	Rostov	191
+3497	Ryazan	191
+3498	Saint Petersburg City	191
+3499	Sakha	191
+3500	Sakhalin	191
+3501	Samara	191
+3502	Saratov	191
+3503	Smolensk	191
+3504	Stavropol	191
+3505	Sverdlovsk	191
+3506	Tambovskaya oblast	191
+3507	Tatarstan	191
+3508	Taymyr	191
+3509	Tomsk	191
+3510	Tula	191
+3511	Tuva	191
+3512	Tver	191
+3513	Tyumen	191
+3514	Udmurt	191
+3515	Ul yanovsk	191
+3516	Ust-Orda Buryat	191
+3517	Vladimir	191
+3518	Volgograd	191
+3519	Vologda	191
+3520	Voronezh	191
+3521	Yamal-Nenets	191
+3522	Yaroslavl	191
+3523	Yevrey	191
+3524	Christ Church Nichola Town	192
+3525	Saint Anne Sandy Point	192
+3526	Saint George Basseterre	192
+3527	Saint George Gingerland	192
+3528	Saint James Windward	192
+3529	Saint John Capisterre	192
+3530	Saint John Figtree	192
+3531	Saint Mary Cayon	192
+3532	Saint Paul Capisterre	192
+3533	Saint Paul Charlestown	192
+3534	Saint Peter Basseterre	192
+3535	Saint Thomas Lowland	192
+3536	Saint Thomas Middle Island	192
+3537	Trinity Palmetto Point	192
+3538	Saint-Pierre et Miquelon Collectivite Territoriale	193
+3539	Aiga-i-le-Tai	194
+3540	Atua	194
+3541	Fa	194
+3542	Gaga	194
+3543	Gagaifomauga	194
+3544	Palauli	194
+3545	Satupa	194
+3546	Tuamasaga	194
+3547	Va	194
+3548	Vaisigano	194
+3549	Acquaviva	195
+3550	Borgo Maggiore	195
+3551	Chiesanuova	195
+3552	Domagnano	195
+3553	Faetano	195
+3554	Fiorentino	195
+3555	Monte Giardino	195
+3556	San Marino	195
+3557	Serravalle	195
+3558	Charlotte	196
+3559	Grenadines	196
+3560	Saint Andrew	196
+3561	Saint David	196
+3562	Saint George	196
+3563	Saint Patrick	196
+3564	Ascension	197
+3565	Saint Helena	197
+3566	Tristan da Cunha	197
+3567	Anse-la-Raye	198
+3568	Castries	198
+3569	Choiseul	198
+3570	Dauphin	198
+3571	Dennery	198
+3572	Gros-Islet	198
+3573	Laborie	198
+3574	Micoud	198
+3575	Praslin	198
+3576	Soufriere	198
+3577	Vieux-Fort	198
+3578	Principe	199
+3579	Sao Tome	199
+3580	Dakar	200
+3581	Diourbel	200
+3582	Fatick	200
+3583	Kaolack	200
+3584	Kolda	200
+3585	Louga	200
+3586	Saint-Louis	200
+3587	Saint-Louis Region	200
+3588	Tambacounda	200
+3589	Thies	200
+3590	Ziguinchor	200
+3591	Kosovo	201
+3592	Vojvodina	201
+3593	Anse Boileau	202
+3594	Anse Etoile	202
+3595	Anse Louis	202
+3596	Anse Royale	202
+3597	Anse aux Pins	202
+3598	Baie Lazare	202
+3599	Baie Sainte Anne	202
+3600	Beau Vallon	202
+3601	Bel Air	202
+3602	Bel Ombre	202
+3603	Cascade	202
+3604	Glacis	202
+3605	Grand Anse	202
+3606	Grand Anse	202
+3607	La Digue	202
+3608	La Riviere Anglaise	202
+3609	Mont Buxton	202
+3610	Mont Fleuri	202
+3611	Plaisance	202
+3612	Pointe La Rue	202
+3613	Port Glaud	202
+3614	Saint Louis	202
+3615	Takamaka	202
+3616	Eastern	203
+3617	Northern	203
+3618	Southern	203
+3619	Western Area	203
+3620	Singapore (General)	204
+3621	Al Hasakah	205
+3622	Al Ladhiqiyah	205
+3623	Al Qunaytirah	205
+3624	Ar Raqqah	205
+3625	As Suwayda	205
+3626	Dar	205
+3627	Dayr az Zawr	205
+3628	Dimashq	205
+3629	Halab	205
+3630	Hamah	205
+3631	Hims	205
+3632	Idlib	205
+3633	Rif Dimashq	205
+3634	Tartus	205
+3635	Bakool	206
+3636	Banaadir	206
+3637	Bari	206
+3638	Bay	206
+3639	Galguduud	206
+3640	Gedo	206
+3641	Hiiraan	206
+3642	Jubbada Dhexe	206
+3643	Jubbada Hoose	206
+3644	Mudug	206
+3645	Nugaal	206
+3646	Sanaag	206
+3647	Shabeellaha Dhexe	206
+3648	Shabeellaha Hoose	206
+3649	Togdheer	206
+3650	Woqooyi Galbeed	206
+3651	Amparai	207
+3652	Anuradhapura	207
+3653	Badulla	207
+3654	Batticaloa	207
+3655	Central Province	207
+3656	Colombo	207
+3657	Galle	207
+3658	Gampaha	207
+3659	Hambantota	207
+3660	Jaffna	207
+3661	Kalutara	207
+3662	Kandy	207
+3663	Kegalla	207
+3664	Kurunegala	207
+3665	Mannar	207
+3666	Matale	207
+3667	Matara	207
+3668	Moneragala	207
+3669	Mullaittivu	207
+3670	North Central Province	207
+3671	North Eastern Province	207
+3672	North Western Province	207
+3673	Nuwara Eliya	207
+3674	Polonnaruwa	207
+3675	Puttalam	207
+3676	Ratnapura	207
+3677	Sabaragamuwa Province	207
+3678	Southern Province	207
+3679	Trincomalee	207
+3680	Uva Province	207
+3681	Vavuniya	207
+3682	Western Province	207
+3683	Hhohho	208
+3684	Lubombo	208
+3685	Manzini	208
+3686	Praslin	208
+3687	Shiselweni	208
+3688	Eastern Cape	209
+3689	Free State	209
+3690	Gauteng	209
+3691	KwaZulu-Natal	209
+3692	Limpopo	209
+3693	Mpumalanga	209
+3694	North-West	209
+3695	Northern Cape	209
+3696	Western Cape	209
+3697	Al Istiwaiyah	210
+3698	Al Khartum	210
+3699	Al Wusta	210
+3700	Ash Shamaliyah	210
+3701	Ash Sharqiyah	210
+3702	Bahr al Ghazal	210
+3703	Darfur	210
+3704	Kurdufan	210
+3705	Alvsborgs Lan	211
+3706	Blekinge Lan	211
+3707	Dalarnas Lan	211
+3708	Gavleborgs Lan	211
+3709	Goteborgs och Bohus Lan	211
+3710	Gotlands Lan	211
+3711	Hallands Lan	211
+3712	Jamtlands Lan	211
+3713	Jonkopings Lan	211
+3714	Kalmar Lan	211
+3715	Kristianstads Lan	211
+3716	Kronobergs Lan	211
+3717	Malmohus Lan	211
+3718	Norrbottens Lan	211
+3719	Orebro Lan	211
+3720	Ostergotlands Lan	211
+3721	Skane Lan	211
+3722	Skaraborgs Lan	211
+3723	Sodermanlands Lan	211
+3724	Stockholms Lan	211
+3725	Uppsala Lan	211
+3726	Varmlands Lan	211
+3727	Vasterbottens Lan	211
+3728	Vasternorrlands Lan	211
+3729	Vastmanlands Lan	211
+3730	Vastra Gotaland	211
+3731	Aargau	212
+3732	Ausser-Rhoden	212
+3733	Basel-Landschaft	212
+3734	Basel-Stadt	212
+3735	Bern	212
+3736	Fribourg	212
+3737	Geneve	212
+3738	Glarus	212
+3739	Graubunden	212
+3740	Inner-Rhoden	212
+3741	Jura	212
+3742	Luzern	212
+3743	Neuchatel	212
+3744	Nidwalden	212
+3745	Obwalden	212
+3746	Sankt Gallen	212
+3747	Schaffhausen	212
+3748	Schwyz	212
+3749	Solothurn	212
+3750	Thurgau	212
+3751	Ticino	212
+3752	Uri	212
+3753	Valais	212
+3754	Vaud	212
+3755	Zug	212
+3756	Zurich	212
+3757	Brokopondo	213
+3758	Commewijne	213
+3759	Coronie	213
+3760	Marowijne	213
+3761	Nickerie	213
+3762	Para	213
+3763	Paramaribo	213
+3764	Saramacca	213
+3765	Sipaliwini	213
+3766	Wanica	213
+3767	Svalbard and Jan Mayen (General)	214
+3768	Ang Thong	215
+3769	Buriram	215
+3770	Chachoengsao	215
+3771	Chai Nat	215
+3772	Chaiyaphum	215
+3773	Chanthaburi	215
+3774	Chiang Mai	215
+3775	Chiang Rai	215
+3776	Chon Buri	215
+3777	Chumphon	215
+3778	Kalasin	215
+3779	Kamphaeng Phet	215
+3780	Kanchanaburi	215
+3781	Khon Kaen	215
+3782	Krabi	215
+3783	Krung Thep	215
+3784	Lampang	215
+3785	Lamphun	215
+3786	Loei	215
+3787	Lop Buri	215
+3788	Mae Hong Son	215
+3789	Maha Sarakham	215
+3790	Mukdahan	215
+3791	Nakhon Nayok	215
+3792	Nakhon Pathom	215
+3793	Nakhon Phanom	215
+3794	Nakhon Ratchasima	215
+3795	Nakhon Sawan	215
+3796	Nakhon Si Thammarat	215
+3797	Nan	215
+3798	Narathiwat	215
+3799	Nong Khai	215
+3800	Nonthaburi	215
+3801	Pathum Thani	215
+3802	Pattani	215
+3803	Phangnga	215
+3804	Phatthalung	215
+3805	Phayao	215
+3806	Phetchabun	215
+3807	Phetchaburi	215
+3808	Phichit	215
+3809	Phitsanulok	215
+3810	Phra Nakhon Si Ayutthaya	215
+3811	Phrae	215
+3812	Phuket	215
+3813	Prachin Buri	215
+3814	Prachuap Khiri Khan	215
+3815	Ranong	215
+3816	Ratchaburi	215
+3817	Rayong	215
+3818	Roi Et	215
+3819	Sakon Nakhon	215
+3820	Samut Prakan	215
+3821	Samut Sakhon	215
+3822	Samut Songkhram	215
+3823	Saraburi	215
+3824	Satun	215
+3825	Sing Buri	215
+3826	Sisaket	215
+3827	Songkhla	215
+3828	Sukhothai	215
+3829	Suphan Buri	215
+3830	Surat Thani	215
+3831	Surin	215
+3832	Tak	215
+3833	Trang	215
+3834	Trat	215
+3835	Ubon Ratchathani	215
+3836	Ubon Ratchathani Province	215
+3837	Udon Thani	215
+3838	Uthai Thani	215
+3839	Uttaradit	215
+3840	Yala	215
+3841	Yasothon	215
+3842	Fu-chien	216
+3843	Kao-hsiung	216
+3844	T ai-pei	216
+3845	T ai-wan	216
+3846	Khatlon	217
+3847	Kuhistoni Badakhshon	217
+3848	Sughd	217
+3849	Arusha	218
+3850	Arusha Region	218
+3851	Dar es Salaam	218
+3852	Dodoma	218
+3853	Iringa	218
+3854	Kagera	218
+3855	Kigoma	218
+3856	Kilimanjaro	218
+3857	Lindi	218
+3858	Mara	218
+3859	Mbeya	218
+3860	Morogoro	218
+3861	Mtwara	218
+3862	Mwanza	218
+3863	Pemba North	218
+3864	Pemba South	218
+3865	Pwani	218
+3866	Rukwa	218
+3867	Ruvuma	218
+3868	Shinyanga	218
+3869	Singida	218
+3870	Tabora	218
+3871	Tanga	218
+3872	Zanzibar Central	218
+3873	Zanzibar North	218
+3874	Zanzibar Urban	218
+3875	Amlame	219
+3876	Aneho	219
+3877	Atakpame	219
+3878	Badou	219
+3879	Bafilo	219
+3880	Bassar	219
+3881	Dapaong	219
+3882	Kante	219
+3883	Klouto	219
+3884	Kpagouda	219
+3885	Lama-Kara	219
+3886	Lome	219
+3887	Mango	219
+3888	Maritime Region	219
+3889	Niamtougou	219
+3890	Notse	219
+3891	Sotouboua	219
+3892	Tabligbo	219
+3893	Tchamba	219
+3894	Tchaoudjo	219
+3895	Tsevie	219
+3896	Vogan	219
+3897	Ha	220
+3898	Tongatapu	220
+3899	Vava	220
+3900	Tokelau (General)	221
+3901	Arima	222
+3902	Caroni	222
+3903	Mayaro	222
+3904	Nariva	222
+3905	Port-of-Spain	222
+3906	Saint Andrew	222
+3907	Saint David	222
+3908	Saint George	222
+3909	Saint Patrick	222
+3910	San Fernando	222
+3911	Tobago	222
+3912	Victoria	222
+3913	Ahal	223
+3914	Balkan	223
+3915	Dashoguz	223
+3916	Lebap	223
+3917	Mary	223
+3918	Adana	224
+3919	Adiyaman	224
+3920	Afyon	224
+3921	Agri	224
+3922	Aksaray	224
+3923	Amasya	224
+3924	Ankara	224
+3925	Antalya	224
+3926	Ardahan	224
+3927	Artvin	224
+3928	Aydin	224
+3929	Balikesir	224
+3930	Bartin	224
+3931	Batman	224
+3932	Bayburt	224
+3933	Bilecik	224
+3934	Bingol	224
+3935	Bitlis	224
+3936	Bolu	224
+3937	Burdur	224
+3938	Bursa	224
+3939	Canakkale	224
+3940	Cankiri	224
+3941	Corum	224
+3942	Denizli	224
+3943	Diyarbakir	224
+3944	Duzce	224
+3945	Edirne	224
+3946	Elazig	224
+3947	Erzincan	224
+3948	Erzurum	224
+3949	Eskisehir	224
+3950	Gaziantep	224
+3951	Giresun	224
+3952	Gumushane	224
+3953	Hakkari	224
+3954	Hatay	224
+3955	Icel	224
+3956	Igdir	224
+3957	Isparta	224
+3958	Istanbul	224
+3959	Izmir	224
+3960	Kahramanmaras	224
+3961	Karabuk	224
+3962	Karaman	224
+3963	Kars	224
+3964	Kastamonu	224
+3965	Kayseri	224
+3966	Kilis	224
+3967	Kirikkale	224
+3968	Kirklareli	224
+3969	Kirsehir	224
+3970	Kocaeli	224
+3971	Konya	224
+3972	Kutahya	224
+3973	Malatya	224
+3974	Manisa	224
+3975	Mardin	224
+3976	Mugla	224
+3977	Mus	224
+3978	Nevsehir	224
+3979	Nigde	224
+3980	Ordu	224
+3981	Osmaniye	224
+3982	Rize	224
+3983	Sakarya	224
+3984	Samsun	224
+3985	Sanliurfa	224
+3986	Siirt	224
+3987	Sinop	224
+3988	Sirnak	224
+3989	Sivas	224
+3990	Tekirdag	224
+3991	Tokat	224
+3992	Trabzon	224
+3993	Tunceli	224
+3994	Usak	224
+3995	Van	224
+3996	Yalova	224
+3997	Yozgat	224
+3998	Zonguldak	224
+3999	Tuvalu (General)	225
+4000	Al Mahdiyah	226
+4001	Al Munastir	226
+4002	Al Qasrayn	226
+4003	Al Qayrawan	226
+4004	Ariana	226
+4005	Ariana Governorate	226
+4006	Bajah	226
+4007	Banzart	226
+4008	Bin	226
+4009	Jundubah	226
+4010	Kef	226
+4011	Madanin	226
+4012	Manouba	226
+4013	Nabul	226
+4014	Qabis	226
+4015	Qafsah	226
+4016	Qibili	226
+4017	Safaqis	226
+4018	Sidi Bu Zayd	226
+4019	Silyanah	226
+4020	Susah	226
+4021	Tatawin	226
+4022	Tawzar	226
+4023	Tunis	226
+4024	Zaghwan	226
+4025	Cherkas ka Oblast	227
+4026	Chernihivska Oblast	227
+4027	Chernivets ka Oblast	227
+4028	Dnipropetrovs ka Oblast	227
+4029	Donets ka Oblast	227
+4030	Ivano-Frankivs ka Oblast	227
+4031	Kharkivs ka Oblast	227
+4032	Khersons ka Oblast	227
+4033	Khmel nyts ka Oblast	227
+4034	Kirovohrads ka Oblast	227
+4035	Krym	227
+4036	Kyyiv	227
+4037	Kyyivs ka Oblast	227
+4038	L vivs ka Oblast	227
+4039	Luhans ka Oblast	227
+4040	Mykolayivs ka Oblast	227
+4041	Odes ka Oblast	227
+4042	Poltavs ka Oblast	227
+4043	Rivnens ka Oblast	227
+4044	Sevastopol	227
+4045	Sums ka Oblast	227
+4046	Ternopils ka Oblast	227
+4047	Vinnyts ka Oblast	227
+4048	Volyns ka Oblast	227
+4049	Zakarpats ka Oblast	227
+4050	Zaporiz ka Oblast	227
+4051	Zhytomyrs ka Oblast	227
+4052	Adjumani	228
+4053	Arua	228
+4054	Bugiri	228
+4055	Busia	228
+4056	Busoga	228
+4057	Central	228
+4058	Eastern	228
+4059	Iganga	228
+4060	Kabarole	228
+4061	Kaberamaido	228
+4062	Kampala	228
+4063	Kamwenge	228
+4064	Kanungu	228
+4065	Karamoja	228
+4066	Katakwi	228
+4067	Kayunga	228
+4068	Kitgum	228
+4069	Kyenjojo	228
+4070	Mayuge	228
+4071	Mbale	228
+4072	Moroto	228
+4073	Mpigi	228
+4074	Mukono	228
+4075	Nakapiripirit	228
+4076	Nakasongola	228
+4077	Nile	228
+4078	North Buganda	228
+4079	Northern	228
+4080	Pader	228
+4081	Rukungiri	228
+4082	Sembabule	228
+4083	Sironko	228
+4084	Soroti	228
+4085	South Buganda	228
+4086	Southern	228
+4087	Wakiso	228
+4088	Western	228
+4089	Yumbe	228
+4090	United States Minor Outlying Islands (General)	229
+4091	Artigas	230
+4092	Canelones	230
+4093	Cerro Largo	230
+4094	Colonia	230
+4095	Durazno	230
+4096	Flores	230
+4097	Florida	230
+4098	Lavalleja	230
+4099	Maldonado	230
+4100	Montevideo	230
+4101	Paysandu	230
+4102	Rio Negro	230
+4103	Rivera	230
+4104	Rocha	230
+4105	Salto	230
+4106	San Jose	230
+4107	Soriano	230
+4108	Tacuarembo	230
+4109	Treinta y Tres	230
+4110	Andijon	231
+4111	Bukhoro	231
+4112	Farghona	231
+4113	Jizzakh	231
+4114	Khorazm	231
+4115	Namangan	231
+4116	Nawoiy	231
+4117	Qashqadaryo	231
+4118	Qoraqalpoghiston	231
+4119	Samarqand	231
+4120	Sirdaryo	231
+4121	Sirdaryo Province	231
+4122	Surkhondaryo	231
+4123	Toshkent	231
+4124	Ambrym	232
+4125	Aoba	232
+4126	Efate	232
+4127	Epi	232
+4128	Malakula	232
+4129	Malampa	232
+4130	Paama	232
+4131	Penama	232
+4132	Pentecote	232
+4133	Sanma	232
+4134	Shefa	232
+4135	Shepherd	232
+4136	Tafea	232
+4137	Torba	232
+4138	Amazonas	233
+4139	Anzoategui	233
+4140	Apure	233
+4141	Aragua	233
+4142	Barinas	233
+4143	Bolívar	233
+4144	Carabobo	233
+4145	Cojedes	233
+4146	Delta Amacuro	233
+4147	Dependencias Federales	233
+4148	Distrito Capital	233
+4149	Falcón	233
+4150	Guarico	233
+4151	Lara	233
+4152	Merida	233
+4153	Miranda	233
+4154	Monagas	233
+4155	Nueva Esparta	233
+4156	Portuguesa	233
+4157	Sucre	233
+4158	Tachira	233
+4159	Trujillo	233
+4160	Vargas	233
+4161	Yaracuy	233
+4162	Zulia	233
+4163	An Giang	234
+4164	An Giang Province	234
+4165	Ba Ria-Vung Tau	234
+4166	Bac Thai	234
+4167	Ben Tre	234
+4168	Binh Dinh	234
+4169	Binh Thuan	234
+4170	Binh Tri Thien	234
+4171	Can Tho	234
+4172	Cao Bang	234
+4173	Cuu Long	234
+4174	Dac Lac	234
+4175	Dac Lak Province	234
+4176	Dong Nai	234
+4177	Dong Nai	234
+4178	Dong Thap	234
+4179	Gia Lai	234
+4180	Gia Lai-Kon Tum	234
+4181	Ha Bac	234
+4182	Ha Giang	234
+4183	Ha Nam Ninh	234
+4184	Ha Noi	234
+4185	Ha Son Binh	234
+4186	Ha Tay	234
+4187	Ha Tinh	234
+4188	Ha Tuyen	234
+4189	Hai Hung	234
+4190	Hai Phong	234
+4191	Hanoi	234
+4192	Hau Giang	234
+4193	Ho Chi Minh	234
+4194	Hoa Binh	234
+4195	Hung Yen Province	234
+4196	Ha Nam Province	234
+4197	Hai Duong Province	234
+4198	Ha Chi Minh Municipality	234
+4199	Khanh Hoa	234
+4200	Kien Giang	234
+4201	Kin Giang Province	234
+4202	Kon Tum	234
+4203	Lai Chau	234
+4204	Lam Dong	234
+4205	Lang Son	234
+4206	Lao Cai	234
+4207	Long An	234
+4208	Minh Hai	234
+4209	Minh Hi Tinh	234
+4210	Nam Ha	234
+4211	Nghe An	234
+4212	Nghe Tinh	234
+4213	Nghia Binh	234
+4214	Ninh Binh	234
+4215	Ninh Thuan	234
+4216	Phu Khanh	234
+4217	Phu Yen	234
+4218	Quang Binh	234
+4219	Quang Nam-Da Nang	234
+4220	Quang Ngai	234
+4221	Quang Ninh	234
+4222	Quang Tri	234
+4223	Quang Nam Province	234
+4224	Soc Trang	234
+4225	Son La	234
+4226	Song Be	234
+4227	Tay Ninh	234
+4228	Thai Binh	234
+4229	Thanh Hoa	234
+4230	Thua Thien	234
+4231	Thai Nguy?n Province	234
+4232	Tien Giang	234
+4233	Tra Vinh	234
+4234	Tuyen Quang	234
+4235	Vinh Long	234
+4236	Vinh Phu	234
+4237	Vinh Phu T?nh	234
+4238	Yen Bai	234
+4239	Dong Thap Province	234
+4240	Virgin Islands, British (General)	235
+4241	Virgin Islands, U.S. (General)	236
+4242	Western Sahara (General)	237
+4243	Abyan	238
+4244	Adan	238
+4245	Adan Governorate	238
+4246	Al Bayda	238
+4247	Al Hudaydah	238
+4248	Al Jawf	238
+4249	Al Mahrah	238
+4250	Al Mahwit	238
+4251	Dhamar	238
+4252	Hadramawt	238
+4253	Hajjah	238
+4254	Ibb	238
+4255	Lahij	238
+4256	Ma rib	238
+4257	Sa	238
+4258	San	238
+4259	Shabwah	238
+4260	Ta	238
+4261	Taizz Governorate	238
+4262	Bandundu	239
+4263	Bas-Congo	239
+4264	Equateur	239
+4265	Kasai-Occidental	239
+4266	Kasai-Oriental	239
+4267	Katanga	239
+4268	Kinshasa	239
+4269	Kivu	239
+4270	Maniema	239
+4271	Nord-Kivu	239
+4272	Orientale	239
+4273	Sud-Kivu	239
+4274	Central	240
+4275	Copperbelt	240
+4276	Eastern	240
+4277	Luapula	240
+4278	Lusaka	240
+4279	North-Western	240
+4280	Northern	240
+4281	Southern	240
+4282	Western	240
+4283	Bulawayo	241
+4284	Harare	241
+4285	Manicaland	241
+4286	Mashonaland Central	241
+4287	Mashonaland East	241
+4288	Mashonaland West	241
+4289	Masvingo	241
+4290	Matabeleland North	241
+4291	Matabeleland South	241
+4292	Midlands	241
+\.
+
+
+--
+-- TOC entry 2138 (class 0 OID 21395)
+-- Dependencies: 167
+-- Data for Name: etapas; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY etapas (id_etapa, etapa_abrev, etapa, nro_consecutivo_etapa, id_proceso) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2139 (class 0 OID 21400)
+-- Dependencies: 169
+-- Data for Name: expedientes; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY expedientes (id_expediente, id_organismo, hechos, observaciones, id_proceso_actual, id_etapa_actual, id_usuario_ini, sesssion_id, confirm_inicial, fecha_registro, fecha_solic_invest) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2140 (class 0 OID 21408)
+-- Dependencies: 171
+-- Data for Name: interesados; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY interesados (id_interesado, id_expediente, cedula_de_identidad) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2141 (class 0 OID 21413)
+-- Dependencies: 173
+-- Data for Name: logs_usuarios; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY logs_usuarios (id_log_usuario, id_usuario, log_usuario, estatus_final, fecha_log) FROM stdin;
+5	1	El usuario con la C.I. 17693788 ha sido autenticado correctamente y ha ingresado al sistema.	EXITOSO	2012-05-06 18:39:52
+6	1	El usuario con la C.I. 17693788 ha sido autenticado correctamente y ha ingresado al sistema.	EXITOSO	2012-05-08 06:55:05
+7	1	El usuario con la C.I. 17693788 ha sido autenticado correctamente y ha ingresado al sistema.	EXITOSO	2012-05-16 23:50:08
+8	1	El usuario con la C.I. 17693788 ha sido autenticado correctamente y ha ingresado al sistema.	EXITOSO	2012-05-17 05:59:17
+\.
+
+
+--
+-- TOC entry 2142 (class 0 OID 21426)
+-- Dependencies: 175
+-- Data for Name: organismos; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY organismos (id_organismo, rif, nombre_organismo, sector) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2143 (class 0 OID 21431)
+-- Dependencies: 177
+-- Data for Name: paises; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY paises (id_pais, pais) FROM stdin;
+1	Afganistan
+2	Albania
+3	Alemania
+4	American Samoa
+5	Andorra
+6	Angola
+7	Anguila
+8	Antigua and Barbuda
+9	Antillas Holandesas
+10	Antartida
+11	Arabia Saudita
+12	Argelia
+13	Argentina
+14	Armenia
+15	Aruba
+17	Australia
+18	Austria
+19	Azerbaijan
+20	Bahamas
+21	Bahrein
+22	Bangladesh
+23	Barbados
+24	Belice
+25	Benin
+26	Bermuda
+27	Bielorrusia
+28	Bolivia
+29	Bosnia y Herzegovina
+30	Botsuana
+31	Bouvet Island
+32	Brasil
+33	British Indian Ocean Territory
+34	Brunei Darussalam
+35	Bulgaria
+36	Burkina Faso
+37	Burundi
+38	Butan
+39	Belgica
+40	Cabo Verda
+41	Camboya
+42	Camerun
+44	Canada
+45	Chad
+46	Chile
+47	China
+48	Chipre
+49	Colombia
+50	Comores
+51	Congo
+52	Corea del Norte
+53	Corea del Sur
+54	Costa Rica
+55	Cote D Ivoire
+56	Croacia
+57	Cuba
+58	Dinamarca
+59	Djibouti
+60	Dominica
+61	East Timor
+62	Ecuador
+63	Egipto
+64	El Salvador
+65	El Vaticano
+66	Emiratos Arabes Unidos
+67	Eritrea
+68	Eslovaquia
+69	Eslovenia
+70	España
+71	Estados Unidos
+72	Estonia
+73	Etiopia
+74	Fiji
+75	Filipinas
+76	Finlandia
+77	Francia
+78	French Guiana
+79	French Polynesia
+80	French Southern Territories
+81	Gabon
+82	Gambia
+83	Georgia
+84	Ghana
+85	Gibraltar
+86	Granada
+87	Grecia
+88	Groenlandia
+89	Guadalupe
+90	Guam
+91	Guatemala
+92	Guinea
+93	Guinea Ecuatorial
+94	Guinea-Bissau
+95	Guyana
+96	Haiti
+97	Heard Island and McDonald Isla
+98	Holanda
+99	Honduras
+100	Hong Kong
+101	Hungria
+102	India
+103	Indonesia
+104	Iraq
+105	Irlanda
+106	Isalas Cocos
+107	Isla Christmas
+108	Islandia
+109	Islas Caiman
+110	Islas Cook
+111	Islas Feroe
+112	Islas Malvinas
+113	Islas Marshall
+114	Islas Mauricio
+115	Islas Salomon
+116	Islas Sandwhich
+117	Islas Turks y Caicos
+118	Islas Wallis y Futuna
+119	Israel
+120	Italia
+121	Jamaica
+122	Japon
+123	Jordania
+124	Kazakhstan
+125	Kenia
+126	Kiribati
+127	Kuwait
+128	Kyrgyzstan
+129	Laos
+130	Latvia
+131	Lesoto
+132	Liberia
+133	Libia
+134	Liechtenstein
+135	Lituania
+136	Luxemburgo
+137	Libano
+138	Macao
+139	Macedonia
+140	Madagascar
+141	Malasia
+142	Malaui
+143	Maldivas
+144	Malta
+145	Mali
+146	Marruecos
+147	Martinique
+148	Mauritania
+149	Mayotte
+150	Micronesia
+151	Moldavia
+152	Mongolia
+153	Montserrat
+154	Mozambique
+155	Myanmar
+156	Mexico
+157	Monaco
+158	Namibia
+159	Nauru
+160	Nepal
+161	Nicaragua
+162	Nigeria
+163	Niue
+164	Norfolk Island
+165	Northern Mariana Islands
+166	Noruega
+167	Nueva Caledonia
+168	Nueva Zelanda
+169	Niger
+170	Oman
+171	Pakistan
+172	Palau
+173	Palestinian Territory
+174	Panama
+175	Papua Nueva Guinea
+176	Paraguay
+177	Peru
+178	Pitcairn
+179	Polonia
+180	Portugal
+181	Puerto Rico
+182	Qatar
+183	Reino Unido
+184	Republica Centroafricana
+185	Republica Checa
+186	Republica Democratica del Cong
+187	Republica Dominicana
+188	Republica Islamica de Iran
+189	Ruanda
+190	Rumania
+191	Rusian
+192	Saint Kitts and Nevis
+193	Saint Pierre y Miquelon
+194	Samoa
+195	San Marino
+196	San Vicente y Las Granadinas
+197	Santa Elena
+198	Santa Lucia
+199	Sao Tome and Principe
+200	Senegal
+201	Serbia y Montenegro
+202	Seychelles
+203	Sierra Leona
+204	Singapur
+205	Siria
+206	Somalia
+207	Sri Lanka
+208	Suazilandia
+209	Sudafrica
+210	Sudan
+211	Suecia
+212	Suiza
+213	Surinam
+214	Svalbard and Jan Mayen
+215	Tailandia
+216	Taiwan
+217	Tajikistan
+218	Tanzania
+219	Togo
+220	Tonga
+221	Toquelau
+222	Trinidad y Tobago
+223	Turkmenistan
+224	Turquia
+225	Tuvalu
+226	Tunez
+227	Ucrania
+228	Uganda
+229	United States Minor Outlying I
+230	Uruguay
+231	Uzbekistan
+232	Vanuatu
+233	Venezuela
+234	Vietnam
+235	Virgin Islands British
+236	Virgin Islands U.S.
+237	Western Sahara
+238	Yemen
+239	Zaire
+240	Zambia
+241	Zimbabue
+\.
+
+
+--
+-- TOC entry 2144 (class 0 OID 21436)
+-- Dependencies: 179
+-- Data for Name: perfiles; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY perfiles (id_perfil, perfil, descripcion_perfil) FROM stdin;
+1	Abogado Coordinador	Representa el Abogado Jefe y tiene los permisos para cerrar casos así como realizar la asignación de expedientes en un determinado proceso a otros abogados.
+2	Abogado Asignado	Representa al Abogado al cual le es asignado un expediente, tiene permisos de llevar a cabo todos los cambios en las etapas de un expediente en el proceso en el cual le fué asignado dicho expediente.
+3	Administrador	Tiene todos los derechos de Superusuario
+\.
+
+
+--
+-- TOC entry 2145 (class 0 OID 21441)
+-- Dependencies: 181
+-- Data for Name: personas; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY personas (id_persona, nombre, apellido, nacionalidad, cedula_de_identidad, telefono1, telefono2, id_pais, id_estado, email) FROM stdin;
+1	José Gabriel	Gonzalez	V	17693788	4166075731	4265124336	233	4153	jgabrielsinner10@gmail.com
+\.
+
+
+--
+-- TOC entry 2146 (class 0 OID 21446)
+-- Dependencies: 183
+-- Data for Name: procesos; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY procesos (id_proceso, proceso_abrev, proceso, nro_consecutivo_proceso) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2147 (class 0 OID 21451)
+-- Dependencies: 185
+-- Data for Name: usuarios; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY usuarios (id_usuario, usuario, usuario_encrypt, clave, es_activo, id_persona, id_perfil, fecha_registro, fecha_ultimo_ingreso) FROM stdin;
+1	17693788	b87eedb67d0ac6a5b410031d35839371d27666ade08c55ba71cc5e30b775765d1d0d7cbe642b7fe27b493131e7f24e7953efdbf65d29cf71f9ecaa152e582eb9	3c9909afec25354d551dae21590bb26e38d53f2173b8d3dc3eee4c047e7ab1c1eb8b85103e3be7ba613b31bb5c9c36214dc9f14a42fd7a2fdb84856bca5c44c2	SI	1	1	2012-05-16	\N
+\.
+
+
+--
+-- TOC entry 2114 (class 2606 OID 26188)
+-- Dependencies: 188 188
+-- Name: bitaco_mov_id_pk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY bitacoras
+    ADD CONSTRAINT bitaco_mov_id_pk PRIMARY KEY (id_bitacora);
+
+
+--
+-- TOC entry 2094 (class 2606 OID 26007)
+-- Dependencies: 181 181
+-- Name: cedula_de_identidad_uk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY personas
+    ADD CONSTRAINT cedula_de_identidad_uk UNIQUE (cedula_de_identidad);
+
+
+--
+-- TOC entry 2058 (class 2606 OID 26009)
+-- Dependencies: 161 161
+-- Name: consulta_id_pk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY consultas
+    ADD CONSTRAINT consulta_id_pk PRIMARY KEY (id_consulta);
+
+
+--
+-- TOC entry 2060 (class 2606 OID 26011)
+-- Dependencies: 163 163
+-- Name: control_mov_id_pk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY control_movimientos
+    ADD CONSTRAINT control_mov_id_pk PRIMARY KEY (id_control_movimientos);
+
+
+--
+-- TOC entry 2062 (class 2606 OID 26013)
+-- Dependencies: 163 163 163 163
+-- Name: control_movimiento_uk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY control_movimientos
+    ADD CONSTRAINT control_movimiento_uk UNIQUE (id_expidiente, id_proceso, id_etapa);
+
+
+--
+-- TOC entry 2064 (class 2606 OID 26015)
+-- Dependencies: 165 165
+-- Name: estado_pk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY estados
+    ADD CONSTRAINT estado_pk PRIMARY KEY (id_estado);
+
+
+--
+-- TOC entry 2066 (class 2606 OID 26017)
+-- Dependencies: 167 167
+-- Name: etaba_abrev_uk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY etapas
+    ADD CONSTRAINT etaba_abrev_uk UNIQUE (etapa_abrev);
+
+
+--
+-- TOC entry 2068 (class 2606 OID 26019)
+-- Dependencies: 167 167
+-- Name: etapa_consecutivo_uk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY etapas
+    ADD CONSTRAINT etapa_consecutivo_uk UNIQUE (nro_consecutivo_etapa);
+
+
+--
+-- TOC entry 2070 (class 2606 OID 26021)
+-- Dependencies: 167 167
+-- Name: etapa_desc_uk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY etapas
+    ADD CONSTRAINT etapa_desc_uk UNIQUE (etapa);
+
+
+--
+-- TOC entry 2072 (class 2606 OID 26023)
+-- Dependencies: 167 167
+-- Name: etapa_id_pk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY etapas
+    ADD CONSTRAINT etapa_id_pk PRIMARY KEY (id_etapa);
+
+
+--
+-- TOC entry 2074 (class 2606 OID 26025)
+-- Dependencies: 169 169
+-- Name: id_expediente_pk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY expedientes
+    ADD CONSTRAINT id_expediente_pk PRIMARY KEY (id_expediente);
+
+
+--
+-- TOC entry 2076 (class 2606 OID 26027)
+-- Dependencies: 171 171
+-- Name: id_interesado_pk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY interesados
+    ADD CONSTRAINT id_interesado_pk PRIMARY KEY (id_interesado);
+
+
+--
+-- TOC entry 2090 (class 2606 OID 26029)
+-- Dependencies: 179 179
+-- Name: id_perfil_pk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY perfiles
+    ADD CONSTRAINT id_perfil_pk PRIMARY KEY (id_perfil);
+
+
+--
+-- TOC entry 2106 (class 2606 OID 26031)
+-- Dependencies: 185 185
+-- Name: id_usuario_pk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY usuarios
+    ADD CONSTRAINT id_usuario_pk PRIMARY KEY (id_usuario);
+
+
+--
+-- TOC entry 2078 (class 2606 OID 26033)
+-- Dependencies: 173 173
+-- Name: log_usuario_id_pk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY logs_usuarios
+    ADD CONSTRAINT log_usuario_id_pk PRIMARY KEY (id_log_usuario);
+
+
+--
+-- TOC entry 2080 (class 2606 OID 26039)
+-- Dependencies: 175 175
+-- Name: organismo_id_pk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY organismos
+    ADD CONSTRAINT organismo_id_pk PRIMARY KEY (id_organismo);
+
+
+--
+-- TOC entry 2082 (class 2606 OID 26041)
+-- Dependencies: 175 175
+-- Name: organismo_nombre_uk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY organismos
+    ADD CONSTRAINT organismo_nombre_uk UNIQUE (nombre_organismo);
+
+
+--
+-- TOC entry 2084 (class 2606 OID 26043)
+-- Dependencies: 175 175
+-- Name: organismo_rif_uk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY organismos
+    ADD CONSTRAINT organismo_rif_uk UNIQUE (rif);
+
+
+--
+-- TOC entry 2086 (class 2606 OID 26045)
+-- Dependencies: 177 177
+-- Name: pais_pk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY paises
+    ADD CONSTRAINT pais_pk PRIMARY KEY (id_pais);
+
+
+--
+-- TOC entry 2088 (class 2606 OID 26047)
+-- Dependencies: 177 177
+-- Name: pais_uk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY paises
+    ADD CONSTRAINT pais_uk UNIQUE (pais);
+
+
+--
+-- TOC entry 2092 (class 2606 OID 26049)
+-- Dependencies: 179 179
+-- Name: perfil; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY perfiles
+    ADD CONSTRAINT perfil UNIQUE (perfil);
+
+
+--
+-- TOC entry 2096 (class 2606 OID 26051)
+-- Dependencies: 181 181
+-- Name: personas_pk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY personas
+    ADD CONSTRAINT personas_pk PRIMARY KEY (id_persona);
+
+
+--
+-- TOC entry 2098 (class 2606 OID 26053)
+-- Dependencies: 183 183
+-- Name: proceso_abrev_uk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY procesos
+    ADD CONSTRAINT proceso_abrev_uk UNIQUE (proceso_abrev);
+
+
+--
+-- TOC entry 2100 (class 2606 OID 26055)
+-- Dependencies: 183 183
+-- Name: proceso_consecutivo_uk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY procesos
+    ADD CONSTRAINT proceso_consecutivo_uk UNIQUE (nro_consecutivo_proceso);
+
+
+--
+-- TOC entry 2102 (class 2606 OID 26057)
+-- Dependencies: 183 183
+-- Name: proceso_desc_uk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY procesos
+    ADD CONSTRAINT proceso_desc_uk UNIQUE (proceso_abrev);
+
+
+--
+-- TOC entry 2104 (class 2606 OID 26059)
+-- Dependencies: 183 183
+-- Name: proceso_id_pk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY procesos
+    ADD CONSTRAINT proceso_id_pk PRIMARY KEY (id_proceso);
+
+
+--
+-- TOC entry 2108 (class 2606 OID 26061)
+-- Dependencies: 185 185
+-- Name: usuario_encrypt_uk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY usuarios
+    ADD CONSTRAINT usuario_encrypt_uk UNIQUE (usuario_encrypt);
+
+
+--
+-- TOC entry 2110 (class 2606 OID 26063)
+-- Dependencies: 185 185
+-- Name: usuario_persona_uk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY usuarios
+    ADD CONSTRAINT usuario_persona_uk UNIQUE (id_persona);
+
+
+--
+-- TOC entry 2112 (class 2606 OID 26065)
+-- Dependencies: 185 185
+-- Name: usuario_uk; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY usuarios
+    ADD CONSTRAINT usuario_uk UNIQUE (usuario);
+
+
+--
+-- TOC entry 2134 (class 2606 OID 26189)
+-- Dependencies: 2073 188 169
+-- Name: bitaco_expediente_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY bitacoras
+    ADD CONSTRAINT bitaco_expediente_fk FOREIGN KEY (id_expidiente) REFERENCES expedientes(id_expediente);
+
+
+--
+-- TOC entry 2127 (class 2606 OID 26066)
+-- Dependencies: 171 181 2093
+-- Name: cedula_de_identidad_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY interesados
+    ADD CONSTRAINT cedula_de_identidad_fk FOREIGN KEY (cedula_de_identidad) REFERENCES personas(cedula_de_identidad);
+
+
+--
+-- TOC entry 2115 (class 2606 OID 26071)
+-- Dependencies: 169 2073 161
+-- Name: consulta_expediente_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY consultas
+    ADD CONSTRAINT consulta_expediente_fk FOREIGN KEY (id_expediente) REFERENCES expedientes(id_expediente);
+
+
+--
+-- TOC entry 2116 (class 2606 OID 26076)
+-- Dependencies: 2105 185 163
+-- Name: control_abog_asignado_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY control_movimientos
+    ADD CONSTRAINT control_abog_asignado_fk FOREIGN KEY (id_abogado_asign) REFERENCES usuarios(id_usuario);
+
+
+--
+-- TOC entry 2117 (class 2606 OID 26081)
+-- Dependencies: 185 163 2105
+-- Name: control_abog_coordinador_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY control_movimientos
+    ADD CONSTRAINT control_abog_coordinador_fk FOREIGN KEY (id_abogado_coord) REFERENCES usuarios(id_usuario);
+
+
+--
+-- TOC entry 2118 (class 2606 OID 26086)
+-- Dependencies: 2071 163 167
+-- Name: control_etapa_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY control_movimientos
+    ADD CONSTRAINT control_etapa_fk FOREIGN KEY (id_etapa) REFERENCES etapas(id_etapa);
+
+
+--
+-- TOC entry 2119 (class 2606 OID 26091)
+-- Dependencies: 2073 169 163
+-- Name: control_expediente_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY control_movimientos
+    ADD CONSTRAINT control_expediente_fk FOREIGN KEY (id_expidiente) REFERENCES expedientes(id_expediente);
+
+
+--
+-- TOC entry 2120 (class 2606 OID 26096)
+-- Dependencies: 163 2103 183
+-- Name: control_proceso_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY control_movimientos
+    ADD CONSTRAINT control_proceso_fk FOREIGN KEY (id_proceso) REFERENCES procesos(id_proceso);
+
+
+--
+-- TOC entry 2121 (class 2606 OID 26101)
+-- Dependencies: 2085 165 177
+-- Name: estado_pais_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY estados
+    ADD CONSTRAINT estado_pais_fk FOREIGN KEY (id_pais) REFERENCES paises(id_pais);
+
+
+--
+-- TOC entry 2122 (class 2606 OID 26106)
+-- Dependencies: 183 2103 167
+-- Name: etapa_de_proceso_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY etapas
+    ADD CONSTRAINT etapa_de_proceso_fk FOREIGN KEY (id_proceso) REFERENCES procesos(id_proceso);
+
+
+--
+-- TOC entry 2123 (class 2606 OID 26111)
+-- Dependencies: 2071 169 167
+-- Name: id_etapa_actual_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY expedientes
+    ADD CONSTRAINT id_etapa_actual_fk FOREIGN KEY (id_etapa_actual) REFERENCES etapas(id_etapa);
+
+
+--
+-- TOC entry 2128 (class 2606 OID 26116)
+-- Dependencies: 2073 171 169
+-- Name: id_expediente_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY interesados
+    ADD CONSTRAINT id_expediente_fk FOREIGN KEY (id_expediente) REFERENCES expedientes(id_expediente);
+
+
+--
+-- TOC entry 2124 (class 2606 OID 26121)
+-- Dependencies: 2079 169 175
+-- Name: id_organismo_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY expedientes
+    ADD CONSTRAINT id_organismo_fk FOREIGN KEY (id_organismo) REFERENCES organismos(id_organismo);
+
+
+--
+-- TOC entry 2125 (class 2606 OID 26126)
+-- Dependencies: 183 2103 169
+-- Name: id_proceso_actual_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY expedientes
+    ADD CONSTRAINT id_proceso_actual_fk FOREIGN KEY (id_proceso_actual) REFERENCES procesos(id_proceso);
+
+
+--
+-- TOC entry 2126 (class 2606 OID 26131)
+-- Dependencies: 185 2105 169
+-- Name: id_usuario_reg_inicial_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY expedientes
+    ADD CONSTRAINT id_usuario_reg_inicial_fk FOREIGN KEY (id_usuario_ini) REFERENCES usuarios(id_usuario);
+
+
+--
+-- TOC entry 2129 (class 2606 OID 26136)
+-- Dependencies: 2105 185 173
+-- Name: log_usuario_reg_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY logs_usuarios
+    ADD CONSTRAINT log_usuario_reg_fk FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario);
+
+
+--
+-- TOC entry 2130 (class 2606 OID 26156)
+-- Dependencies: 2063 165 181
+-- Name: persona_estado_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY personas
+    ADD CONSTRAINT persona_estado_fk FOREIGN KEY (id_estado) REFERENCES estados(id_estado);
+
+
+--
+-- TOC entry 2131 (class 2606 OID 26161)
+-- Dependencies: 2085 177 181
+-- Name: persona_pais_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY personas
+    ADD CONSTRAINT persona_pais_fk FOREIGN KEY (id_pais) REFERENCES paises(id_pais);
+
+
+--
+-- TOC entry 2132 (class 2606 OID 26166)
+-- Dependencies: 2089 179 185
+-- Name: usuario_perfil_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY usuarios
+    ADD CONSTRAINT usuario_perfil_fk FOREIGN KEY (id_perfil) REFERENCES perfiles(id_perfil);
+
+
+--
+-- TOC entry 2133 (class 2606 OID 26171)
+-- Dependencies: 185 181 2095
+-- Name: usuario_persona_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY usuarios
+    ADD CONSTRAINT usuario_persona_fk FOREIGN KEY (id_persona) REFERENCES personas(id_persona);
+
+
+--
+-- TOC entry 2153 (class 0 OID 0)
+-- Dependencies: 6
+-- Name: public; Type: ACL; Schema: -; Owner: postgres
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM postgres;
+GRANT ALL ON SCHEMA public TO postgres;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2012-05-17 07:11:06 VET
+
+--
+-- PostgreSQL database dump complete
+--
+

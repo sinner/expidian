@@ -1,0 +1,3 @@
+php app/console doctrine:mapping:convert yml ./src/Expidian/GlobalBundle/Resources/config/doctrine/metadata/orm --from-database --force
+php app/console doctrine:mapping:import ExpidianGlobalBundle annotation
+php app/console doctrine:generate:entities ExpidianGlobalBundle
