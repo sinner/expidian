@@ -1,0 +1,88 @@
+<?php
+
+namespace Expidian\GlobalBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Expidian\GlobalBundle\Entity\Usuarios
+ *
+ * @ORM\Table(name="usuarios")
+ * @ORM\Entity
+ */
+class Usuarios
+{
+    /**
+     * @var integer $idUsuario
+     *
+     * @ORM\Column(name="id_usuario", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="usuarios_id_usuario_seq", allocationSize="1", initialValue="1")
+     */
+    private $idUsuario;
+
+    /**
+     * @var string $usuario
+     *
+     * @ORM\Column(name="usuario", type="string", length=15, nullable=false)
+     */
+    private $usuario;
+
+    /**
+     * @var string $usuarioEncrypt
+     *
+     * @ORM\Column(name="usuario_encrypt", type="string", length=128, nullable=false)
+     */
+    private $usuarioEncrypt;
+
+    /**
+     * @var string $clave
+     *
+     * @ORM\Column(name="clave", type="string", length=128, nullable=false)
+     */
+    private $clave;
+
+    /**
+     * @var string $esActivo
+     *
+     * @ORM\Column(name="es_activo", type="string", length=2, nullable=false)
+     */
+    private $esActivo;
+
+    /**
+     * @var date $fechaRegistro
+     *
+     * @ORM\Column(name="fecha_registro", type="date", nullable=false)
+     */
+    private $fechaRegistro;
+
+    /**
+     * @var date $fechaUltimoIngreso
+     *
+     * @ORM\Column(name="fecha_ultimo_ingreso", type="date", nullable=true)
+     */
+    private $fechaUltimoIngreso;
+
+    /**
+     * @var Perfiles
+     *
+     * @ORM\ManyToOne(targetEntity="Perfiles")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_perfil", referencedColumnName="id_perfil")
+     * })
+     */
+    private $idPerfil;
+
+    /**
+     * @var Personas
+     *
+     * @ORM\ManyToOne(targetEntity="Personas")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_persona", referencedColumnName="id_persona")
+     * })
+     */
+    private $idPersona;
+
+
+}

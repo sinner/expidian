@@ -1,0 +1,30 @@
+Bitacoras:
+  type: entity
+  table: bitacoras
+  fields:
+    idBitacora:
+      id: true
+      type: integer
+      unsigned: false
+      nullable: false
+      column: id_bitacora
+      generator:
+        strategy: SEQUENCE
+    bitacora:
+      type: text
+      nullable: false
+    fechaRegistro:
+      type: date
+      nullable: false
+      column: fecha_registro
+  oneToOne:
+    idExpidiente:
+      targetEntity: Expedientes
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        id_expidiente:
+          referencedColumnName: id_expediente
+      orphanRemoval: false
+  lifecycleCallbacks: {  }

@@ -1,0 +1,23 @@
+            <div style=" vertical-align: middle; padding-top: 100px; color: #777; font-style: italic;">
+                <div style="text-align: center">Procesando...</div>
+                {% if estatus is sameas('exitoso') %}
+                <img alt="Cargando..." src="{{ asset('bundles/expidian/images/ajax-loader.gif') }}" style="" />
+                {% else %}
+                <img alt="Regresando..." src="{{ asset('bundles/expidian/images/ajax-loader-bad.gif') }}" style="" />
+                {% endif %}
+            </div>
+            <script type="text/javascript" language="javascript">
+                var cont = 0;
+                function redirectUrl(){
+                    if(cont>=0){
+                        cont--;
+                    }
+                    else{
+                        window.location.href = "{{ urlredirect }}";
+                    }
+                    window.setTimeout("redirectUrl();", 1000);
+                }
+                $(document).ready(function(){
+                    redirectUrl();
+                });
+            </script>

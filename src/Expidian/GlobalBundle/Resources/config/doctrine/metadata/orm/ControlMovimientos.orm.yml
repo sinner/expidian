@@ -1,0 +1,69 @@
+ControlMovimientos:
+  type: entity
+  table: control_movimientos
+  fields:
+    idControlMovimientos:
+      id: true
+      type: integer
+      unsigned: false
+      nullable: false
+      column: id_control_movimientos
+      generator:
+        strategy: SEQUENCE
+    codExpediente:
+      type: string
+      length: 11
+      fixed: false
+      nullable: false
+      column: cod_expediente
+    fechaMovimiento:
+      type: date
+      nullable: false
+      column: fecha_movimiento
+  oneToOne:
+    idAbogadoAsign:
+      targetEntity: Usuarios
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        id_abogado_asign:
+          referencedColumnName: id_usuario
+      orphanRemoval: false
+    idAbogadoCoord:
+      targetEntity: Usuarios
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        id_abogado_coord:
+          referencedColumnName: id_usuario
+      orphanRemoval: false
+    idEtapa:
+      targetEntity: Etapas
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        id_etapa:
+          referencedColumnName: id_etapa
+      orphanRemoval: false
+    idExpidiente:
+      targetEntity: Expedientes
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        id_expidiente:
+          referencedColumnName: id_expediente
+      orphanRemoval: false
+    idProceso:
+      targetEntity: Procesos
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        id_proceso:
+          referencedColumnName: id_proceso
+      orphanRemoval: false
+  lifecycleCallbacks: {  }

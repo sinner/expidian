@@ -1,0 +1,62 @@
+Usuarios:
+  type: entity
+  table: usuarios
+  fields:
+    idUsuario:
+      id: true
+      type: integer
+      unsigned: false
+      nullable: false
+      column: id_usuario
+      generator:
+        strategy: SEQUENCE
+    usuario:
+      type: string
+      length: 15
+      fixed: false
+      nullable: false
+    usuarioEncrypt:
+      type: string
+      length: 128
+      fixed: false
+      nullable: false
+      column: usuario_encrypt
+    clave:
+      type: string
+      length: 128
+      fixed: false
+      nullable: false
+    esActivo:
+      type: string
+      length: 2
+      fixed: false
+      nullable: false
+      column: es_activo
+    fechaRegistro:
+      type: date
+      nullable: false
+      column: fecha_registro
+    fechaUltimoIngreso:
+      type: datetime
+      nullable: true
+      column: fecha_ultimo_ingreso
+  oneToOne:
+    idPerfil:
+      targetEntity: Perfiles
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        id_perfil:
+          referencedColumnName: id_perfil
+      orphanRemoval: false
+    idPersona:
+      targetEntity: Personas
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        id_persona:
+          referencedColumnName: id_persona
+      orphanRemoval: false
+  lifecycleCallbacks: {  }

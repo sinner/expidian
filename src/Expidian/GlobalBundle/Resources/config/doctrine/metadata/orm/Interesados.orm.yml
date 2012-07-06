@@ -1,0 +1,32 @@
+Interesados:
+  type: entity
+  table: interesados
+  fields:
+    idInteresado:
+      id: true
+      type: integer
+      unsigned: false
+      nullable: false
+      column: id_interesado
+      generator:
+        strategy: SEQUENCE
+  oneToOne:
+    cedulaDeentidad:
+      targetEntity: Personas
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        cedula_de_identidad:
+          referencedColumnName: cedula_de_identidad
+      orphanRemoval: false
+    idExpediente:
+      targetEntity: Expedientes
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        id_expediente:
+          referencedColumnName: id_expediente
+      orphanRemoval: false
+  lifecycleCallbacks: {  }

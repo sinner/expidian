@@ -1,0 +1,18 @@
+Paises:
+  type: entity
+  table: paises
+  fields:
+    idPais:
+      id: true
+      type: integer
+      unsigned: false
+      nullable: false
+      column: id_pais
+      generator:
+        strategy: SEQUENCE
+    pais:
+      type: string
+      length: 35
+      fixed: false
+      nullable: false
+  lifecycleCallbacks: {  }

@@ -1,0 +1,7 @@
+parameters:
+#    expidian_usuarios.example.class: Expidian\UsuariosBundle\Example
+
+services:
+#    expidian_usuarios.example:
+#        class: %expidian_usuarios.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,39 @@
+Etapas:
+  type: entity
+  table: etapas
+  fields:
+    idEtapa:
+      id: true
+      type: integer
+      unsigned: false
+      nullable: false
+      column: id_etapa
+      generator:
+        strategy: SEQUENCE
+    etapaAbrev:
+      type: string
+      length: 5
+      fixed: false
+      nullable: false
+      column: etapa_abrev
+    etapa:
+      type: string
+      length: 60
+      fixed: false
+      nullable: false
+    nroConsecutivoEtapa:
+      type: integer
+      unsigned: false
+      nullable: false
+      column: nro_consecutivo_etapa
+  oneToOne:
+    idProceso:
+      targetEntity: Procesos
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        id_proceso:
+          referencedColumnName: id_proceso
+      orphanRemoval: false
+  lifecycleCallbacks: {  }

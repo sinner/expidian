@@ -1,0 +1,53 @@
+Personas:
+  type: entity
+  table: personas
+  fields:
+    idPersona:
+      id: true
+      type: integer
+      unsigned: false
+      nullable: false
+      column: id_persona
+      generator:
+        strategy: SEQUENCE
+    nombre:
+      type: string
+      length: 60
+      fixed: false
+      nullable: false
+    apellido:
+      type: string
+      length: 60
+      fixed: false
+      nullable: false
+    nacionalidad:
+      type: string
+      length: 1
+      fixed: false
+      nullable: true
+    cedulaDeIdentidad:
+      type: decimal
+      nullable: false
+      column: cedula_de_identidad
+    telefono1:
+      type: decimal
+      nullable: true
+    telefono2:
+      type: decimal
+      nullable: true
+    email:
+      type: string
+      length: 255
+      fixed: false
+      nullable: true
+  oneToOne:
+    idPais:
+      targetEntity: Paises
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        id_pais:
+          referencedColumnName: id_pais
+      orphanRemoval: false
+  lifecycleCallbacks: {  }

@@ -1,0 +1,7 @@
+parameters:
+#    expidian_global.example.class: Expidian\GlobalBundle\Example
+
+services:
+#    expidian_global.example:
+#        class: %expidian_global.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

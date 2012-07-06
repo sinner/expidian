@@ -1,0 +1,56 @@
+{% extends '::base.html.twig' %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('bundles/expidian/js/sinner_grid/sinner_grid.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/expidian/js/controladores/Usuarios/usuarios.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function (){
+            
+            listar_usuarios("{{ path('ExpAjaxUsuariosList') }}");
+                                    
+            $("#form_busqueda_usuario").submit(function(event){
+                event.preventDefault();
+                busqueda_usuarios("{{ path('ExpAjaxUsuariosList') }}");
+            });
+            
+        });
+    </script>
+
+{% endblock javascripts %}
+
+{% block maincontent %}
+    <article id="buscador">
+        <div class="searchOptionsSector module_content" id="div_form_busqueda_usuario">
+            <form id="form_busqueda_usuario" name="form_busqueda_usuario" method="post">
+                <fieldset style="width: 101%;"> 
+                    <select name="criteria_box" id="criteria_box" type="text" style="width:20%;" class="searchBox" >
+                        <option value=""> - - - </option>
+                        <option value="nombre">Nombre de Usuario</option>
+                        <option value="usuario">Usuario</option>
+                        <option value="perfil">Perfil</option>
+                    </select>
+                    <input name="search_box" id="search_box" type="text" style="width:67%;" class="searchBox" />
+                    <input name="searchButton" type="submit" value="Buscar" style="margin-left:10px;width: 6.5%" />
+                </fieldset>
+            </form>
+        </div>
+    </article>
+    <article class="module width_full">
+        <header>
+            <h3>
+                <span>Lista de Usuarios del Sistema</span>
+            </h3>
+        </header>
+        <div class="module_content" id="div_lista_usuarios" style="min-height: 450px;">
+            <form name="form_list_usuarios" id="form_list_usuarios">
+                <input type="hidden" value="{{rows}}" id="rows" name="rows" />
+                <input type="hidden" value="{{searchField}}" id="searchField" name="searchField" />
+                <input type="hidden" value="{{searchOper}}" id="searchOper" name="searchOper" />
+                <input type="hidden" value="{{searchString}}" id="searchString" name="searchString" />
+                <input type="hidden" value="{{sort}}" id="grid_sort" name="grid_sort" />
+                <input type="hidden" value="{{direction}}" id="grid_direction" name="grid_direction" />
+                <input type="hidden" value="{{is_search}}" id="is_search" name="is_search" />
+            </form>
+        </div>
+    </article>
+{% endblock maincontent %}

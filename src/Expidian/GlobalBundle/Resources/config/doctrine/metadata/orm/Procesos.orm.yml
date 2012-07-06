@@ -1,0 +1,29 @@
+Procesos:
+  type: entity
+  table: procesos
+  fields:
+    idProceso:
+      id: true
+      type: integer
+      unsigned: false
+      nullable: false
+      column: id_proceso
+      generator:
+        strategy: SEQUENCE
+    procesoAbrev:
+      type: string
+      length: 5
+      fixed: false
+      nullable: true
+      column: proceso_abrev
+    proceso:
+      type: string
+      length: 60
+      fixed: false
+      nullable: true
+    nroConsecutivoProceso:
+      type: integer
+      unsigned: false
+      nullable: false
+      column: nro_consecutivo_proceso
+  lifecycleCallbacks: {  }

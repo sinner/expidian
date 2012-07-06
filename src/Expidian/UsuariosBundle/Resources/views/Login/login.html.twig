@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="ie6 ielt8"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="ie7 ielt8"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html lang="es"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}Login - Expedian 1.0{% endblock title %}</title>
+        <link rel="shortcut icon" href="{{ asset('bundles/expidian/images/folder_blue_users.ico') }}">
+        {% include '::styles.html.twig' %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/expidian/css/login.css') }}" />
+        {% include '::javascript.html.twig' %}
+        <script type="text/javascript" language="javascript" src="{{ asset('bundles/expidian/js/controladores/Usuarios/validate_login.js') }}"></script>
+    </head>
+    <body>
+        <img border="0" src="{{ asset('bundles/expidian/images/logo.png') }}" style="padding: 20px; border:0px;">
+        <div class="container">
+            <section id="content">
+                <div style="min-height: 309px;">
+                {% if accion is sameas('autenticacion') %}
+                    {% include 'ExpidianUsuariosBundle:Login/Forms:autenticacion.html.twig' %}
+                {% else %}
+                    {% include 'ExpidianUsuariosBundle:Login/Forms:form_login.html.twig' %}
+                {% endif %}
+                </div>
+            </section><!-- content -->
+        </div><!-- container -->
+    </body>
+</html>

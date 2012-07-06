@@ -1,0 +1,76 @@
+Expedientes:
+  type: entity
+  table: expedientes
+  fields:
+    idExpediente:
+      id: true
+      type: integer
+      unsigned: false
+      nullable: false
+      column: id_expediente
+      generator:
+        strategy: SEQUENCE
+    hechos:
+      type: text
+      nullable: true
+    observaciones:
+      type: text
+      nullable: true
+    sesssionId:
+      type: string
+      length: 255
+      fixed: false
+      nullable: true
+      column: sesssion_id
+    confirmInicial:
+      type: string
+      length: 10
+      fixed: false
+      nullable: true
+      column: confirm_inicial
+    fechaRegistro:
+      type: date
+      nullable: false
+      column: fecha_registro
+    fechaSolicInvest:
+      type: date
+      nullable: true
+      column: fecha_solic_invest
+  oneToOne:
+    idEtapaActual:
+      targetEntity: Etapas
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        id_etapa_actual:
+          referencedColumnName: id_etapa
+      orphanRemoval: false
+    idOrganismo:
+      targetEntity: Organismos
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        id_organismo:
+          referencedColumnName: id_organismo
+      orphanRemoval: false
+    idProcesoActual:
+      targetEntity: Procesos
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        id_proceso_actual:
+          referencedColumnName: id_proceso
+      orphanRemoval: false
+    idUsuarioIni:
+      targetEntity: Usuarios
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        id_usuario_ini:
+          referencedColumnName: id_usuario
+      orphanRemoval: false
+  lifecycleCallbacks: {  }

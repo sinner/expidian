@@ -1,0 +1,39 @@
+LogsUsuarios:
+  type: entity
+  table: logs_usuarios
+  fields:
+    idLogUsuario:
+      id: true
+      type: integer
+      unsigned: false
+      nullable: false
+      column: id_log_usuario
+      generator:
+        strategy: SEQUENCE
+    logUsuario:
+      type: string
+      length: 250
+      fixed: false
+      nullable: false
+      column: log_usuario
+    estatusFinal:
+      type: string
+      length: 20
+      fixed: false
+      nullable: true
+      column: estatus_final
+    fechaLog:
+      type: datetime
+      nullable: false
+      column: fecha_log
+  oneToOne:
+    idUsuario:
+      targetEntity: Usuarios
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        id_usuario:
+          referencedColumnName: id_usuario
+      orphanRemoval: false
+  lifecycleCallbacks: {  }

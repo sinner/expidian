@@ -1,0 +1,6 @@
+ExpInicio:
+    pattern:  /inicio
+    defaults: { _controller: ExpidianGlobalBundle:Default:index }
+ExpEntrada:
+    pattern:  /
+    defaults: { _controller: ExpidianGlobalBundle:Default:index }

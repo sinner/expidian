@@ -1,0 +1,33 @@
+Consultas:
+  type: entity
+  table: consultas
+  fields:
+    idConsulta:
+      id: true
+      type: integer
+      unsigned: false
+      nullable: false
+      column: id_consulta
+      generator:
+        strategy: SEQUENCE
+    cedulaDeIdentidad:
+      type: string
+      length: 15
+      fixed: false
+      nullable: false
+      column: cedula_de_identidad
+    fechaConsulta:
+      type: date
+      nullable: false
+      column: fecha_consulta
+  oneToOne:
+    idExpediente:
+      targetEntity: Expedientes
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        id_expediente:
+          referencedColumnName: id_expediente
+      orphanRemoval: false
+  lifecycleCallbacks: {  }

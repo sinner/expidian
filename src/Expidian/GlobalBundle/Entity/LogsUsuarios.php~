@@ -1,0 +1,57 @@
+<?php
+
+namespace Expidian\GlobalBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Expidian\GlobalBundle\Entity\LogsUsuarios
+ *
+ * @ORM\Table(name="logs_usuarios")
+ * @ORM\Entity
+ */
+class LogsUsuarios
+{
+    /**
+     * @var integer $idLogUsuario
+     *
+     * @ORM\Column(name="id_log_usuario", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="logs_usuarios_id_log_usuario_seq", allocationSize="1", initialValue="1")
+     */
+    private $idLogUsuario;
+
+    /**
+     * @var string $logUsuario
+     *
+     * @ORM\Column(name="log_usuario", type="string", length=250, nullable=false)
+     */
+    private $logUsuario;
+
+    /**
+     * @var string $estatusFinal
+     *
+     * @ORM\Column(name="estatus_final", type="string", length=20, nullable=true)
+     */
+    private $estatusFinal;
+
+    /**
+     * @var datetime $fechaLog
+     *
+     * @ORM\Column(name="fecha_log", type="datetime", nullable=false)
+     */
+    private $fechaLog;
+
+    /**
+     * @var Usuarios
+     *
+     * @ORM\ManyToOne(targetEntity="Usuarios")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_usuario", referencedColumnName="id_usuario")
+     * })
+     */
+    private $idUsuario;
+
+
+}

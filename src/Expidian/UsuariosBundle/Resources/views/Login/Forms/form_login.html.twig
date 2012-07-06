@@ -1,0 +1,21 @@
+                
+                <form action="{{ path("ExpUsuariosAuth") }}" method="post" id="form_login" name="form_login" onsubmit="return validate_login();">
+			<h1>Expidian 1.0</h1>
+                        {% if estatus is sameas('fallido') %}
+                            <div class="errorDialogBox">
+                                <p>Los valores de Usuario o Clave suministrados son incorrectos. <b>Acceso Denegado.</b></p>
+                            </div>
+                        {% endif %}
+			<div>
+                            <input type="text" placeholder="Usuario" required id="username" name="_username" />
+			</div>
+			<div>
+                            <input type="password" placeholder="Clave" required id="password" name="_password" />
+			</div>
+			<div class="login_submit">
+				<input type="submit" name="btn_ingresar" id="btn_ingresar" value="Ingresar" />
+			</div>
+		</form><!-- form -->
+		<div class="button">
+                    <a onclick="jAlert('Comuniquese con su coordinador para restablecer su acceso al sistema','Olvid&oacute; su clave?');">Ha olvidado su clave?</a>
+		</div><!-- button -->

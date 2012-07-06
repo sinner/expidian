@@ -1,0 +1,90 @@
+<?php
+
+namespace Expidian\GlobalBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Expidian\GlobalBundle\Entity\ControlMovimientos
+ *
+ * @ORM\Table(name="control_movimientos")
+ * @ORM\Entity
+ */
+class ControlMovimientos
+{
+    /**
+     * @var integer $idControlMovimientos
+     *
+     * @ORM\Column(name="id_control_movimientos", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="control_movimientos_id_control_movimientos_seq", allocationSize="1", initialValue="1")
+     */
+    private $idControlMovimientos;
+
+    /**
+     * @var string $codExpediente
+     *
+     * @ORM\Column(name="cod_expediente", type="string", length=11, nullable=false)
+     */
+    private $codExpediente;
+
+    /**
+     * @var date $fechaMovimiento
+     *
+     * @ORM\Column(name="fecha_movimiento", type="date", nullable=false)
+     */
+    private $fechaMovimiento;
+
+    /**
+     * @var Usuarios
+     *
+     * @ORM\ManyToOne(targetEntity="Usuarios")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_abogado_asign", referencedColumnName="id_usuario")
+     * })
+     */
+    private $idAbogadoAsign;
+
+    /**
+     * @var Usuarios
+     *
+     * @ORM\ManyToOne(targetEntity="Usuarios")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_abogado_coord", referencedColumnName="id_usuario")
+     * })
+     */
+    private $idAbogadoCoord;
+
+    /**
+     * @var Etapas
+     *
+     * @ORM\ManyToOne(targetEntity="Etapas")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_etapa", referencedColumnName="id_etapa")
+     * })
+     */
+    private $idEtapa;
+
+    /**
+     * @var Expedientes
+     *
+     * @ORM\ManyToOne(targetEntity="Expedientes")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_expidiente", referencedColumnName="id_expediente")
+     * })
+     */
+    private $idExpidiente;
+
+    /**
+     * @var Procesos
+     *
+     * @ORM\ManyToOne(targetEntity="Procesos")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_proceso", referencedColumnName="id_proceso")
+     * })
+     */
+    private $idProceso;
+
+
+}

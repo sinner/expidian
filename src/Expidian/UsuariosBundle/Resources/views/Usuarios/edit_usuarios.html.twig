@@ -1,0 +1,267 @@
+{% extends '::base.html.twig' %}
+
+{% block javascripts %}
+<script language="javascript" type="text/javascript" src="{{ asset('bundles/expidian/js/validate/jquery.validate.min.js') }}"></script>
+<script language="javascript" type="text/javascript" src="{{ asset('bundles/expidian/js/funciones/jquery.metadata.js') }}"></script>
+<script language="javascript" type="text/javascript">
+    
+    $(document).ready(function () {
+        
+        $('#form_usuario_type').fadeIn();
+
+        // Este código proporciona la funcionalidad de poder acultar o mostrar secciones del formulario
+        $('.showPanelButton').click(function (elemento) {
+
+            elemento.preventDefault();
+
+            if ($(this).attr("class") == "showPanelButton open") {
+
+                $(this).attr("title", "Ocultar");
+                $(this).removeClass().addClass("showPanelButton close");
+
+            }
+            else {
+
+                $(this).attr("title", "Mostrar");
+                $(this).removeClass().addClass("showPanelButton open");
+
+            }
+
+            $("#"+this.rel).slideToggle("slow");
+
+        });
+
+        //Cuando cambie la nacionalidad a Venezolana se colocará automáticamente el país Venezuela.
+        $('#nacionalidad').change(function(event){
+            var nacionalidad = $(this).val();
+            if(nacionalidad=='V'){
+                $('#pais').val('233');
+            }
+        });
+        
+        //El mismo valor de la cedula de identidad es el usuario de acceso
+        $('#cedulaDeIdentidad').blur(function(event){
+            $('#usuario').val($(this).val());
+        });
+        
+        // Con esto logro que solo se ingresen numeros enteros en los campos seleccionados.
+        $('#cedulaDeIdentidad').numeric(false, function() {this.focus();});
+        $('#telefono1').numeric(false, function() {this.focus();});
+        $('#telefono2').numeric(false, function() {this.focus();});
+        // Y con esto logro que en los campos de nombre y apellido solo se ingresen caractertes alfabéticos
+        $('#nombre').bind('keyup blur', function () {
+            if (this.value.match(/[^a-zA-Z ]/g)) {
+                this.value = this.value.replace(/[^a-zA-Z ]/g, '');
+            }
+        });
+        $('#apellido').bind('keyup blur', function () {
+            if (this.value.match(/[^a-zA-Z ]/g)) {
+                this.value = this.value.replace(/[^a-zA-Z ]/g, '');
+            }
+        });
+        
+    });
+    
+    $(document).ready(function () {
+       /**
+        * Reglas de Validación del Formulario
+        */   
+        $("#form_usuario_type").validate({
+            rules: {
+                "usuariotype[persona][idPersona]": { number: true },
+                "usuariotype[persona][cedulaDeIdentidad]": { required: true, number:true },
+                "usuariotype[persona][nacionalidad]": { required: true, maxlength: 1 },
+                "usuariotype[persona][nombre]": { required: true },
+                "usuariotype[persona][apellido]": { required: false },
+                "usuariotype[persona][email]": { email: true },
+                "usuariotype[persona][pais]": { required: true, number:true },
+                "usuariotype[persona][telefono1]": { number: true },
+                "usuariotype[persona][telefono2]": { number: true },
+                "usuariotype[persona][idUsuario]": { number: true },
+                "usuariotype[persona][usuario]": { required: true, number:true },
+                "usuariotype[persona][clave]": { required: true, minlength:5 },
+                "usuariotype[persona][confirmClave]": { required: true, equalTo: "#clave"},
+                "usuariotype[persona][perfil]": { number: true, required: true },
+                "usuariotype[persona][esActivo]": { required: true, maxlength: 2  },
+                "usuariotype[persona][opc]": { required: true }
+            },
+            messages: {
+                "usuariotype[persona][idPersona]": "Existe un error en la carga del formulario. Debe recargar la p&aacute;gina.",
+                "usuariotype[persona][cedulaDeIdentidad]": { required: "Debe ingresar la C&eacute;dula de Identidad del Usuario.", number:"Debe ingresar solo caracteres num&eacute;ricos en la C&eacute;dula de Identidad del Usuario" },
+                "usuariotype[persona][nacionalidad]": "Campo Requerido. Debe seleccionar la nacionalida Venezolana o Extrangera.",
+                "usuariotype[persona][nombre]": "Campo Requerido. Debe ingresar un nombre que solo contenga caracteres alfab&eacute;ticos.",
+                "usuariotype[persona][apellido]": "Campo Requerido. Debe ingresar un nombre que solo contenga caracteres alfab&eacute;ticos.",
+                "usuariotype[persona][email]": {required: "Debe Ingresar una Direcci&oacute;n de Correo Electr&oacute;nico V&aacute;lido.", remote: "Este correo electr&oacute;nico ya se encuentra en uso."},
+                "usuariotype[persona][pais]": "Debe seleccionar el pa&iacute;s de procedencia del usuario.",
+                "usuariotype[persona][telefono1]": "Debe Ingresar un N&uacute;mero de Tel&eacute;fono V&aacute;lido (Formato: 2123332211).",
+                "usuariotype[persona][telefono2]": "Debe Ingresar un N&uacute;mero de Tel&eacute;fono V&aacute;lido (Formato: 4163332211).",
+                "usuariotype[persona][idUsuario]": "Existe un error en la carga del formulario. Debe recargar la p&aacute;gina.",
+                "usuariotype[persona][usuario]": { required: "Debe ingresar el Login Usuario.", number:"Debe ingresar solo caracteres num&eacute;ricos en el Login del Usuario" },
+                "usuariotype[persona][clave]": "Debe Ingresar la Clave del Usuario V&aacute;lida. Debe Tener al menos 5 Caracteres.",
+                "usuariotype[persona][confirmClave]": {required: "Debe Confirmar la Clave Ingresada.", equalTo: "Las Claves no coinciden. Debe Confirmar la Clave Ingresada"},
+                "usuariotype[persona][perfil]": "Debe Seleccionar el Perfil Usuario del Sistema.", 
+                "usuariotype[persona][esActivo]": "Debe Seleccionar el Estatus del Usuario del Sistema.",
+                "usuariotype[persona][opc]": "Existe un error en la carga del formulario. Debe recargar la p&aacute;gina."
+            }
+        });
+    });
+    
+    function form_usuario_validator(){
+        var formIsValid = $("#form_usuario_type").validate().form();
+	if(formIsValid){
+            return true;
+        }
+        return false;
+    }
+    
+</script>
+
+{% endblock javascripts %}
+
+{% block maincontent %}
+    <form action="" method="POST" id="form_usuario_type" name="form_usuario_type" onSubmit="return form_usuario_validator();" style="display: none;" >
+        <div id="mensajes_de_error">
+            <div class="infoDialogBox">
+                <p>Ingrese los datos del Usuario</p>
+            </div>
+        </div>
+        <article class="module width_full"><!-- START of "Datos Generales del Usuario" -->  
+            <header>
+                <h3>
+                    <span>Datos Generales del Usuario</span>
+                    <a class="showPanelButton close" rel="div_datos_generales_usuario" title="Ocultar"></a>
+                </h3>
+            </header>
+            
+            <div class="module_content" id="div_datos_generales_usuario">
+                
+                {{ form_widget(form.persona.idPersona, {'id': 'idPersona'}) }}
+                
+                <!-- START of Primera Fila -->
+                <fieldset class="half" style="margin-right: 3.5%;">
+                    <div>{{ form_label(form.persona.cedulaDeIdentidad, 'Cédula o Pasaporte') }}</div>
+                    <div>{{ form_widget(form.persona.cedulaDeIdentidad, {'id': 'cedulaDeIdentidad', 'attr': {'maxlength': '11'}}) }}</div>
+                    <div class="error">{{ form_errors(form.persona.cedulaDeIdentidad) }}</div>
+                </fieldset>
+                
+                
+                <fieldset class="half">
+                    <div>{{ form_label(form.persona.nacionalidad) }}</div>
+                    <div>{{ form_widget(form.persona.nacionalidad, {'id': 'nacionalidad'}) }}</div>
+                    <div class="error">{{ form_errors(form.persona.nacionalidad) }}</div>
+                </fieldset>
+                <!-- END of Primera Fila -->
+                
+                <!-- START of Segunda Fila -->
+                <fieldset class="half" style="margin-right: 3.5%;">
+                    <div>{{ form_label(form.persona.nombre) }}</div>
+                    <div>{{ form_widget(form.persona.nombre, {'id': 'nombre'}) }}</div>
+                    <div class="error">{{ form_errors(form.persona.nombre) }}</div>
+                </fieldset>
+                
+                <fieldset class="half">
+                    <div>{{ form_label(form.persona.apellido) }}</div>
+                    <div>{{ form_widget(form.persona.apellido, {'id': 'apellido'}) }}</div>
+                    <div class="error">{{ form_errors(form.persona.apellido) }}</div>
+                </fieldset>
+                <!-- END of Segunda Fila -->
+                
+                <!-- START of Tercera Fila -->
+                <fieldset class="half" style="margin-right: 3.5%;">
+                    <div>{{ form_label(form.persona.pais,'País') }}</div>
+                    <div>{{ form_widget(form.persona.pais, {'id': 'pais'}) }}</div>
+                    <div class="error">{{ form_errors(form.persona.pais) }}</div>
+                </fieldset>
+                
+                <fieldset class="half">
+                    <div>{{ form_label(form.persona.email, 'Correo Electrónico') }}</div>
+                    <div>{{ form_widget(form.persona.email, {'id': 'email'}) }}</div>
+                    <div class="error">{{ form_errors(form.persona.email) }}</div>
+                </fieldset>
+                <!-- END of Tercera Fila -->
+                
+                <!-- START of Cuarta Fila -->
+                <fieldset class="half" style="margin-right: 3.5%;">
+                    <div>{{ form_label(form.persona.telefono1,'Teléfono') }}</div>
+                    <div>{{ form_widget(form.persona.telefono1, {'id': 'telefono1', 'attr': {'maxlength': '11'}}) }}</div>
+                    <div class="error">{{ form_errors(form.persona.telefono1) }}</div>
+                </fieldset>
+                
+                <fieldset class="half">
+                    <div>{{ form_label(form.persona.telefono2,'Teléfono Alternativo') }}</div>
+                    <div>{{ form_widget(form.persona.telefono2, {'id': 'telefono2', 'attr': {'maxlength': '11'}}) }}</div>
+                    <div class="error">{{ form_errors(form.persona.telefono2) }}</div>
+                </fieldset>
+                <!-- END of Cuarta Fila -->
+                
+                <div class="clear"></div>
+                
+            </div>
+                
+            <footer>
+                    
+            </footer>
+                
+        </article><!-- END of Datos Generales del Usuario -->
+        
+        <article class="module width_full"><!-- START of Datos de Acceso del Usuario -->
+            
+            <header>
+                <h3>
+                    <span>Datos de Acceso al Sistema</span>
+                    <a class="showPanelButton close" rel="div_datos_acceso_usuario" title="Ocultar"></a>
+                </h3>
+            </header>
+            
+            <div class="module_content" id="div_datos_acceso_usuario">
+                
+                {{ form_widget(form.idUsuario, {'id': 'idUsuario'}) }}
+                
+                <fieldset> 
+                    <div>{{ form_label(form.usuario, 'Usuario') }}</div>
+                    <div>{{ form_widget(form.usuario, {'id': 'usuario', 'attr': {'readonly': 'readonly'}}) }}</div>
+                    <div class="error">{{ form_errors(form.usuario) }}</div>
+                </fieldset>
+
+                <fieldset class="half" style="margin-right: 3.5%;">
+                    <div>{{ form_label(form.clave.primera,'Clave de Acceso') }}</div>
+                    <div>{{ form_widget(form.clave.primera, {'id': 'clave'}) }}</div>
+                    <div class="error">{{ form_errors(form.clave.primera) }}</div>
+                </fieldset>
+                
+                <fieldset class="half">
+                    <div>{{ form_label(form.clave.confirmacion,'Confirme su Clave de Acceso') }}</div>
+                    <div>{{ form_widget(form.clave.confirmacion, {'id': 'confirmClave'}) }}</div>
+                    <div class="error">{{ form_errors(form.clave.confirmacion) }}</div>
+                </fieldset>
+                
+                <fieldset class="half" style="margin-right: 3.5%;">
+                    <div>{{ form_label(form.perfil) }}</div>
+                    <div>{{ form_widget(form.perfil, {'id': 'perfil'}) }}</div>
+                    <div class="error">{{ form_errors(form.perfil) }}</div>
+                </fieldset>
+                
+                <fieldset class="half">
+                    <div>{{ form_label(form.esActivo,'Es Usuario Activo?') }}</div>
+                    <div>{{ form_widget(form.esActivo, {'id': 'esActivo'}) }}</div>
+                    <div class="error">{{ form_errors(form.esActivo) }}</div>
+                </fieldset>
+                
+                <input type="hidden" name="opc" id="opc" value="{{ opc }}" readonly="readonly" />
+                <div>{{ form_rest(form) }}</div>
+                
+                <div class="clear"></div>
+                
+            </div>
+            
+            <footer>
+                <div class="submit_link">
+                    <input type="reset" value="Limpiar Formulario" />
+                    <input type="submit" id="submit_edit_usuario" name="submit_edit_usuario" value="Guardar Datos del Usuario" />
+                </div>
+            </footer>
+            
+        </article>
+                
+    </form>
+{% endblock maincontent %}

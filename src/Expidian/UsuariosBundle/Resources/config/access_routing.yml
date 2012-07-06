@@ -1,0 +1,15 @@
+ExpUsuariosLogin:
+    pattern:  /login/{estatus}
+    defaults: { _controller: ExpidianUsuariosBundle:Login:login, estatus: inicio}
+    
+ExpUsuariosAuth:
+    pattern:  /authenticate
+    defaults: { _controller: ExpidianUsuariosBundle:Login:autenticacion}
+    
+ExpUsuariosLogout:
+    pattern:  /logout
+    defaults: { _controller: ExpidianUsuariosBundle:Login:cerrarSession}
+
+ExpUsuariosMine:
+    pattern:  /miperfil
+    defaults: { _controller: ExpidianUsuariosBundle:Usuarios:miPerfil}

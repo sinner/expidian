@@ -1,0 +1,95 @@
+<?php
+
+namespace Expidian\GlobalBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Expidian\GlobalBundle\Entity\Personas
+ *
+ * @ORM\Table(name="personas")
+ * @ORM\Entity
+ */
+class Personas
+{
+    /**
+     * @var integer $idPersona
+     *
+     * @ORM\Column(name="id_persona", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="personas_id_persona_seq", allocationSize="1", initialValue="1")
+     */
+    private $idPersona;
+
+    /**
+     * @var string $nombre
+     *
+     * @ORM\Column(name="nombre", type="string", length=60, nullable=false)
+     */
+    private $nombre;
+
+    /**
+     * @var string $apellido
+     *
+     * @ORM\Column(name="apellido", type="string", length=60, nullable=false)
+     */
+    private $apellido;
+
+    /**
+     * @var string $nacionalidad
+     *
+     * @ORM\Column(name="nacionalidad", type="string", length=1, nullable=true)
+     */
+    private $nacionalidad;
+
+    /**
+     * @var decimal $cedulaDeIdentidad
+     *
+     * @ORM\Column(name="cedula_de_identidad", type="decimal", nullable=false)
+     */
+    private $cedulaDeIdentidad;
+
+    /**
+     * @var decimal $telefono1
+     *
+     * @ORM\Column(name="telefono1", type="decimal", nullable=true)
+     */
+    private $telefono1;
+
+    /**
+     * @var decimal $telefono2
+     *
+     * @ORM\Column(name="telefono2", type="decimal", nullable=true)
+     */
+    private $telefono2;
+
+    /**
+     * @var string $email
+     *
+     * @ORM\Column(name="email", type="string", length=255, nullable=true)
+     */
+    private $email;
+
+    /**
+     * @var Estados
+     *
+     * @ORM\ManyToOne(targetEntity="Estados")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_estado", referencedColumnName="id_estado")
+     * })
+     */
+    private $idEstado;
+
+    /**
+     * @var Paises
+     *
+     * @ORM\ManyToOne(targetEntity="Paises")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_pais", referencedColumnName="id_pais")
+     * })
+     */
+    private $idPais;
+
+
+}

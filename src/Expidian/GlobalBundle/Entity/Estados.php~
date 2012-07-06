@@ -1,0 +1,43 @@
+<?php
+
+namespace Expidian\GlobalBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Expidian\GlobalBundle\Entity\Estados
+ *
+ * @ORM\Table(name="estados")
+ * @ORM\Entity
+ */
+class Estados
+{
+    /**
+     * @var integer $idEstado
+     *
+     * @ORM\Column(name="id_estado", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="SEQUENCE")
+     * @ORM\SequenceGenerator(sequenceName="estados_id_estado_seq", allocationSize="1", initialValue="1")
+     */
+    private $idEstado;
+
+    /**
+     * @var string $estado
+     *
+     * @ORM\Column(name="estado", type="string", length=60, nullable=false)
+     */
+    private $estado;
+
+    /**
+     * @var Paises
+     *
+     * @ORM\ManyToOne(targetEntity="Paises")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_pais", referencedColumnName="id_pais")
+     * })
+     */
+    private $idPais;
+
+
+}
