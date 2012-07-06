@@ -26,7 +26,7 @@ class UsuariosController extends Controller {
 
     
     /**
-     * PErmite visualizar página inicial del módulo de usuarios.
+     * Permite visualizar página inicial del módulo de usuarios.
      *  
      * @return Symfony\Component\HttpFoundation\Response
      */
