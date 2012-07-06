@@ -1,3 +1,15 @@
+ExpidianGlobalBundle:
+    resource: "@ExpidianGlobalBundle/Resources/config/routing.yml"
+    prefix:   /
+
+ExpidianAccessUsuariosBundle:
+    resource: "@ExpidianUsuariosBundle/Resources/config/access_routing.yml"
+    prefix:   /
+
+ExpidianAdminUsuariosBundle:
+    resource: "@ExpidianUsuariosBundle/Resources/config/admin_routing.yml"
+    prefix:   /
+
 # Internal routing configuration to handle ESI
 #_internal:
 #   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
