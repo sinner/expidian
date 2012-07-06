@@ -8,7 +8,6 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Expidian\GlobalBundle\Entity\Perfiles;
 use Expidian\GlobalBundle\Entity\Usuarios;
 use Expidian\GlobalBundle\Entity\Personas;
-use Expidian\GlobalBundle\Entity\Paises;
 
 /**
  * Description of UsuariosFixtures
@@ -19,12 +18,11 @@ class UsuariosFixtures extends AbstractFixture implements OrderedFixtureInterfac
     
     public function load(ObjectManager $manager) {
         
-        $er = $manager->getRepository("ExpidianGlobalBundle:Perfiles");
-        $perfil1 = $er->find("ExpidianGlobalBundle:Perfiles",1);
-        $perfil2 = $er->find("ExpidianGlobalBundle:Perfiles",2);
+        $perfil1 = $manager->getRepository("ExpidianGlobalBundle:Perfiles")->findOneByIdPerfil(1);
+        $perfil2 = $manager->getRepository("ExpidianGlobalBundle:Perfiles")->findOneByIdPerfil(2);
         
-        //var_dump($perfil1);
-        //var_dump($perfil2);
+        var_dump($perfil1);
+        var_dump($perfil2);
         
         $perfiles = array($perfil1,$perfil2);
         
@@ -33,13 +31,13 @@ class UsuariosFixtures extends AbstractFixture implements OrderedFixtureInterfac
         for($i=0;$i<=35;$i++){
             
             $aleatorio = mt_rand(0,1);
-            $persona_obj = $manager->merge($this->getReference('persona-'.$i));
-            
+            $persona_obj = $manager->merge($this->getReference('persona'.$i.'ref'));
             $usuario = new Usuarios();
             $usuario->setUsuario($persona_obj->getCedulaDeIdentidad());
             $usuario->setUsuarioEncrypt($persona_obj->getCedulaDeIdentidad());
             $usuario->setClave('123456');
             $usuario->setPersona($persona_obj);
+            $usuario->setPerfil($perfiles[$aleatorio]);
             $usuario->setFechaRegistro(new \DateTime());
             $usuario->setEsActivo($activos[$aleatorio]);
             $manager->persist($usuario);
