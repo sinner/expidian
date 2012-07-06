@@ -80,6 +80,10 @@
 [doctrine-extensions]
     git=https://github.com/beberlei/DoctrineExtensions.git
 
+[PhpseclibBundle]
+    git=http://github.com/jgabrielsinner10/phpseclib.git
+    target=/phpseclib	
+
 [FOSJsRoutingBundle]
     git=git://github.com/FriendsOfSymfony/FOSJsRoutingBundle.git
     target=/bundles/FOS/JsRoutingBundle
