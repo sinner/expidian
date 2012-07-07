@@ -195,7 +195,7 @@ class UsuariosController extends Controller {
         $sm = new SessionManager($session);
         $sm->readSession();
         
-        if($request->getMethod()=='POST' && $request->isXmlHttpRequest()){
+        if(true){
             
             $usuario_obj = $sm->getUsuario();
             

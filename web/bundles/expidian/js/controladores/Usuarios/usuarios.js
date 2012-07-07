@@ -6,7 +6,7 @@ function reloadGrid_usuarios(url){
     sinner_grid("form_list_usuarios", url, "div_lista_usuarios");
 }
 
-function change_page_list_users(url){
+function change_page(url){
     var url = url;
     sinner_grid("form_list_usuarios", url, "div_lista_usuarios");
 }

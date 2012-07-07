@@ -1217,7 +1217,7 @@ select.error, textarea.error, input[type=text].error , input[type=password].erro
 			
 		.tableList tfoot td {
 			height:15px;
-			padding:0;
+			padding:6px;
 			margin:0;			
 		}
 						
@@ -1366,6 +1366,7 @@ select.error, textarea.error, input[type=text].error , input[type=password].erro
 		text-decoration: none;
 		color: #3A7BB1;
                 border-radius: 5px;
+                cursor: pointer;
 	}
 		
 	.paginationSector a:hover, .paginationSector a:active, .paginationSector a.active {

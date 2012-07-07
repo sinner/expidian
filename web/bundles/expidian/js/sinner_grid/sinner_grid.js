@@ -41,9 +41,9 @@ var grid_direction = new String("");
 function sinner_grid(form_paginate, url_controller, div_string){
 
         var is_search = $("#"+form_paginate+" input#is_search").val();
-        var searchField = $("#"+form_paginate+" input#searchField").val();
-        var searchOper = $("#"+form_paginate+" input#searchOper").val();
-        var searchString = $("#"+form_paginate+" input#searchString").val();
+        var searchField = $("#"+form_paginate+" input#searchFieldf").val();
+        var searchOper = $("#"+form_paginate+" input#searchOperf").val();
+        var searchString = $("#"+form_paginate+" input#searchStringf").val();
         var grid_sort = $("#"+form_paginate+" input#grid_sort").val();
         var grid_direction = $("#"+form_paginate+" input#grid_direction").val();
         var rows = $("#"+form_paginate+" input#rows").val();

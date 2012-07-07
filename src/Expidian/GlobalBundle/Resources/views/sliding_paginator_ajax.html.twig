@@ -1,25 +1,22 @@
-{# default Sliding pagination control implementation #}
-<br/><br/>
-<center>
 {% if pageCount > 1 %}
-<div class="pagination">
+<div class="paginationSector">
     {% if first is defined and current != first %}
         <span class="first">
-            <a href="{{ path(route, query|merge({(pageParameterName): first})) }}">&lt;&lt;</a>
+            <a onClick="change_page('{{ path(route, query|merge({(pageParameterName): first})) }}');">◄◄</a>
         </span>
     {% else %}
-        <span class="current">
-            &lt;&lt;
+        <span class="disabled">
+            ◄◄
         </span>
     {% endif %}
 
     {% if previous is defined %}
         <span class="previous">
-            <a href="{{ path(route, query|merge({(pageParameterName): previous})) }}">&lt;</a>
+            <a onClick="change_page('{{ path(route, query|merge({(pageParameterName): previous})) }}');">◄</a>
         </span>
     {% else %}
-        <span class="current">
-            &lt;
+        <span class="disabled">
+            ◄
         </span>
     {% endif %}
         
@@ -27,7 +24,7 @@
     {% for page in pagesInRange %}
         {% if page != current %}
             <span class="page">
-                <a href="{{ path(route, query|merge({(pageParameterName): page})) }}">{{ page }}</a>
+                <a onClick="change_page('{{ path(route, query|merge({(pageParameterName): page})) }}');">{{ page }}</a>
             </span>
         {% else %}
             <span class="current">{{ page }}</span>
@@ -37,23 +34,22 @@
 
     {% if next is defined %}
         <span class="next">
-            <a href="{{ path(route, query|merge({(pageParameterName): next})) }}">&gt;</a>
+            <a onClick="change_page('{{ path(route, query|merge({(pageParameterName): next})) }}');">►</a>
         </span>
     {% else %}
-        <span class="current">
-            &gt;
+        <span class="disabled">
+            ►
         </span>
     {% endif %}
 
     {% if last is defined and current != last %}
         <span class="last">
-            <a href="{{ path(route, query|merge({(pageParameterName): last})) }}">&gt;&gt;</a>
+            <a onClick="change_page('{{ path(route, query|merge({(pageParameterName): last})) }}');">►►</a>
         </span>
     {% else %}
-        <span class="current">
-            &gt;&gt;
+        <span class="disabled">
+            ►►
         </span>
     {% endif %}
 </div>
 {% endif %}
-</center>
