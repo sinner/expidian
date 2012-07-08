@@ -21,8 +21,8 @@ class UsuariosFixtures extends AbstractFixture implements OrderedFixtureInterfac
         $perfil1 = $manager->getRepository("ExpidianGlobalBundle:Perfiles")->findOneByIdPerfil(1);
         $perfil2 = $manager->getRepository("ExpidianGlobalBundle:Perfiles")->findOneByIdPerfil(2);
         
-        var_dump($perfil1);
-        var_dump($perfil2);
+        //var_dump($perfil1);
+        //var_dump($perfil2);
         
         $perfiles = array($perfil1,$perfil2);
         

@@ -7,7 +7,7 @@
 -- Started on 2012-07-06 15:11:40
 
 SET statement_timeout = 0;
-SET client_encoding = 'WIN1252';
+SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
@@ -253,7 +253,7 @@ CREATE TABLE expedientes (
     observaciones text,
     id_proceso_actual integer,
     id_etapa_actual integer,
-    fecha_registro timestamp without time zone NOT NULL,
+    fecha_registro date without time zone NOT NULL,
     fecha_solic_invest date,
     id_usuario_ini integer NOT NULL
 );
@@ -710,13 +710,11 @@ CREATE TABLE usuarios (
     usuario character varying(15) NOT NULL,
     usuario_encrypt character varying(128) NOT NULL,
     clave character varying(128) NOT NULL,
-    fecha_registro timestamp without time zone DEFAULT now() NOT NULL,
+    fecha_registro date DEFAULT now() NOT NULL,
     fecha_ultimo_ingreso timestamp without time zone DEFAULT now(),
     es_activo character varying(2) DEFAULT 'NO'::character varying NOT NULL,
     id_persona integer NOT NULL,
-    id_perfil integer NOT NULL,
-    str_recuperacion_clave character varying(128),
-    fecha_recuperacion_clave time without time zone
+    id_perfil integer NOT NULL
 );
 
 
@@ -1010,7 +1008,7 @@ INSERT INTO paises (id_pais, pais) VALUES (66, 'Emiratos Arabes Unidos');
 INSERT INTO paises (id_pais, pais) VALUES (67, 'Eritrea');
 INSERT INTO paises (id_pais, pais) VALUES (68, 'Eslovaquia');
 INSERT INTO paises (id_pais, pais) VALUES (69, 'Eslovenia');
-INSERT INTO paises (id_pais, pais) VALUES (70, 'España');
+INSERT INTO paises (id_pais, pais) VALUES (70, 'Espaï¿½a');
 INSERT INTO paises (id_pais, pais) VALUES (71, 'Estados Unidos');
 INSERT INTO paises (id_pais, pais) VALUES (72, 'Estonia');
 INSERT INTO paises (id_pais, pais) VALUES (73, 'Etiopia');
@@ -1190,9 +1188,9 @@ INSERT INTO paises (id_pais, pais) VALUES (241, 'Zimbabue');
 -- Data for Name: perfiles; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO perfiles (id_perfil, perfil, descripcion_perfil) VALUES (3, 'Abogado Asignado', 'Representa al Abogado al cual le es asignado un expediente, tiene permisos de llevar a cabo todos los cambios en las etapas de un expediente en el proceso en el cual le fué asignado dicho expediente.');
+INSERT INTO perfiles (id_perfil, perfil, descripcion_perfil) VALUES (3, 'Abogado Asignado', 'Representa al Abogado al cual le es asignado un expediente, tiene permisos de llevar a cabo todos los cambios en las etapas de un expediente en el proceso en el cual le fuï¿½ asignado dicho expediente.');
 INSERT INTO perfiles (id_perfil, perfil, descripcion_perfil) VALUES (1, 'Administrador', 'Tiene todos los derechos de Superusuario');
-INSERT INTO perfiles (id_perfil, perfil, descripcion_perfil) VALUES (2, 'Abogado Coordinador', 'Representa el Abogado Jefe y tiene los permisos para cerrar casos así como realizar la asignación de expedientes en un determinado proceso a otros abogados.');
+INSERT INTO perfiles (id_perfil, perfil, descripcion_perfil) VALUES (2, 'Abogado Coordinador', 'Representa el Abogado Jefe y tiene los permisos para cerrar casos asï¿½ como realizar la asignaciï¿½n de expedientes en un determinado proceso a otros abogados.');
 
 
 --
@@ -1201,7 +1199,7 @@ INSERT INTO perfiles (id_perfil, perfil, descripcion_perfil) VALUES (2, 'Abogado
 -- Data for Name: personas; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO personas (id_persona, nombre, apellido, nacionalidad, cedula_de_identidad, telefono1, telefono2, id_pais, email) VALUES (1, 'José Gabriel', 'Gonzalez', 'V', 17693788, 4166075731, 4265124336, 233, 'jgabrielsinner10@gmail.com');
+INSERT INTO personas (id_persona, nombre, apellido, nacionalidad, cedula_de_identidad, telefono1, telefono2, id_pais, email) VALUES (1, 'Josï¿½ Gabriel', 'Gonzalez', 'V', 17693788, 4166075731, 4265124336, 233, 'jgabrielsinner10@gmail.com');
 
 
 --

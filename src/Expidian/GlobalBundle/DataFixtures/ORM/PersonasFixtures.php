@@ -17,7 +17,7 @@ class PersonasFixtures extends AbstractFixture implements OrderedFixtureInterfac
     
     public function load(ObjectManager $manager) {
         
-        $nombres = array('Jose', 'Maria', 'Leonel', 'Gabriel', 'Ignacio', 'Daniel', 'Daniel', 'Ricardo', 'Rosbely', 'Andreina');
+        $nombres = array('Jose', 'Maria', 'Leonel', 'Gabriel', 'Ignacio', 'Daniel', 'Daniela', 'Ricardo', 'Rosbely', 'Andreina');
         $apellidos = array('Espinoza', 'Hernandez', 'Perez', 'Pirela', 'Pulido','Vargas', 'Lozada', 'Mata', 'Silva', 'Bolivar');
         
         $pais_obj = $manager->getRepository("ExpidianGlobalBundle:Paises")->findOneByPais("Venezuela");
