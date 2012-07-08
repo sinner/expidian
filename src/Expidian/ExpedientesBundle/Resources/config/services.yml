@@ -1,0 +1,7 @@
+parameters:
+#    expidian_expedientes.example.class: Expidian\ExpedientesBundle\Example
+
+services:
+#    expidian_expedientes.example:
+#        class: %expidian_expedientes.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -22,8 +22,18 @@
                 <td>{{ usuario.perfil.perfil }}</td>
                 <td>{{ usuario.esActivo }}</td>
                 <td>
-                    <a title="Editar Perfil de Usuario" class="actionButtonEdit" href="{{ path('ExpUsuariosEdit', { 'id_usuario': usuario.idUsuario }) }}"></a>
-                    <a title="Editar Perfil de Usuario" class="actionButtonDelete href="{{ path('ExpUsuariosDelete', { 'id_usuario': usuario.idUsuario }) }}"></a>
+                    <a title="Editar Perfil de Usuario" class="actionButtonEdit" href="{{ path('ExpUsuariosEdit', { 'id_usuario': usuario.idUsuario }) }}" ></a>
+                    <a title="Editar Perfil de Usuario" class="actionButtonDelete href="{{ path('ExpUsuariosDelete', { 'id_usuario': usuario.idUsuario }) }}" ></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
+                <td colspan="7">
+                    <div class="alertDialogBox">
+                        <p>
+                            No se han encontrado registros relacionados a los par&aacute;metros de busqueda.
+                        </p>
+                    </div>
                 </td>
             </tr>
         {% endfor %}

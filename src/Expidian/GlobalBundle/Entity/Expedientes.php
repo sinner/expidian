@@ -103,9 +103,18 @@ class Expedientes
      * })
      */
     private $idUsuarioIni;
+    
+    
+    /**
+     * Set idExpediente
+     *
+     * @param text $idExpediente
+     */
+    public function setIdExpediente($idExpediente) {
+        $this->idExpediente = $idExpediente;
+    }
 
-
-
+    
     /**
      * Get idExpediente
      *

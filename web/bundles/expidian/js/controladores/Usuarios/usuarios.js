@@ -1,5 +1,9 @@
 function listar_usuarios(url){
-    sinner_grid("form_list_usuarios", url, "div_lista_usuarios");
+    $("#searchFieldf").val("");
+    $("#searchStringf").val("");
+    $("#criteria_box").val("");
+    $("#search_box").val("");
+    sinner_grid("form_list_usuarios", url, "div_lista_usuarios");    
 }
 
 function reloadGrid_usuarios(url){

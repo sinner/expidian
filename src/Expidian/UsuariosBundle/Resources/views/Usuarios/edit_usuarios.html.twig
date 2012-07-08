@@ -50,13 +50,13 @@
         $('#telefono2').numeric(false, function() {this.focus();});
         // Y con esto logro que en los campos de nombre y apellido solo se ingresen caractertes alfabéticos
         $('#nombre').bind('keyup blur', function () {
-            if (this.value.match(/[^a-zA-Z ]/g)) {
-                this.value = this.value.replace(/[^a-zA-Z ]/g, '');
+            if (this.value.match(/[^a-zA-ZáÁéÉíÍóÓúÚñÑ ]/g)) {
+                this.value = this.value.replace(/[^a-zA-ZáÁéÉíÍóÓúÚñÑ ]/g, '');
             }
         });
         $('#apellido').bind('keyup blur', function () {
-            if (this.value.match(/[^a-zA-Z ]/g)) {
-                this.value = this.value.replace(/[^a-zA-Z ]/g, '');
+            if (this.value.match(/[^a-zA-ZáÁéÉíÍóÓúÚñÑ ]/g)) {
+                this.value = this.value.replace(/[^a-zA-ZáÁéÉíÍóÓúÚñÑ ]/g, '');
             }
         });
         

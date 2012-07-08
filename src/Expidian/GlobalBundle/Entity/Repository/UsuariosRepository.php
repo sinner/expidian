@@ -88,7 +88,7 @@ class UsuariosRepository extends EntityRepository {
             
         }else{
             
-            $dql = "SELECT u, p, h FROM ExpidianGlobalBundle:Usuarios u JOIN u.perfil p JOIN u.persona h";
+            $dql = "SELECT u, p, h FROM ExpidianGlobalBundle:Usuarios u JOIN u.perfil p JOIN u.persona h ORDER BY u.idUsuario";
             $query = $em->createQuery($dql);
             
         }
