@@ -105,7 +105,17 @@ class Personas
      */
     private $pais;
 
-
+    
+    /**
+     * set idPersona
+     *
+     * @param string $idPersona
+     */
+    public function setIdPersona($idPersona)
+    {
+        $this->idPersona = $idPersona;
+    }
+    
 
     /**
      * Get idPersona

@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Paises
 {
+    
     /**
      * @var integer $idPais
      *
@@ -21,7 +22,7 @@ class Paises
      * @ORM\SequenceGenerator(sequenceName="paises_id_pais_seq", allocationSize="1", initialValue="1")
      */
     private $idPais;
-
+    
     /**
      * @var string $pais
      *
@@ -38,8 +39,7 @@ class Paises
     public function setIdPais($idPais) {
         $this->idPais = $idPais;
     }
-
-        
+      
     /**
      * Get idPais
      *

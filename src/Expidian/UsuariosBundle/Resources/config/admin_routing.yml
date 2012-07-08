@@ -11,7 +11,7 @@ ExpUsuariosNew:
     defaults: { _controller: ExpidianUsuariosBundle:Usuarios:new}
     
 ExpUsuariosEdit:
-    pattern:  /usuarios/{id_usuario}
+    pattern:  /usuarios/edit/{id_usuario}
     defaults: { _controller: ExpidianUsuariosBundle:Usuarios:edit}
 
 ExpAjaxUsuariosList:

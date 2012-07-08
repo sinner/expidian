@@ -41,6 +41,23 @@ class UsuariosRepository extends EntityRepository {
         
     }
     
+    public function EditarUsuario(Usuarios $usuario, EntityManager $em){
+        
+        $usuario->setUsuarioEncrypt($usuario->getUsuario());
+        
+        try{
+            $em->persist($usuario->getPersona());
+            $em->persist($usuario);
+            $em->flush();
+            $result = true;
+        }catch(Exception $e){
+            $result = false;
+        }
+        
+        return $result;
+        
+    }
+    
     /**
      * @param Boolean $isSearch Será verdadero cuando se esté haciendo una busqueda en vez de listar a todos.
      * @param String $searchField Será el nombre del campo por el cual se efectuara una busqueda.
@@ -53,20 +70,25 @@ class UsuariosRepository extends EntityRepository {
             switch($searchField){
                 case 'nombre':
                     $searchField = "CONCAT(h.nombre,h.apellido)";
+                    break;
                 case 'usuario':
                     $searchField = "u.usuario";
+                    break;
                 case 'perfil':
                     $searchField = "p.perfil";
+                    break;
             }
-
-            $filter = $isSearch? " WHERE UPPER($searchField) LIKE UPPER('%:param%') ":"";
             
-            $dql = "SELECT u, p, h, n FROM ExpidianGlobalBundle:Usuarios u JOIN u.perfil p JOIN u.persona h JOIN h.pais n $filter";
-            $query = $em->createQuery($dql)->setParameter('param', $searchParam);
+            $searchParam = strtoupper($searchParam);
+            
+            $filter = $isSearch? " WHERE upper($searchField) LIKE '%$searchParam%' ":"";
+            
+            $dql = "SELECT u, p, h FROM ExpidianGlobalBundle:Usuarios u JOIN u.perfil p JOIN u.persona h $filter";
+            $query = $em->createQuery($dql);
             
         }else{
             
-            $dql = "SELECT u, p, h, n FROM ExpidianGlobalBundle:Usuarios u JOIN u.perfil p JOIN u.persona h JOIN h.pais n";
+            $dql = "SELECT u, p, h FROM ExpidianGlobalBundle:Usuarios u JOIN u.perfil p JOIN u.persona h";
             $query = $em->createQuery($dql);
             
         }
@@ -153,7 +175,7 @@ class UsuariosRepository extends EntityRepository {
                         ON b.id_persona = a.id_persona  
                     INNER JOIN 
                         perfiles c ON c.id_perfil = a.id_perfil
-                    WHERE a.usuario_encrypt = :usuario_prm AND a.clave = :clave_prm";
+                    WHERE a.es_activo='SI' AND a.usuario_encrypt = :usuario_prm AND a.clave = :clave_prm";
             
             $query = $em->createNativeQuery($sql, $rsm);
             $query->setParameters(array(

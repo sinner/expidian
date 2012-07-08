@@ -115,7 +115,17 @@ class Usuarios
         
     }
 
-        /**
+    /**
+     * set idUsuario
+     *
+     * @param string $idUsuario
+     */
+    public function setIdUsuario($idUsuario)
+    {
+        $this->idUsuario = $idUsuario;
+    }
+    
+    /**
      * Get idUsuario
      *
      * @return integer 
@@ -274,6 +284,16 @@ class Usuarios
     {
         $this->persona = $persona;
     }
+    
+    /**
+     * Set persona
+     *
+     * @param Expidian\GlobalBundle\Entity\Personas $persona
+     */
+    public function setIdPersona(Personas $persona)
+    {
+        $this->persona = $persona;
+    }
 
     /**
      * Get persona
@@ -284,7 +304,17 @@ class Usuarios
     {
         return $this->persona;
     }
-
+    
+    /**
+     * Get persona
+     *
+     * @return Expidian\GlobalBundle\Entity\Personas 
+     */
+    public function getIdPersona()
+    {
+        return $this->persona;
+    }
+    
     public function __toString()
     {
         return $this->getUsuario();

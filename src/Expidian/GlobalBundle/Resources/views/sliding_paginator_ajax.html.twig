@@ -1,21 +1,21 @@
 {% if pageCount > 1 %}
 <div class="paginationSector">
     {% if first is defined and current != first %}
-        <span class="first">
+        <span class="first" title="Primera P&aacute;gina">
             <a onClick="change_page('{{ path(route, query|merge({(pageParameterName): first})) }}');">◄◄</a>
         </span>
     {% else %}
-        <span class="disabled">
+        <span class="disabled" title="Est&aacute;s en la Primera P&aacute;gina">
             ◄◄
         </span>
     {% endif %}
 
     {% if previous is defined %}
-        <span class="previous">
+        <span class="previous" title="P&aacute;gina Anterior">
             <a onClick="change_page('{{ path(route, query|merge({(pageParameterName): previous})) }}');">◄</a>
         </span>
     {% else %}
-        <span class="disabled">
+        <span class="disabled" title="Est&aacute;s en la Primera P&aacute;gina">
             ◄
         </span>
     {% endif %}
@@ -23,7 +23,7 @@
 
     {% for page in pagesInRange %}
         {% if page != current %}
-            <span class="page">
+            <span class="page" title="P&aacute;gina Nro. {{ page }}">
                 <a onClick="change_page('{{ path(route, query|merge({(pageParameterName): page})) }}');">{{ page }}</a>
             </span>
         {% else %}
@@ -33,21 +33,21 @@
     {% endfor %}
 
     {% if next is defined %}
-        <span class="next">
+        <span class="next" title="P&aacute;gina Siguiente">
             <a onClick="change_page('{{ path(route, query|merge({(pageParameterName): next})) }}');">►</a>
         </span>
     {% else %}
-        <span class="disabled">
+        <span class="disabled" title="Est&aacute;s en la &Uacute;ltima P&aacute;gina">
             ►
         </span>
     {% endif %}
 
     {% if last is defined and current != last %}
-        <span class="last">
+        <span class="last" title="&Uacute;ltima P&aacute;gina">
             <a onClick="change_page('{{ path(route, query|merge({(pageParameterName): last})) }}');">►►</a>
         </span>
     {% else %}
-        <span class="disabled">
+        <span class="disabled" title="Est&aacute;s en la &Uacute;ltima P&aacute;gina">
             ►►
         </span>
     {% endif %}

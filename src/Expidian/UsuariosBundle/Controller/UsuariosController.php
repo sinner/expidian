@@ -136,17 +136,53 @@ class UsuariosController extends Controller {
                 
         $sm = new SessionManager($session);
         $sm->readSession();
+        $usuario_obj = $sm->getUsuario();
         
         if($sm->getSession_is_open()){
             
-            $breadcrumb = array(array('text'=>'Usuarios','url'=>$this->generateUrl('ExpUsuariosList')),array('text'=>'Editar','url'=>''));
             
-            $em = $this->getDoctrine()->getEntityManager();
-            $usuario = $em->getRepository('ExpidianGlobalBundle:Usuarios')->find($id_usuario);
+            if($usuario_obj->getPerfil()->getPerfil()=='Administrador' || $usuario_obj->getPerfil()->getPerfil()=='Abogado Coordinador'){
+                
+                $breadcrumb = array(array('text'=>'Usuarios','url'=>$this->generateUrl('ExpUsuariosList')),array('text'=>'Editar','url'=>''));
+                                
+                $em = $this->getDoctrine()->getEntityManager();
+                $usuario = $em->getRepository('ExpidianGlobalBundle:Usuarios')->find($id_usuario);
+                
+                $form = $this->createForm(new UsuariosType(),$usuario);
+                
+                //Si la petición viene por método post se reciben los datos del formulario se validan los mismos y se crea un nuevo usuario.
+                if($request->getMethod()=='POST'){
+                                        
+                    //Con esta sentencia vinculo los valores proporcionados por el formulario a cada uno de los atributos del objeto para que fué configurado. En este caso $usuario
+                    $form->bindRequest($request);
+                    $em = $this->getDoctrine()->getEntityManager();
+                    
+                    if($form->isValid()){
+                        
+                        $result = $em->getRepository('ExpidianGlobalBundle:Usuarios')->EditarUsuario($usuario, $em);
+                        
+                        if($result){
+                            $msj = 'Los Datos del Usuario <b>'.$usuario->getPersona().'</b> han sido Editados Existosamente.';
+                            $class_style = 'successDialogBox';
+                        }else{
+                            $msj = 'Ha ocurrido un error en el sistema. Vuelva a intentarlo más tarde. Para agregar un nuevo usuario haga click <a href='.$this->generateUrl('ExpUsuariosNew').'>aqu&iacute;</a>';
+                            $class_style = 'errorDialogBox';
+                        }
+                        
+                        return $this->render('ExpidianGlobalBundle::dialog_msj.html.twig', array('msj'=>$msj, 'class'=>$class_style,'breadcrumb'=>$breadcrumb,'usuario'=>$usuario_obj));
+                        
+                    }
+                    
+                }
+
+                return $this->render('ExpidianUsuariosBundle:Usuarios:edit_usuarios.html.twig', array('form'=>$form->createView(), 'breadcrumb'=>$breadcrumb,'usuario'=>$usuario_obj, 'opc'=>'Editar'));
+                
+            }else{
+                
+                return $this->render('ExpidianGlobalBundle::dialog_msj.html.twig', array('msj'=>'Su perfil no posee permisos para efectuar esta acci&oacute;n en el sistema.','class'=>'errorDialogBox', 'breadcrumb'=>$breadcrumb,'usuario'=>$usuario_obj));
+                
+            }
             
-            $usuario_obj = $sm->getUsuario();
-            
-            $form = $this->createForm(new UsuariosType(),$usuario);
             
             return $this->render('ExpidianUsuariosBundle:Usuarios:edit_usuarios.html.twig', array('form'=>$form->createView(), 'breadcrumb'=>$breadcrumb,'usuario'=>$usuario_obj, 'opc'=>'Editar'));
             
