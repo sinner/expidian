@@ -1206,8 +1206,9 @@ select.error, textarea.error, input[type=text].error , input[type=password].erro
 		}
 		
 		.tableList thead th a {
-			color:#3C3C3C;
+			color:#003366;
 			text-decoration:none;
+                        cursor: pointer;
 		}
 		
 			.tableList thead th a:hover {
