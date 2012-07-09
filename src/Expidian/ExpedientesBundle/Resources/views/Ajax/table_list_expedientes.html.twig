@@ -1,0 +1,67 @@
+    <table cellspacing="0" class="tableList"> 
+        <thead>
+            <tr>
+                <th>Nro.</th>
+                <th>{{ pager.sortable('Nombre', 'e.nombre')|raw }}</th>
+                <th>{{ pager.sortable('Código', 'e.codigoActual')|raw }}</th>
+                <th>{{ pager.sortable('Organismo', 'e.organismo')|raw }}</th>
+                <th>{{ pager.sortable('Abogado Asignado', 'e.usuarioAct')|raw }}</th>
+                <th>{{ pager.sortable('Proceso', 'e.procesoActual')|raw }}</th>
+                <th>{{ pager.sortable('Etapa', 'e.etapaActual')|raw }}</th>
+                <th class="tblopc">Opc.</th>
+            </tr>
+        </thead>
+
+        {# table body #}
+        <tbody>
+        {% for expediente in pager %}
+            <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
+                <td>{{ expediente.idExpediente }}</td>
+                <td>{{ expediente.nombre }}</td>
+                <td>{{ expediente.codigoActual }}</td>
+                <td>{{ expediente.organismo.nombreOrganismo }}</td>
+                <td>{{ expediente.usuarioAct.persona }}</td>
+                <td>{{ expediente.procesoActual.proceso }}</td>
+                <td>{{ expediente.etapaActual.etapa }}</td>
+                <td class="tblopc">
+                    <a title="Eliminar Expediente" class="actionButtonDelete href="{{ path('ExpExpedientesDelete', { 'id_expediente': expediente.idExpediente }) }}" ></a>
+                    <a title="Editar Expediente" class="actionButtonEdit" href="{{ path('ExpExpedientesEdit', { 'id_expediente': expediente.idExpediente }) }}" ></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
+                <td colspan="7">
+                    <div class="alertDialogBox">
+                        <p>
+                            No se han encontrado registros relacionados a los par&aacute;metros de busqueda.
+                        </p>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        {# table foot #}
+
+        <tfoot>
+            <tr>
+                <td colspan="2"><div class="ui-pg-div"><span class="ui-icon ui-icon-refresh" onclick="reloadGrid_expedientes('{{ path('ExpExpedientesAjaxList') }}');" title="Recargar la Lista de Expedientes" style="cursor: pointer;"></span></div></td>
+                <td colspan="4"></td>
+                <td colspan="2"><div style="text-align: right; padding-right: 3px;"><b>{{ pager.count }}</b> de <b>{{ pager.TotalItemCount }}</b> Registros </td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <form name="form_list_expedientes" id="form_list_expedientes">
+        <input type="hidden" value="{{rows}}" id="rows" name="rows" />
+        <input type="hidden" value="{{searchField}}" id="searchFieldf" name="searchFieldf" />
+        <input type="hidden" value="{{searchOper}}" id="searchOperf" name="searchOperf" />
+        <input type="hidden" value="{{searchString}}" id="searchStringf" name="searchStringf" />
+        <input type="hidden" value="{{sort}}" id="grid_sort" name="grid_sort" />
+        <input type="hidden" value="{{direction}}" id="grid_direction" name="grid_direction" />
+        <input type="hidden" value="{{is_search}}" id="is_search" name="is_search" />
+    </form>
+
+    {# display navigation #}
+    <div class="navigation">
+        {{ pager.render()|raw }}
+    </div>

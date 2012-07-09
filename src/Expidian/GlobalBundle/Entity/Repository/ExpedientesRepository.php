@@ -39,6 +39,46 @@ class ExpedientesRepository extends EntityRepository {
     }
     
     /**
+     * @param Boolean $isSearch Será verdadero cuando se esté haciendo una busqueda en vez de listar a todos.
+     * @param String $searchField Será el nombre del campo por el cual se efectuara una busqueda.
+     * @param String $searchParam Sera el valor con el que debe coincidir el campo en la busqueda.
+     */
+    public function queryExpedientes($isSearch, $searchField, $searchParam, EntityManager $em){
+        
+        if($isSearch && $searchField!="" && $searchParam!=""){
+            
+            switch($searchField){
+                case 'nombre':
+                    $searchField = "e.nombre";
+                    break;
+                case 'codigo':
+                    $searchField = "e.codigoActual";
+                    break;
+                case 'ci_asignado':
+                    $searchField = "u.usuario";
+                    break;
+            }
+            
+            $searchParam = strtoupper($searchParam);
+            
+            $filter = $isSearch? " WHERE upper($searchField) LIKE '%$searchParam%' ":"";
+            
+            $dql = "SELECT e, h, u, t, p, o FROM ExpidianGlobalBundle:Expedientes e JOIN e.etapaActual t JOIN e.procesoActual p JOIN e.organismo o JOIN e.usuarioAct u JOIN u.persona h $filter";
+            $query = $em->createQuery($dql);
+            
+        }else{
+            
+            $dql = "SELECT e, h, u, t, p, o FROM ExpidianGlobalBundle:Expedientes e JOIN e.etapaActual t JOIN e.procesoActual p JOIN e.organismo o JOIN e.usuarioAct u JOIN u.persona h ORDER BY e.idExpediente";
+            $query = $em->createQuery($dql);
+            
+        }
+        
+        //echo $query->getSQL();
+        
+        return $query;
+    }
+    
+    /**
      *
      * @param EntityManager $em
      * @param Expedientes $exp
@@ -61,43 +101,5 @@ class ExpedientesRepository extends EntityRepository {
         
         return $controlMov;
     }
-    
-    /**
-     * @param Boolean $isSearch Será verdadero cuando se esté haciendo una busqueda en vez de listar a todos.
-     * @param String $searchField Será el nombre del campo por el cual se efectuara una busqueda.
-     * @param String $searchParam Sera el valor con el que debe coincidir el campo en la busqueda.
-     */
-    public function queryExpedientes($isSearch, $searchField, $searchParam, EntityManager $em){
-        
-        if($isSearch && $searchField!="" && $searchParam!=""){
-            
-            switch($searchField){
-                case 'nombre':
-                    $searchField = "e.nombre";
-                    break;
-                case 'rif':
-                    $searchField = "e.codigoActual";
-                    break;
-            }
-            
-            $searchParam = strtoupper($searchParam);
-            
-            $filter = $isSearch? " WHERE upper($searchField) LIKE '%$searchParam%' ":"";
-            
-            $dql = "SELECT o FROM ExpidianGlobalBundle:Expedientes o $filter";
-            $query = $em->createQuery($dql);
-            
-        }else{
-            
-            $dql = "SELECT o FROM ExpidianGlobalBundle:Expedientes o ORDER BY o.idExpediente";
-            $query = $em->createQuery($dql);
-            
-        }
-        
-        //echo $query->getSQL();
-        
-        return $query;
-    }
-
     
 }

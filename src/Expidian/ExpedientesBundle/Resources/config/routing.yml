@@ -1,7 +1,3 @@
-ExpidianExpedientesBundle:
-    pattern:  /expedientes/
-    defaults: { _controller: ExpidianExpedientesBundle:Expedientes:index }
-
 ExpExpedientesList:
     pattern:  /expedientes/
     defaults: { _controller: ExpidianExpedientesBundle:Expedientes:list }
