@@ -25,7 +25,7 @@ function busqueda_organismos(url){
     $("#searchFieldf").val(criterio);
     $("#searchStringf").val(parametro);
     $("#is_search").val("true");
-    reloadGrid_organismos(url);
+    sinner_grid("form_list_organismos", url, "div_lista_organismos");
 }
 
 function busqueda_rapida_organismos(url,id,campo) {
@@ -36,5 +36,5 @@ function busqueda_rapida_organismos(url,id,campo) {
     $("#searchFieldf").val(searchFields);
     $("#searchStringf").val(id);
     $("#sidxf").val(searchFields);
-    reloadGrid_organismos(url);
+    sinner_grid("form_list_organismos", url, "div_lista_organismos");
 }

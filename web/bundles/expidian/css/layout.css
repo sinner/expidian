@@ -1236,7 +1236,7 @@ select.error, textarea.error, input[type=text].error , input[type=password].erro
 		}
 		
 		.tableList tbody tr.even:hover td, tr.odd:hover td {
-			background-color:#f8ffcc;
+			background-color:#f8ffc3;
 		}
 		
 			.tableList tbody tr.even {

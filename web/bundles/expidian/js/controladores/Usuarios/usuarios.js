@@ -25,7 +25,7 @@ function busqueda_usuarios(url){
     $("#searchFieldf").val(criterio);
     $("#searchStringf").val(parametro);
     $("#is_search").val("true");
-    reloadGrid_usuarios(url);
+    sinner_grid("form_list_usuarios", url, "div_lista_usuarios");
 }
 
 function busqueda_rapida_usuarios(url,id,campo) {
@@ -36,5 +36,5 @@ function busqueda_rapida_usuarios(url,id,campo) {
     $("#searchFieldf").val(searchFields);
     $("#searchStringf").val(id);
     $("#sidxf").val(searchFields);
-    reloadGrid_usuarios(url);
+    sinner_grid("form_list_usuarios", url, "div_lista_usuarios");
 }
