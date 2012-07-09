@@ -19,10 +19,10 @@ use Expidian\UsuariosBundle\Controller\Session\SessionManager;
  *
  * @author Jose Gabriel Gonzalez
  */
-class OrganismosController {
+class OrganismosController extends Controller {
     
     /**
-     * Permite visualizar página inicial del módulo de usuarios.
+     * Permite visualizar página inicial del módulo de Organismos.
      *  
      * @return Symfony\Component\HttpFoundation\Response
      */
@@ -47,7 +47,7 @@ class OrganismosController {
                 $searchOper = ""; 
                 $searchString = ""; 
                 $direction = "ASC"; 
-                $sort = "u.idOrganismos"; 
+                $sort = "o.idOrganismo"; 
                 $rows = "10"; 
                 $page = "1";
                 return $this->render('ExpidianGlobalBundle:Organismos:list_organismos.html.twig', array('breadcrumb'=>$breadcrumb,'usuario'=>$usuario_obj, 'is_search'=>$isSearch, 'searchField'=>$searchField, 'searchOper'=>$searchOper, 'searchString'=>$searchString, 'direction'=>$direction, 'sort'=>$sort, 'rows'=>$rows, 'page'=>$page));

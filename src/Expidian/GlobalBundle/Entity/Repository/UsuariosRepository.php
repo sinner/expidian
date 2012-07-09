@@ -17,7 +17,7 @@ use Expidian\GlobalBundle\Entity\Usuarios,
 /**
  * UsuariosRepository Repositorio de datos de la clase entity GorUSuarios
  *
- * @author José Gabriel Gonzalez perez
+ * @author Jose Gabriel Gonzalez
  * 
  */
 class UsuariosRepository extends EntityRepository {

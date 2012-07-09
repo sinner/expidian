@@ -9,7 +9,7 @@ use Expidian\GlobalBundle\Entity\Usuarios;
 /**
  * LogsUsuariosRepository Repositorio de datos de la clase entity LogsUsuarios
  *
- * @author Jose Gabriel Gonzalez Perez
+ * @author Jose Gabriel Gonzalez
  */
 class LogsUsuariosRepository extends EntityRepository {
     
