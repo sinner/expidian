@@ -2,3 +2,6 @@ ExpidianExpedientesBundle:
     pattern:  /expedientes/
     defaults: { _controller: ExpidianExpedientesBundle:Expedientes:index }
 
+ExpExpedientesNew:
+    pattern:  /expedientes/nuevo
+    defaults: { _controller: ExpidianExpedientesBundle:Expedientes:new }

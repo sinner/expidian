@@ -2,13 +2,23 @@
 
 namespace Expidian\GlobalBundle\Entity;
 
+use Symfony\Component\Security\Core\User\UserInterface;
+
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints as DoctrineAssert;
+
+use Expidian\GlobalBundle\Entity\Personas;
+use Expidian\GlobalBundle\Entity\Perfiles;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Expidian\GlobalBundle\Entity\Expedientes
- *
+ * 
+ * @DoctrineAssert\UniqueEntity(fields="idExpediente", message="Este Expediente ya existe en la base de datos.")
+ * 
  * @ORM\Table(name="expedientes")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Expidian\GlobalBundle\Entity\Repository\ExpedientesRepository")
  */
 class Expedientes
 {
@@ -65,7 +75,7 @@ class Expedientes
      *   @ORM\JoinColumn(name="id_etapa_actual", referencedColumnName="id_etapa")
      * })
      */
-    private $idEtapaActual;
+    private $etapaActual;
 
     /**
      * @var Organismos
@@ -75,7 +85,7 @@ class Expedientes
      *   @ORM\JoinColumn(name="id_organismo", referencedColumnName="id_organismo")
      * })
      */
-    private $idOrganismo;
+    private $organismo;
 
     /**
      * @var Procesos
@@ -85,7 +95,7 @@ class Expedientes
      *   @ORM\JoinColumn(name="id_proceso_actual", referencedColumnName="id_proceso")
      * })
      */
-    private $idProcesoActual;
+    private $procesoActual;
 
     /**
      * @var Usuarios
@@ -95,7 +105,7 @@ class Expedientes
      *   @ORM\JoinColumn(name="id_usuario_ini", referencedColumnName="id_usuario")
      * })
      */
-    private $idUsuarioIni;
+    private $usuarioIni;
 
     /**
      * @var Usuarios
@@ -105,7 +115,7 @@ class Expedientes
      *   @ORM\JoinColumn(name="id_usuario_act", referencedColumnName="id_usuario")
      * })
      */
-    private $idUsuarioAct;
+    private $usuarioAct;
 
 
 
@@ -220,102 +230,107 @@ class Expedientes
     }
 
     /**
-     * Set idEtapaActual
+     * Set etapaActual
      *
-     * @param Expidian\GlobalBundle\Entity\Etapas $idEtapaActual
+     * @param Expidian\GlobalBundle\Entity\Etapas $etapaActual
      */
-    public function setIdEtapaActual(\Expidian\GlobalBundle\Entity\Etapas $idEtapaActual)
+    public function setEtapaActual(\Expidian\GlobalBundle\Entity\Etapas $etapaActual)
     {
-        $this->idEtapaActual = $idEtapaActual;
+        $this->etapaActual = $etapaActual;
     }
 
     /**
-     * Get idEtapaActual
+     * Get etapaActual
      *
      * @return Expidian\GlobalBundle\Entity\Etapas 
      */
-    public function getIdEtapaActual()
+    public function getEtapaActual()
     {
-        return $this->idEtapaActual;
+        return $this->etapaActual;
     }
 
     /**
-     * Set idOrganismo
+     * Set organismo
      *
-     * @param Expidian\GlobalBundle\Entity\Organismos $idOrganismo
+     * @param Expidian\GlobalBundle\Entity\Organismos $organismo
      */
-    public function setIdOrganismo(\Expidian\GlobalBundle\Entity\Organismos $idOrganismo)
+    public function setOrganismo(\Expidian\GlobalBundle\Entity\Organismos $organismo)
     {
-        $this->idOrganismo = $idOrganismo;
+        $this->organismo = $organismo;
     }
 
     /**
-     * Get idOrganismo
+     * Get organismo
      *
      * @return Expidian\GlobalBundle\Entity\Organismos 
      */
-    public function getIdOrganismo()
+    public function getOrganismo()
     {
-        return $this->idOrganismo;
+        return $this->organismo;
     }
 
     /**
-     * Set idProcesoActual
+     * Set procesoActual
      *
-     * @param Expidian\GlobalBundle\Entity\Procesos $idProcesoActual
+     * @param Expidian\GlobalBundle\Entity\Procesos $procesoActual
      */
-    public function setIdProcesoActual(\Expidian\GlobalBundle\Entity\Procesos $idProcesoActual)
+    public function setProcesoActual(\Expidian\GlobalBundle\Entity\Procesos $procesoActual)
     {
-        $this->idProcesoActual = $idProcesoActual;
+        $this->procesoActual = $procesoActual;
     }
 
     /**
-     * Get idProcesoActual
+     * Get procesoActual
      *
      * @return Expidian\GlobalBundle\Entity\Procesos 
      */
-    public function getIdProcesoActual()
+    public function getProcesoActual()
     {
-        return $this->idProcesoActual;
+        return $this->procesoActual;
     }
 
     /**
-     * Set idUsuarioIni
+     * Set usuarioIni
      *
-     * @param Expidian\GlobalBundle\Entity\Usuarios $idUsuarioIni
+     * @param Expidian\GlobalBundle\Entity\Usuarios $usuarioIni
      */
-    public function setIdUsuarioIni(\Expidian\GlobalBundle\Entity\Usuarios $idUsuarioIni)
+    public function setUsuarioIni(\Expidian\GlobalBundle\Entity\Usuarios $usuarioIni)
     {
-        $this->idUsuarioIni = $idUsuarioIni;
+        $this->usuarioIni = $usuarioIni;
     }
 
     /**
-     * Get idUsuarioIni
-     *
-     * @return Expidian\GlobalBundle\Entity\Usuarios 
-     */
-    public function getIdUsuarioIni()
-    {
-        return $this->idUsuarioIni;
-    }
-
-    /**
-     * Set idUsuarioAct
-     *
-     * @param Expidian\GlobalBundle\Entity\Usuarios $idUsuarioAct
-     */
-    public function setIdUsuarioAct(\Expidian\GlobalBundle\Entity\Usuarios $idUsuarioAct)
-    {
-        $this->idUsuarioAct = $idUsuarioAct;
-    }
-
-    /**
-     * Get idUsuarioAct
+     * Get usuarioIni
      *
      * @return Expidian\GlobalBundle\Entity\Usuarios 
      */
-    public function getIdUsuarioAct()
+    public function getUsuarioIni()
     {
-        return $this->idUsuarioAct;
+        return $this->usuarioIni;
+    }
+
+    /**
+     * Set usuarioAct
+     *
+     * @param Expidian\GlobalBundle\Entity\Usuarios $usuarioAct
+     */
+    public function setUsuarioAct(\Expidian\GlobalBundle\Entity\Usuarios $usuarioAct)
+    {
+        $this->usuarioAct = $usuarioAct;
+    }
+
+    /**
+     * Get usuarioAct
+     *
+     * @return Expidian\GlobalBundle\Entity\Usuarios 
+     */
+    public function getUsuarioAct()
+    {
+        return $this->usuarioAct;
+    }
+    
+    public function __toString()
+    {
+        return $this->getCodigoActual();
     }
 }
