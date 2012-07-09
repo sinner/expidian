@@ -10,16 +10,18 @@ ExpOrganismosList:
     pattern:  /organismos/
     defaults: { _controller: ExpidianGlobalBundle:Organismos:list }
     
-ExpOrganismosNew:
-    pattern:  /organismos/nuevo
-    defaults: { _controller: ExpidianGlobalBundle:Organismos:new }
-
 ExpOrganismosAjaxList:
-    pattern:  /organismos/{page}
+    pattern:  /organismos/ajax/lista/{page}
     defaults: { _controller: ExpidianGlobalBundle:Organismos:ajaxList, page: 1 }
+
+ExpOrganismosNew:
+    pattern:  /organismos/nuevo/
+    defaults: { _controller: ExpidianGlobalBundle:Organismos:new }
     
 ExpOrganismosEdit:
-    pattern:  /organismos/{id_organismo}
+    pattern:  /organismos/edit/{id_organismo}
     defaults: { _controller: ExpidianGlobalBundle:Organismos:edit }
  
- 
+ExpOrganismosDelete:
+    pattern:  /organismos/eliminar/{id_organismo}
+    defaults: { _controller: ExpidianGlobalBundle:Organismos:delete}

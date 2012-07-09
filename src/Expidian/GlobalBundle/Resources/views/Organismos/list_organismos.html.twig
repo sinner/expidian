@@ -6,11 +6,11 @@
     <script type="text/javascript">
         $(document).ready(function (){
             
-            listar_organismos("{{ path('ExpAjaxOrganismosList') }}");
+            listar_organismos("{{ path('ExpOrganismosAjaxList') }}");
                                     
             $("#form_busqueda_organismo").submit(function(event){
                 event.preventDefault();
-                busqueda_organismos("{{ path('ExpAjaxOrganismosList') }}");
+                busqueda_organismos("{{ path('ExpOrganismosAjaxList') }}");
             });
             
         });
@@ -26,7 +26,8 @@
                     <select name="criteria_box" id="criteria_box" type="text" style="width:20%;" class="searchBox" >
                         <option value=""> - - - </option>
                         <option value="nombre">Nombre de Organismo</option>
-                        <option value="organismo">Sector</option>
+                        <option value="sector">Sector</option>
+                        <option value="rif">RIF</option>
                     </select>
                     <input name="search_box" id="search_box" type="text" style="width:67%;" class="searchBox" />
                     <input name="searchButton" type="submit" value="Buscar" style="margin-left:10px;width: 6.5%" />

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Expidian\GlobalBundle\Entity\Organismos
  *
  * @ORM\Table(name="organismos")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Expidian\GlobalBundle\Entity\Repository\OrganismosRepository")
  */
 class Organismos
 {
@@ -43,8 +43,17 @@ class Organismos
      */
     private $sector;
 
+    
+    /**
+     * Set idOrganismo
+     * 
+     * @param type $idOrganismo 
+     */
+    public function setIdOrganismo($idOrganismo) {
+        $this->idOrganismo = $idOrganismo;
+    }
 
-
+    
     /**
      * Get idOrganismo
      *
@@ -114,4 +123,10 @@ class Organismos
     {
         return $this->sector;
     }
+    
+    public function __toString()
+    {
+        return $this->getNombreOrganismo();
+    }
+    
 }

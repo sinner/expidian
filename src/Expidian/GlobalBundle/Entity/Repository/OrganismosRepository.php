@@ -43,7 +43,7 @@ class OrganismosRepository extends EntityRepository {
         if($isSearch && $searchField!="" && $searchParam!=""){
             
             switch($searchField){
-                case 'nombre_organismo':
+                case 'nombre':
                     $searchField = "o.nombreOrganismo";
                     break;
                 case 'rif':

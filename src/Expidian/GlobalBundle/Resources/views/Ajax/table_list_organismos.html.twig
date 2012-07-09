@@ -2,33 +2,29 @@
         <thead>
             <tr>
                 <th>Nro.</th>
-                <th>{{ pager.sortable('Nombre', 'h.nombre')|raw }}</th>
-                <th>{{ pager.sortable('Apellido', 'h.apellido')|raw }}</th>
-                <th>{{ pager.sortable('Login', 'u.usuario')|raw }}</th>
-                <th>{{ pager.sortable('Perfil', 'p.perfil')|raw }}</th>
-                <th>{{ pager.sortable('Activo', 'u.esActivo')|raw }}</th>
+                <th>{{ pager.sortable('Nombre', 'o.nombreOrganismo')|raw }}</th>
+                <th>{{ pager.sortable('RIF', 'o.rif')|raw }}</th>
+                <th>{{ pager.sortable('Sector', 'o.sector')|raw }}</th>
                 <th>Opc.</th>
             </tr>
         </thead>
 
         {# table body #}
         <tbody>
-        {% for usuario in pager %}
+        {% for organismo in pager %}
             <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
-                <td>{{ usuario.idUsuario }}</td>
-                <td>{{ usuario.persona.nombre }}</td>
-                <td>{{ usuario.persona.apellido }}</td>
-                <td>{{ usuario.usuario }}</td>
-                <td>{{ usuario.perfil.perfil }}</td>
-                <td>{{ usuario.esActivo }}</td>
+                <td>{{ organismo.idOrganismo }}</td>
+                <td>{{ organismo.nombreOrganismo }}</td>
+                <td>{{ organismo.rif }}</td>
+                <td>{{ organismo.sector }}</td>
                 <td>
-                    <a title="Editar Perfil de Usuario" class="actionButtonEdit" href="{{ path('ExpUsuariosEdit', { 'id_usuario': usuario.idUsuario }) }}" ></a>
-                    <a title="Editar Perfil de Usuario" class="actionButtonDelete href="{{ path('ExpUsuariosDelete', { 'id_usuario': usuario.idUsuario }) }}" ></a>
+                    <a title="Editar Organismo" class="actionButtonEdit" href="{{ path('ExpOrganismosEdit', { 'id_organismo': organismo.idOrganismo }) }}" ></a>
+                    <a title="Editar Organismo" class="actionButtonDelete href="{{ path('ExpOrganismosDelete', { 'id_organismo': organismo.idOrganismo }) }}" ></a>
                 </td>
             </tr>
         {% else %}
             <tr class="{{ cycle(['odd', 'even'], loop.index) }}">
-                <td colspan="7">
+                <td colspan="5">
                     <div class="alertDialogBox">
                         <p>
                             No se han encontrado registros relacionados a los par&aacute;metros de busqueda.
@@ -42,14 +38,14 @@
 
         <tfoot>
             <tr>
-                <td colspan="2"><div class="ui-pg-div"><span class="ui-icon ui-icon-refresh" onclick="reloadGrid_usuarios('{{ path('ExpAjaxUsuariosList') }}');" title="Recargar la Lista de Usuarios" style="cursor: pointer;"></span></div></td>
+                <td colspan="2"><div class="ui-pg-div"><span class="ui-icon ui-icon-refresh" onclick="reloadGrid_organismos('{{ path('ExpAjaxOrganismosList') }}');" title="Recargar la Lista de Organismos" style="cursor: pointer;"></span></div></td>
                 <td colspan="3"></td>
                 <td colspan="2"><div style="text-align: right; padding-right: 3px;"><b>{{ pager.count }}</b> de <b>{{ pager.TotalItemCount }}</b> Registros </td>
             </tr>
         </tfoot>
     </table>
 
-    <form name="form_list_usuarios" id="form_list_usuarios">
+    <form name="form_list_organismos" id="form_list_organismos">
         <input type="hidden" value="{{rows}}" id="rows" name="rows" />
         <input type="hidden" value="{{searchField}}" id="searchFieldf" name="searchFieldf" />
         <input type="hidden" value="{{searchOper}}" id="searchOperf" name="searchOperf" />
