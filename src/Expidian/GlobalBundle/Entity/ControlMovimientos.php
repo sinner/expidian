@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Expidian\GlobalBundle\Entity\ControlMovimientos
  *
  * @ORM\Table(name="control_movimientos")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Expidian\GlobalBundle\Entity\Repository\ControlMovimientosRepository")
  */
 class ControlMovimientos
 {

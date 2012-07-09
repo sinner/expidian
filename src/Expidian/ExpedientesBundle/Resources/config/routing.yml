@@ -2,6 +2,22 @@ ExpidianExpedientesBundle:
     pattern:  /expedientes/
     defaults: { _controller: ExpidianExpedientesBundle:Expedientes:index }
 
+ExpExpedientesList:
+    pattern:  /expedientes/
+    defaults: { _controller: ExpidianExpedientesBundle:Expedientes:list }
+    
+ExpExpedientesAjaxList:
+    pattern:  /expedientes/ajax/lista/{page}
+    defaults: { _controller: ExpidianExpedientesBundle:Expedientes:ajaxList, page: 1 }
+
 ExpExpedientesNew:
-    pattern:  /expedientes/nuevo
+    pattern:  /expedientes/nuevo/
     defaults: { _controller: ExpidianExpedientesBundle:Expedientes:new }
+    
+ExpExpedientesEdit:
+    pattern:  /expedientes/edit/{id_expediente}
+    defaults: { _controller: ExpidianExpedientesBundle:Expedientes:edit }
+ 
+ExpExpedientesDelete:
+    pattern:  /expedientes/eliminar/{id_expediente}
+    defaults: { _controller: ExpidianExpedientesBundle:Expedientes:delete}

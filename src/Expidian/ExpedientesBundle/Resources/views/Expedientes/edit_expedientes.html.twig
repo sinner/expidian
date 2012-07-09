@@ -1,0 +1,161 @@
+{% extends '::base.html.twig' %}
+
+{% block javascripts %}
+<script language="javascript" type="text/javascript" src="{{ asset('bundles/expidian/js/validate/jquery.validate.min.js') }}"></script>
+<script language="javascript" type="text/javascript" src="{{ asset('bundles/expidian/js/funciones/jquery.metadata.js') }}"></script>
+<script language="javascript" type="text/javascript">
+    
+    $(document).ready(function () {
+        
+        $('#form_expediente_type').fadeIn();
+
+        // Este código proporciona la funcionalidad de poder acultar o mostrar secciones del formulario
+        $('.showPanelButton').click(function (elemento) {
+
+            elemento.preventDefault();
+
+            if ($(this).attr("class") == "showPanelButton open") {
+
+                $(this).attr("title", "Ocultar");
+                $(this).removeClass().addClass("showPanelButton close");
+
+            }
+            else {
+
+                $(this).attr("title", "Mostrar");
+                $(this).removeClass().addClass("showPanelButton open");
+
+            }
+
+            $("#"+this.rel).slideToggle("slow");
+
+        });
+        
+        // Y con esto logro que en los campos de nombre y apellido solo se ingresen caractertes alfabéticos
+        $('#nombre').bind('keyup blur', function () {
+            if (this.value.match(/[^a-zA-ZáÁéÉíÍóÓúÚñÑ ]/g)) {
+                this.value = this.value.replace(/[^a-zA-ZáÁéÉíÍóÓúÚñÑ0-9 ]/g, '');
+            }
+        });
+        
+        
+    });
+    
+    $(document).ready(function () {
+       /**
+        * Reglas de Validación del Formulario
+        */   
+        $("#form_expediente_type").validate({
+            rules: {
+                "expedientetype[idExpediente]": { number: true },
+                "expedientetype[persona][cedulaDeIdentidad]": { required: true, number:true },
+                "expedientetype[persona][nacionalidad]": { required: true, maxlength: 1 },
+                "expedientetype[persona][nombre]": { required: true },
+                "expedientetype[persona][apellido]": { required: false },
+                "expedientetype[persona][email]": { email: true },
+                "expedientetype[persona][pais]": { required: true, number:true },
+                "expedientetype[persona][telefono1]": { number: true },
+                "expedientetype[persona][telefono2]": { number: true },
+                "expedientetype[persona][idExpediente]": { number: true },
+                "expedientetype[persona][expediente]": { required: true, number:true },
+                "expedientetype[persona][clave]": { required: true, minlength:5 },
+                "expedientetype[persona][confirmClave]": { required: true, equalTo: "#clave"},
+                "expedientetype[persona][perfil]": { number: true, required: true },
+                "expedientetype[persona][esActivo]": { required: true, maxlength: 2  },
+                "expedientetype[persona][opc]": { required: true }
+            },
+            messages: {
+                "expedientetype[persona][idPersona]": "Existe un error en la carga del formulario. Debe recargar la p&aacute;gina.",
+                "expedientetype[persona][cedulaDeIdentidad]": { required: "Debe ingresar la C&eacute;dula de Identidad del Expediente.", number:"Debe ingresar solo caracteres num&eacute;ricos en la C&eacute;dula de Identidad del Expediente" },
+                "expedientetype[persona][nacionalidad]": "Campo Requerido. Debe seleccionar la nacionalida Venezolana o Extrangera.",
+                "expedientetype[persona][nombre]": "Campo Requerido. Debe ingresar un nombre que solo contenga caracteres alfab&eacute;ticos.",
+                "expedientetype[persona][apellido]": "Campo Requerido. Debe ingresar un nombre que solo contenga caracteres alfab&eacute;ticos.",
+                "expedientetype[persona][email]": {required: "Debe Ingresar una Direcci&oacute;n de Correo Electr&oacute;nico V&aacute;lido.", remote: "Este correo electr&oacute;nico ya se encuentra en uso."},
+                "expedientetype[persona][pais]": "Debe seleccionar el pa&iacute;s de procedencia del expediente.",
+                "expedientetype[persona][telefono1]": "Debe Ingresar un N&uacute;mero de Tel&eacute;fono V&aacute;lido (Formato: 2123332211).",
+                "expedientetype[persona][telefono2]": "Debe Ingresar un N&uacute;mero de Tel&eacute;fono V&aacute;lido (Formato: 4163332211).",
+                "expedientetype[persona][idExpediente]": "Existe un error en la carga del formulario. Debe recargar la p&aacute;gina.",
+                "expedientetype[persona][expediente]": { required: "Debe ingresar el Login Expediente.", number:"Debe ingresar solo caracteres num&eacute;ricos en el Login del Expediente" },
+                "expedientetype[persona][clave]": "Debe Ingresar la Clave del Expediente V&aacute;lida. Debe Tener al menos 5 Caracteres.",
+                "expedientetype[persona][confirmClave]": {required: "Debe Confirmar la Clave Ingresada.", equalTo: "Las Claves no coinciden. Debe Confirmar la Clave Ingresada"},
+                "expedientetype[persona][perfil]": "Debe Seleccionar el Perfil Expediente del Sistema.", 
+                "expedientetype[persona][esActivo]": "Debe Seleccionar el Estatus del Expediente del Sistema.",
+                "expedientetype[persona][opc]": "Existe un error en la carga del formulario. Debe recargar la p&aacute;gina."
+            }
+        });
+    });
+    
+    function form_expediente_validator(){
+        var formIsValid = $("#form_expediente_type").validate().form();
+	if(formIsValid){
+            return true;
+        }
+        return false;
+    }
+    
+</script>
+
+{% endblock javascripts %}
+
+{% block maincontent %}
+    <form action="" method="POST" id="form_expediente_type" name="form_expediente_type" onSubmit="return form_expediente_validator();" style="display: none;" >
+        <div id="mensajes_de_error">
+            <div class="infoDialogBox">
+                <p>Ingrese los datos del Expediente. El Expediente entrar&aacute; directamente en la Etapa de "Investigaci&oacute;n" del Proceso "Valoraci&oacute;n de M&eacute;ritos".</p>
+            </div>
+        </div>
+        <article class="module width_full"><!-- START of "Datos Generales del Expediente" -->  
+            <header>
+                <h3>
+                    <span>Datos Generales del Expediente</span>
+                    <a class="showPanelButton close" rel="div_datos_generales_expediente" title="Ocultar"></a>
+                </h3>
+            </header>
+            
+            <div class="module_content" id="div_datos_generales_expediente">
+                
+                {{ form_widget(form.idExpediente, {'id': 'idExpediente'}) }}
+                
+                <!-- START of Primera Fila -->
+                <fieldset class="half" style="margin-right: 3.5%;">
+                    <div>{{ form_label(form.nombre, 'Nombre ') }}</div>
+                    <div>{{ form_widget(form.nombre, {'id': 'nombre', 'attr': {'maxlength': '20'}}) }}</div>
+                    <div class="error">{{ form_errors(form.nombre) }}</div>
+                </fieldset>
+                
+                <fieldset class="half">
+                    <div>{{ form_label(form.fechaRegistro, 'Fecha de Registro') }}</div>
+                    <div>{{ form_widget(form.fechaRegistro, {'id': 'fechaRegistro', 'attr': {'readonly': 'readonly'}, 'value': "now"|date("d-m-Y")}) }}</div>
+                    <div class="error">{{ form_errors(form.fechaRegistro) }}</div>
+                </fieldset>
+                <!-- END of Primera Fila -->
+                
+                <!-- START of Segunda Fila -->
+                <fieldset class="half" style="margin-right: 3.5%;">
+                    <div>{{ form_label(form.organismo,'Organismo') }}</div>
+                    <div>{{ form_widget(form.organismo, {'id': 'organismo'}) }}</div>
+                    <div class="error">{{ form_errors(form.organismo) }}</div>
+                </fieldset>
+                
+                <fieldset class="half">
+                    <div>{{ form_label(form.usuarioAct,'Abogado Asignado') }}</div>
+                    <div>{{ form_widget(form.usuarioAct, {'id': 'usuarioAct'}) }}</div>
+                    <div class="error">{{ form_errors(form.usuarioAct) }}</div>
+                </fieldset>
+                <!-- END of Segunda Fila -->
+                
+                <div class="clear"></div>
+                
+            </div>
+                
+            <footer>
+                <div class="submit_link">
+                    <input type="reset" value="Limpiar Formulario" />
+                    <input type="submit" id="submit_edit_expediente" name="submit_edit_expediente" value="Guardar Datos del Expediente" />
+                </div>
+            </footer>
+                
+        </article><!-- END of Datos Generales del Expediente -->
+                
+    </form>
+{% endblock maincontent %}

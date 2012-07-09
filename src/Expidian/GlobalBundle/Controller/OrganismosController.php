@@ -160,7 +160,7 @@ class OrganismosController extends Controller {
                         $result = $em->getRepository('ExpidianGlobalBundle:Organismos')->GuardarDatosDeOrganismo($organismo, $em);
                         
                         if($result){
-                            $msj = 'El Organismo <b>'.$organismo->getNombreOrganismo().'</b>. Para agregar un nuevo organismo haga click <a href='.$this->generateUrl('ExpOrganismosNew').'>aqu&iacute;</a>';
+                            $msj = 'El Organismo <b>'.$organismo->getNombreOrganismo().'</b> ha sido registrado exitosamente. Para agregar un nuevo organismo haga click <a href='.$this->generateUrl('ExpOrganismosNew').'>aqu&iacute;</a>';
                             $class_style = 'successDialogBox';
                         }else{
                             $msj = 'Ha ocurrido un error en el sistema. Vuelva a intentarlo más tarde. Para agregar un nuevo organismo haga click <a href='.$this->generateUrl('ExpOrganismosNew').'>aqu&iacute;</a>';
@@ -200,7 +200,7 @@ class OrganismosController extends Controller {
             
             if($usuario_obj->getPerfil()->getPerfil()=='Administrador' || $usuario_obj->getPerfil()->getPerfil()=='Abogado Coordinador'){
                 
-                $breadcrumb = array(array('text'=>'Usuarios','url'=>$this->generateUrl('ExpUsuariosList')),array('text'=>'Editar','url'=>''));
+                $breadcrumb = array(array('text'=>'Organismos','url'=>$this->generateUrl('ExpOrganismosList')),array('text'=>'Editar','url'=>''));
                                 
                 $em = $this->getDoctrine()->getEntityManager();
                 $organismo = $em->getRepository('ExpidianGlobalBundle:Organismos')->find($id_organismo);

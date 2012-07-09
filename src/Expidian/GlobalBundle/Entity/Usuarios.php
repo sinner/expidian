@@ -317,7 +317,7 @@ class Usuarios
     
     public function __toString()
     {
-        return $this->getUsuario();
+        return $this->getUsuario()." ".$this->getPersona()." (".$this->getPerfil().")";
     }
 
     public function equals(UserInterface $usuario) {

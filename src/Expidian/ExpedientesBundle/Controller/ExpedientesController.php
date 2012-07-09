@@ -11,13 +11,15 @@ use Expidian\GlobalBundle\Entity\Personas;
 use Expidian\GlobalBundle\Entity\Perfiles;
 use Expidian\GlobalBundle\Entity\Paises;
 use Expidian\GlobalBundle\Entity\Organismos;
+use Expidian\GlobalBundle\Entity\Expedientes;
+use Expidian\GlobalBundle\Entity\ControlMovimientos;
 
-use Expidian\GlobalBundle\Form\OrganismosType;
+use Expidian\GlobalBundle\Form\ExpedientesType;
 
 use Expidian\UsuariosBundle\Controller\Session\SessionManager;
 
 /**
- * Description of OrganismosController
+ * Description of ExpedientesController
  *
  * @author Jose Gabriel Gonzalez
  */
@@ -59,13 +61,24 @@ class ExpedientesController extends Controller
                     //Con esta sentencia vinculo los valores proporcionados por el formulario a cada uno de los atributos del objeto para que fué configurado. En este caso $usuario
                     $form->bindRequest($request);
                     $em = $this->getDoctrine()->getEntityManager();
-                    
-                    if($form->isValid()){
-                                                
-                        $result = $em->getRepository('ExpidianGlobalBundle:Expedientes')->GuardarDatosDeExpediente($Expediente, $em);
+                                        
+                    if(true){
+                        
+                        $etapaActual = $em->getRepository('ExpidianGlobalBundle:Etapas')->findEtapaInicial($em);
+                        $usuarioAct = $em->getRepository('ExpidianGlobalBundle:Usuarios')->findOneByIdUsuario($usuario_obj->getIdUsuario());
+                        $Expediente->setSesssionId($sm->getSessionId());
+                        $Expediente->setUsuarioIni($usuarioAct);
+                        $Expediente->setProcesoActual($etapaActual->getProceso());
+                        $Expediente->setEtapaActual($etapaActual);
+                        $codExp = $em->getRepository('ExpidianGlobalBundle:ControlMovimientos')->getCodigoExp($em,$etapaActual);
+                        $Expediente->setCodigoActual($codExp);
+                        
+                        //var_dump($Expediente);
+                        
+                        $result = $em->getRepository('ExpidianGlobalBundle:Expedientes')->GuardarDatosDeExpediente($Expediente, $Expediente->getFechaRegistro(), $em);
                         
                         if($result){
-                            $msj = 'El Expediente <b>'.$Expediente->getNombreExpediente().'</b>. Para agregar un nuevo Expediente haga click <a href='.$this->generateUrl('ExpExpedientesNew').'>aqu&iacute;</a>';
+                            $msj = 'El Expediente <b>'.$Expediente->getNombre().'</b> ha sido registrado Exitosamente. Para agregar un nuevo Expediente haga click <a href='.$this->generateUrl('ExpExpedientesNew').'>aqu&iacute;</a>';
                             $class_style = 'successDialogBox';
                         }else{
                             $msj = 'Ha ocurrido un error en el sistema. Vuelva a intentarlo más tarde. Para agregar un nuevo Expediente haga click <a href='.$this->generateUrl('ExpExpedientesNew').'>aqu&iacute;</a>';
@@ -78,7 +91,7 @@ class ExpedientesController extends Controller
                     
                 }
 
-                return $this->render('ExpidianGlobalBundle:Expedientes:edit_Expedientes.html.twig', array('form'=>$form->createView(), 'breadcrumb'=>$breadcrumb,'usuario'=>$usuario_obj, 'opc'=>'Nuevo'));
+                return $this->render('ExpidianExpedientesBundle:Expedientes:edit_expedientes.html.twig', array('form'=>$form->createView(), 'breadcrumb'=>$breadcrumb,'usuario'=>$usuario_obj, 'opc'=>'Nuevo'));
                 
             }else{
                 

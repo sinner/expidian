@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Expidian\GlobalBundle\Entity\Etapas
  *
  * @ORM\Table(name="etapas")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Expidian\GlobalBundle\Entity\Repository\EtapasRepository")
  */
 class Etapas
 {
@@ -58,11 +58,18 @@ class Etapas
      *   @ORM\JoinColumn(name="id_proceso", referencedColumnName="id_proceso")
      * })
      */
-    private $idProceso;
-
-
+    private $proceso;
 
     /**
+     * Set idEtapa
+     *
+     * @param type $idEtapa 
+     */
+    public function setIdEtapa($idEtapa) {
+        $this->idEtapa = $idEtapa;
+    }
+
+        /**
      * Get idEtapa
      *
      * @return integer 
@@ -153,22 +160,26 @@ class Etapas
     }
 
     /**
-     * Set idProceso
+     * Set proceso
      *
-     * @param Expidian\GlobalBundle\Entity\Procesos $idProceso
+     * @param Expidian\GlobalBundle\Entity\Procesos $proceso
      */
-    public function setIdProceso(\Expidian\GlobalBundle\Entity\Procesos $idProceso)
+    public function setProceso(\Expidian\GlobalBundle\Entity\Procesos $proceso)
     {
-        $this->idProceso = $idProceso;
+        $this->proceso = $proceso;
     }
 
     /**
-     * Get idProceso
+     * Get proceso
      *
      * @return Expidian\GlobalBundle\Entity\Procesos 
      */
-    public function getIdProceso()
+    public function getProceso()
     {
-        return $this->idProceso;
+        return $this->proceso;
+    }
+    
+    public function __toString(){
+        return $this->getEtapa();
     }
 }

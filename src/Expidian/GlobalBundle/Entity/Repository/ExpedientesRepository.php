@@ -9,6 +9,10 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\NativeQuery;
 
 use Expidian\GlobalBundle\Entity\Expedientes;
+use Expidian\GlobalBundle\Entity\Usuarios;
+use Expidian\GlobalBundle\Entity\Procesos;
+use Expidian\GlobalBundle\Entity\Etapas;
+use Expidian\GlobalBundle\Entity\ControlMovimientos;
 
 /**
  * ExpedientesRepository Repositorio de datos de la clase entity Expedientes
@@ -18,11 +22,13 @@ use Expidian\GlobalBundle\Entity\Expedientes;
  */
 class ExpedientesRepository extends EntityRepository {
     
-    public function GuardarDatosDeExpediente(Expedientes $expediente, EntityManager $em){
+    
+    public function GuardarDatosDeExpediente(Expedientes $expediente, \DateTime $fecha, EntityManager $em){
         
         try{
             $em->persist($expediente);
             $em->flush();
+            $this->saveControlMovimiento($expediente, $fecha, $em);
             $result = true;
         }catch(Exception $e){
             $result = false;
@@ -30,6 +36,30 @@ class ExpedientesRepository extends EntityRepository {
         
         return $result;
         
+    }
+    
+    /**
+     *
+     * @param EntityManager $em
+     * @param Expedientes $exp
+     * @param \DateTime $fecha
+     * @return \Expidian\GlobalBundle\Entity\ControlMovimientos 
+     */
+    public function saveControlMovimiento(Expedientes $exp, \DateTime $fecha, EntityManager $em){
+        
+        $controlMov = new ControlMovimientos();
+        $controlMov->setIdExpidiente($exp);
+        $controlMov->setCodExpediente($exp->getCodigoActual());
+        $controlMov->setFechaMovimiento($fecha);
+        $controlMov->setIdAbogadoAsign($exp->getUsuarioAct());
+        $controlMov->setIdAbogadoCoord($exp->getUsuarioIni());
+        $controlMov->setIdEtapa($exp->getEtapaActual());
+        $controlMov->setIdProceso($exp->getProcesoActual());
+        
+        $em->persist($controlMov);
+        $em->flush();
+        
+        return $controlMov;
     }
     
     /**
