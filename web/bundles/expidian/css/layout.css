@@ -1215,6 +1215,14 @@ select.error, textarea.error, input[type=text].error , input[type=password].erro
 				color:#1e1e1e;
 				text-decoration:underline;
 			}
+                        
+                        .tableList thead tr th.tblopc{
+                            text-align: right;
+                        }
+                        
+                        .tableList tbody tr td.tblopc{
+                            text-align: right;
+                        }
 			
 		.tableList tfoot td {
 			height:15px;
@@ -1228,7 +1236,7 @@ select.error, textarea.error, input[type=text].error , input[type=password].erro
 		}
 		
 		.tableList tbody tr.even:hover td, tr.odd:hover td {
-			background-color:#f8ffe8;
+			background-color:#f8ffcc;
 		}
 		
 			.tableList tbody tr.even {
@@ -1249,7 +1257,8 @@ select.error, textarea.error, input[type=text].error , input[type=password].erro
 			.tableList tbody tr.last td {
 				border-bottom:0px transparent solid;
 			}
-						
+		
+                        
 		.tableList tbody td span {
 			display:block;
 		}
@@ -1271,7 +1280,7 @@ select.error, textarea.error, input[type=text].error , input[type=password].erro
 		
 		a.actionButtonEdit, a.actionButtonDelete, a.actionButtonMoveUp, a.actionButtonMoveDown, a.actionButtonFavorite, a.actionButtonFavoriteActive, a.actionLookData, .actionEmpty , a.actionActivate {
 			display:block;
-			float:left;
+			float:right;
 			width:16px;
 			height:16px;
 			background-position:center center;

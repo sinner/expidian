@@ -7,7 +7,7 @@
                 <th>{{ pager.sortable('Login', 'u.usuario')|raw }}</th>
                 <th>{{ pager.sortable('Perfil', 'p.perfil')|raw }}</th>
                 <th>{{ pager.sortable('Activo', 'u.esActivo')|raw }}</th>
-                <th>Opc.</th>
+                <th class="tblopc">Opc.</th>
             </tr>
         </thead>
 
@@ -21,9 +21,9 @@
                 <td>{{ usuario.usuario }}</td>
                 <td>{{ usuario.perfil.perfil }}</td>
                 <td>{{ usuario.esActivo }}</td>
-                <td>
+                <td class="tblopc">
+                    <a title="Eliminar Usuario" class="actionButtonDelete href="{{ path('ExpUsuariosDelete', { 'id_usuario': usuario.idUsuario }) }}" ></a>
                     <a title="Editar Perfil de Usuario" class="actionButtonEdit" href="{{ path('ExpUsuariosEdit', { 'id_usuario': usuario.idUsuario }) }}" ></a>
-                    <a title="Editar Perfil de Usuario" class="actionButtonDelete href="{{ path('ExpUsuariosDelete', { 'id_usuario': usuario.idUsuario }) }}" ></a>
                 </td>
             </tr>
         {% else %}

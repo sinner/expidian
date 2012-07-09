@@ -8,8 +8,7 @@ use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\NativeQuery;
 
-use Expidian\GlobalBundle\Entity\Organismos,
-    Expidian\GlobalBundle\Entity\Organismos;
+use Expidian\GlobalBundle\Entity\Organismos;
 
 /**
  * OrganismosRepository Repositorio de datos de la clase entity Organismos
