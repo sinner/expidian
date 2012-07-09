@@ -44,6 +44,13 @@ class Etapas
     private $nroConsecutivoEtapa;
 
     /**
+     * @var string $isFinal
+     *
+     * @ORM\Column(name="is_final", type="string", length=2, nullable=false)
+     */
+    private $isFinal;
+
+    /**
      * @var Procesos
      *
      * @ORM\ManyToOne(targetEntity="Procesos")
@@ -123,6 +130,26 @@ class Etapas
     public function getNroConsecutivoEtapa()
     {
         return $this->nroConsecutivoEtapa;
+    }
+
+    /**
+     * Set isFinal
+     *
+     * @param string $isFinal
+     */
+    public function setIsFinal($isFinal)
+    {
+        $this->isFinal = $isFinal;
+    }
+
+    /**
+     * Get isFinal
+     *
+     * @return string 
+     */
+    public function getIsFinal()
+    {
+        return $this->isFinal;
     }
 
     /**

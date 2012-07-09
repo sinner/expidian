@@ -10,12 +10,17 @@ Expedientes:
       column: id_expediente
       generator:
         strategy: SEQUENCE
-    hechos:
-      type: text
+    nombre:
+      type: string
+      length: 20
+      fixed: false
       nullable: true
-    observaciones:
-      type: text
+    codigoActual:
+      type: string
+      length: 20
+      fixed: false
       nullable: true
+      column: codigo_actual
     sesssionId:
       type: string
       length: 255
@@ -32,11 +37,7 @@ Expedientes:
       type: date
       nullable: false
       column: fecha_registro
-    fechaSolicInvest:
-      type: date
-      nullable: true
-      column: fecha_solic_invest
-  oneToOne:
+  manyToOne:
     idEtapaActual:
       targetEntity: Etapas
       cascade: {  }
@@ -71,6 +72,15 @@ Expedientes:
       inversedBy: null
       joinColumns:
         id_usuario_ini:
+          referencedColumnName: id_usuario
+      orphanRemoval: false
+    idUsuarioAct:
+      targetEntity: Usuarios
+      cascade: {  }
+      mappedBy: null
+      inversedBy: null
+      joinColumns:
+        id_usuario_act:
           referencedColumnName: id_usuario
       orphanRemoval: false
   lifecycleCallbacks: {  }

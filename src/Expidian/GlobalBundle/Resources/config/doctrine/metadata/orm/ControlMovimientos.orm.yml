@@ -12,15 +12,15 @@ ControlMovimientos:
         strategy: SEQUENCE
     codExpediente:
       type: string
-      length: 11
+      length: 20
       fixed: false
       nullable: false
       column: cod_expediente
     fechaMovimiento:
       type: date
-      nullable: false
+      nullable: true
       column: fecha_movimiento
-  oneToOne:
+  manyToOne:
     idAbogadoAsign:
       targetEntity: Usuarios
       cascade: {  }

@@ -40,7 +40,7 @@ Personas:
       length: 255
       fixed: false
       nullable: true
-  oneToOne:
+  manyToOne:
     idPais:
       targetEntity: Paises
       cascade: {  }

@@ -25,14 +25,14 @@ class ControlMovimientos
     /**
      * @var string $codExpediente
      *
-     * @ORM\Column(name="cod_expediente", type="string", length=11, nullable=false)
+     * @ORM\Column(name="cod_expediente", type="string", length=20, nullable=false)
      */
     private $codExpediente;
 
     /**
      * @var date $fechaMovimiento
      *
-     * @ORM\Column(name="fecha_movimiento", type="date", nullable=false)
+     * @ORM\Column(name="fecha_movimiento", type="date", nullable=true)
      */
     private $fechaMovimiento;
 

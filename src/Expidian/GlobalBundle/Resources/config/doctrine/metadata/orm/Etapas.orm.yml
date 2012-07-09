@@ -26,7 +26,13 @@ Etapas:
       unsigned: false
       nullable: false
       column: nro_consecutivo_etapa
-  oneToOne:
+    isFinal:
+      type: string
+      length: 2
+      fixed: false
+      nullable: false
+      column: is_final
+  manyToOne:
     idProceso:
       targetEntity: Procesos
       cascade: {  }

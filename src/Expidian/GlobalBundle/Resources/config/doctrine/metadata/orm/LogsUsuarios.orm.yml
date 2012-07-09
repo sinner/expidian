@@ -12,7 +12,7 @@ LogsUsuarios:
         strategy: SEQUENCE
     logUsuario:
       type: string
-      length: 250
+      length: 300
       fixed: false
       nullable: false
       column: log_usuario
@@ -26,7 +26,7 @@ LogsUsuarios:
       type: datetime
       nullable: false
       column: fecha_log
-  oneToOne:
+  manyToOne:
     idUsuario:
       targetEntity: Usuarios
       cascade: {  }

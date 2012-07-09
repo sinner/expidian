@@ -72,16 +72,6 @@ class Personas
     private $email;
 
     /**
-     * @var Estados
-     *
-     * @ORM\ManyToOne(targetEntity="Estados")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="id_estado", referencedColumnName="id_estado")
-     * })
-     */
-    private $idEstado;
-
-    /**
      * @var Paises
      *
      * @ORM\ManyToOne(targetEntity="Paises")

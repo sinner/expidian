@@ -58,9 +58,9 @@ class Usuarios
     private $fechaRegistro;
 
     /**
-     * @var date $fechaUltimoIngreso
+     * @var datetime $fechaUltimoIngreso
      *
-     * @ORM\Column(name="fecha_ultimo_ingreso", type="date", nullable=true)
+     * @ORM\Column(name="fecha_ultimo_ingreso", type="datetime", nullable=true)
      */
     private $fechaUltimoIngreso;
 

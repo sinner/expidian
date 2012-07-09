@@ -25,7 +25,7 @@ class LogsUsuarios
     /**
      * @var string $logUsuario
      *
-     * @ORM\Column(name="log_usuario", type="string", length=250, nullable=false)
+     * @ORM\Column(name="log_usuario", type="string", length=300, nullable=false)
      */
     private $logUsuario;
 

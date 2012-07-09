@@ -23,18 +23,18 @@ class Expedientes
     private $idExpediente;
 
     /**
-     * @var text $hechos
+     * @var string $nombre
      *
-     * @ORM\Column(name="hechos", type="text", nullable=true)
+     * @ORM\Column(name="nombre", type="string", length=20, nullable=true)
      */
-    private $hechos;
+    private $nombre;
 
     /**
-     * @var text $observaciones
+     * @var string $codigoActual
      *
-     * @ORM\Column(name="observaciones", type="text", nullable=true)
+     * @ORM\Column(name="codigo_actual", type="string", length=20, nullable=true)
      */
-    private $observaciones;
+    private $codigoActual;
 
     /**
      * @var string $sesssionId
@@ -56,13 +56,6 @@ class Expedientes
      * @ORM\Column(name="fecha_registro", type="date", nullable=false)
      */
     private $fechaRegistro;
-
-    /**
-     * @var date $fechaSolicInvest
-     *
-     * @ORM\Column(name="fecha_solic_invest", type="date", nullable=true)
-     */
-    private $fechaSolicInvest;
 
     /**
      * @var Etapas
@@ -103,18 +96,19 @@ class Expedientes
      * })
      */
     private $idUsuarioIni;
-    
-    
-    /**
-     * Set idExpediente
-     *
-     * @param text $idExpediente
-     */
-    public function setIdExpediente($idExpediente) {
-        $this->idExpediente = $idExpediente;
-    }
 
-    
+    /**
+     * @var Usuarios
+     *
+     * @ORM\ManyToOne(targetEntity="Usuarios")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_usuario_act", referencedColumnName="id_usuario")
+     * })
+     */
+    private $idUsuarioAct;
+
+
+
     /**
      * Get idExpediente
      *
@@ -126,43 +120,43 @@ class Expedientes
     }
 
     /**
-     * Set hechos
+     * Set nombre
      *
-     * @param text $hechos
+     * @param string $nombre
      */
-    public function setHechos($hechos)
+    public function setNombre($nombre)
     {
-        $this->hechos = $hechos;
+        $this->nombre = $nombre;
     }
 
     /**
-     * Get hechos
+     * Get nombre
      *
-     * @return text 
+     * @return string 
      */
-    public function getHechos()
+    public function getNombre()
     {
-        return $this->hechos;
+        return $this->nombre;
     }
 
     /**
-     * Set observaciones
+     * Set codigoActual
      *
-     * @param text $observaciones
+     * @param string $codigoActual
      */
-    public function setObservaciones($observaciones)
+    public function setCodigoActual($codigoActual)
     {
-        $this->observaciones = $observaciones;
+        $this->codigoActual = $codigoActual;
     }
 
     /**
-     * Get observaciones
+     * Get codigoActual
      *
-     * @return text 
+     * @return string 
      */
-    public function getObservaciones()
+    public function getCodigoActual()
     {
-        return $this->observaciones;
+        return $this->codigoActual;
     }
 
     /**
@@ -223,26 +217,6 @@ class Expedientes
     public function getFechaRegistro()
     {
         return $this->fechaRegistro;
-    }
-
-    /**
-     * Set fechaSolicInvest
-     *
-     * @param date $fechaSolicInvest
-     */
-    public function setFechaSolicInvest($fechaSolicInvest)
-    {
-        $this->fechaSolicInvest = $fechaSolicInvest;
-    }
-
-    /**
-     * Get fechaSolicInvest
-     *
-     * @return date 
-     */
-    public function getFechaSolicInvest()
-    {
-        return $this->fechaSolicInvest;
     }
 
     /**
@@ -323,5 +297,25 @@ class Expedientes
     public function getIdUsuarioIni()
     {
         return $this->idUsuarioIni;
+    }
+
+    /**
+     * Set idUsuarioAct
+     *
+     * @param Expidian\GlobalBundle\Entity\Usuarios $idUsuarioAct
+     */
+    public function setIdUsuarioAct(\Expidian\GlobalBundle\Entity\Usuarios $idUsuarioAct)
+    {
+        $this->idUsuarioAct = $idUsuarioAct;
+    }
+
+    /**
+     * Get idUsuarioAct
+     *
+     * @return Expidian\GlobalBundle\Entity\Usuarios 
+     */
+    public function getIdUsuarioAct()
+    {
+        return $this->idUsuarioAct;
     }
 }

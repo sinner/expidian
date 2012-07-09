@@ -20,7 +20,7 @@ Consultas:
       type: date
       nullable: false
       column: fecha_consulta
-  oneToOne:
+  manyToOne:
     idExpediente:
       targetEntity: Expedientes
       cascade: {  }

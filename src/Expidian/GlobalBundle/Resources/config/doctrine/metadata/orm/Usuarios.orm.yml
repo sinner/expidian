@@ -40,7 +40,7 @@ Usuarios:
       type: datetime
       nullable: true
       column: fecha_ultimo_ingreso
-  oneToOne:
+  manyToOne:
     idPerfil:
       targetEntity: Perfiles
       cascade: {  }

@@ -10,7 +10,7 @@ Interesados:
       column: id_interesado
       generator:
         strategy: SEQUENCE
-  oneToOne:
+  manyToOne:
     cedulaDeentidad:
       targetEntity: Personas
       cascade: {  }
