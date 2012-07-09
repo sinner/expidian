@@ -18,7 +18,7 @@ use Expidian\GlobalBundle\Entity\Organismos;
  */
 class OrganismosRepository extends EntityRepository {
     
-    public function EditarOrganismo(Organismos $organismo, EntityManager $em){
+    public function GuardarDatosDeOrganismo(Organismos $organismo, EntityManager $em){
         
         try{
             $em->persist($organismo);

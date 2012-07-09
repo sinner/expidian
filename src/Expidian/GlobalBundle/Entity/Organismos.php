@@ -2,6 +2,9 @@
 
 namespace Expidian\GlobalBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints as DoctrineAssert;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -15,6 +18,8 @@ class Organismos
     /**
      * @var integer $idOrganismo
      *
+     * @Assert\Regex(pattern="/^0*[1-9][0-9]*$/" , message="El valor {{ value }} no es un {{ type }} válido.") 
+     * 
      * @ORM\Column(name="id_organismo", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="SEQUENCE")
@@ -24,13 +29,17 @@ class Organismos
 
     /**
      * @var string $rif
-     *
+     * 
+     * @Assert\NotBlank(message="Debe Ingresar el RIF del Organismo. No se han obtenido algunos datos indispensables para seguir con la operaci&oacute;n.")
+     * 
      * @ORM\Column(name="rif", type="string", length=12, nullable=false)
      */
     private $rif;
 
     /**
      * @var string $nombreOrganismo
+     * 
+     * @Assert\NotBlank(message="Debe Ingresar el Nombre del Organismo. No se han obtenido algunos datos indispensables para seguir con la operaci&oacute;n.")
      *
      * @ORM\Column(name="nombre_organismo", type="string", length=60, nullable=false)
      */
@@ -38,6 +47,8 @@ class Organismos
 
     /**
      * @var string $sector
+     * 
+     * @Assert\NotBlank(message="Debe Ingresar el Sector del Organismo. No se han obtenido algunos datos indispensables para seguir con la operaci&oacute;n.")
      *
      * @ORM\Column(name="sector", type="string", length=20, nullable=false)
      */

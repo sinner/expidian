@@ -10,7 +10,6 @@ use Expidian\GlobalBundle\Entity\Usuarios;
 use Expidian\GlobalBundle\Entity\Personas;
 use Expidian\GlobalBundle\Entity\Perfiles;
 use Expidian\GlobalBundle\Entity\Paises;
-use Expidian\GlobalBundle\Entity\Estados;
 
 use Expidian\GlobalBundle\Form\PersonaType;
 use Expidian\GlobalBundle\Form\UsuariosType;
@@ -165,7 +164,7 @@ class UsuariosController extends Controller {
                         $result = $em->getRepository('ExpidianGlobalBundle:Usuarios')->RegistrarNuevoUsuario($usuario, $em);
                         
                         if($result){
-                            $msj = 'El Usuario <b>'.$usuario->getPersona().'</b> con ha sido Registrado Existosamente con Login de Usuario <b>'.$usuario->getUsuario().'</b>. Para agregar un nuevo usuario haga click <a href='.$this->generateUrl('ExpUsuariosNew').'>aqu&iacute;</a>';
+                            $msj = 'El Usuario <b>'.$usuario->getPersona().'</b> ha sido Registrado Existosamente con Login de Usuario <b>'.$usuario->getUsuario().'</b>. Para agregar un nuevo usuario haga click <a href='.$this->generateUrl('ExpUsuariosNew').'>aqu&iacute;</a>';
                             $class_style = 'successDialogBox';
                         }else{
                             $msj = 'Ha ocurrido un error en el sistema. Vuelva a intentarlo más tarde. Para agregar un nuevo usuario haga click <a href='.$this->generateUrl('ExpUsuariosNew').'>aqu&iacute;</a>';
