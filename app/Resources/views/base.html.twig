@@ -64,20 +64,20 @@
                     <ul class="toggle">
                         <li class="icn_add_user"><a href="{{ path("ExpUsuariosNew") }}">Nuevo Usuario</a></li>
                         <li class="icn_view_users"><a href="{{ path("ExpUsuariosList") }}">Listar Usuarios</a></li>
-                        <li class="icn_profile"><a href="{{ path("ExpUsuariosMine") }}">Mi Perfil</a></li>
                     </ul>
                     {% endif %}
                     <h3>Expedientes</h3>
                     <ul class="toggle">
                         <li class="icn_new_article"><a href="#">Nuevo Expediente</a></li>
                         <li class="icn_categories"><a href="#">Listar Expedientes</a></li>
-                        <li class="icn_view_users"><a href="#">Listar Interesados</a></li>
-                        <li class="icn_edit_article"><a href="#">Expedientes en Proceso</a></li>
+                        <li class="icn_view_users"><a href="#">Bitacora</a></li>
                         <li class="icn_tags"><a href="#">Expedientes Cerrados</a></li>
                         <li class="icn_folder"><a href="#">Mis Expedientes</a></li>
                     </ul>
                     <h3>Administracion</h3>
                     <ul class="toggle">
+                        <li class="icn_settings"><a href="{{ path("ExpOrganismosNew") }}">Nuevo Organismo</a></li>
+                        <li class="icn_categories"><a href="{{ path("ExpOrganismosList") }}">Listar Organismos</a></li>
                         <li class="icn_settings"><a href="#">Nuevo Proceso</a></li>
                         <li class="icn_categories"><a href="#">Listar Procesos</a></li>
                         <li class="icn_settings"><a href="#">Nueva Etapa</a></li>
@@ -85,8 +85,7 @@
                     </ul>
                     <h3>Mi Sesi&oacute;n</h3>
                     <ul>
-                        <li class="icn_security"><a href="#">Tareas Realizadas Hoy</a></li>
-                        <li class="icn_jump_back"><a href="#">Logout</a></li>
+                        <li class="icn_jump_back"><a href="{{ path("ExpUsuariosLogout") }}">Logout</a></li>
                     </ul>
                 </article>
 

@@ -20,7 +20,7 @@ use Expidian\UsuariosBundle\Controller\Session\SessionManager;
 /**
  * Description of UsuariosController
  *
- * @author autana
+ * @author Jose Gabriel Gonzalez
  */
 class UsuariosController extends Controller {
 

@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Description of LoginController
- *
- * @author JGG-RDG
- */
 namespace Expidian\GlobalBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -18,6 +13,12 @@ use Expidian\GlobalBundle\Entity\Paises;
 use Expidian\GlobalBundle\Entity\Estados;
 
 use Expidian\UsuariosBundle\Controller\Session\SessionManager;
+
+/**
+ * Description of DefaultController
+ *
+ * @author Jose Gabriel Gonzalez
+ */
 
 class DefaultController extends Controller
 {

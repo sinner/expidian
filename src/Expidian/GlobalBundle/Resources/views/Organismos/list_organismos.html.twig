@@ -1,0 +1,55 @@
+{% extends '::base.html.twig' %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('bundles/expidian/js/sinner_grid/sinner_grid.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/expidian/js/controladores/Organismos/organismos.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function (){
+            
+            listar_organismos("{{ path('ExpAjaxOrganismosList') }}");
+                                    
+            $("#form_busqueda_organismo").submit(function(event){
+                event.preventDefault();
+                busqueda_organismos("{{ path('ExpAjaxOrganismosList') }}");
+            });
+            
+        });
+    </script>
+
+{% endblock javascripts %}
+
+{% block maincontent %}
+    <article id="buscador">
+        <div class="searchOptionsSector module_content" id="div_form_busqueda_organismo">
+            <form id="form_busqueda_organismo" name="form_busqueda_organismo" method="post">
+                <fieldset style="width: 101%;"> 
+                    <select name="criteria_box" id="criteria_box" type="text" style="width:20%;" class="searchBox" >
+                        <option value=""> - - - </option>
+                        <option value="nombre">Nombre de Organismo</option>
+                        <option value="organismo">Sector</option>
+                    </select>
+                    <input name="search_box" id="search_box" type="text" style="width:67%;" class="searchBox" />
+                    <input name="searchButton" type="submit" value="Buscar" style="margin-left:10px;width: 6.5%" />
+                </fieldset>
+            </form>
+        </div>
+    </article>
+    <article class="module width_full">
+        <header>
+            <h3>
+                <span>Lista de Organismos</span>
+            </h3>
+        </header>
+        <div class="module_content" id="div_lista_organismos" style="min-height: 412px;">
+            <form name="form_list_organismos" id="form_list_organismos">
+                <input type="hidden" value="{{rows}}" id="rows" name="rows" />
+                <input type="hidden" value="{{searchField}}" id="searchFieldf" name="searchFieldf" />
+                <input type="hidden" value="{{searchOper}}" id="searchOperf" name="searchOperf" />
+                <input type="hidden" value="{{searchString}}" id="searchStringf" name="searchStringf" />
+                <input type="hidden" value="{{sort}}" id="grid_sort" name="grid_sort" />
+                <input type="hidden" value="{{direction}}" id="grid_direction" name="grid_direction" />
+                <input type="hidden" value="{{is_search}}" id="is_search" name="is_search" />
+            </form>
+        </div>
+    </article>
+{% endblock maincontent %}
