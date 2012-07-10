@@ -1,3 +1,7 @@
+ExpidianProcesosBundle:
+    resource: "@ExpidianProcesosBundle/Resources/config/routing.yml"
+    prefix:   /
+
 ExpidianExpedientesBundle:
     resource: "@ExpidianExpedientesBundle/Resources/config/routing.yml"
     prefix:   /

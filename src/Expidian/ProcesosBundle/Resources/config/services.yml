@@ -1,0 +1,7 @@
+parameters:
+#    expidian_procesos.example.class: Expidian\ProcesosBundle\Example
+
+services:
+#    expidian_procesos.example:
+#        class: %expidian_procesos.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,19 @@
+ExpProcesosList:
+    pattern:  /procesos/
+    defaults: { _controller: ExpidianProcesosBundle:Procesos:list }
+    
+ExpProcesosAjaxList:
+    pattern:  /procesos/ajax/lista/{page}
+    defaults: { _controller: ExpidianProcesosBundle:Procesos:ajaxList, page: 1 }
+
+ExpProcesosNew:
+    pattern:  /procesos/nuevo/
+    defaults: { _controller: ExpidianProcesosBundle:Procesos:new }
+    
+ExpProcesosEdit:
+    pattern:  /procesos/edit/{id_proceso}
+    defaults: { _controller: ExpidianProcesosBundle:Procesos:edit }
+ 
+ExpProcesosDelete:
+    pattern:  /procesos/eliminar/{id_proceso}
+    defaults: { _controller: ExpidianProcesosBundle:Procesos:delete}

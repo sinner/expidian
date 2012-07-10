@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new Expidian\GlobalBundle\ExpidianGlobalBundle(),
             new Expidian\UsuariosBundle\ExpidianUsuariosBundle(),
             new Expidian\ExpedientesBundle\ExpidianExpedientesBundle(),
+            new Expidian\ProcesosBundle\ExpidianProcesosBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
