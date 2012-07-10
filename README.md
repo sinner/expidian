@@ -3,10 +3,10 @@ Expidian
 
 Developer Team:
 
-Anarai Aguilar
-Andreina de Freites
-Jehish Loor
-José Gabriel González
+  - Anarai Aguilar
+  - Andreina de Freites
+  - Jehish Loor
+  - José Gabriel González
 
 Expidian is a Project that our Database Teacher's sent our group. 
 This app have the object of manage the time live of a court documents.
@@ -59,4 +59,3 @@ Tenemos que darle permisos de escritura a Symfony en los directorios app/chache 
 
        sudo chmod 777 -R app/cache
        sudo chmod 777 -R app/logs
-
