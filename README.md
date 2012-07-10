@@ -1,7 +1,7 @@
 Expidian
 ========
 
-Developer Team:
+Development Team:
 
   - Anarai Aguilar
   - Andreina de Freites
@@ -35,10 +35,9 @@ Y además (Por si falla la instalación de php-intl)
 
        sudo pecl install apc
 
-Luego de instalar estas librerías debes habilitarlas en el archivo php.ini, para esto busca en el archivo php.ini la sección de "extensions" (Ctrl+f) y añadir allí estas líneas:
+Luego de instalar estas librerías debes habilitarlas en el archivo /etc/php5/apache2/php.ini, para esto busca en el archivo /etc/php5/apache2/php.ini la sección de "extensions" (Ctrl+f) y añadir allí estas líneas:
 
        extension=apc.so
-
        extension=intl.so
 
 Y luego añadir o sustituir en la sección de "date.timezone" (Ctrl+f) esta línea:
@@ -55,7 +54,7 @@ O en otros OS u otros servidor web ejecuta (Pero, este seguro no lo utilices, de
 
        sudo /etc/init.d/httpd restart 
 
-Tenemos que darle permisos de escritura a Symfony en los directorios app/chache y app/logs ejecutando el siguiente comando
+Tenemos que darle permisos de escritura a Symfony en los directorios app/chache y app/logs de nuestra aplicación, esto lo logramos ejecutando el siguiente comando:
 
        sudo chmod 777 -R app/cache
        sudo chmod 777 -R app/logs
