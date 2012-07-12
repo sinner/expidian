@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Expidian\GlobalBundle\Entity\Procesos
  *
  * @ORM\Table(name="procesos")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Expidian\GlobalBundle\Entity\Repository\ProcesosRepository")
  */
 class Procesos
 {
