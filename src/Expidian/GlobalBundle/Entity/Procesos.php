@@ -114,4 +114,10 @@ class Procesos
     {
         return $this->nroConsecutivoProceso;
     }
+    
+    
+    public function __toString(){
+        return $this->proceso;
+    }
+    
 }
