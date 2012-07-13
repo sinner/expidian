@@ -52,9 +52,9 @@ class ProcesosController extends Controller {
                 $sort = "o.idProceso"; 
                 $rows = "10"; 
                 $page = "1";
-                return $this->render('ExpidianGlobalBundle:Procesos:list_procesos.html.twig', array('breadcrumb'=>$breadcrumb,'usuario'=>$usuario_obj, 'is_search'=>$isSearch, 'searchField'=>$searchField, 'searchOper'=>$searchOper, 'searchString'=>$searchString, 'direction'=>$direction, 'sort'=>$sort, 'rows'=>$rows, 'page'=>$page));
+                return $this->render('ExpidianProcesosBundle:Procesos:list_procesos.html.twig', array('breadcrumb'=>$breadcrumb,'usuario'=>$usuario_obj, 'is_search'=>$isSearch, 'searchField'=>$searchField, 'searchOper'=>$searchOper, 'searchString'=>$searchString, 'direction'=>$direction, 'sort'=>$sort, 'rows'=>$rows, 'page'=>$page));
             }else{
-                return $this->render('ExpidianGlobalBundle::dialog_msj.html.twig', array('msj'=>'Su perfil no posee permisos para efectuar esta acci&oacute;n en el sistema.','class'=>'errorDialogBox', 'breadcrumb'=>$breadcrumb,'usuario'=>$usuario_obj));
+                return $this->render('ExpidianProcesosBundle::dialog_msj.html.twig', array('msj'=>'Su perfil no posee permisos para efectuar esta acci&oacute;n en el sistema.','class'=>'errorDialogBox', 'breadcrumb'=>$breadcrumb,'usuario'=>$usuario_obj));
             }
         }else{
             $estatus = "inicio";
@@ -112,7 +112,7 @@ class ProcesosController extends Controller {
                     10/*rows limit per page, you can use the $rows variable*/
                 );
                 
-                return $this->render('ExpidianGlobalBundle:Ajax:table_list_procesos.html.twig', array('pager'=>$pagination,'is_search'=>$isSearch, 'searchField'=>$searchField, 'searchOper'=>$searchOper, 'searchString'=>$searchString, 'direction'=>$direction, 'sort'=>$sort, 'rows'=>$rows, 'page'=>$page));
+                return $this->render('ExpidianProcesosBundle:Ajax:table_list_procesos.html.twig', array('pager'=>$pagination,'is_search'=>$isSearch, 'searchField'=>$searchField, 'searchOper'=>$searchOper, 'searchString'=>$searchString, 'direction'=>$direction, 'sort'=>$sort, 'rows'=>$rows, 'page'=>$page));
                 
             }
             
@@ -157,7 +157,7 @@ class ProcesosController extends Controller {
                     
                     if($form->isValid()){
                                                 
-                        $result = $em->getRepository('ExpidianGlobalBundle:Procesos')->GuardarDatosDeProceso($proceso, $em);
+                        $result = $em->getRepository('ExpidianProcesosBundle:Procesos')->GuardarDatosDeProceso($proceso, $em);
                         
                         if($result){
                             $msj = 'El Proceso <b>'.$proceso->getNombreProceso().'</b> ha sido registrado exitosamente. Para agregar un nuevo proceso haga click <a href='.$this->generateUrl('ExpProcesosNew').'>aqu&iacute;</a>';
@@ -167,17 +167,17 @@ class ProcesosController extends Controller {
                             $class_style = 'errorDialogBox';
                         }
                         
-                        return $this->render('ExpidianGlobalBundle::dialog_msj.html.twig', array('msj'=>$msj, 'class'=>$class_style,'breadcrumb'=>$breadcrumb,'usuario'=>$usuario_obj));
+                        return $this->render('ExpidianProcesosBundle::dialog_msj.html.twig', array('msj'=>$msj, 'class'=>$class_style,'breadcrumb'=>$breadcrumb,'usuario'=>$usuario_obj));
                         
                     }
                     
                 }
 
-                return $this->render('ExpidianGlobalBundle:Procesos:edit_procesos.html.twig', array('form'=>$form->createView(), 'breadcrumb'=>$breadcrumb,'usuario'=>$usuario_obj, 'opc'=>'Nuevo'));
+                return $this->render('ExpidianProcesosBundle:Procesos:edit_procesos.html.twig', array('form'=>$form->createView(), 'breadcrumb'=>$breadcrumb,'usuario'=>$usuario_obj, 'opc'=>'Nuevo'));
                 
             }else{
                 
-                return $this->render('ExpidianGlobalBundle::dialog_msj.html.twig', array('msj'=>'Su perfil no posee permisos para efectuar esta acci&oacute;n en el sistema.','class'=>'errorDialogBox', 'breadcrumb'=>$breadcrumb,'usuario'=>$usuario_obj));
+                return $this->render('ExpidianProcesosBundle::dialog_msj.html.twig', array('msj'=>'Su perfil no posee permisos para efectuar esta acci&oacute;n en el sistema.','class'=>'errorDialogBox', 'breadcrumb'=>$breadcrumb,'usuario'=>$usuario_obj));
                 
             }
             
@@ -203,7 +203,7 @@ class ProcesosController extends Controller {
                 $breadcrumb = array(array('text'=>'Procesos','url'=>$this->generateUrl('ExpProcesosList')),array('text'=>'Editar','url'=>''));
                                 
                 $em = $this->getDoctrine()->getEntityManager();
-                $proceso = $em->getRepository('ExpidianGlobalBundle:Procesos')->find($id_proceso);
+                $proceso = $em->getRepository('ExpidianProcesosBundle:Procesos')->find($id_proceso);
                 
                 $form = $this->createForm(new ProcesosType(),$proceso);
                 
@@ -216,7 +216,7 @@ class ProcesosController extends Controller {
                     
                     if($form->isValid()){
                         
-                        $result = $em->getRepository('ExpidianGlobalBundle:Procesos')->GuardarDatosDeProceso($proceso, $em);
+                        $result = $em->getRepository('ExpidianProcesosBundle:Procesos')->GuardarDatosDeProceso($proceso, $em);
                         
                         if($result){
                             $msj = 'Los Datos del Proceso <b>'.$proceso->getNombreProceso().'</b> han sido Editados Existosamente.';
@@ -226,17 +226,17 @@ class ProcesosController extends Controller {
                             $class_style = 'errorDialogBox';
                         }
                         
-                        return $this->render('ExpidianGlobalBundle::dialog_msj.html.twig', array('msj'=>$msj, 'class'=>$class_style,'breadcrumb'=>$breadcrumb,'usuario'=>$usuario_obj));
+                        return $this->render('ExpidianProcesosBundle::dialog_msj.html.twig', array('msj'=>$msj, 'class'=>$class_style,'breadcrumb'=>$breadcrumb,'usuario'=>$usuario_obj));
                         
                     }
                     
                 }
 
-                return $this->render('ExpidianGlobalBundle:Procesos:edit_procesos.html.twig', array('form'=>$form->createView(), 'breadcrumb'=>$breadcrumb,'usuario'=>$usuario_obj, 'opc'=>'Editar'));
+                return $this->render('ExpidianProcesosBundle:Procesos:edit_procesos.html.twig', array('form'=>$form->createView(), 'breadcrumb'=>$breadcrumb,'usuario'=>$usuario_obj, 'opc'=>'Editar'));
                 
             }else{
                 
-                return $this->render('ExpidianGlobalBundle::dialog_msj.html.twig', array('msj'=>'Su perfil no posee permisos para efectuar esta acci&oacute;n en el sistema.','class'=>'errorDialogBox', 'breadcrumb'=>$breadcrumb,'usuario'=>$usuario_obj));
+                return $this->render('ExpidianProcesosBundle::dialog_msj.html.twig', array('msj'=>'Su perfil no posee permisos para efectuar esta acci&oacute;n en el sistema.','class'=>'errorDialogBox', 'breadcrumb'=>$breadcrumb,'usuario'=>$usuario_obj));
                 
             }
             
@@ -262,7 +262,7 @@ class ProcesosController extends Controller {
             $breadcrumb = array(array('text'=>'Usuarios','url'=>$this->generateUrl('ExpUsuariosList')),array('text'=>'Editar','url'=>''));
             
             $em = $this->getDoctrine()->getEntityManager();
-            $usuario = $em->getRepository('ExpidianGlobalBundle:Usuarios')->find($id_usuario);
+            $usuario = $em->getRepository('ExpidianProcesosBundle:Usuarios')->find($id_usuario);
             
             $usuario_obj = $sm->getUsuario();
             

@@ -45,11 +45,11 @@ class ProcesosRepository extends EntityRepository {
                 case 'nombre':
                     $searchField = "p.proceso";
                     break;
-                case 'rif':
-                    $searchField = "p.rif";
+                case 'consecutivo':
+                    $searchField = "p.nroCsonsecutivoProceso";
                     break;
-                case 'sector':
-                    $searchField = "p.sector";
+                case 'abrev':
+                    $searchField = "p.procesoAbrev";
                     break;
             }
             
@@ -57,12 +57,12 @@ class ProcesosRepository extends EntityRepository {
             
             $filter = $isSearch? " WHERE upper($searchField) LIKE '%$searchParam%' ":"";
             
-            $dql = "SELECT o FROM ExpidianGlobalBundle:Procesos o $filter";
+            $dql = "SELECT p FROM ExpidianGlobalBundle:Procesos p $filter";
             $query = $em->createQuery($dql);
             
         }else{
             
-            $dql = "SELECT o FROM ExpidianGlobalBundle:Procesos o ORDER BY p.idProceso";
+            $dql = "SELECT p FROM ExpidianGlobalBundle:Procesos p ORDER BY p.idProceso";
             $query = $em->createQuery($dql);
             
         }
