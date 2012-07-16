@@ -13,7 +13,7 @@ class ProcesosType extends AbstractType
             ->add('idProceso','hidden')
             ->add('proceso','text')
             ->add('procesoAbrev','text')
-            ->add('nroConsecutivoProceso', 'number')
+            ->add('nroConsecutivoProceso', 'entity', array('class' => 'ExpidianGlobalBundle:Procesos',))
         ;
     }
            

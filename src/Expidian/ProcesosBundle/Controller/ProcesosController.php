@@ -157,7 +157,7 @@ class ProcesosController extends Controller {
                     
                     if($form->isValid()){
                                                 
-                        $result = $em->getRepository('ExpidianProcesosBundle:Procesos')->GuardarDatosDeProceso($proceso, $em);
+                        $result = $em->getRepository('ExpidianGlobalBundle:Procesos')->GuardarDatosDeProceso($proceso, $em);
                         
                         if($result){
                             $msj = 'El Proceso <b>'.$proceso->getNombreProceso().'</b> ha sido registrado exitosamente. Para agregar un nuevo proceso haga click <a href='.$this->generateUrl('ExpProcesosNew').'>aqu&iacute;</a>';
@@ -167,7 +167,7 @@ class ProcesosController extends Controller {
                             $class_style = 'errorDialogBox';
                         }
                         
-                        return $this->render('ExpidianProcesosBundle::dialog_msj.html.twig', array('msj'=>$msj, 'class'=>$class_style,'breadcrumb'=>$breadcrumb,'usuario'=>$usuario_obj));
+                        return $this->render('ExpidianGlobalBundle::dialog_msj.html.twig', array('msj'=>$msj, 'class'=>$class_style,'breadcrumb'=>$breadcrumb,'usuario'=>$usuario_obj));
                         
                     }
                     

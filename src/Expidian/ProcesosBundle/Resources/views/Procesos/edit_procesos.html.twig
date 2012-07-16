@@ -7,7 +7,7 @@
     
     $(document).ready(function () {
         
-        $('#form_organismo_type').fadeIn();
+        $('#form_proceso_type').fadeIn();
 
         // Este código proporciona la funcionalidad de poder acultar o mostrar secciones del formulario
         $('.showPanelButton').click(function (elemento) {
@@ -30,14 +30,16 @@
             $("#"+this.rel).slideToggle("slow");
 
         });
-
+        
+        $('#nroConsecutivoProceso').numeric(false, function() {this.focus();});
+        
         // Y con esto logro que en los campos de nombre y apellido solo se ingresen caractertes alfabéticos
-        $('#nombreOrganismo').bind('keyup blur', function () {
+        $('#proceso').bind('keyup blur', function () {
             if (this.value.match(/[^a-zA-ZáÁéÉíÍóÓúÚñÑ ]/g)) {
                 this.value = this.value.replace(/[^a-zA-ZáÁéÉíÍóÓúÚñÑ ]/g, '');
             }
         });
-        $('#sector').bind('keyup blur', function () {
+        $('#procesoAbrev').bind('keyup blur', function () {
             if (this.value.match(/[^a-zA-ZáÁéÉíÍóÓúÚñÑ ]/g)) {
                 this.value = this.value.replace(/[^a-zA-ZáÁéÉíÍóÓúÚñÑ ]/g, '');
             }
@@ -49,26 +51,26 @@
        /**
         * Reglas de Validación del Formulario
         */   
-        $("#form_organismo_type").validate({
+        $("#form_proceso_type").validate({
             rules: {
-                "organismotype[idOrganismo]": { number: true },
-                "organismotype[nombreOrganismo]": { required: true, maxlength: 60},
-                "organismotype[rif]": { required: true, maxlength: 12 },
-                "organismotype[sector]": { required: true, maxlength: 20 },
+                "procesotype[idProceso]": { number: true },
+                "procesotype[proceso]": { required: true, maxlength: 60},
+                "procesotype[nroConsecutivoProceso]": { required: true, maxlength: 12 },
+                "procesotype[procesoAbrev]": { required: true, maxlength: 20 },
                 opc: { required: true }
             },
             messages: {
-                "organismotype[idOrganismo]": "Recargue la p&aacute;gina. Ha ocurrido un error.",
-                "organismotype[nombreOrganismo]": "Debe ingresar el Nombre del organismo.",
-                "organismotype[rif]": "Debe ingresar el RIF del organismo.",
-                "organismotype[sector]": "Debe ingresar el Sector del organismo.",
+                "procesotype[idProceso]": "Recargue la p&aacute;gina. Ha ocurrido un error.",
+                "procesotype[proceso]": "Debe ingresar el Nombre del proceso.",
+                "procesotype[nroConsecutivoProceso]": "Debe ingresar el RIF del proceso.",
+                "procesotype[procesoAbrev]": "Debe ingresar el Sector del proceso.",
                 opc: "Recargue la p&aacute;gina. Ha ocurrido un error.",
             }
         });
     });
     
-    function form_organismo_validator(){
-        var formIsValid = $("#form_organismo_type").validate().form();
+    function form_proceso_validator(){
+        var formIsValid = $("#form_proceso_type").validate().form();
 	if(formIsValid){
             return true;
         }
@@ -80,44 +82,44 @@
 {% endblock javascripts %}
 
 {% block maincontent %}
-    <form action="" method="POST" id="form_organismo_type" name="form_organismo_type" onSubmit="return form_organismo_validator();" style="display: none;" >
+    <form action="" method="POST" id="form_proceso_type" name="form_proceso_type" onSubmit="return form_proceso_validator();" style="display: none;" >
         <div id="mensajes_de_error">
             <div class="infoDialogBox">
-                <p>Ingrese los datos del Organismo</p>
+                <p>Ingrese los datos del Proceso</p>
             </div>
         </div>
-        <article class="module width_full"><!-- START of "Datos Generales del Organismo" -->  
+        <article class="module width_full"><!-- START of "Datos Generales del Proceso" -->  
             <header>
                 <h3>
-                    <span>Datos Generales del Organismo</span>
-                    <a class="showPanelButton close" rel="div_datos_generales_organismo" title="Ocultar"></a>
+                    <span>Datos Generales del Proceso</span>
+                    <a class="showPanelButton close" rel="div_datos_generales_proceso" title="Ocultar"></a>
                 </h3>
             </header>
             
-            <div class="module_content" id="div_datos_generales_organismo">
+            <div class="module_content" id="div_datos_generales_proceso">
                 
-                {{ form_widget(form.idOrganismo, {'id': 'idOrganismo'}) }}
+                {{ form_widget(form.idProceso, {'id': 'idProceso'}) }}
                 
                 <!-- START of Primera Fila -->
                 <fieldset>
-                    <div>{{ form_label(form.nombreOrganismo, 'Nombre del Organismo') }}</div>
-                    <div>{{ form_widget(form.nombreOrganismo, {'id': 'nombreOrganismo', 'attr': {'maxlength': '60'}}) }}</div>
-                    <div class="error">{{ form_errors(form.nombreOrganismo) }}</div>
+                    <div>{{ form_label(form.proceso, 'Nombre del Proceso') }}</div>
+                    <div>{{ form_widget(form.proceso, {'id': 'proceso', 'attr': {'maxlength': '60'}}) }}</div>
+                    <div class="error">{{ form_errors(form.proceso) }}</div>
                 </fieldset>
                 
                 
                 <fieldset class="half" style="margin-right: 3.5%;">
-                    <div>{{ form_label(form.rif, 'RIF del Organismo') }}</div>
-                    <div>{{ form_widget(form.rif, {'id': 'rif', 'attr': {'maxlength': '12'}}) }}</div>
-                    <div class="error">{{ form_errors(form.rif) }}</div>
+                    <div>{{ form_label(form.nroConsecutivoProceso, 'Agregar después del Proceso') }}</div>
+                    <div>{{ form_widget(form.nroConsecutivoProceso, {'id': 'nroConsecutivoProceso', 'attr': {'maxlength': '12'}}) }}</div>
+                    <div class="error">{{ form_errors(form.nroConsecutivoProceso) }}</div>
                 </fieldset>
                 <!-- END of Primera Fila -->
                 
                 <!-- START of Segunda Fila -->
                 <fieldset class="half">
-                    <div>{{ form_label(form.sector, 'Sector del Organismo') }}</div>
-                    <div>{{ form_widget(form.sector, {'id': 'sector', 'attr': {'maxlength': '20'}}) }}</div>
-                    <div class="error">{{ form_errors(form.sector) }}</div>
+                    <div>{{ form_label(form.procesoAbrev, 'Nombre Abreviado del Proceso') }}</div>
+                    <div>{{ form_widget(form.procesoAbrev, {'id': 'procesoAbrev', 'attr': {'maxlength': '3'}}) }}</div>
+                    <div class="error">{{ form_errors(form.procesoAbrev) }}</div>
                 </fieldset>
                 
                 <div class="clear"></div>
@@ -127,11 +129,11 @@
             <footer>
                 <div class="submit_link">
                     <input type="reset" value="Limpiar Formulario" />
-                    <input type="submit" id="submit_edit_organismo" name="submit_edit_organismo" value="Guardar Datos del Organismo" />
+                    <input type="submit" id="submit_edit_proceso" name="submit_edit_proceso" value="Guardar Datos del Proceso" />
                 </div>
             </footer>
             
-        </article><!-- END of Datos Generales del Organismo -->
+        </article><!-- END of Datos Generales del Proceso -->
         
         <input type="hidden" name="opc" id="opc" value="{{ opc }}" readonly="readonly" />
         <div>{{ form_rest(form) }}</div>
